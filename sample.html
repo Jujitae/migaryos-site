@@ -20,7 +20,19 @@ body{margin:0;font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",system-u
 #grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
   background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px)}
 #vig{position:fixed;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(ellipse 78% 62% at 50% 42%,transparent 30%,rgba(5,6,10,.82) 100%)}
+  background:radial-gradient(ellipse 92% 78% at 50% 40%,transparent 46%,rgba(5,6,10,.55) 100%)}
+/* fixed HUD: every value in it is measured, never a track record */
+#hud{position:fixed;top:0;left:0;right:0;z-index:3;display:flex;gap:1.4rem;align-items:center;
+  padding:.55rem 1.15rem;font:.58rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--faint);background:linear-gradient(180deg,rgba(5,6,10,.92),rgba(5,6,10,0));
+  border-bottom:1px solid rgba(38,45,66,.55);overflow:hidden;white-space:nowrap}
+#hud b{color:var(--ink);font-weight:600}
+#hud .dot{width:5px;height:5px;background:var(--ev);box-shadow:0 0 8px var(--ev);flex:none;
+  animation:bl 2.4s ease-in-out infinite}
+#hud .sp{flex:1}
+#hud .w{color:var(--warn)}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.25}}
+@media(max-width:720px){#hud .opt{display:none}}
 .wrap{position:relative;z-index:2;max-width:60rem;margin-inline:auto;padding:0 1.15rem 5rem}
 .kicker{font:600 .68rem/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem}
 h1{font-size:clamp(1.7rem,5.2vw,3.1rem);line-height:1.22;margin:0 0 1.1rem;letter-spacing:-.025em;font-weight:650}
@@ -31,19 +43,22 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 
 /* ---- hero ---------------------------------------------------------- */
 .hero{position:relative;z-index:2;min-height:min(92vh,780px);display:flex;flex-direction:column;justify-content:center;
-  padding:6rem 0 3rem}
+  padding:7.5rem 0 3rem}
 .hero .lede{max-width:36rem}
 .rdg{position:absolute;width:14px;height:14px;border:1px solid var(--line2);opacity:.9}
 .rdg.tl{top:2.4rem;left:-.2rem;border-right:0;border-bottom:0}
 .rdg.tr{top:2.4rem;right:-.2rem;border-left:0;border-bottom:0}
 /* the one live readout, and it reads the graph, not a track record */
-.prob{display:flex;align-items:baseline;gap:.75rem;margin:0 0 1.6rem;font-family:var(--mono)}
-.prob b{font-size:clamp(2.2rem,7vw,3.4rem);font-weight:600;letter-spacing:-.03em;color:var(--ev);
-  text-shadow:0 0 24px rgba(34,224,200,.45);font-variant-numeric:tabular-nums}
-.prob span{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);line-height:1.5}
-.bar{position:relative;height:2px;background:var(--line);max-width:36rem;margin:0 0 2.2rem;overflow:hidden}
+.prob{display:flex;align-items:flex-end;flex-wrap:wrap;gap:.2rem 1.1rem;margin:0 0 .9rem;font-family:var(--mono)}
+.prob b{display:block;font-size:clamp(2.4rem,7.5vw,3.8rem);font-weight:600;letter-spacing:-.035em;color:var(--ev);
+  text-shadow:0 0 30px rgba(34,224,200,.5);font-variant-numeric:tabular-nums;line-height:.95}
+.prob span{display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);
+  line-height:1.7;padding-bottom:.35rem;max-width:22rem}
+.bar{position:relative;height:2px;background:var(--line);max-width:34rem;margin:0 0 2.4rem;overflow:visible}
 .bar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--ct),var(--ev));width:62%;
-  box-shadow:0 0 14px rgba(34,224,200,.6)}
+  box-shadow:0 0 16px rgba(34,224,200,.7);transition:width .18s linear}
+.bar::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,
+  rgba(38,45,66,.9) 0 1px,transparent 1px 10%)}
 
 /* ---- live strip ---------------------------------------------------- */
 .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:1px;background:var(--line);
