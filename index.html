@@ -29,17 +29,27 @@ body{margin:0;font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",system-u
 #vig{position:fixed;inset:0;z-index:1;pointer-events:none;
   background:radial-gradient(ellipse 92% 78% at 50% 40%,transparent 46%,rgba(5,6,10,.55) 100%)}
 /* fixed HUD: every value in it is measured, never a track record */
-#hud{position:fixed;top:0;left:0;right:0;z-index:3;display:flex;gap:1.4rem;align-items:center;
-  padding:.55rem 1.15rem;font:.58rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
-  color:var(--faint);background:linear-gradient(180deg,rgba(5,6,10,.92),rgba(5,6,10,0));
-  border-bottom:1px solid rgba(38,45,66,.55);overflow:hidden;white-space:nowrap}
+#hud{position:fixed;top:0;left:0;right:0;z-index:3;display:flex;gap:1.2rem;align-items:center;
+  padding:.5rem 1.15rem;font:600 .58rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--faint);background:linear-gradient(180deg,rgba(5,6,10,.97),rgba(5,6,10,.78));
+  border-bottom:1px solid rgba(38,45,66,.6);overflow:hidden;white-space:nowrap}
+#nav{display:flex;gap:.15rem;align-items:center;flex:none}
+#nav a{color:var(--faint);text-decoration:none;padding:.4rem .6rem;border:1px solid transparent;
+  transition:.15s;white-space:nowrap;letter-spacing:.18em}
+#nav a:hover,#nav a:focus-visible{color:var(--ink);border-color:var(--line2)}
+#nav a.on{color:var(--ink);border-color:var(--line2)}
+#nav .brand{color:var(--ink);margin-right:.5rem;letter-spacing:.26em}
+a:focus-visible,.cta:focus-visible{outline:2px solid var(--ev);outline-offset:3px}
+.lbl{display:inline-block;font:600 .55rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ct);border:1px solid var(--ct);padding:.35rem .5rem;margin:0 0 1rem}
 #hud b{color:var(--ink);font-weight:600}
 #hud .dot{width:5px;height:5px;background:var(--ev);box-shadow:0 0 8px var(--ev);flex:none;
   animation:bl 2.4s ease-in-out infinite}
 #hud .sp{flex:1}
 #hud .w{color:var(--warn)}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:.25}}
-@media(max-width:720px){#hud .opt{display:none}}
+@media(max-width:980px){#hud .opt{display:none}}
+@media(max-width:560px){#hud .tel{display:none}}
 .wrap{position:relative;z-index:2;max-width:60rem;margin-inline:auto;padding:0 1.15rem 5rem}
 .kicker{font:600 .68rem/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem}
 h1{font-size:clamp(1.7rem,5.2vw,3.1rem);line-height:1.22;margin:0 0 1.1rem;letter-spacing:-.025em;font-weight:650}
@@ -50,7 +60,7 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 
 /* ---- hero ---------------------------------------------------------- */
 .hero{position:relative;z-index:2;min-height:min(92vh,780px);display:flex;flex-direction:column;justify-content:center;
-  padding:7.5rem 0 3rem}
+  padding:6.5rem 0 3rem}
 /* the field is allowed to be busy because the copy is guaranteed to win:
    a soft wash sits under the text column and fades out before the right edge */
 .hero::before{content:"";position:absolute;inset:0 30% 0 -50vw;z-index:-1;pointer-events:none;
@@ -157,17 +167,17 @@ a{color:inherit}
 <canvas id="field" aria-hidden="true"></canvas>
 <div id="grain" aria-hidden="true"></div>
 <div id="vig" aria-hidden="true"></div>
-<div id="hud" aria-hidden="true">
-  <span class="dot"></span><span>MIGARYOS</span>
-  <span class="opt">원장 <b>58,425</b></span>
-  <span class="opt">엔티티 <b>2,923</b></span>
-  <span class="opt">체인 <b>OK</b></span>
-  <span>반대증거 <b id="ctc">0</b> 유입</span>
+<div id="hud">
+  <span class="dot" aria-hidden="true"></span>
+  <nav id="nav" aria-label="주요"><a class="brand" href="/">MIGARYOS</a><a href="/glitch/">GLITCH</a><a href="/wie/">WIE</a></nav>
   <span class="sp"></span>
+  <span class="tel opt" aria-hidden="true">원장 <b>58,425</b></span>
+  <span class="tel opt" aria-hidden="true">엔티티 <b>2,923</b></span>
+  <span class="tel opt" aria-hidden="true">체인 <b>OK</b></span>
+  <span class="tel" aria-hidden="true">반대증거 <b id="ctc">0</b></span>
   <span class="w">닫힌 루프 <b class="w">0</b></span>
-  <span class="opt">실측 2026-08-13</span>
+  <span class="tel opt" aria-hidden="true">실측 2026-08-13</span>
 </div>
-<nav id="nav" aria-label="주요"><a class="brand" href="/">MIGARYOS</a><a href="/glitch/">GLITCH</a><a href="/wie/">WIE</a></nav>
 <header class="wrap hero">
   <span class="rdg tl" aria-hidden="true"></span><span class="rdg tr" aria-hidden="true"></span>
   <p class="kicker">MIGARYOS · Decision Intelligence</p>
