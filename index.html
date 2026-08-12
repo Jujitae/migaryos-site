@@ -46,7 +46,13 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 /* ---- hero ---------------------------------------------------------- */
 .hero{position:relative;z-index:2;min-height:min(92vh,780px);display:flex;flex-direction:column;justify-content:center;
   padding:7.5rem 0 3rem}
-.hero .lede{max-width:36rem}
+/* the field is allowed to be busy because the copy is guaranteed to win:
+   a soft wash sits under the text column and fades out before the right edge */
+.hero::before{content:"";position:absolute;inset:0 30% 0 -50vw;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(5,6,10,.94) 55%,rgba(5,6,10,0))}
+@media(max-width:900px){.hero::before{inset:0 -50vw;background:rgba(5,6,10,.72)}}
+.hero>*{position:relative}
+.hero .lede{max-width:34rem}
 .rdg{position:absolute;width:14px;height:14px;border:1px solid var(--line2);opacity:.9}
 .rdg.tl{top:2.4rem;left:-.2rem;border-right:0;border-bottom:0}
 .rdg.tr{top:2.4rem;right:-.2rem;border-left:0;border-bottom:0}
@@ -248,7 +254,7 @@ var EV='34,224,200',CT='255,47,126',MX='160,107,255',UN='120,134,164';
 
 function size(){
   DPR=Math.min(window.devicePixelRatio||1,1.75);
-  W=c.clientWidth;H=c.clientHeight;cx=W*.5;cy=H*.44;
+  W=c.clientWidth;H=c.clientHeight;cx=W>900?W*.72:W*.5;cy=H*.46;
   c.width=Math.round(W*DPR);c.height=Math.round(H*DPR);
   x.setTransform(DPR,0,0,DPR,0,0);
 }
@@ -261,7 +267,7 @@ function seed(){
     // leaves filaments trailing out, which is what makes it read as one
     // structure rather than confetti
     var a=Math.random()*6.283,
-        rr=Math.pow(Math.random(),1.7)*Math.max(W,H)*.62,
+        rr=Math.pow(Math.random(),1.35)*Math.max(W,H)*.60,
         s=Math.random();
     N.push({
       x:cx+Math.cos(a)*rr*1.25, y:cy+Math.sin(a)*rr*.82,
@@ -316,8 +322,8 @@ function draw(){
   // core bloom
   var cp=.62+.38*Math.sin(t*.018),
       cg=x.createRadialGradient(cx,cy,0,cx,cy,180+40*cp);
-  cg.addColorStop(0,'rgba(232,236,245,'+(0.10+0.05*cp)+')');
-  cg.addColorStop(.28,'rgba(160,107,255,'+(0.055+0.03*cp)+')');
+  cg.addColorStop(0,'rgba(160,107,255,'+(0.045+0.02*cp)+')');
+  cg.addColorStop(.32,'rgba(160,107,255,'+(0.022+0.012*cp)+')');
   cg.addColorStop(1,'rgba(160,107,255,0)');
   x.fillStyle=cg;x.fillRect(cx-260,cy-260,520,520);
 
@@ -364,7 +370,7 @@ function draw(){
   }
 
   // the claim under examination — a ring, not a disc
-  x.strokeStyle='rgba(232,236,245,'+(0.30+0.16*cp)+')';x.lineWidth=1;
+  x.strokeStyle='rgba(232,236,245,'+(0.20+0.10*cp)+')';x.lineWidth=1;
   x.beginPath();x.arc(cx,cy,11+2*cp,0,6.283);x.stroke();
   x.strokeStyle='rgba(160,107,255,'+(0.13+0.07*cp)+')';
   x.beginPath();x.arc(cx,cy,34+10*cp,0,6.283);x.stroke();
@@ -375,11 +381,11 @@ function draw(){
         px=s2.x+(s2.tx-s2.x)*e,py=s2.y+(s2.ty-s2.y)*e,fade=Math.sin(u2*3.14159),
         tx0=s2.x+(s2.tx-s2.x)*Math.max(0,e-.20),ty0=s2.y+(s2.ty-s2.y)*Math.max(0,e-.20),
         gr=x.createLinearGradient(tx0,ty0,px,py);
-    gr.addColorStop(0,'rgba('+CT+',0)');gr.addColorStop(1,'rgba('+CT+','+(0.65*fade)+')');
-    x.strokeStyle=gr;x.lineWidth=1.4;
+    gr.addColorStop(0,'rgba('+CT+',0)');gr.addColorStop(1,'rgba('+CT+','+(0.38*fade)+')');
+    x.strokeStyle=gr;x.lineWidth=1.1;
     x.beginPath();x.moveTo(tx0,ty0);x.lineTo(px,py);x.stroke();
-    x.fillStyle='rgba('+CT+','+(0.28*fade)+')';
-    x.beginPath();x.arc(px,py,7,0,6.283);x.fill();
+    x.fillStyle='rgba('+CT+','+(0.16*fade)+')';
+    x.beginPath();x.arc(px,py,6,0,6.283);x.fill();
     x.fillStyle='rgba('+CT+','+(0.95*fade)+')';
     x.beginPath();x.arc(px,py,2.1,0,6.283);x.fill();
   }
