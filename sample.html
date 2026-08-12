@@ -139,10 +139,14 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 .offer h3{margin:0 0 .4rem;font-size:1.45rem;letter-spacing:-.02em}
 .offer .sub{color:var(--dim);font-size:.98rem;margin:0 0 1.3rem}
 .offer .nocatch{font:.72rem/1.6 var(--mono);color:var(--faint);letter-spacing:.03em;margin:1rem 0 0}
-.gtee{border-left:2px solid var(--warn);padding:.2rem 0 .2rem .9rem;margin:1.2rem 0 0;
-  font-size:.86rem;color:var(--dim)}
+.gtee{border-left:2px solid var(--warn);padding:.2rem 0 .2rem .9rem;margin:1.4rem 0 0;
+  font-size:.84rem;color:var(--dim)}
 .gtee b{color:var(--warn);display:block;font:600 .58rem/1 var(--mono);letter-spacing:.16em;
-  text-transform:uppercase;margin-bottom:.35rem}
+  text-transform:uppercase;margin-bottom:.5rem}
+.gtee ul{list-style:none;padding:0;margin:0 0 .7rem;display:grid;gap:.4rem}
+.gtee li{padding-left:1rem;position:relative}
+.gtee li::before{content:"";position:absolute;left:0;top:.62em;width:4px;height:4px;background:var(--warn)}
+.gtee span{display:block;color:var(--faint);font-size:.8rem;border-top:1px solid var(--line);padding-top:.6rem}
 .proof{display:block;border:1px solid var(--line2);padding:1.2rem 1.3rem;margin:1.1rem 0 0;
   text-decoration:none;transition:.15s}
 .proof:hover{border-color:var(--gl);box-shadow:0 0 24px rgba(160,107,255,.14)}

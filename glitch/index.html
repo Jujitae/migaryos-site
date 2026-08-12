@@ -146,10 +146,14 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 .offer h3{margin:0 0 .4rem;font-size:1.45rem;letter-spacing:-.02em}
 .offer .sub{color:var(--dim);font-size:.98rem;margin:0 0 1.3rem}
 .offer .nocatch{font:.72rem/1.6 var(--mono);color:var(--faint);letter-spacing:.03em;margin:1rem 0 0}
-.gtee{border-left:2px solid var(--warn);padding:.2rem 0 .2rem .9rem;margin:1.2rem 0 0;
-  font-size:.86rem;color:var(--dim)}
+.gtee{border-left:2px solid var(--warn);padding:.2rem 0 .2rem .9rem;margin:1.4rem 0 0;
+  font-size:.84rem;color:var(--dim)}
 .gtee b{color:var(--warn);display:block;font:600 .58rem/1 var(--mono);letter-spacing:.16em;
-  text-transform:uppercase;margin-bottom:.35rem}
+  text-transform:uppercase;margin-bottom:.5rem}
+.gtee ul{list-style:none;padding:0;margin:0 0 .7rem;display:grid;gap:.4rem}
+.gtee li{padding-left:1rem;position:relative}
+.gtee li::before{content:"";position:absolute;left:0;top:.62em;width:4px;height:4px;background:var(--warn)}
+.gtee span{display:block;color:var(--faint);font-size:.8rem;border-top:1px solid var(--line);padding-top:.6rem}
 .proof{display:block;border:1px solid var(--line2);padding:1.2rem 1.3rem;margin:1.1rem 0 0;
   text-decoration:none;transition:.15s}
 .proof:hover{border-color:var(--gl);box-shadow:0 0 24px rgba(160,107,255,.14)}
@@ -236,7 +240,7 @@ a{color:inherit}
     <p class="was">정가 <s>₩4,000,000 + VAT</s></p>
     <p class="terms">5영업일 · 결정 1건 · 예약 시 50%, 최종 납품 전 50% · 추론은 기본적으로 로컬 실행</p>
     <p><a class="cta" href="https://operation-glitch-decision-audit.mettl.chatgpt.site">신청·문의</a></p>
-    <p class="gtee"><b>환불 조건</b>5영업일 안에 납품하지 못하면 전액 환불합니다. 받아보시고 &#x27;이 감사가 결정에 아무것도 더하지 않았다&#x27;고 판단하시면, 이유를 묻지 않고 전액 환불합니다.</p>
+    <div class="gtee"><b>환불 조건</b><ul><li>5영업일 안에 납품하지 못하면 전액 환불합니다.</li><li>약속한 구성(선택지 3개 이상·각각의 최강 논거와 실패 모드·가정·사각지대·사전 부검·증거 공백·라벨 가림 비교 기록·권고와 담당자·롤백 조건·재검토일) 중 빠진 항목이 있으면 전액 환불합니다.</li><li>중간 검토 후 중단하시면 잔금 50%는 청구하지 않습니다.</li></ul><span>결과가 예측과 다르게 나온 것은 환불 사유가 아닙니다. 무엇이 틀렸는지 사전에 봉인한 기준으로 채점해 그대로 남기는 것이 이 제품이 하는 일입니다.</span></div>
   </section>
   <section class="card ev">
     <p class="tag">받는 것</p>
