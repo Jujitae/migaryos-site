@@ -253,6 +253,7 @@ if(!x)return;
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
 var W=0,H=0,DPR=1,N=[],L=[],CL=[],t=0,run=true,cx=0,cy=0;
 var EV='34,224,200',CT='255,47,126',MX='160,107,255',UN='120,134,164';
+var RMIN=54;   // nothing may occupy the centre; that is what blew out to white
 
 function size(){
   DPR=Math.min(window.devicePixelRatio||1,1.75);
@@ -263,21 +264,28 @@ function size(){
 function seed(){
   N=[];CL=[];
   // density scaled to area, so a phone is not asked to draw a desktop field
-  var n=Math.round(Math.min(520,Math.max(150,(W*H)/2600)));
+  var n=Math.round(Math.min(520,Math.max(150,(W*H)/2600))),
+      span=Math.max(W,H);
   for(var i=0;i<n;i++){
-    // radial bias toward the core: r^1.7 clusters mass in the middle and
-    // leaves filaments trailing out, which is what makes it read as one
-    // structure rather than confetti
-    var a=Math.random()*6.283,
-        rr=Math.pow(Math.random(),1.35)*Math.max(W,H)*.60,
-        s=Math.random();
+    // Orbits, not free bodies. An earlier version integrated velocity under a
+    // pull toward the centre with no repulsion, so over a few minutes every
+    // node fell into the same point and additive blending turned the pile
+    // pure white. Position is now derived from (radius, angle): a node cannot
+    // reach the centre because RMIN is its floor, so the collapse is not
+    // damped, it is unrepresentable.
+    var s=Math.random();
     N.push({
-      x:cx+Math.cos(a)*rr*1.25, y:cy+Math.sin(a)*rr*.82,
+      r0: RMIN + Math.pow(Math.random(),1.25)*(span*.60 - RMIN),
+      r:  0,
+      th: Math.random()*6.283,
+      dir: Math.random()<.5?-1:1,
       z:.22+Math.random()*.78,
-      vx:(Math.random()-.5)*.12, vy:(Math.random()-.5)*.12,
       s:s<.40?1:s<.70?-1:0,          // 1 evidence, -1 counter, 0 undecided
-      p:Math.random()*6.283, m:.4+Math.random()*1.8
+      p:Math.random()*6.283,
+      wob:.5+Math.random()*1.8,
+      x:0,y:0
     });
+    var q=N[N.length-1]; q.r=q.r0;
   }
   // slow nebula: a handful of huge soft blooms give depth that points cannot
   for(var k=0;k<5;k++){
@@ -288,21 +296,27 @@ function seed(){
   }
 }
 function burst(){
-  var a=Math.random()*6.283;
-  L.push({x:cx+Math.cos(a)*Math.max(W,H)*.75,y:cy+Math.sin(a)*Math.max(W,H)*.75,
-          tx:cx,ty:cy,life:0,dur:80+Math.random()*50});
+  // arrive at a point on the ring, not all at the same pixel: converging every
+  // strike on one spot is the other half of the white-out
+  var a=Math.random()*6.283,b=Math.random()*6.283;
+  L.push({x:cx+Math.cos(a)*Math.max(W,H)*.75, y:cy+Math.sin(a)*Math.max(W,H)*.75,
+          tx:cx+Math.cos(b)*RMIN*1.15, ty:cy+Math.sin(b)*RMIN*.8,
+          life:0,dur:80+Math.random()*50});
 }
 function step(){
   t++;
   if(t%110===0&&L.length<5)burst();
   for(var i=0;i<N.length;i++){
     var a=N[i];
-    a.vx+=(cx-a.x)*0.0000060*a.m; a.vy+=(cy-a.y)*0.0000060*a.m;
     a.p+=0.011;
-    a.x+=a.vx+Math.cos(a.p)*0.10*a.z; a.y+=a.vy+Math.sin(a.p*1.3)*0.10*a.z;
-    a.vx*=0.996; a.vy*=0.996;
-    if(a.x<-60)a.x=W+60; if(a.x>W+60)a.x=-60;
-    if(a.y<-60)a.y=H+60; if(a.y>H+60)a.y=-60;
+    // mostly uniform rotation with a slight inner speed-up, so the field
+    // shears gently instead of turning into a rigid disc
+    a.th += a.dir*(0.00055 + 7.5/(a.r+140));
+    // breathe around the preferred radius; it can never wander to zero
+    a.r += ((a.r0 + Math.sin(a.p*.6)*a.r0*.05) - a.r)*0.02;
+    if(a.r<RMIN)a.r=RMIN;
+    a.x = cx + Math.cos(a.th)*a.r*1.25 + Math.cos(a.p)*3*a.z;
+    a.y = cy + Math.sin(a.th)*a.r*0.82 + Math.sin(a.p*1.3)*3*a.z;
   }
   for(var j=L.length-1;j>=0;j--){ L[j].life++; if(L[j].life>L[j].dur)L.splice(j,1); }
   for(var q=0;q<CL.length;q++){ CL[q].a+=CL[q].sp; }
