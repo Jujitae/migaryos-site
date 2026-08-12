@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>샘플 Evidence Case (합성 픽스처) — MIGARYOS</title>
+<style>
+:root{--ink:#111;--dim:#5d5d5d;--line:#e4e4e4;--acc:#111;--bg:#fff;--warn:#b42318}
+@media(prefers-color-scheme:dark){:root{--ink:#f0f0f0;--dim:#a3a3a3;--line:#2e2e2e;--acc:#f0f0f0;--bg:#0f0f0f}}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,"Malgun Gothic",sans-serif;color:var(--ink);background:var(--bg);word-break:keep-all}
+.wrap{max-width:44rem;margin-inline:auto;padding:3rem 1.15rem 4.5rem}
+.kicker{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 1.2rem}
+h1{font-size:clamp(1.55rem,5vw,2.3rem);line-height:1.32;margin:0 0 1rem;letter-spacing:-.02em}
+.lede{font-size:1.05rem;color:var(--dim);margin:0 0 2.2rem}
+h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.11em;color:var(--dim);margin:2.8rem 0 .9rem}
+h3{margin:0 0 .25rem;font-size:1.02rem}
+ul.trust{list-style:none;padding:0;margin:0;display:grid;gap:.9rem}
+ul.trust li{border-left:2px solid var(--line);padding-left:.85rem}
+ul.trust b{display:block;font-size:.96rem}
+ul.trust span{color:var(--dim);font-size:.9rem}
+ol.fields{color:var(--dim);padding-left:1.2rem;margin:0}
+ol.fields li{margin:.3rem 0}
+.card{border:1px solid var(--line);border-radius:10px;padding:1.4rem;margin:1rem 0}
+.price{font-size:1.55rem;font-weight:650;letter-spacing:-.02em;margin:.45rem 0 .1rem}
+.terms{color:var(--dim);font-size:.88rem;margin:0 0 1.2rem}
+.cta{display:inline-block;background:var(--acc);color:var(--bg);text-decoration:none;padding:.75rem 1.35rem;border-radius:7px;font-weight:600;font-size:.95rem;border:1px solid var(--acc);cursor:pointer}
+.cta.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.cta.off{opacity:.4;cursor:not-allowed;pointer-events:none}
+.notopen{display:block;font-size:.78rem;color:var(--warn);margin-top:.5rem}
+.fixture{border:1px solid var(--warn);border-radius:8px;padding:.9rem 1.1rem;margin:1.4rem 0;font-size:.9rem}
+.fixture b{color:var(--warn)}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th{text-align:left;color:var(--dim);font-weight:600;font-size:.76rem;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line);padding:.4rem .5rem}
+td{padding:.55rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
+code{font-size:.85em;color:var(--dim)}
+footer{margin-top:3.4rem;padding-top:1.1rem;border-top:1px solid var(--line);color:var(--dim);font-size:.8rem}
+a{color:inherit}
+</style>
+</head><body>
+<main class="wrap">
+<p class="kicker">MIGARYOS · 샘플</p>
+<h1>샘플 Evidence Case</h1>
+
+<div class="fixture">
+<b>이것은 합성 픽스처입니다.</b> 실제 정책·시장 주장이 아니고, 실제 고객 사례도
+아니며, 라이브 원장 데이터도 아닙니다. 출처는 모두
+<code>fixtures.wie.invalid</code>인 가짜 주소입니다. 산출물의 <b>구조</b>를
+보여주기 위한 것이지 정확도를 주장하지 않습니다.
+</div>
+
+<p class="lede">Case <code>CASE-V2-SEMICON-001</code> ·
+event family <code>east_asia_semiconductor_export_controls</code> ·
+as of 2026-08-01T04:00:00Z</p>
+
+<h2>주장과 증거</h2>
+<table><tr><th>ID</th><th>주장</th><th>종류</th><th>증거</th></tr><tr><td><code>CLM-1</code></td><td>A synthetic official export-control rule was published.</td><td>fact</td><td>2</td></tr><tr><td><code>CLM-2</code></td><td>The synthetic rule may increase compliance friction for the Korean semiconductor sector.</td><td>inference</td><td>2</td></tr><tr><td><code>CLM-3</code></td><td>The synthetic rule will cause a material sector impact before the review horizon.</td><td>hypothesis</td><td>1</td></tr></table>
+
+<h2>인과 경로</h2>
+<ul class="trust"><li><code>CLM-1 → CLM-2</code> may_influence · Licensing scope may change compliance cost and delivery timing.</li><li><code>CLM-2 → CLM-3</code> may_influence · Sustained compliance friction may transmit to sector operations.</li></ul>
+
+<h2>확인 / 무효화 조건</h2>
+<ul class="trust"><li><code>CONF-1</code> confirmation — An official synthetic rule is published.</li><li><code>INV-1</code> invalidation — The synthetic rule is withdrawn before implementation.</li></ul>
+
+<h2>가설과 확률</h2>
+<p>The synthetic rule will cause a material Korean semiconductor-sector impact before the review horizon.</p>
+<p class="terms">최초 확률 0.35</p>
+
+<h2>결과 감사</h2>
+<p>상태 <b>occurred</b> · 관측 2026-08-01T03:00:00Z</p>
+<p class="terms">Synthetic functional result only; no live accuracy, lead-time, or causal validity is inferred.</p>
+
+<p style="margin-top:2rem"><a class="cta" href="https://migaryos.lemonsqueezy.com/checkout/buy/0569a1c3-32f1-4cd9-bc70-30579445ca76">Founding Pilot 신청 — ₩330,000</a></p>
+
+<footer>
+<p><b>다시 한 번:</b> 위 내용은 전부 합성 픽스처이며 실제 사건·기업·자산에 대한
+주장이 아닙니다. 적중률이나 성과를 주장하지 않습니다.</p>
+<p>WIE is a decision-evidence and audit tool, not an investment adviser, broker, or automated trading system. Outputs are analytical evidence structures, not buy/sell instructions.</p>
+<p>MIGARYOS · <a href="mailto:hello@migaryos.com">hello@migaryos.com</a></p>
+</footer>
+</main></body></html>
