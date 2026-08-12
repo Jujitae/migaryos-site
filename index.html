@@ -346,7 +346,7 @@ function draw(){
         for(var v=(other===bucket?u+1:0);v<other.length;v++){
           var b=other[v],ddx=a2.x-b.x,ddy=a2.y-b.y,d2=ddx*ddx+ddy*ddy;
           if(d2>LIM)continue;
-          var o=(1-d2/LIM)*.30*Math.min(a2.z,b.z);
+          var o=(1-d2/LIM)*.22*Math.min(a2.z,b.z);
           if(o<.006)continue;
           x.strokeStyle=(a2.s===b.s&&a2.s!==0)
               ? 'rgba('+(a2.s>0?EV:CT)+','+o+')'
@@ -363,9 +363,9 @@ function draw(){
     var p2=N[n2],g2=p2.s>0?EV:p2.s<0?CT:UN,
         pulse=.5+.5*Math.sin(p2.p*.7),
         r=(p2.s===0?.9:1.5)*p2.z;
-    x.fillStyle='rgba('+g2+','+(0.13*p2.z*pulse)+')';
+    x.fillStyle='rgba('+g2+','+(0.10*p2.z*pulse)+')';
     x.beginPath();x.arc(p2.x,p2.y,r*7,0,6.283);x.fill();
-    x.fillStyle='rgba('+g2+','+(0.95*p2.z)+')';
+    x.fillStyle='rgba('+g2+','+(0.80*p2.z)+')';
     x.beginPath();x.arc(p2.x,p2.y,r,0,6.283);x.fill();
   }
 
@@ -386,7 +386,7 @@ function draw(){
     x.beginPath();x.moveTo(tx0,ty0);x.lineTo(px,py);x.stroke();
     x.fillStyle='rgba('+CT+','+(0.16*fade)+')';
     x.beginPath();x.arc(px,py,6,0,6.283);x.fill();
-    x.fillStyle='rgba('+CT+','+(0.95*fade)+')';
+    x.fillStyle='rgba('+CT+','+(0.80*fade)+')';
     x.beginPath();x.arc(px,py,2.1,0,6.283);x.fill();
   }
   x.globalCompositeOperation='source-over';
