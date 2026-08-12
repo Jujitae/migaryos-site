@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decision Audit — MIGARYOS</title>
+<style>
+:root{--ink:#14161c;--dim:#5b6373;--line:#e3e6ec;--acc:#6b3df5;--warn:#b42318;--bg:#fff}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,"Malgun Gothic",sans-serif;
+  color:var(--ink);background:var(--bg);word-break:keep-all}
+.wrap{max-width:46rem;margin-inline:auto;padding:3rem 1.2rem 5rem}
+.kick{font:600 .68rem/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin:0 0 1rem}
+h1{font-size:1.7rem;line-height:1.3;margin:0 0 .6rem;letter-spacing:-.02em}
+h2{font:600 .7rem/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dim);margin:2.8rem 0 .8rem;padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+h3{margin:1.6rem 0 .3rem;font-size:1.02rem}
+.meta{color:var(--dim);font-size:.88rem;margin:0 0 2rem}
+.opt{border:1px solid var(--line);border-left:3px solid var(--acc);padding:1rem 1.2rem;margin:1rem 0}
+.opt dt{font:600 .62rem/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:.9rem 0 .25rem}
+.opt dd{margin:0}
+ul{margin:.3rem 0;padding-left:1.15rem}
+li{margin:.3rem 0}
+.none{color:var(--dim)}
+.box{border:1px solid var(--line);padding:1.1rem 1.2rem;margin:1rem 0}
+.box.act{border-left:3px solid var(--ink)}
+.box b{display:block;font:600 .62rem/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim);margin-bottom:.3rem}
+.limit{border:1px solid var(--warn);padding:1rem 1.2rem;margin:2rem 0;font-size:.9rem}
+.limit b{color:var(--warn)}
+footer{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--dim);font-size:.8rem}
+@media print{.wrap{max-width:none;padding:0}h2{page-break-after:avoid}.opt{page-break-inside:avoid}}
+</style></head><body>
+<main class="wrap">
+<p class="kick">MIGARYOS · GLITCH Decision Audit</p>
+<h1>migaryos.com을 어느 정적 호스팅에 올릴지를 2026-08-13까지 정한다. 제약은 그 도메인 위에서 Google Workspace 메일이 이미 가동 중이라는 것이다.</h1>
+<p class="meta">MIGARYOS · 결정 기한 2026-08-13 · 발행 2026-08-13</p>
+
+<h2>성공 기준</h2>
+<ul><li>apex 도메인(www 없이)에서 HTTPS로 서빙된다</li><li>MX·SPF·DKIM·DMARC가 연결 전후로 동일하다 — 메일 무중단</li><li>빌드 명령·환경변수 없이 배포된다</li><li>엔진 리포는 private으로 남는다</li><li>되돌리는 데 하루 이상 걸리지 않는다</li></ul>
+
+<h2>제약</h2>
+<ul><li>도메인이 가비아 네임서버에 있고 Google Workspace 메일이 그 위에서 가동 중</li><li>엔진 리포는 private으로 유지해야 함</li><li>정적 두 페이지, 빌드 단계 없음</li><li>Lemon Squeezy 활성화 심사에 제출할 웹사이트 URL이 끊기면 안 됨</li><li>운영자 1명, 이 결정에 쓸 수 있는 시간은 하루</li></ul>
+
+<h2>선택지</h2>
+<div class="opt"><h3>OPTION A — Cloudflare Pages (원안)</h3>
+<p>Founder가 처음 지시한 경로. 사이트를 Cloudflare Pages에 올리고 apex를 연결한다.</p>
+<dl><dt>가장 강한 논거</dt><dd>Founder가 이미 선택했고, Cloudflare는 정적 호스팅·CDN·DDoS 방어가 한 곳에 묶여 있다. 이후 Workers로 동적 기능을 붙일 여지도 가장 크다.</dd>
+<dt>실패 모드</dt><dd>apex에는 DNS 표준상 CNAME을 걸 수 없다. Cloudflare Pages로 apex를 쓰려면 네임서버를 통째로 Cloudflare로 옮겨야 하고, 그 순간 MX·SPF·DKIM·DMARC 네 줄을 손으로 재생성해야 한다. 하나만 빠져도 hello@migaryos.com이 죽고, 메일은 안 오는 것을 며칠 뒤에야 안다. 게다가 Cloudflare Email Routing을 실수로 켜면 MX를 덮어쓴다.</dd>
+<dt>되돌릴 수 있는가</dt><dd>낮음. 네임서버 이전은 전파에 최대 24시간이 걸리고, 되돌리는 데 다시 그만큼 걸린다. 그 사이 유실된 수신 메일은 복구되지 않는다.</dd></dl></div><div class="opt"><h3>OPTION B — GitHub Pages</h3>
+<p>생성된 두 페이지만 담은 별도 public 리포를 만들고 GitHub Pages로 서빙한다.</p>
+<dl><dt>가장 강한 논거</dt><dd>GitHub Pages는 apex를 A 레코드 4개로 받는다. 가비아에 A만 추가하면 되고 네임서버도 MX도 건드리지 않는다. 즉 이 결정의 가장 큰 위험(메일 중단)이 구조적으로 0이 된다. 무료이고 HTTPS 인증서도 자동이다.</dd>
+<dt>실패 모드</dt><dd>엔진 리포가 private이라 그 리포로는 Pages를 못 쓴다(유료 플랜 필요). 따라서 생성물만 담은 public 리포를 따로 둬야 하고, 원본과 사본이 갈라질 수 있다. 또 GitHub Pages는 서버 사이드 기능이 전혀 없다.</dd>
+<dt>되돌릴 수 있는가</dt><dd>높음. A 레코드 4개를 지우면 원상복구되고 메일은 애초에 건드리지 않았다.</dd></dl></div><div class="opt"><h3>OPTION C — 네임서버는 그대로, www만 CNAME</h3>
+<p>가비아 DNS를 유지하고 www.migaryos.com만 아무 호스팅에 CNAME으로 연결한다.</p>
+<dl><dt>가장 강한 논거</dt><dd>메일 위험이 0이고 어떤 호스팅이든 쓸 수 있다. 가장 보수적이다.</dd>
+<dt>실패 모드</dt><dd>apex(migaryos.com)가 안 뜬다. 명함·메일 서명·심사 서류에 www를 강제해야 하고, apex를 친 사람은 아무것도 못 본다. 가비아 웹포워딩으로 우회할 수 있으나 리다이렉트 한 단계가 더 붙는다.</dd>
+<dt>되돌릴 수 있는가</dt><dd>높음. CNAME 한 줄만 지우면 된다.</dd></dl></div>
+
+<h2>가정</h2>
+<p class="meta">참이어야 결정이 성립하는 것들. 틀리면 결정이 무너집니다.</p>
+<ul><li>가비아에서 A 레코드를 자유롭게 추가할 수 있다 — 확인됨, My가비아 DNS 관리툴에서 가능</li><li>GitHub Pages의 apex용 A 레코드 4개가 현재도 유효하다 — GitHub 공식 문서로 확인</li><li>생성물 두 파일에 비공개 정보가 없다 — 생성기가 내부 용어를 차단하고 테스트가 검사</li><li>Founder가 Cloudflare 계정을 이미 갖고 있다 — 확인 안 됨. 로그인조차 돼 있지 않았다</li><li>이 사이트에 서버 사이드 기능이 당분간 필요 없다 — 결제는 Lemon Squeezy, 폼은 Tally 호스팅</li></ul>
+
+<h2>사각지대</h2>
+<ul><li>Founder가 지시한 경로를 바꾸는 것 자체의 비용을 처음엔 계산하지 않았다. 지시를 뒤집으려면 근거가 실측이어야 하고, 그래서 권위 네임서버에 직접 질의했다.</li><li>public 리포를 새로 만드는 것은 되돌리기 어렵다 — 리포 이름과 URL이 외부에 노출되면 나중에 바꾸기 어렵다. 이 점은 결정 시점에 충분히 따지지 않았다.</li><li>&#x27;무료&#x27;가 비용의 전부가 아니다. GitHub Pages는 대역폭·빌드 횟수에 소프트 한도가 있고 상업 트래픽이 커지면 다시 결정해야 한다. 지금은 트래픽이 0에 가까워 무시했다.</li></ul>
+
+<h2>사전 부검 — 이 결정이 실패했다면</h2>
+<p class="meta">결정이 이미 실패했다고 가정하고 원인을 거꾸로 씁니다.</p>
+<ul><li>6개월 뒤 실패한 모습 1 — Cloudflare로 네임서버를 옮겼고, DKIM TXT 한 줄을 옮기지 않았다. 발신 메일이 조용히 스팸함으로 가기 시작했고, 아웃리치 회신률이 낮은 이유를 3주 동안 카피 탓으로 오해했다. 원인은 카피가 아니라 DNS였다.</li><li>6개월 뒤 실패한 모습 2 — GitHub Pages를 골랐고, 서버 사이드가 필요한 기능(예: 결제 웹훅 수신)이 생겼다. 급하게 다른 호스팅으로 옮기면서 apex DNS를 다시 만졌고 그때 메일이 끊겼다. 즉 미룬 위험이 더 나쁜 시점에 돌아왔다.</li><li>6개월 뒤 실패한 모습 3 — public 사본 리포와 생성기가 갈라졌다. 사이트에는 옛 가격이, config.json에는 새 가격이 남아 고객이 다른 금액을 봤다.</li></ul>
+
+<h2>증거 공백과, 결정을 뒤집을 테스트</h2>
+<ul><li>Founder의 Cloudflare 계정 존재 여부 — 확인되지 않음. 대시보드에 로그인조차 돼 있지 않았다. 로그인 한 번이면 확인된다.</li><li>가비아가 apex에 ALIAS/ANAME을 지원하는지 — 확인하지 않았다. 지원한다면 선택지가 하나 더 생겼다. 가비아 고객센터 문의로 확인된다.</li><li>장래 서버 사이드 요구 — 결제 웹훅을 자체 수신할 계획이 있는지가 이 결정을 뒤집는다. Lemon Squeezy 활성화 후 웹훅 설계를 정하면 답이 나온다.</li></ul>
+
+<h2>라벨을 가린 비교 기록</h2>
+<p class="meta">무엇이 어느 선택지를 만들었는지 모른 채 비교한 기록입니다.</p>
+<ul><li>선택지 A/B/C를 판단 위임자(GPT 스레드)에게 라벨 없이 DNS 실측만 붙여 제시했다.</li><li>위임자는 B를 선택했고 근거로 &#x27;메일 안정성을 건드리지 않고 사이트만 연결할 수 있다&#x27;를 들었다. 가격이나 브랜드가 아니라 실패 모드를 근거로 골랐다.</li><li>구현자도 독립적으로 B를 선택했다. 두 판단이 같은 근거(apex+A레코드가 MX를 안 건드림)로 수렴했다는 점이 이 결정의 신뢰도를 올린다.</li><li>반대 의견 없음 — 이 점은 약점이다. A를 옹호하는 쪽을 세우지 않았다.</li></ul>
+
+<h2>권고</h2>
+<div class="box act"><b>권고</b>OPTION B (GitHub Pages). 이 결정의 최대 손실은 사이트가 안 뜨는 것이 아니라 메일이 끊기는 것이고, B만이 그 위험을 0으로 만든다. A의 장점(CDN·Workers)은 지금 필요 없고, 필요해지는 시점에 다시 결정할 수 있다.</div>
+<div class="box"><b>담당자</b>Founder (도메인·DNS 소유자). 실행은 구현자.</div>
+<div class="box"><b>다음 행동</b>가비아에 A 레코드 4개(185.199.108~111.153) 추가 → connect_domain.py 실행. 이 스크립트는 A 레코드가 실제로 응답하기 전에는 실행을 거부하고, 전후로 MX를 재확인해 smtp.google.com이 사라지면 멈춘다. — 2026-08-13 완료됨.</div>
+<div class="box"><b>롤백 조건</b>가비아에서 A 레코드 4개를 삭제하면 즉시 원상복구된다. 네임서버와 MX는 애초에 건드리지 않았으므로 메일은 롤백 대상이 아니다. 복구 시간 30분 이내.</div>
+<div class="box"><b>재검토일</b>2026-11-11</div>
+
+<div class="limit"><b>이 감사가 다루지 않는 것</b>
+<ul><li>법률·의료·금융·안전·규제 사인오프</li><li>AI 모델 정확도 보장</li><li>결정이 특정되지 않은 광범위 컨설팅</li></ul>
+AI 모델이 더 정확해진다고 약속하지 않습니다. 이 문서는 결정 소유자가 선택지를
+만들고, 가정을 드러내고, 근거를 보존하도록 돕는 기록입니다.</div>
+
+<footer>MIGARYOS · hello@migaryos.com · 이 문서는 MIGARYOS만을 위해
+작성되었으며 제품 텔레메트리나 공개 실험에 포함되지 않습니다.</footer>
+</main></body></html>

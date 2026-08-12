@@ -135,7 +135,30 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 .states{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 1.3rem}
 .states span{font:.6rem/1 var(--mono);letter-spacing:.1em;border:1px solid var(--line2);padding:.4rem .5rem;color:var(--dim)}
 
-/* ---- trust --------------------------------------------------------- */
+
+/* ---- offer: free first, then the paid thing ------------------------- */
+.offer{border:1px solid var(--ev);background:linear-gradient(180deg,rgba(34,224,200,.07),rgba(8,10,16,.9));
+  padding:1.7rem 1.5rem;margin:0 0 1.1rem;position:relative;overflow:hidden}
+.offer::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--ev),transparent)}
+.offer .free{display:inline-block;font:700 .6rem/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+  color:#05060a;background:var(--ev);padding:.4rem .6rem;margin:0 0 1rem}
+.offer h3{margin:0 0 .4rem;font-size:1.45rem;letter-spacing:-.02em}
+.offer .sub{color:var(--dim);font-size:.98rem;margin:0 0 1.3rem}
+.offer .nocatch{font:.72rem/1.6 var(--mono);color:var(--faint);letter-spacing:.03em;margin:1rem 0 0}
+.gtee{border-left:2px solid var(--warn);padding:.2rem 0 .2rem .9rem;margin:1.2rem 0 0;
+  font-size:.86rem;color:var(--dim)}
+.gtee b{color:var(--warn);display:block;font:600 .58rem/1 var(--mono);letter-spacing:.16em;
+  text-transform:uppercase;margin-bottom:.35rem}
+.proof{display:block;border:1px solid var(--line2);padding:1.2rem 1.3rem;margin:1.1rem 0 0;
+  text-decoration:none;transition:.15s}
+.proof:hover{border-color:var(--gl);box-shadow:0 0 24px rgba(160,107,255,.14)}
+.proof u{display:block;font:600 .56rem/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gl);text-decoration:none;margin-bottom:.5rem}
+.proof b{display:block;font-size:1.02rem;margin-bottom:.3rem}
+.proof span{color:var(--dim);font-size:.87rem}
+
+/* ---- trust ---------------------------------------------------------- */
 ul.trust{list-style:none;padding:0;margin:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
 ul.trust li{background:var(--bg2);padding:1.15rem 1.1rem}
 ul.trust b{display:block;font-size:.95rem;margin-bottom:.28rem}
@@ -187,6 +210,23 @@ a{color:inherit}
   <p><a class="cta" href="https://operation-glitch-decision-audit.mettl.chatgpt.site">Decision Audit 신청·문의</a> <a class="cta ghost" href="/wie/">WIE Evidence Case 보기</a></p>
 </header>
 <main class="wrap">
+<a class="proof" href="/case/">
+  <u>완성된 감사 실물</u>
+  <b>migaryos.com을 어디에 올릴 것인가</b>
+  <span>우리가 이번 주에 실제로 내린 결정입니다. 잘못 골랐으면 회사 메일이 끊겼습니다. 가상 사례가 아니라 실제 납품물 그대로입니다.</span>
+</a>
+
+<h2>먼저, 무료로</h2>
+<section class="offer">
+  <span class="free">무료 · 24시간</span>
+  <h3>Decision Snapshot</h3>
+  <p class="sub">결정 하나를 적어 보내주시면, 24시간 안에 1페이지로 돌려드립니다.</p>
+  <ul class="list"><li>당신의 결정을 정확한 한 문장으로 다시 씁니다</li><li>그 문장에 이미 들어 있는 가정 3개를 이름 붙여 드러냅니다</li><li>지금 보이지 않는 사각지대 2개</li><li>이 결정을 가장 크게 뒤집을 테스트 1개</li></ul>
+  <p><a class="cta snap" href="https://tally.so/r/ja4Wy6">결정 하나 보내기 — 무료</a></p>
+  <p class="nocatch">결제 정보 필요 없음 · 통화 요구 없음 · 거절해도 후속 연락 없음</p>
+  <p class="terms" style="margin:1rem 0 0">결정을 글로 받아 적어보면 대부분 그 자리에서 가정 하나가 드러납니다. 그게 유용하면 그때 유료를 얘기하면 되고, 아니면 안 하셔도 됩니다.</p>
+</section>
+
 <h2>가격</h2>
 <div class="deck">
   <section class="card">
@@ -196,6 +236,7 @@ a{color:inherit}
     <p class="was">정가 <s>₩4,000,000 + VAT</s></p>
     <p class="terms">5영업일 · 결정 1건 · 예약 시 50%, 최종 납품 전 50% · 추론은 기본적으로 로컬 실행</p>
     <p><a class="cta" href="https://operation-glitch-decision-audit.mettl.chatgpt.site">신청·문의</a></p>
+    <p class="gtee"><b>환불 조건</b>5영업일 안에 납품하지 못하면 전액 환불합니다. 받아보시고 &#x27;이 감사가 결정에 아무것도 더하지 않았다&#x27;고 판단하시면, 이유를 묻지 않고 전액 환불합니다.</p>
   </section>
   <section class="card ev">
     <p class="tag">받는 것</p>
