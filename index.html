@@ -2,84 +2,326 @@
 <html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>중요한 판단을 &#x27;느낌&#x27;이 아니라, 나중에 검증 가능한 Evidence Case로 바꿉니다.</title>
+<title>MIGARYOS — 중요한 판단을 &#x27;느낌&#x27;이 아니라, 나중에 검증 가능한 Evidence Case로 바꿉니다.</title>
 <meta name="description" content="미·한·중 반도체 정책/지정학 이슈 하나를 사실·반대증거·인과경로·확인/무효화 조건·확률·결과 기준으로 분해해 48시간 내 전달합니다.">
+<meta name="color-scheme" content="dark">
 <style>
-:root{--ink:#111;--dim:#5d5d5d;--line:#e4e4e4;--acc:#111;--bg:#fff;--warn:#b42318}
-@media(prefers-color-scheme:dark){:root{--ink:#f0f0f0;--dim:#a3a3a3;--line:#2e2e2e;--acc:#f0f0f0;--bg:#0f0f0f}}
+:root{
+  --bg:#05060a;--bg2:#0a0c14;--ink:#e8ecf5;--dim:#8590a8;--faint:#4a5468;
+  --line:#1b2030;--line2:#262d42;
+  --ev:#22e0c8;--ct:#ff2f7e;--gl:#a06bff;--warn:#ffb02e;
+  --acc:#e8ecf5;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+}
 *{box-sizing:border-box}
-body{margin:0;font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,"Malgun Gothic",sans-serif;color:var(--ink);background:var(--bg);word-break:keep-all}
-.wrap{max-width:44rem;margin-inline:auto;padding:3rem 1.15rem 4.5rem}
-.kicker{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 1.2rem}
-h1{font-size:clamp(1.55rem,5vw,2.3rem);line-height:1.32;margin:0 0 1rem;letter-spacing:-.02em}
-.lede{font-size:1.05rem;color:var(--dim);margin:0 0 2.2rem}
-h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.11em;color:var(--dim);margin:2.8rem 0 .9rem}
-h3{margin:0 0 .25rem;font-size:1.02rem}
-ul.trust{list-style:none;padding:0;margin:0;display:grid;gap:.9rem}
-ul.trust li{border-left:2px solid var(--line);padding-left:.85rem}
-ul.trust b{display:block;font-size:.96rem}
-ul.trust span{color:var(--dim);font-size:.9rem}
-ol.fields{color:var(--dim);padding-left:1.2rem;margin:0}
-ol.fields li{margin:.3rem 0}
-.card{border:1px solid var(--line);border-radius:10px;padding:1.4rem;margin:1rem 0}
-.price{font-size:1.55rem;font-weight:650;letter-spacing:-.02em;margin:.45rem 0 .1rem}
-.terms{color:var(--dim);font-size:.88rem;margin:0 0 1.2rem}
-.cta{display:inline-block;background:var(--acc);color:var(--bg);text-decoration:none;padding:.75rem 1.35rem;border-radius:7px;font-weight:600;font-size:.95rem;border:1px solid var(--acc);cursor:pointer}
-.cta.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
-.cta.off{opacity:.4;cursor:not-allowed;pointer-events:none}
-.notopen{display:block;font-size:.78rem;color:var(--warn);margin-top:.5rem}
-.fixture{border:1px solid var(--warn);border-radius:8px;padding:.9rem 1.1rem;margin:1.4rem 0;font-size:.9rem}
-.fixture b{color:var(--warn)}
-table{width:100%;border-collapse:collapse;font-size:.9rem}
-th{text-align:left;color:var(--dim);font-weight:600;font-size:.76rem;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line);padding:.4rem .5rem}
-td{padding:.55rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
-code{font-size:.85em;color:var(--dim)}
-footer{margin-top:3.4rem;padding-top:1.1rem;border-top:1px solid var(--line);color:var(--dim);font-size:.8rem}
+html{scroll-behavior:smooth}
+body{margin:0;font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,"Malgun Gothic",sans-serif;
+  color:var(--ink);background:var(--bg);word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* the field sits behind everything and never eats a click */
+#field{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px)}
+#vig{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 78% 62% at 50% 42%,transparent 30%,rgba(5,6,10,.82) 100%)}
+.wrap{position:relative;z-index:2;max-width:60rem;margin-inline:auto;padding:0 1.15rem 5rem}
+.kicker{font:600 .68rem/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem}
+h1{font-size:clamp(1.7rem,5.2vw,3.1rem);line-height:1.22;margin:0 0 1.1rem;letter-spacing:-.025em;font-weight:650}
+.lede{font-size:clamp(1rem,2.2vw,1.14rem);color:var(--dim);margin:0 0 2.2rem;max-width:42rem}
+h2{font:600 .7rem/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:4.5rem 0 1.1rem;
+  display:flex;align-items:center;gap:.8rem}
+h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
+
+/* ---- hero ---------------------------------------------------------- */
+.hero{position:relative;z-index:2;min-height:min(92vh,780px);display:flex;flex-direction:column;justify-content:center;
+  padding:6rem 0 3rem}
+.hero .lede{max-width:36rem}
+.rdg{position:absolute;width:14px;height:14px;border:1px solid var(--line2);opacity:.9}
+.rdg.tl{top:2.4rem;left:-.2rem;border-right:0;border-bottom:0}
+.rdg.tr{top:2.4rem;right:-.2rem;border-left:0;border-bottom:0}
+/* the one live readout, and it reads the graph, not a track record */
+.prob{display:flex;align-items:baseline;gap:.75rem;margin:0 0 1.6rem;font-family:var(--mono)}
+.prob b{font-size:clamp(2.2rem,7vw,3.4rem);font-weight:600;letter-spacing:-.03em;color:var(--ev);
+  text-shadow:0 0 24px rgba(34,224,200,.45);font-variant-numeric:tabular-nums}
+.prob span{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);line-height:1.5}
+.bar{position:relative;height:2px;background:var(--line);max-width:36rem;margin:0 0 2.2rem;overflow:hidden}
+.bar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--ct),var(--ev));width:62%;
+  box-shadow:0 0 14px rgba(34,224,200,.6)}
+
+/* ---- live strip ---------------------------------------------------- */
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line);margin:0}
+.cell{background:var(--bg2);padding:1rem .95rem}
+.cell u{display:block;font:600 .58rem/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--faint);
+  text-decoration:none;margin-bottom:.5rem}
+.cell b{display:block;font:600 1.5rem/1 var(--mono);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.cell i{font:.6rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-style:normal}
+.cell.w b{color:var(--warn)}
+.note{font-size:.86rem;color:var(--dim);border-left:2px solid var(--warn);padding-left:.9rem;margin:1.3rem 0 0;max-width:44rem}
+
+/* ---- loop rail ----------------------------------------------------- */
+.rail{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line)}
+.step{background:var(--bg2);padding:1.1rem .95rem;position:relative;overflow:hidden}
+.step::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--ev),transparent);opacity:0;animation:sweep 5s linear infinite}
+.step:nth-child(2)::before{animation-delay:1s;background:linear-gradient(90deg,transparent,var(--ct),transparent)}
+.step:nth-child(3)::before{animation-delay:2s}
+.step:nth-child(4)::before{animation-delay:3s}
+.step:nth-child(5)::before{animation-delay:4s}
+@keyframes sweep{0%,80%{opacity:0}10%,40%{opacity:1}}
+.step u{display:block;font:600 .55rem/1 var(--mono);letter-spacing:.16em;color:var(--faint);text-decoration:none;margin-bottom:.6rem}
+.step b{display:block;font-size:.98rem;margin-bottom:.2rem}
+.step i{font-size:.8rem;color:var(--dim);font-style:normal}
+
+/* ---- product cards ------------------------------------------------- */
+.deck{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr))}
+.card{position:relative;border:1px solid var(--line2);background:linear-gradient(180deg,rgba(16,20,32,.9),rgba(8,10,16,.9));
+  padding:1.6rem 1.4rem;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,var(--gl),transparent)}
+.card.ev::before{background:linear-gradient(90deg,transparent,var(--ev),transparent)}
+.card .tag{font:600 .56rem/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--gl);margin:0 0 .9rem}
+.card.ev .tag{color:var(--ev)}
+.card h3{margin:0 0 .35rem;font-size:1.22rem;letter-spacing:-.015em}
+.card .sub{color:var(--dim);font-size:.92rem;margin:0 0 1.2rem}
+.price{font:600 1.65rem/1 var(--mono);letter-spacing:-.02em;margin:.5rem 0 .2rem;font-variant-numeric:tabular-nums}
+.price small{font-size:.72rem;color:var(--faint);letter-spacing:.08em;margin-left:.5rem;font-weight:400}
+.was{font:.8rem/1 var(--mono);color:var(--faint);margin:0 0 1rem}
+.was s{opacity:.7}
+.terms{color:var(--dim);font-size:.82rem;margin:0 0 1.3rem}
+.list{list-style:none;padding:0;margin:0 0 1.4rem;display:grid;gap:.5rem}
+.list li{font-size:.87rem;color:var(--dim);padding-left:1.1rem;position:relative}
+.list li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;background:var(--gl);
+  box-shadow:0 0 8px var(--gl)}
+.card.ev .list li::before{background:var(--ev);box-shadow:0 0 8px var(--ev)}
+.states{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 1.3rem}
+.states span{font:.6rem/1 var(--mono);letter-spacing:.1em;border:1px solid var(--line2);padding:.4rem .5rem;color:var(--dim)}
+
+/* ---- trust --------------------------------------------------------- */
+ul.trust{list-style:none;padding:0;margin:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+ul.trust li{background:var(--bg2);padding:1.15rem 1.1rem}
+ul.trust b{display:block;font-size:.95rem;margin-bottom:.28rem}
+ul.trust span{color:var(--dim);font-size:.86rem}
+ol.fields{color:var(--dim);padding-left:1.2rem;margin:0;font-size:.9rem}
+ol.fields li{margin:.35rem 0}
+
+/* ---- controls ------------------------------------------------------ */
+.cta{display:inline-block;background:var(--ink);color:#05060a;text-decoration:none;padding:.8rem 1.5rem;
+  font-weight:650;font-size:.94rem;border:1px solid var(--ink);cursor:pointer;transition:.16s;
+  box-shadow:0 0 0 rgba(232,236,245,0)}
+.cta:hover{box-shadow:0 0 26px rgba(232,236,245,.3)}
+.cta.ghost{background:transparent;color:var(--ink);border-color:var(--line2)}
+.cta.ghost:hover{border-color:var(--ink);box-shadow:none}
+.cta.off{opacity:.32;cursor:not-allowed;pointer-events:none}
+.notopen{display:block;font:.74rem/1.5 var(--mono);color:var(--warn);margin-top:.6rem;letter-spacing:.02em}
+.fixture{border:1px solid var(--ct);background:rgba(255,47,126,.06);padding:1rem 1.15rem;margin:1.5rem 0;font-size:.88rem}
+.fixture b{color:var(--ct)}
+table{width:100%;border-collapse:collapse;font-size:.87rem}
+th{text-align:left;color:var(--faint);font:600 .58rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  border-bottom:1px solid var(--line2);padding:.6rem .5rem}
+td{padding:.65rem .5rem;border-bottom:1px solid var(--line);vertical-align:top;color:var(--dim)}
+code{font:.85em var(--mono);color:var(--ev)}
+footer{position:relative;z-index:2;margin-top:5rem;padding-top:1.4rem;border-top:1px solid var(--line);
+  color:var(--faint);font-size:.79rem;max-width:60rem;margin-inline:auto}
 a{color:inherit}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head><body>
+<canvas id="field" aria-hidden="true"></canvas>
+<div id="grain" aria-hidden="true"></div>
+<div id="vig" aria-hidden="true"></div>
+
+<header class="wrap hero">
+  <span class="rdg tl" aria-hidden="true"></span><span class="rdg tr" aria-hidden="true"></span>
+  <p class="kicker">MIGARYOS · 증거·결정 인프라</p>
+  <h1>중요한 판단을 &#x27;느낌&#x27;이 아니라, 나중에 검증 가능한 Evidence Case로 바꿉니다.</h1>
+  <p class="lede">미·한·중 반도체 정책/지정학 이슈 하나를 사실·반대증거·인과경로·확인/무효화 조건·확률·결과 기준으로 분해해 48시간 내 전달합니다.</p>
+
+  <div class="prob">
+    <b id="prob">62.0%</b>
+    <span>사전 봉인된 확률<br>반대증거가 도착하면 움직입니다</span>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+
+  <p><span class="cta off" aria-disabled="true">Founding Pilot 신청 — ₩330,000</span><span class="notopen">신청 후 검토를 거쳐 결제 링크를 개별 안내드립니다.</span>
+  <a class="cta" href="https://tally.so/r/ja4Wy6">먼저 판단 내용을 알려주기</a>
+  <a class="cta ghost" href="sample.html">샘플 Evidence Case 보기</a></p>
+</header>
+
 <main class="wrap">
-<p class="kicker">MIGARYOS · WIE</p>
-<h1>중요한 판단을 &#x27;느낌&#x27;이 아니라, 나중에 검증 가능한 Evidence Case로 바꿉니다.</h1>
-<p class="lede">미·한·중 반도체 정책/지정학 이슈 하나를 사실·반대증거·인과경로·확인/무효화 조건·확률·결과 기준으로 분해해 48시간 내 전달합니다.</p>
 
-<p><span class="cta off" aria-disabled="true">Founding Pilot 신청 — ₩330,000</span><span class="notopen">신청 후 검토를 거쳐 결제 링크를 개별 안내드립니다.</span>
-<a class="cta" href="https://tally.so/r/ja4Wy6">먼저 판단 내용을 알려주기</a>
-<a class="cta ghost" href="sample.html">샘플 Evidence Case 보기</a></p>
+<h2>지금 이 순간의 원장</h2>
+<div class="strip"><div class="cell"><u>관측 원장</u><b>55,957</b><i>mentions</i></div><div class="cell"><u>추적 엔티티</u><b>2,801</b><i>entities</i></div><div class="cell"><u>해시체인</u><b>OK</b><i>verified</i></div><div class="cell"><u>테스트</u><b>1,449</b><i>passed</i></div><div class="cell"><u>봉인된 예측</u><b>7</b><i>sealed</i></div><div class="cell w"><u>닫힌 루프</u><b>0</b><i>closed</i></div></div>
+<p class="note">닫힌 루프 0은 오타가 아닙니다. 아직 한 번도 결과로 검증되지 않았고, 그 사실을 숨기지 않는 것이 이 제품이 파는 것의 전부입니다. 첫 판정 예정일은 2026-08-27입니다.
+<br><span style="color:var(--faint)">실측 2026-08-12 · 이 페이지의 숫자는 전부 측정값이며, 추정으로 채운 칸은 없습니다.</span></p>
 
-<h2>누구를 위한 것인가</h2>
-<p>미·한·중 반도체 정책·지정학이 한국 반도체 산업·기업·자산 판단에 미치는 영향을 반복해서 평가하는 국내 창업자 및 1–5인 투자·전략 분석가</p>
+<h2>제품이 되는 루프</h2>
+<div class="rail"><div class="step"><u>EVIDENCE</u><b>증거</b><i>주장을 지지하는 것</i></div><div class="step"><u>COUNTER</u><b>반대증거</b><i>의도적으로 수집한다</i></div><div class="step"><u>PROBABILITY</u><b>확률 갱신</b><i>움직인 이유를 남긴다</i></div><div class="step"><u>DECISION</u><b>판단 변경</b><i>무엇이 바뀌었는가</i></div><div class="step"><u>OUTCOME</u><b>결과 감사</b><i>봉인한 기준으로 채점</i></div></div>
+
+<h2>두 가지 방식</h2>
+<div class="deck">
+
+  <section class="card">
+    <p class="tag">GLITCH · 판매 중</p>
+    <h3>GLITCH Decision Audit</h3>
+    <p class="sub">비싼 결정을 비싸지기 전에 검토 가능하게 만듭니다.</p>
+    <p class="price">₩1,500,000 + VAT<small>선착순 3팀</small></p>
+    <p class="was">정가 <s>₩4,000,000 + VAT</s></p>
+    <p class="terms">5영업일 · 결정 1건 · 예약 시 50%, 최종 납품 전 50% · 추론은 기본적으로 로컬 실행</p>
+    <p class="sub">아키텍처·벤더·build vs buy·AI 기능·출시·로드맵 결정 하나를 5영업일 동안 분해합니다. 서로 다른 후보안을 만들고, 약한 가정을 드러내고, 라벨을 가린 채 비교하고, 최종 선택의 근거를 남깁니다.</p>
+    <div class="states"><span>SOBER</span><span>SATIVA</span><span>INDICA</span><span>HYBRID</span><span>CBD</span><span>DEVILS_ADVOCATE</span></div>
+    <p class="terms" style="margin-top:-.7rem">여섯 개의 인지 상태가 각각 독립 전문가로 돌고, 마지막에 종합 패스가 붙습니다.</p>
+    <ul class="list"><li>결정 문장과 성공 기준</li><li>실질적으로 다른 선택지 3개 이상</li><li>각 선택지의 최강 논거와 실패 모드</li><li>증거 공백과, 결정을 뒤집을 테스트</li><li>라벨을 가린 이해관계자 비교 기록</li><li>권고·담당자·다음 행동·롤백 조건·재검토일</li></ul>
+    <p><a class="cta" href="https://operation-glitch-decision-audit.mettl.chatgpt.site">GLITCH Decision Audit 보기</a></p>
+    <p class="terms" style="margin:1rem 0 0">AI 모델이 더 정확해진다고 약속하지 않습니다. 결정 소유자가 선택지를 만들고, 가정을 드러내고, 근거를 보존하는 반복 가능한 방법을 드립니다.
+    <br><b style="color:var(--faint)">맞지 않는 경우</b> — 법률·의료·금융·안전·규제 사인오프, 정확도 보장 요구, 결정이 특정되지 않은 광범위 컨설팅</p>
+  </section>
+
+  <section class="card ev">
+    <p class="tag">WIE · Founding Pilot</p>
+    <h3>WIE Evidence Case — Founding Pilot</h3>
+    <p class="sub">뉴스를 더 많이 보는 게 문제를 해결하지 못할 때가 있습니다. 더 중요한 건 &#x27;무슨 증거 때문에 내 판단이 바뀌었고, 무엇이 나오면 폐기할 것인가&#x27;를 남기는 일입니다.</p>
+    <p class="price">₩330,000<small>Founding 10건 한정</small></p>
+    <p class="terms">48시간 (완전한 intake 접수 후) · 비동기 리포트 + 1회 수정</p>
+    <p class="sub">판단 하나를 <b>주장 · 증거 · 반대증거 · 인과경로 · 확인/무효화 조건 ·
+    확률과 확신 · 결정 상태 · 판단 변경 사유 · 결과 기한과 판정 계약 · 출처 이력</b>으로
+    분해합니다. 자료가 없으면 없다고(<code>no_data</code>) 적습니다.</p>
+    <ul class="list"><li>Name / Email / Company or role</li><li>Decision or thesis statement — one sentence</li><li>Affected company/asset/industry</li><li>Current confidence or probability</li><li>What would invalidate this thesis?</li><li>Decision deadline / outcome horizon</li><li>Known source links or documents</li><li>Decision state/action context: monitor/review/act/retire</li><li>Order email / payment reference</li></ul>
+    <p><span class="cta off" aria-disabled="true">Founding Pilot 신청 — ₩330,000</span><span class="notopen">신청 후 검토를 거쳐 결제 링크를 개별 안내드립니다.</span>
+    <a class="cta ghost" href="https://tally.so/r/ja4Wy6">먼저 판단 내용을 알려주기</a></p>
+    <p class="terms" style="margin:1.2rem 0 0">이어서 <b>WIE Analyst Loop</b>
+    ₩550,000 / month — 성공적으로 납품된 파일럿 고객에게만 제안</p>
+  </section>
+
+</div>
 
 <h2>무엇을 보장하는가</h2>
 <ul class="trust"><li><b>증거와 반대증거</b><span>지지하는 근거만 모으지 않습니다. 반대증거를 의도적으로 수집해 같은 무게로 기록합니다.</span></li><li><b>명시적 무효화 조건</b><span>무엇이 나오면 이 판단을 폐기할지 사전에 적습니다. 사후에 고칠 수 없습니다.</span></li><li><b>사람이 통과시키는 확률·판단 변경</b><span>확률과 결정 상태 변경은 사람이 게이트를 통과시킵니다. 자동으로 움직이지 않습니다.</span></li><li><b>결과 감사</b><span>결과 기한이 오면 사전에 봉인한 기준으로 채점하고, 틀린 기록도 그대로 남깁니다.</span></li><li><b>자동매매 없음</b><span>주문을 내지 않습니다. 거래소·브로커 계정에 연결되지 않습니다.</span></li></ul>
 
-<h2>한 건에 들어가는 것</h2>
-<p>판단 하나를 <b>주장 · 증거 · 반대증거 · 인과경로 · 확인/무효화 조건 ·
-확률과 확신 · 결정 상태(monitor/review/act/retire) · 판단 변경 사유 ·
-결과 기한과 판정 계약 · 출처 이력</b>으로 분해합니다.
-자료가 없으면 없다고(<code>no_data</code>) 적습니다. 추정으로 메우지 않습니다.</p>
+<h2>누구를 위한 것인가</h2>
+<p class="lede" style="margin:0">미·한·중 반도체 정책·지정학이 한국 반도체 산업·기업·자산 판단에 미치는 영향을 반복해서 평가하는 국내 창업자 및 1–5인 투자·전략 분석가</p>
 
-<h2>신청 시 받는 것</h2>
-<ol class="fields"><li>Name / Email / Company or role</li><li>Decision or thesis statement — one sentence</li><li>Affected company/asset/industry</li><li>Current confidence or probability</li><li>What would invalidate this thesis?</li><li>Decision deadline / outcome horizon</li><li>Known source links or documents</li><li>Decision state/action context: monitor/review/act/retire</li><li>Order email / payment reference</li></ol>
+<p style="margin:2.5rem 0 0"><a class="cta ghost" href="sample.html">샘플 Evidence Case 보기</a></p>
 
-<h2>가격</h2>
-<div class="card">
-  <h3>WIE Evidence Case — Founding Pilot</h3>
-  <p class="price">₩330,000</p>
-  <p class="terms">48시간 (완전한 intake 접수 후) · 비동기 리포트 + 1회 수정 · Founding 10건 한정</p>
-  <span class="cta off" aria-disabled="true">Founding Pilot 신청 — ₩330,000</span><span class="notopen">신청 후 검토를 거쳐 결제 링크를 개별 안내드립니다.</span>
-  <a class="cta ghost" href="https://tally.so/r/ja4Wy6">먼저 판단 내용을 알려주기</a>
-</div>
-<div class="card">
-  <h3>WIE Analyst Loop</h3>
-  <p class="price">₩550,000 / month</p>
-  <p class="terms">성공적으로 납품된 파일럿 고객에게만 제안</p>
-</div>
+</main>
 
-<footer>
-<p>아직 공개된 적중률 수치는 없습니다. 루프가 한 번도 닫히지 않았기 때문이며,
-있는 것처럼 쓰지 않습니다.</p>
+<footer class="wrap">
+<p><b style="color:var(--warn)">아직 공개된 적중률 수치는 없습니다.</b> 루프가 한 번도 닫히지
+않았기 때문이며, 있는 것처럼 쓰지 않습니다. 이 페이지의 배경은 장식이 아니라 증거와
+반대증거가 서로를 밀어내는 모형이고, 위의 확률은 그 모형을 읽습니다 — 실적이 아닙니다.</p>
 <p>WIE is a decision-evidence and audit tool, not an investment adviser, broker, or automated trading system. Outputs are analytical evidence structures, not buy/sell instructions.</p>
 <p>MIGARYOS · <a href="mailto:hello@migaryos.com">hello@migaryos.com</a></p>
 </footer>
-</main></body></html>
+<script>
+(function(){
+var c=document.getElementById('field'),x=c&&c.getContext&&c.getContext('2d');
+if(!x)return;
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+var W=0,H=0,DPR=1,N=[],L=[],t=0,run=true;
+
+function size(){
+  DPR=Math.min(window.devicePixelRatio||1,2);
+  W=c.clientWidth;H=c.clientHeight;
+  c.width=W*DPR;c.height=H*DPR;x.setTransform(DPR,0,0,DPR,0,0);
+}
+function seed(){
+  N=[];
+  var n=W<620?70:W<1100?120:170;
+  for(var i=0;i<n;i++){
+    var r=Math.random();
+    N.push({
+      x:Math.random()*W,y:Math.random()*H,
+      z:.35+Math.random()*.65,
+      vx:(Math.random()-.5)*.16,vy:(Math.random()-.5)*.16,
+      s:r<.42?1:r<.72?-1:0,          // 1 evidence, -1 counter, 0 undecided
+      p:Math.random()*6.283,
+      m:.5+Math.random()*1.6
+    });
+  }
+}
+function burst(){                     // counter evidence arriving
+  var a=Math.random()*6.283,cx=W*.5,cy=H*.46;
+  L.push({x:cx+Math.cos(a)*Math.max(W,H)*.6,y:cy+Math.sin(a)*Math.max(W,H)*.6,
+          tx:cx,ty:cy,life:0,dur:70+Math.random()*40});
+}
+function step(){
+  t++;
+  if(t%150===0&&L.length<4)burst();
+  var cx=W*.5,cy=H*.46;
+  for(var i=0;i<N.length;i++){
+    var a=N[i];
+    // drift, plus a weak pull toward the centre so the cloud stays a cloud
+    a.vx+=(cx-a.x)*0.0000075*a.m; a.vy+=(cy-a.y)*0.0000075*a.m;
+    a.p+=0.012;
+    a.x+=a.vx+Math.cos(a.p)*0.12*a.z; a.y+=a.vy+Math.sin(a.p*1.3)*0.12*a.z;
+    a.vx*=0.995; a.vy*=0.995;
+    if(a.x<-40)a.x=W+40; if(a.x>W+40)a.x=-40;
+    if(a.y<-40)a.y=H+40; if(a.y>H+40)a.y=-40;
+  }
+  for(var j=L.length-1;j>=0;j--){ L[j].life++; if(L[j].life>L[j].dur)L.splice(j,1); }
+}
+function draw(){
+  x.clearRect(0,0,W,H);
+  var cx=W*.5,cy=H*.46;
+  // edges: only near pairs, capped so this stays cheap on a phone
+  x.lineWidth=.6;
+  for(var i=0;i<N.length;i++){
+    var a=N[i];
+    for(var k=i+1;k<N.length;k++){
+      var b=N[k],dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy;
+      if(d2>15000)continue;
+      var o=(1-d2/15000)*.3*Math.min(a.z,b.z);
+      if(a.s===b.s&&a.s!==0){
+        x.strokeStyle=a.s>0?'rgba(34,224,200,'+o+')':'rgba(255,47,126,'+o+')';
+      }else if(a.s*b.s<0){
+        x.strokeStyle='rgba(160,107,255,'+(o*1.25)+')';   // where the two sides meet
+      }else{
+        x.strokeStyle='rgba(120,134,164,'+(o*.55)+')';
+      }
+      x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke();
+    }
+  }
+  // nodes
+  for(var n2=0;n2<N.length;n2++){
+    var p=N[n2],r=(p.s===0?1.1:1.7)*p.z,g=p.s>0?'34,224,200':p.s<0?'255,47,126':'120,134,164';
+    var pulse=.55+.45*Math.sin(p.p*.7);
+    x.fillStyle='rgba('+g+','+(0.16*p.z*pulse)+')';
+    x.beginPath();x.arc(p.x,p.y,r*5.5,0,6.283);x.fill();
+    x.fillStyle='rgba('+g+','+(0.9*p.z)+')';
+    x.beginPath();x.arc(p.x,p.y,r,0,6.283);x.fill();
+  }
+  // the claim under examination
+  var cp=.6+.4*Math.sin(t*.02);
+  x.fillStyle='rgba(232,236,245,'+(0.05+0.03*cp)+')';
+  x.beginPath();x.arc(cx,cy,46+8*cp,0,6.283);x.fill();
+  x.strokeStyle='rgba(232,236,245,'+(0.22+0.12*cp)+')';x.lineWidth=1;
+  x.beginPath();x.arc(cx,cy,13,0,6.283);x.stroke();
+  // counter evidence in flight
+  for(var q=0;q<L.length;q++){
+    var s=L[q],u=s.life/s.dur,e=1-Math.pow(1-u,3),
+        px=s.x+(s.tx-s.x)*e,py=s.y+(s.ty-s.y)*e,fade=Math.sin(u*3.14159);
+    var gr=x.createLinearGradient(s.x,s.y,px,py);
+    gr.addColorStop(0,'rgba(255,47,126,0)');gr.addColorStop(1,'rgba(255,47,126,'+(0.5*fade)+')');
+    x.strokeStyle=gr;x.lineWidth=1.3;
+    x.beginPath();x.moveTo(s.x+(s.tx-s.x)*Math.max(0,e-.16),s.y+(s.ty-s.y)*Math.max(0,e-.16));
+    x.lineTo(px,py);x.stroke();
+    x.fillStyle='rgba(255,47,126,'+(0.85*fade)+')';
+    x.beginPath();x.arc(px,py,2.3,0,6.283);x.fill();
+  }
+}
+// the readout follows the field: counter evidence in flight pushes it down
+var probEl=document.getElementById('prob'),barEl=document.getElementById('bar'),val=62;
+function readout(){
+  if(!probEl)return;
+  var target=62-L.length*4.5+Math.sin(t*.006)*2.2;
+  val+=(target-val)*.04;
+  probEl.textContent=val.toFixed(1)+'%';
+  if(barEl)barEl.style.width=val.toFixed(1)+'%';
+}
+function loop(){ if(run){step();draw();readout();} requestAnimationFrame(loop); }
+window.addEventListener('resize',function(){size();seed();});
+document.addEventListener('visibilitychange',function(){run=!document.hidden;});
+size();seed();
+if(reduce){draw();}else{loop();}
+})();
+</script>
+</body></html>
