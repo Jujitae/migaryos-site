@@ -28,29 +28,51 @@ body{margin:0;font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",system-u
   background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px)}
 #vig{position:fixed;inset:0;z-index:1;pointer-events:none;
   background:radial-gradient(ellipse 92% 78% at 50% 40%,transparent 46%,rgba(5,6,10,.55) 100%)}
-/* fixed HUD: every value in it is measured, never a track record */
-#hud{position:fixed;top:0;left:0;right:0;z-index:3;display:flex;gap:1.2rem;align-items:center;
-  padding:.5rem 1.15rem;font:600 .58rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
-  color:var(--faint);background:linear-gradient(180deg,rgba(5,6,10,.97),rgba(5,6,10,.78));
-  border-bottom:1px solid rgba(38,45,66,.6);overflow:hidden;white-space:nowrap}
-#nav{display:flex;gap:.15rem;align-items:center;flex:none}
-#nav a{color:var(--faint);text-decoration:none;padding:.4rem .6rem;border:1px solid transparent;
-  transition:.15s;white-space:nowrap;letter-spacing:.18em}
+/* Fixed HUD, in the chip grammar the field now uses: hairline pills, very
+   small monospace caps, a status pip. Every value in it is a measured figure
+   read out of config next to the date it was measured. The badge the reference
+   gives to a live clock is given here to the closed-loop count, because that is
+   the number this whole offer turns on and it reads zero. */
+#hud{position:fixed;top:0;left:0;right:0;z-index:3;display:flex;gap:.55rem;align-items:center;
+  padding:.5rem .95rem;font:600 .55rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);background:linear-gradient(180deg,rgba(5,6,10,.97),rgba(5,6,10,.74));
+  border-bottom:1px solid rgba(38,45,66,.55);overflow:hidden;white-space:nowrap}
+#nav{display:flex;gap:.3rem;align-items:center;flex:none}
+#nav a{display:inline-flex;align-items:center;gap:.4rem;color:var(--faint);text-decoration:none;
+  padding:.4rem .55rem;border:1px solid var(--line);border-radius:3px;background:rgba(9,11,18,.72);
+  transition:.15s;white-space:nowrap;letter-spacing:.16em}
 #nav a:hover,#nav a:focus-visible{color:var(--ink);border-color:var(--line2)}
-#nav a.on{color:var(--ink);border-color:var(--line2)}
-#nav .brand{color:var(--ink);margin-right:.5rem;letter-spacing:.26em}
-a:focus-visible,.cta:focus-visible{outline:2px solid var(--ev);outline-offset:3px}
-.lbl{display:inline-block;align-self:flex-start;font:600 .55rem/1 var(--mono);letter-spacing:.16em;
-  text-transform:uppercase;color:var(--ct);border:1px solid var(--ct);padding:.4rem .55rem;
-  margin:0 0 1.4rem;background:rgba(255,47,126,.07)}
-#hud b{color:var(--ink);font-weight:600}
-#hud .dot{width:5px;height:5px;background:var(--ev);box-shadow:0 0 8px var(--ev);flex:none;
+#nav a.on{color:var(--ink);border-color:rgba(160,107,255,.55);
+  box-shadow:inset 0 0 14px rgba(160,107,255,.18)}
+#nav .brand{letter-spacing:.2em}
+.pip{width:4px;height:4px;flex:none;background:var(--ev);box-shadow:0 0 7px var(--ev);
   animation:bl 2.4s ease-in-out infinite}
-#hud .sp{flex:1}
-#hud .w{color:var(--warn)}
+.pip.w{background:var(--warn);box-shadow:0 0 7px var(--warn)}
+.pip.ct{background:var(--ct);box-shadow:0 0 7px var(--ct)}
+#hud .loop{display:inline-flex;align-items:center;gap:.4rem;flex:none;padding:.4rem .6rem;
+  border:1px solid rgba(255,176,46,.45);border-radius:3px;color:var(--warn);
+  background:rgba(255,176,46,.06);box-shadow:0 0 18px rgba(255,176,46,.09)}
+#hud .loop b{font-weight:700;color:var(--warn);font-variant-numeric:tabular-nums}
+#hud .loop em{font-style:normal;color:rgba(255,176,46,.6);letter-spacing:.1em}
+#hud .stat{display:inline-flex;flex-direction:column;gap:.24rem;flex:none;line-height:1;
+  padding:0 .15rem}
+#hud .stat u{text-decoration:none;color:var(--faint);font-size:.5rem;letter-spacing:.12em}
+#hud .stat b{color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.03em}
+#hud .sp{flex:1;min-width:.35rem}
+a:focus-visible,.cta:focus-visible{outline:2px solid var(--ev);outline-offset:3px}
+/* the label that admits the picture is a model, in the same grammar. The one
+   figure on the page the animation drives lives inside it, and nowhere else. */
+.lbl{display:inline-flex;align-items:center;gap:.45rem;align-self:flex-start;flex-wrap:wrap;
+  font:600 .55rem/1.5 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ct);
+  border:1px solid rgba(255,47,126,.55);border-radius:3px;padding:.42rem .6rem;
+  margin:0 0 1.4rem;background:rgba(255,47,126,.07)}
+.lbl b{color:var(--ct);font-weight:700;font-variant-numeric:tabular-nums}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:.25}}
-@media(max-width:980px){#hud .opt{display:none}}
-@media(max-width:560px){#hud .tel{display:none}}
+@media(max-width:1120px){#hud .opt{display:none}}
+@media(max-width:640px){#hud .tel{display:none}
+  #hud{gap:.4rem;padding:.45rem .62rem}}
+@media(max-width:420px){#nav a{padding:.36rem .42rem;letter-spacing:.08em}
+  #hud .loop{padding:.36rem .46rem}}
 .wrap{position:relative;z-index:2;max-width:60rem;margin-inline:auto;padding:0 1.15rem 5rem}
 .kicker{font:600 .68rem/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem}
 h1{font-size:clamp(1.7rem,5.2vw,3.1rem);line-height:1.22;margin:0 0 1.1rem;letter-spacing:-.025em;font-weight:650}
@@ -68,7 +90,7 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
   background:linear-gradient(90deg,rgba(5,6,10,.94) 55%,rgba(5,6,10,0))}
 /* only the left bleed may go negative: a negative right inset widens the
    document and hands a phone a sideways scroll */
-@media(max-width:900px){.hero::before{inset:0 0 0 -50vw;background:rgba(5,6,10,.72)}}
+@media(max-width:900px){.hero::before{inset:0 0 0 -50vw;background:rgba(5,6,10,.78)}}
 .hero>*{position:relative}
 .hero .lede{max-width:34rem}
 .rdg{position:absolute;width:14px;height:14px;border:1px solid var(--line2);opacity:.9}
@@ -196,15 +218,11 @@ a{color:inherit}
 <div id="grain" aria-hidden="true"></div>
 <div id="vig" aria-hidden="true"></div>
 <div id="hud">
-  <span class="dot" aria-hidden="true"></span>
-  <nav id="nav" aria-label="주요"><a class="brand" href="/">MIGARYOS</a><a href="/glitch/">GLITCH</a><a href="/wie/" class="on">WIE</a></nav>
+  <nav id="nav" aria-label="주요"><a href="/" class="brand"><i class="pip" aria-hidden="true"></i>MIGARYOS</a><a href="/glitch/">GLITCH</a><a href="/wie/" class="on">WIE</a></nav>
   <span class="sp"></span>
-  <span class="tel opt" aria-hidden="true">원장 <b>58,425</b></span>
-  <span class="tel opt" aria-hidden="true">엔티티 <b>2,923</b></span>
-  <span class="tel opt" aria-hidden="true">체인 <b>OK</b></span>
-  <span class="tel" aria-hidden="true">반대증거 <b id="ctc">0</b></span>
-  <span class="w">닫힌 루프 <b class="w">0</b></span>
-  <span class="tel opt" aria-hidden="true">실측 2026-08-13</span>
+  <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>0</b><em class="tel"> · 실측 2026-08-13</em></span>
+  <span class="sp"></span>
+  <span class="stat opt" aria-hidden="true"><u>원장</u><b>62,893</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>2,989</b></span><span class="stat opt" aria-hidden="true"><u>테스트</u><b>1,580</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
 </div>
 <header class="wrap hero">
   <span class="rdg tl" aria-hidden="true"></span><span class="rdg tr" aria-hidden="true"></span>
@@ -216,7 +234,7 @@ a{color:inherit}
     <span>표본 케이스의 사전 봉인 확률 · 반대증거가 도착하면 움직입니다</span>
   </div>
   <div class="bar"><i id="bar"></i></div>
-  <p class="lbl">Sample evidence graph</p>
+  <p class="lbl"><i class="pip ct" aria-hidden="true"></i>Sample evidence graph · 모형 · 반대증거 <b id="ctc">0</b></p>
   <p><span class="cta off" aria-disabled="true">Founding Pilot 신청 — ₩330,000</span><span class="notopen">신청 후 검토를 거쳐 결제 링크를 개별 안내드립니다.</span> <a class="cta" href="https://tally.so/r/ja4Wy6">먼저 판단 내용을 알려주기</a> <a class="cta ghost" href="/sample.html">샘플 Evidence Case 보기</a></p>
 </header>
 <main class="wrap">
@@ -241,7 +259,7 @@ a{color:inherit}
 <ul class="trust"><li><b>증거와 반대증거</b><span>지지하는 근거만 모으지 않습니다. 반대증거를 의도적으로 수집해 같은 무게로 기록합니다.</span></li><li><b>명시적 무효화 조건</b><span>무엇이 나오면 이 판단을 폐기할지 사전에 적습니다. 사후에 고칠 수 없습니다.</span></li><li><b>사람이 통과시키는 확률·판단 변경</b><span>확률과 결정 상태 변경은 사람이 게이트를 통과시킵니다. 자동으로 움직이지 않습니다.</span></li><li><b>결과 감사</b><span>결과 기한이 오면 사전에 봉인한 기준으로 채점하고, 틀린 기록도 그대로 남깁니다.</span></li><li><b>자동매매 없음</b><span>주문을 내지 않습니다. 거래소·브로커 계정에 연결되지 않습니다.</span></li></ul>
 
 <h2>지금 이 순간의 원장</h2>
-<div class="strip"><div class="cell"><u>관측 원장</u><b>58,425</b><i>mentions</i></div><div class="cell"><u>추적 엔티티</u><b>2,923</b><i>entities</i></div><div class="cell"><u>해시체인</u><b>OK</b><i>verified</i></div><div class="cell"><u>테스트</u><b>1,464</b><i>passed</i></div><div class="cell"><u>봉인된 예측</u><b>7</b><i>sealed</i></div><div class="cell w"><u>닫힌 루프</u><b>0</b><i>closed</i></div></div>
+<div class="strip"><div class="cell"><u>관측 원장</u><b>62,893</b><i>mentions</i></div><div class="cell"><u>추적 엔티티</u><b>2,989</b><i>entities</i></div><div class="cell"><u>해시체인</u><b>OK</b><i>verified</i></div><div class="cell"><u>테스트</u><b>1,580</b><i>passed</i></div><div class="cell"><u>봉인된 예측</u><b>7</b><i>sealed</i></div><div class="cell w"><u>닫힌 루프</u><b>0</b><i>closed</i></div></div>
 <p class="note">닫힌 루프 0은 오타가 아닙니다. 아직 한 번도 결과로 검증되지 않았고, 그 사실을 숨기지 않는 것이 이 제품이 파는 것의 전부입니다. 첫 판정 예정일은 2026-08-27입니다.
 <br><span style="color:var(--faint)">실측 2026-08-13 · 이 표의 숫자는 전부 측정값입니다. 추정으로 채운 칸은 없습니다.</span></p>
 
@@ -272,88 +290,153 @@ a{color:inherit}
 </main>
 <footer class="wrap">
 <p><b style="color:var(--warn)">아직 공개된 적중률 수치는 없습니다.</b> 루프가 한 번도 닫히지
-않았기 때문이며, 있는 것처럼 쓰지 않습니다. 배경은 장식이 아니라 이 시스템이 다루는
-객체들의 모형이고, 화면의 확률 표시는 그 모형을 읽습니다 — 실적이 아닙니다.</p>
+않았기 때문이며, 있는 것처럼 쓰지 않습니다. 배경의 지도는 장식이 아니라 이 시스템이
+다루는 객체와 그 사이의 실제 관계이며, 노드 이름은 전부 제품 자신의 구조입니다 —
+고객사 이름은 하나도 없습니다. 화면의 확률 표시는 그 모형을 읽습니다. 실적이 아닙니다.</p>
 <p>WIE is a decision-evidence and audit tool, not an investment adviser, broker, or automated trading system. Outputs are analytical evidence structures, not buy/sell instructions.</p>
 <p>MIGARYOS · <a href="mailto:hello@migaryos.com">hello@migaryos.com</a>
 · <a href="/glitch/">GLITCH</a> · <a href="/wie/">WIE</a></p>
 </footer>
-<script>
+<script>var SEEDP=62.0;
 (function(){
 var c=document.getElementById('field'),x=c&&c.getContext&&c.getContext('2d',{alpha:true});
 if(!x)return;
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
-var W=0,H=0,DPR=1,N=[],L=[],CL=[],t=0,run=true,cx=0,cy=0;
+var W=0,H=0,DPR=1,N=[],L=[],CL=[],t=0,run=true,cx=0,cy=0,CORE=200;
 var PX=0,PY=0,TPX=0,TPY=0;   // pointer parallax: depth, never navigation
-var EV='34,224,200',CT='255,47,126',MX='160,107,255',UN='120,134,164',AM='255,176,46';
+var EV='34,224,200',CT='255,47,126',MX='160,107,255',UN='120,134,164',
+    AM='255,176,46',OK='60,224,150',INK='232,236,245';
 var RMIN=54;   // nothing may occupy the centre; that is what blew out to white
+var NODASH=[];
 
-// The graph is labelled because an unlabelled cloud is decoration. Every name
-// here is a real part of the system: sources that are actually configured in
-// the collector, and the stages of the sealed loop. Nothing is invented to
-// make the picture busier.
-// Three fields, one system. The page declares which it is on <body>, and each
-// set of names is a real part of that product — sources actually wired into the
-// collector, and the stages of the sealed loop. Nothing invented for density.
+// The picture is a map, not a mood. Every label below is a real part of this
+// system: an object in the evidence graph, a stage of the pipeline, or an
+// adapter that exists under src/wie/etl. None of them is a customer name. There
+// are no customers yet, and a company name painted on a node would be the same
+// lie as a printed hit rate.
+//
+// An edge is an argument. rel says which one:
+//   1 supports · -1 refutes · 0 derives or carries · 2 sealed, not yet settled
+// An earlier build drew a spoke from the hub to all thirteen nodes. That is a
+// starburst and it says nothing. Only two edges reach DECISION now, because in
+// this product only two things move one: a probability that moved, and an
+// outcome that landed.
+//
+// m: the nodes a phone gets, chosen so the surviving edges still connect. A
+// phone gets a smaller true graph, never the same graph with the lines cut.
 var MODE=(document.body&&document.body.getAttribute('data-field'))||'home';
 var FIELDS={
   home:{hub:'DECISION',g:[
-    {l:'CLAIM',x:-0.62,y:-0.48,s: 0},{l:'EVIDENCE',x:-0.90,y: 0.16,s: 1},
-    {l:'COUNTEREVIDENCE',x:-0.50,y: 0.70,s:-1},{l:'ASSUMPTION',x: 0.10,y:-0.92,s:-1},
-    {l:'SOURCE',x: 0.66,y:-0.62,s: 1},{l:'ENTITY',x: 0.98,y:-0.10,s: 1},
-    {l:'CAUSAL PATH',x: 0.40,y: 0.30,s: 0},{l:'PREDICTION',x: 0.92,y: 0.44,s: 0},
-    {l:'ANCHOR',x: 0.14,y: 0.62,s: 2},{l:'OUTCOME AUDIT',x: 0.58,y: 0.80,s: 1},
-    {l:'INVALIDATION',x:-0.96,y:-0.84,s:-1},{l:'PROVENANCE',x:-0.20,y: 0.24,s: 0},
-    {l:'UNCERTAINTY',x:-0.14,y:-0.34,s: 0}],
-    e:[[12,3],[12,4],[8,3],[8,6],[6,0],[6,7],[9,8],[10,2],[11,1],[0,11],[1,4],[2,5],[7,6],[3,12]]},
-  wie:{hub:'CLAIM',g:[
-    {l:'SEC EDGAR',x:-0.72,y:-0.52,s: 1},{l:'FEDERAL REGISTER',x:-0.95,y: 0.10,s: 1},
-    {l:'DART',x:-0.60,y: 0.62,s: 1},{l:'DREWRY WCI',x: 0.62,y:-0.66,s: 1},
-    {l:'IMF PORTWATCH',x: 0.96,y:-0.12,s: 1},{l:'GDELT',x: 0.14,y:-0.92,s: 0},
-    {l:'TELEGRAM',x:-0.16,y: 0.95,s:-1},{l:'BLUESKY',x: 0.55,y: 0.72,s:-1},
-    {l:'반대증거',x: 0.92,y: 0.40,s:-1},{l:'무효화 조건',x:-0.98,y:-0.86,s:-1},
-    {l:'봉인된 앵커',x: 0.34,y: 0.28,s: 2},{l:'확률 갱신',x:-0.34,y: 0.22,s: 0},
-    {l:'결과 감사',x: 0.06,y: 0.60,s: 1}],
-    e:[[10,3],[10,4],[8,6],[8,7],[11,8],[12,10],[9,8],[0,10],[1,11],[2,11],[5,8]]},
+    {l:'CLAIM',             x:-0.70,y:-0.40,s: 0},
+    {l:'SOURCE',            x:-1.04,y: 0.06,s: 0},
+    {l:'ENTITY',            x:-0.80,y: 0.56,s: 0},
+    {l:'EVIDENCE',          x: 0.00,y:-0.94,s: 1},
+    {l:'COUNTER EVIDENCE',  x: 0.10,y: 0.96,s:-1,sl:'COUNTER EV.'},
+    {l:'ASSUMPTION',        x:-0.50,y: 0.86,s:-1},
+    {l:'CAUSAL PATH',       x: 0.62,y:-0.56,s: 0},
+    {l:'PROBABILITY',       x: 0.26,y: 0.36,s: 0},
+    {l:'ANCHOR',            x: 1.04,y:-0.66,s: 2},
+    {l:'INVALIDATION RULE', x:-0.98,y:-0.92,s:-1,sl:'INVALIDATION'},
+    {l:'CONFIRMATION RULE', x: 0.98,y: 0.62,s: 2,sl:'CONFIRMATION'},
+    {l:'OUTCOME AUDIT',     x: 1.00,y:-0.04,s: 1},
+    {l:'PROVENANCE',        x:-0.70,y: 0.30,s: 0}],
+   e:[[1,0,0],[1,2,0],[3,0,1],[4,0,-1],[0,5,-1],
+      [3,12,0],[4,12,0],[12,1,0],
+      [3,7,1],[4,7,-1],[0,6,0],[6,7,0],[2,6,0],
+      [8,7,2],[8,11,2],[9,0,-1],[10,0,2],
+      [7,-1,0],[11,-1,1]],
+   m:[0,3,4,7,8,11]},
+  // The seven levels in the order they actually run, with the adapters that
+  // exist under src/wie/etl feeding level 0. Telegram and Bluesky arrive on the
+  // weak side on purpose: tier 4 is enforced in code, so neither can ever be
+  // the confirming side of a measurement.
+  // The phone gets L1..L6, contiguous. The first pick took L0-L4 and L6: every
+  // node stayed reachable from the hub so the connectivity test passed, and the
+  // canvas still showed a reader a missing number. A page that cannot count to
+  // six is not believed about 62,893 mentions either. L0 is the level every
+  // competitor also has; L6 is the one that closes the loop.
+  wie:{hub:'LEDGER',g:[
+    {l:'SEC EDGAR',         x:-1.02,y:-0.72,s: 1},
+    {l:'DART',              x:-1.06,y:-0.22,s: 1},
+    {l:'GDELT',             x:-0.96,y: 0.28,s: 0},
+    {l:'TELEGRAM',          x:-0.62,y: 0.78,s:-1},
+    {l:'BLUESKY',           x:-0.04,y: 1.02,s:-1},
+    {l:'L0 GLOBAL CAPTURE', x:-0.40,y:-0.94,s: 0,sl:'L0 GLOBAL'},
+    {l:'L1 TRIAGE',         x: 0.26,y:-0.98,s: 0},
+    {l:'L2 EVENT FORMATION',x: 0.84,y:-0.66,s: 0,sl:'L2 EVENT'},
+    {l:'L3 RELEVANCE',      x: 1.06,y:-0.18,s: 0},
+    {l:'L4 EVIDENCE INVESTIGATION',x: 1.00,y: 0.34,s: 1,sl:'L4 EVIDENCE'},
+    {l:'L5 DECISION',       x: 0.66,y: 0.80,s: 0},
+    {l:'L6 OUTCOME REVIEW', x: 0.06,y: 0.66,s: 1,sl:'L6 OUTCOME'},
+    {l:'COUNTER EVIDENCE',  x: 0.56,y: 0.08,s:-1,sl:'COUNTER EV.'},
+    {l:'SEALED ANCHOR',     x:-0.66,y: 0.34,s: 2}],
+   e:[[0,5,1],[1,5,1],[2,5,0],[3,5,-1],[4,5,-1],
+      [5,6,0],[6,7,0],[7,8,0],[8,9,0],[9,10,0],[10,11,0],
+      [9,12,-1],[12,10,-1],
+      [13,10,2],[13,11,2],
+      [5,-1,0],[10,-1,0],[11,-1,1]],
+   m:[6,7,8,9,10,11]},
+  // A decision audit is a funnel, not a web: several options are attacked by
+  // the same adversaries, one comparison is made with the labels hidden, and
+  // what comes out carries an owner, a rollback and a review date.
   glitch:{hub:'DECISION',g:[
-    {l:'OPTION A',x:-0.78,y:-0.58,s: 1},{l:'OPTION B',x: 0.02,y:-0.95,s: 1},
-    {l:'OPTION C',x: 0.80,y:-0.56,s: 1},{l:'ASSUMPTION',x:-0.98,y: 0.04,s:-1},
-    {l:'BLIND SPOT',x: 0.98,y: 0.06,s:-1},{l:'FAILURE PATH',x:-0.66,y: 0.66,s:-1},
-    {l:'CONTRADICTION',x: 0.62,y: 0.70,s:-1},{l:'PRE-MORTEM',x: 0.00,y: 0.96,s:-1},
-    {l:'BLIND COMPARE',x: 0.30,y: 0.26,s: 0},{l:'EVIDENCE GAP',x:-0.32,y: 0.28,s: 0},
-    {l:'ROLLBACK',x:-0.24,y:-0.30,s: 2},{l:'REVIEW DATE',x: 0.28,y:-0.26,s: 2}],
-    e:[[0,3],[0,5],[1,4],[1,7],[2,4],[2,6],[8,0],[8,1],[8,2],[9,3],[9,4],[10,5],[10,6],[11,7],[8,9]]}
+    {l:'OPTION A',      x:-0.92,y:-0.74,s: 1},
+    {l:'OPTION B',      x:-1.06,y:-0.20,s: 1},
+    {l:'OPTION C',      x:-0.94,y: 0.36,s: 1},
+    {l:'ASSUMPTION',    x:-0.40,y:-0.96,s:-1},
+    {l:'BLIND SPOT',    x: 0.30,y:-0.94,s:-1},
+    {l:'FAILURE PATH',  x:-0.52,y: 0.86,s:-1},
+    {l:'PRE-MORTEM',    x: 0.18,y: 0.98,s:-1},
+    {l:'EVIDENCE GAP',  x: 0.98,y:-0.62,s: 0},
+    {l:'BLIND COMPARE', x:-0.44,y: 0.26,s: 0},
+    {l:'ROLLBACK',      x: 1.04,y: 0.06,s: 2},
+    {l:'REVIEW DATE',   x: 0.82,y: 0.62,s: 2},
+    {l:'OWNER',         x: 0.60,y:-0.24,s: 0}],
+   e:[[3,0,-1],[3,1,-1],[4,1,-1],[4,2,-1],[5,0,-1],[5,2,-1],
+      [6,0,-1],[6,1,-1],[6,2,-1],
+      [0,8,1],[1,8,1],[2,8,1],[7,8,0],
+      [8,-1,1],[-1,11,0],[-1,9,2],[-1,10,2]],
+   m:[0,1,2,6,8,9]}
 };
+// A phone gets a hand-checked ladder rather than a ring: six slots whose rows
+// are far enough apart that two chips cannot collide at any width, and whose
+// sides alternate so a label always has room to grow away from the middle.
+var MOFF=[[-1.01,-1.08],[1.01,-0.67],[-1.22,-0.12],[1.22,0.43],[-0.92,0.99],[0.82,1.28]];
 var F=FIELDS[MODE]||FIELDS.home;
-var HUB={l:F.hub,x:0,y:0};
-var G=F.g;
-// hub-and-spoke, plus the few edges that carry the argument
-var E=[];
-for(var _i=0;_i<G.length;_i++)E.push([-1,_i]);
-for(var _j=0;_j<F.e.length;_j++)E.push(F.e[_j]);
+var G=F.g,HUB=F.hub,E=F.e;
+
+function relcol(r){ return r===2?AM:r>0?EV:r<0?CT:UN; }
 
 function size(){
   DPR=Math.min(window.devicePixelRatio||1,1.75);
   W=c.clientWidth;H=c.clientHeight;cx=W>900?W*.72:W*.5;cy=H*.46;
+  CORE=Math.min(W,H)*0.235;
   c.width=Math.round(W*DPR);c.height=Math.round(H*DPR);
   x.setTransform(DPR,0,0,DPR,0,0);
 }
 function seed(){
   N=[];CL=[];
   // density scaled to area, so a phone is not asked to draw a desktop field
-  var n=Math.round(Math.min(300,Math.max(90,(W*H)/4600))),
+  var n=Math.round(Math.min(900,Math.max(260,(W*H)/1700))),
       span=Math.max(W,H);
   for(var i=0;i<n;i++){
     // Orbits, not free bodies. An earlier version integrated velocity under a
     // pull toward the centre with no repulsion, so over a few minutes every
     // node fell into the same point and additive blending turned the pile
-    // pure white. Position is now derived from (radius, angle): a node cannot
+    // pure white. Position is derived from (radius, angle): a point cannot
     // reach the centre because RMIN is its floor, so the collapse is not
     // damped, it is unrepresentable.
-    var s=Math.random();
+    //
+    // Two populations, because the reference reads as a dense disc inside a
+    // thin halo and one distribution cannot do both. This cloud is what
+    // arrived and has not been structured yet; the labelled graph on top of it
+    // is what has.
+    var s=Math.random(),core=Math.random()<0.66,
+        r0=core ? RMIN+Math.pow(Math.random(),0.75)*(CORE*1.15-RMIN)
+                : CORE*1.15+Math.pow(Math.random(),1.5)*(span*.62-CORE*1.15);
     N.push({
-      r0: RMIN + Math.pow(Math.random(),1.25)*(span*.60 - RMIN),
-      r:  0,
+      r0: r0,
+      r:  r0,
       th: Math.random()*6.283,
       dir: Math.random()<.5?-1:1,
       z:.22+Math.random()*.78,
@@ -362,7 +445,6 @@ function seed(){
       wob:.5+Math.random()*1.8,
       x:0,y:0
     });
-    var q=N[N.length-1]; q.r=q.r0;
   }
   // slow nebula: a handful of huge soft blooms give depth that points cannot
   for(var k=0;k<5;k++){
@@ -377,7 +459,7 @@ function burst(){
   // strike on one spot is the other half of the white-out
   var a=Math.random()*6.283,b=Math.random()*6.283;
   L.push({x:cx+Math.cos(a)*Math.max(W,H)*.75, y:cy+Math.sin(a)*Math.max(W,H)*.75,
-          tx:cx+Math.cos(b)*RMIN*1.15, ty:cy+Math.sin(b)*RMIN*.8,
+          tx:cx+Math.cos(b)*RMIN*1.7, ty:cy+Math.sin(b)*RMIN*1.3,
           life:0,dur:80+Math.random()*50});
 }
 function step(){
@@ -392,33 +474,109 @@ function step(){
     // breathe around the preferred radius; it can never wander to zero
     a.r += ((a.r0 + Math.sin(a.p*.6)*a.r0*.05) - a.r)*0.02;
     if(a.r<RMIN)a.r=RMIN;
-    a.x = cx + Math.cos(a.th)*a.r*1.25 + Math.cos(a.p)*3*a.z;
-    a.y = cy + Math.sin(a.th)*a.r*0.82 + Math.sin(a.p*1.3)*3*a.z;
+    a.x = cx + Math.cos(a.th)*a.r*1.14 + Math.cos(a.p)*3*a.z;
+    a.y = cy + Math.sin(a.th)*a.r*0.88 + Math.sin(a.p*1.3)*3*a.z;
   }
   for(var j=L.length-1;j>=0;j--){ L[j].life++; if(L[j].life>L[j].dur)L.splice(j,1); }
   for(var q=0;q<CL.length;q++){ CL[q].a+=CL[q].sp; }
   PX+=(TPX-PX)*0.045; PY+=(TPY-PY)*0.045;
 }
-var MOB=false, MOBN=[];
+
+// ---- layout ---------------------------------------------------------------
+var MOB=false,SHORT=false,MAXW=136,MR=0,MOBN=[],MOBI={},ACTIVE=E,SCALE=1;
+// how far the graph actually reaches, so the scale can be fitted to the window
+// instead of clamping chips against the right edge on a 1024px laptop
+var MAXX=0.4,MAXY=0.4;
+for(var _g=0;_g<G.length;_g++){
+  if(G[_g].x>MAXX)MAXX=G[_g].x;
+  if(Math.abs(G[_g].y)>MAXY)MAXY=Math.abs(G[_g].y);
+}
 function relayout(){
   MOB = W < 760;
-  MOBN = [];
-  if(!MOB) return;
+  SHORT = W < 980;
+  MAXW = MOB ? 96 : 136;
+  SCALE = Math.min(Math.min(W,H)*(W>900?0.42:0.40),
+                   (W-cx-26)/(MAXX*1.02),
+                   (H*0.40)/(MAXY*0.74));
+  MR = Math.min(W,H)*0.30;
+  MOBN=[];MOBI={};
+  if(!MOB){ ACTIVE=E; return; }
   // A phone gets its own composition, not the desktop graph shrunk. Six nodes
-  // on a ring around the hub stay legible; the rest would be spaghetti.
-  var pick=[], want=6;
-  for(var i=0;i<G.length && pick.length<want;i++){
-    if(G[i].l.length<=14) pick.push(i);
+  // stay legible; thirteen would be spaghetti at any font size.
+  var pick=F.m||[],n=Math.min(pick.length,MOFF.length);
+  for(var k=0;k<n;k++){ MOBI[pick[k]]=k; MOBN.push({i:pick[k],o:MOFF[k]}); }
+  // Only edges that survive intact. A hub edge counts, because the hub is on
+  // screen. An edge whose other end was cut is simply not drawn — the phone
+  // never gets a line that means something different from the desktop one.
+  var out=[];
+  for(var i=0;i<E.length;i++){
+    var e=E[i],a0=e[0]<0||MOBI[e[0]]!==undefined,b0=e[1]<0||MOBI[e[1]]!==undefined;
+    if(a0&&b0)out.push(e);
   }
-  for(var k=0;k<pick.length;k++){
-    var a=-1.5708 + (k/pick.length)*6.283;
-    MOBN.push({i:pick[k], x:Math.cos(a), y:Math.sin(a)});
-  }
+  ACTIVE=out;
 }
-function gpos(n,scale){
-  // gentle independent drift so the graph breathes without ever restructuring
-  return [cx + (n.x<0?n.x*0.62:n.x)*scale*1.02 + Math.cos(t*0.004 + n.x*7)*7 + PX,
-          cy + n.y*scale*0.74 + Math.sin(t*0.005 + n.y*9)*7 + PY];
+// Enforced, not hand-placed: no node may sit inside the core, whatever
+// coordinates are typed above. Adding a node cannot break the centre.
+function keepOut(px,py){
+  var dx=px-cx,dy=py-cy,ex=dx/1.14,ey=dy/0.88,
+      ed=Math.hypot(ex,ey)||1,minr=CORE*1.16;
+  if(ed<minr){var k=minr/ed;return [cx+dx*k,cy+dy*k];}
+  return [px,py];
+}
+
+// ---- chips ----------------------------------------------------------------
+var CHIPF='600 8.5px ui-monospace,Menlo,Consolas,monospace',FIT={},
+    CPAD=5,CGAP=6,CDOT=2.2,CH=14;
+// Measured once per label per breakpoint. The collision pass below asks for
+// these boxes a few hundred times a frame, and measureText is not free.
+function fit(s){
+  var key=s+'|'+MAXW,hit=FIT[key];
+  if(hit)return hit;
+  x.font=CHIPF;
+  var out=s;
+  if(x.measureText(s).width>MAXW){
+    out=s.slice(0,1)+'…';
+    for(var i=s.length-1;i>1;i--){
+      var cut=s.slice(0,i)+'…';
+      if(x.measureText(cut).width<=MAXW){out=cut;break;}
+    }
+  }
+  hit={t:out,w:CPAD+CDOT*2+CGAP+x.measureText(out).width+CPAD};
+  FIT[key]=hit;return hit;
+}
+function lab(n){ return (SHORT&&n.sl)?n.sl:n.l; }
+function chipLeft(px,w){ return px>cx?px-11-w:px+11; }
+function rrect(px,py,w,h,r){
+  x.beginPath();
+  x.moveTo(px+r,py);
+  x.lineTo(px+w-r,py);   x.quadraticCurveTo(px+w,py,px+w,py+r);
+  x.lineTo(px+w,py+h-r); x.quadraticCurveTo(px+w,py+h,px+w-r,py+h);
+  x.lineTo(px+r,py+h);   x.quadraticCurveTo(px,py+h,px,py+h-r);
+  x.lineTo(px,py+r);     x.quadraticCurveTo(px,py,px+r,py);
+}
+// A named chip, the way the reference draws one: a hairline box, a status pip
+// and very small monospace caps. Composite drops back to source-over for the
+// panel, because a near-black fill is invisible under additive blending.
+function chipAt(px,py,label,col,dot,fade,centred){
+  var m=fit(label),w=m.w,
+      left=centred?(px-w/2):chipLeft(px,w),
+      top=centred?py:(py-CH/2);
+  // Last resort only. SCALE is fitted to the window above, and a test asserts
+  // no chip ever reaches these margins - a clamped chip keeps the label on
+  // screen while leaving its node off it, which is worse than either.
+  if(left<4)left=4;
+  if(left+w>W-4)left=W-4-w;
+  x.globalCompositeOperation='source-over';
+  rrect(left,top,w,CH,3);
+  x.fillStyle='rgba(6,8,13,'+(0.88*fade)+')';x.fill();
+  x.strokeStyle='rgba('+col+','+(0.46*fade)+')';x.lineWidth=1;x.stroke();
+  x.fillStyle='rgba('+dot+','+(0.92*fade)+')';
+  x.fillRect(left+CPAD,top+CH/2-CDOT,CDOT*2,CDOT*2);
+  x.font=CHIPF;x.textAlign='left';x.textBaseline='middle';
+  x.fillStyle='rgba('+INK+','+(0.88*fade)+')';
+  x.fillText(m.t,left+CPAD+CDOT*2+CGAP,top+CH/2+0.5);
+  x.textBaseline='alphabetic';x.textAlign='center';
+  x.globalCompositeOperation='lighter';
 }
 function starburst(px,py,col,rad,spikes,alpha){
   for(var i=0;i<spikes;i++){
@@ -431,92 +589,135 @@ function starburst(px,py,col,rad,spikes,alpha){
     x.beginPath();x.moveTo(px,py);x.lineTo(px+Math.cos(a)*len,py+Math.sin(a)*len);x.stroke();
   }
 }
-function drawGraphMobile(cp){
-  var R=Math.min(W,H)*0.30;
-  x.lineWidth=1;
-  for(var k=0;k<MOBN.length;k++){
-    var m=MOBN[k], px=cx+m.x*R*1.0+PX, py=cy+m.y*R*0.86+PY;
-    x.strokeStyle='rgba(198,208,226,'+(0.20+0.08*Math.sin(t*0.02+k))+')';
-    x.beginPath();x.moveTo(cx+PX,cy+PY);x.lineTo(px,py);x.stroke();
+
+// ---- positions, resolved once per frame ------------------------------------
+var NP=[],NB=[],HUBY=0;
+function layout(){
+  NP=[];NB=[];
+  var live=MOB?MOBN.length:G.length,k,i,j;
+  for(k=0;k<live;k++){
+    var idx=MOB?MOBN[k].i:k,n=G[idx];
+    NP[idx]=MOB
+      ? keepOut(cx+MOBN[k].o[0]*MR+PX, cy+MOBN[k].o[1]*MR+PY)
+      // gentle independent drift so the graph breathes without restructuring
+      : keepOut(cx+(n.x<0?n.x*0.62:n.x)*SCALE*1.02+Math.cos(t*0.004+n.x*7)*7+PX,
+                cy+n.y*SCALE*0.74+Math.sin(t*0.005+n.y*9)*7+PY);
+    NB.push(idx);
   }
-  for(var k2=0;k2<MOBN.length;k2++){
-    var m2=MOBN[k2], n=G[m2.i],
-        px2=cx+m2.x*R*1.0+PX, py2=cy+m2.y*R*0.86+PY,
-        col=n.s===2?AM:n.s>0?EV:n.s<0?CT:MX,
-        pulse=0.55+0.45*Math.sin(t*0.022+k2*1.3);
-    starburst(px2,py2,col,22+8*pulse,8,0.55*pulse);
-    var gg=x.createRadialGradient(px2,py2,0,px2,py2,18);
-    gg.addColorStop(0,'rgba('+col+',0.5)');gg.addColorStop(1,'rgba('+col+',0)');
-    x.fillStyle=gg;x.fillRect(px2-18,py2-18,36,36);
-    x.fillStyle='rgba('+col+',0.95)';
-    x.beginPath();x.arc(px2,py2,2.8,0,6.283);x.fill();
-    x.globalCompositeOperation='source-over';
-    x.font='600 9px ui-monospace,Menlo,Consolas,monospace';x.textAlign='center';
-    x.fillStyle='rgba(232,236,245,0.72)';
-    x.fillText(n.l,px2,py2+20);
-    x.globalCompositeOperation='lighter';
+  // Chips must never stack. The coordinates above are typed by hand and the
+  // scale shrinks to fit a narrow window, so hand-tuning cannot be the
+  // guarantee. Overlapping labels are pushed apart here, every frame, for
+  // whatever set is on screen - which also means a node added later cannot
+  // quietly land on top of one that was already there.
+  for(var pass=0;pass<5;pass++){
+    var moved=false;
+    for(i=0;i<NB.length;i++)for(j=i+1;j<NB.length;j++){
+      var a=NB[i],b=NB[j],
+          wa=fit(lab(G[a])).w, wb=fit(lab(G[b])).w,
+          la=chipLeft(NP[a][0],wa), lb=chipLeft(NP[b][0],wb),
+          ox=Math.min(la+wa,lb+wb)-Math.max(la,lb),
+          oy=(CH+4)-Math.abs(NP[a][1]-NP[b][1]);
+      if(ox<=2||oy<=0)continue;
+      var up=NP[a][1]<=NP[b][1]?-1:1,push=oy/2+0.5;
+      NP[a][1]+=push*up; NP[b][1]-=push*up;
+      NP[a]=keepOut(NP[a][0],NP[a][1]); NP[b]=keepOut(NP[b][0],NP[b][1]);
+      moved=true;
+    }
+    if(!moved)break;
   }
-  starburst(cx+PX,cy+PY,'232,236,245',44+12*cp,12,0.22+0.08*cp);
-  x.strokeStyle='rgba(232,236,245,'+(0.30+0.14*cp)+')';x.lineWidth=1.2;
-  x.beginPath();x.arc(cx+PX,cy+PY,12+2*cp,0,6.283);x.stroke();
-  x.globalCompositeOperation='source-over';
-  x.font='600 10px ui-monospace,Menlo,Consolas,monospace';x.textAlign='center';
-  x.fillStyle='rgba(232,236,245,0.85)';
-  x.fillText(HUB.l,cx+PX,cy+PY+40);
-  x.globalCompositeOperation='lighter';
+  // the hub caption sits under the core, and steps down past anything there
+  HUBY=cy+CORE*1.02;
+  var hw=fit(HUB).w,hl=cx-hw/2;
+  for(var s2=0;s2<6;s2++){
+    var clash=false;
+    for(k=0;k<NB.length;k++){
+      var c=NB[k],cw=fit(lab(G[c])).w,cl=chipLeft(NP[c][0],cw);
+      if(Math.min(cl+cw,hl+hw)-Math.max(cl,hl)>2
+         && Math.abs((NP[c][1]-CH/2)-HUBY)<CH+4){clash=true;break;}
+    }
+    if(!clash)break;
+    HUBY+=CH+6;
+  }
 }
-function drawGraph(cp){
-  if(MOB) return drawGraphMobile(cp);
-  var scale=Math.min(W,H)*(W>900?0.42:0.40),
-      showLabels=W>760;
-  // curved edges first, so the node glows sit on top of them
+function POS(i){ return i<0?[cx,cy]:NP[i]; }
+
+// ---- the graph ------------------------------------------------------------
+function drawEdges(){
   x.lineWidth=1;
-  for(var i=0;i<E.length;i++){
-    var A=E[i][0]<0?[cx,cy]:gpos(G[E[i][0]],scale),
-        B=gpos(G[E[i][1]],scale),
-        mx=(A[0]+B[0])/2,my=(A[1]+B[1])/2,
-        nx=-(B[1]-A[1]),ny=(B[0]-A[0]),
-        len=Math.hypot(nx,ny)||1,
-        bend=0.16*Math.sin(i*1.7+t*0.006);
-    x.strokeStyle='rgba(198,208,226,'+(0.16+0.07*Math.sin(t*0.02+i))+')';
-    x.beginPath();x.moveTo(A[0],A[1]);
-    x.quadraticCurveTo(mx+nx/len*len*bend*0.35,my+ny/len*len*bend*0.35,B[0],B[1]);
-    x.stroke();
-  }
-  // nodes
-  for(var k=0;k<G.length;k++){
-    var n=G[k],P=gpos(n,scale),
-        col=n.s===2?AM:n.s>0?EV:n.s<0?CT:MX,
-        pulse=0.55+0.45*Math.sin(t*0.022+k*1.3);
-    starburst(P[0],P[1],col,34+14*pulse,10,0.62*pulse);
-    var gg=x.createRadialGradient(P[0],P[1],0,P[0],P[1],24);
-    gg.addColorStop(0,'rgba('+col+',0.55)');gg.addColorStop(1,'rgba('+col+',0)');
-    x.fillStyle=gg;x.fillRect(P[0]-24,P[1]-24,48,48);
-    x.fillStyle='rgba('+col+',0.95)';
-    x.beginPath();x.arc(P[0],P[1],3.1,0,6.283);x.fill();
-    if(showLabels){
-      x.globalCompositeOperation='source-over';
-      x.font='600 9px ui-monospace,Menlo,Consolas,monospace';
-      x.textAlign='center';
-      x.fillStyle='rgba(232,236,245,0.78)';
-      x.fillText(n.l,P[0],P[1]+22);
-      x.globalCompositeOperation='lighter';
+  for(var i=0;i<ACTIVE.length;i++){
+    var e=ACTIVE[i],A=POS(e[0]),B=POS(e[1]),rel=e[2]|0,col=relcol(rel),
+        bend=0.055*Math.sin(i*1.7+t*0.005),
+        mx=(A[0]+B[0])/2-(B[1]-A[1])*bend,
+        my=(A[1]+B[1])/2+(B[0]-A[0])*bend;
+    // Sealed but not yet settled is dashed, on every page. It is the one state
+    // this whole product turns on, and the ledger says none have closed.
+    if(rel===2)x.setLineDash([3,4]);
+    x.strokeStyle='rgba('+col+','+(rel===0?0.15:0.24)+')';
+    x.beginPath();x.moveTo(A[0],A[1]);x.quadraticCurveTo(mx,my,B[0],B[1]);x.stroke();
+    if(rel===2)x.setLineDash(NODASH);
+    // Two packets per edge, positioned from t by formula. Nothing is pushed
+    // onto an array and nothing decays, so a run of any length has exactly the
+    // same number of them in exactly the same places.
+    for(var k=0;k<2;k++){
+      var u=0.12+(((t*0.0020+i*0.137+k*0.5)%1)+1)%1*0.76,
+          iu=1-u,
+          qx=iu*iu*A[0]+2*iu*u*mx+u*u*B[0],
+          qy=iu*iu*A[1]+2*iu*u*my+u*u*B[1];
+      if(Math.hypot(qx-cx,qy-cy)<70)continue;   // never lands on the hollow centre
+      var f=Math.sin(u*3.14159);
+      x.fillStyle='rgba('+col+','+(0.11*f)+')';
+      x.beginPath();x.arc(qx,qy,5,0,6.283);x.fill();
+      x.fillStyle='rgba('+col+','+(0.88*f)+')';
+      x.beginPath();x.arc(qx,qy,1.7,0,6.283);x.fill();
     }
   }
-  // the claim under examination — a ring, not a disc
-  starburst(cx,cy,'232,236,245',60+18*cp,16,0.24+0.10*cp);
-  x.strokeStyle='rgba(232,236,245,'+(0.30+0.14*cp)+')';x.lineWidth=1.2;
-  x.beginPath();x.arc(cx,cy,13+2*cp,0,6.283);x.stroke();
-  x.strokeStyle='rgba(160,107,255,'+(0.15+0.08*cp)+')';x.lineWidth=1;
-  x.beginPath();x.arc(cx,cy,38+10*cp,0,6.283);x.stroke();
-  if(W>760){
-    x.globalCompositeOperation='source-over';
-    x.font='600 10px ui-monospace,Menlo,Consolas,monospace';
-    x.textAlign='center';
-    x.fillStyle='rgba(232,236,245,0.85)';
-    x.fillText(HUB.l,cx,cy+56);
-    x.globalCompositeOperation='lighter';
+}
+function drawNodes(fade){
+  var n=MOB?MOBN.length:G.length;
+  for(var k=0;k<n;k++){
+    var idx=MOB?MOBN[k].i:k,node=G[idx],P=NP[idx],
+        col=node.s===2?AM:node.s>0?EV:node.s<0?CT:MX,
+        dot=node.s===2?AM:node.s>0?OK:node.s<0?CT:UN,
+        pulse=0.55+0.45*Math.sin(t*0.022+idx*1.3);
+    starburst(P[0],P[1],col,26+10*pulse,8,0.52*pulse*fade);
+    var gg=x.createRadialGradient(P[0],P[1],0,P[0],P[1],20);
+    gg.addColorStop(0,'rgba('+col+','+(0.52*fade)+')');
+    gg.addColorStop(1,'rgba('+col+',0)');
+    x.fillStyle=gg;x.fillRect(P[0]-20,P[1]-20,40,40);
+    x.fillStyle='rgba('+INK+','+(0.90*fade)+')';
+    x.beginPath();x.arc(P[0],P[1],2.5,0,6.283);x.fill();
+    chipAt(P[0],P[1],lab(node),col,dot,fade);
   }
+}
+function drawHub(cp){
+  // The claim under examination: a ring and two loose arcs, never a disc. The
+  // middle of this picture is empty by construction, and that is the point.
+  starburst(cx,cy,INK,54+16*cp,14,0.20+0.09*cp);
+  x.strokeStyle='rgba('+INK+','+(0.34+0.16*cp)+')';x.lineWidth=1.2;
+  x.beginPath();x.arc(cx,cy,13+2*cp,0,6.283);x.stroke();
+  x.strokeStyle='rgba('+MX+','+(0.16+0.09*cp)+')';x.lineWidth=1;
+  x.beginPath();x.arc(cx,cy,CORE*0.30+8*cp,0,6.283);x.stroke();
+  // the swirl, drawn as curves rather than arcs so it adds nothing to the
+  // centre occupancy the stability test counts
+  var sw=CORE*0.19,a0=t*0.0035;
+  for(var i=0;i<2;i++){
+    var a=a0+i*3.1416;
+    x.strokeStyle='rgba('+INK+','+(0.30+0.16*cp)+')';x.lineWidth=1.5;
+    x.beginPath();
+    x.moveTo(cx+Math.cos(a-0.62)*sw,cy+Math.sin(a-0.62)*sw*0.78);
+    x.quadraticCurveTo(cx+Math.cos(a)*sw*1.55,cy+Math.sin(a)*sw*1.20,
+                       cx+Math.cos(a+0.62)*sw,cy+Math.sin(a+0.62)*sw*0.78);
+    x.stroke();
+  }
+  chipAt(cx,HUBY,HUB,INK,OK,1,true);
+}
+function coreRing(rad,col,a,inner){
+  var g=x.createRadialGradient(cx,cy,0,cx,cy,rad);
+  g.addColorStop(0,'rgba('+col+',0)');
+  g.addColorStop(inner,'rgba('+col+',0)');
+  g.addColorStop((inner+1)/2,'rgba('+col+','+a+')');
+  g.addColorStop(1,'rgba('+col+',0)');
+  x.fillStyle=g;x.fillRect(cx-rad,cy-rad,rad*2,rad*2);
 }
 function draw(){
   x.clearRect(0,0,W,H);
@@ -532,34 +733,36 @@ function draw(){
     x.fillStyle=g;x.fillRect(mx-m.r,my-m.r,m.r*2,m.r*2);
   }
 
-  // core bloom
-  var cp=.62+.38*Math.sin(t*.018),
-      cg=x.createRadialGradient(cx,cy,0,cx,cy,180+40*cp);
-  cg.addColorStop(0,'rgba(160,107,255,'+(0.045+0.02*cp)+')');
-  cg.addColorStop(.32,'rgba(160,107,255,'+(0.022+0.012*cp)+')');
-  cg.addColorStop(1,'rgba(160,107,255,0)');
-  x.fillStyle=cg;x.fillRect(cx-260,cy-260,520,520);
+  // Concentric bloom: warm outside, cold inside, nothing at all in the middle.
+  // The shape is the reference's. The colours are ours, and they are the ones
+  // the rest of the page already uses for evidence and counter evidence.
+  var cp=.62+.38*Math.sin(t*.018);
+  coreRing(CORE*1.50,AM,0.040+0.012*cp,0.70);
+  coreRing(CORE*1.14,MX,0.062+0.018*cp,0.34);
+  coreRing(CORE*0.84,CT,0.036+0.014*cp,0.28);
+  coreRing(CORE*0.60,EV,0.044+0.016*cp,0.26);
 
-  // edges. O(n^2) is too slow at this node count, so bucket into a grid and
-  // only test neighbours — same picture, a fraction of the work
-  var CELL=118,cols=Math.ceil(W/CELL)+2,rows=Math.ceil(H/CELL)+2,grid={};
+  // Edges between loose points. O(n^2) is too slow at this count, so bucket
+  // into a grid and only test neighbours — same picture, a fraction of the work
+  var CELL=100,cols=Math.ceil(W/CELL)+2,rows=Math.ceil(H/CELL)+2,grid={};
   for(var i2=0;i2<N.length;i2++){
     var p=N[i2],gx=((p.x/CELL)|0)+1,gy=((p.y/CELL)|0)+1;
+    if(p.r<CORE*1.15)continue;
     if(gx<0||gy<0||gx>=cols||gy>=rows)continue;
     var key=gx*rows+gy;(grid[key]||(grid[key]=[])).push(p);
   }
   var LIM=CELL*CELL;
-  x.lineWidth=.65;
+  x.lineWidth=.6;
   for(var gk in grid){
     var bucket=grid[gk],bx=(gk/rows)|0,by=gk%rows;
     for(var dx2=0;dx2<=1;dx2++)for(var dy2=(dx2?-1:0);dy2<=1;dy2++){
       var other=grid[(bx+dx2)*rows+(by+dy2)];if(!other)continue;
-      for(var u=0;u<bucket.length;u++){
-        var a2=bucket[u];
-        for(var v=(other===bucket?u+1:0);v<other.length;v++){
+      for(var u2=0;u2<bucket.length;u2++){
+        var a2=bucket[u2];
+        for(var v=(other===bucket?u2+1:0);v<other.length;v++){
           var b=other[v],ddx=a2.x-b.x,ddy=a2.y-b.y,d2=ddx*ddx+ddy*ddy;
           if(d2>LIM)continue;
-          var o=(1-d2/LIM)*.15*Math.min(a2.z,b.z);
+          var o=(1-d2/LIM)*.10*Math.min(a2.z,b.z);
           if(o<.006)continue;
           x.strokeStyle=(a2.s===b.s&&a2.s!==0)
               ? 'rgba('+(a2.s>0?EV:CT)+','+o+')'
@@ -571,24 +774,27 @@ function draw(){
     }
   }
 
-  // nodes
+  // the loose points themselves: what arrived and has not been structured yet
   for(var n2=0;n2<N.length;n2++){
     var p2=N[n2],g2=p2.s>0?EV:p2.s<0?CT:UN,
         pulse=.5+.5*Math.sin(p2.p*.7),
         r=(p2.s===0?.9:1.5)*p2.z;
-    x.fillStyle='rgba('+g2+','+(0.07*p2.z*pulse)+')';
+    x.fillStyle='rgba('+g2+','+(0.045*p2.z*pulse)+')';
     x.beginPath();x.arc(p2.x,p2.y,r*7,0,6.283);x.fill();
-    x.fillStyle='rgba('+g2+','+(0.55*p2.z)+')';
+    x.fillStyle='rgba('+g2+','+(0.52*p2.z)+')';
     x.beginPath();x.arc(p2.x,p2.y,r,0,6.283);x.fill();
   }
 
-  drawGraph(cp);
+  layout();
+  drawEdges();
+  drawNodes(1);
+  drawHub(cp);
 
   // counter evidence in flight
   for(var q2=0;q2<L.length;q2++){
-    var s2=L[q2],u2=s2.life/s2.dur,e=1-Math.pow(1-u2,3),
-        px=s2.x+(s2.tx-s2.x)*e,py=s2.y+(s2.ty-s2.y)*e,fade=Math.sin(u2*3.14159),
-        tx0=s2.x+(s2.tx-s2.x)*Math.max(0,e-.20),ty0=s2.y+(s2.ty-s2.y)*Math.max(0,e-.20),
+    var s2=L[q2],u3=s2.life/s2.dur,e2=1-Math.pow(1-u3,3),
+        px=s2.x+(s2.tx-s2.x)*e2,py=s2.y+(s2.ty-s2.y)*e2,fade=Math.sin(u3*3.14159),
+        tx0=s2.x+(s2.tx-s2.x)*Math.max(0,e2-.20),ty0=s2.y+(s2.ty-s2.y)*Math.max(0,e2-.20),
         gr=x.createLinearGradient(tx0,ty0,px,py);
     gr.addColorStop(0,'rgba('+CT+',0)');gr.addColorStop(1,'rgba('+CT+','+(0.38*fade)+')');
     x.strokeStyle=gr;x.lineWidth=1.1;
@@ -600,13 +806,13 @@ function draw(){
   }
   x.globalCompositeOperation='source-over';
 }
-// the readout reads the field. Counter evidence in flight pushes it down;
-// it is a model of the product, and the page says so in the footer.
+// The readout reads the field. Counter evidence in flight pushes it down; it is
+// a model of the product and the page says so on the line beside it.
 var probEl=document.getElementById('prob'),barEl=document.getElementById('bar'),
-    ctEl=document.getElementById('ctc'),val=62;
+    ctEl=document.getElementById('ctc'),val=SEEDP;
 function readout(){
   if(!probEl)return;
-  var target=62-L.length*4.2+Math.sin(t*.006)*2.0;
+  var target=SEEDP-L.length*4.2+Math.sin(t*.006)*2.0;
   val+=(target-val)*.045;
   probEl.textContent=val.toFixed(1)+'%';
   if(barEl)barEl.style.width=val.toFixed(1)+'%';
