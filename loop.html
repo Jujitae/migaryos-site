@@ -11,7 +11,7 @@
 
    Two themes over one graph engine:
      NEBULA        — dark-space particle core, live ops console
-     CONSTELLATION — ring of directors, workforce map
+     CONSTELLATION — ring of the six evidence-loop stages
 
    Swap DATA (below) for your real graph. Everything else is generic.
    ========================================================================= */
@@ -213,13 +213,25 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 
   <!-- CONSTELLATION chrome -->
   <div class="chrome" id="cC">
-    <div class="tabs"><div class="tab act">Map</div><div class="tab">Dashboards</div><div class="tab">Workforce</div></div>
+    <!-- Was three non-clickable pills named after the reference design's tabs,
+         over from the reference design this file was built from. None of them
+         was wired to anything, and all three named a product surface we do not
+         sell — one of them implied the AI-headcount framing the
+         constitution rules out as a measure. Decorative chrome that advertises
+         a product is not decorative. One true label instead. -->
+    <div class="tabs"><div class="tab act">Evidence loop</div></div>
     <div class="legend" id="legend"></div>
     <div class="tally"><b id="tallyN">0</b><span>Closed loops</span>
       <u id="tallyU">first resolution —</u></div>
     <div class="foot">
       <div class="arw" id="prev">‹</div>
-      <div class="name"><b id="hubName">OVERVIEW</b><span id="hubMeta">7 directors · 137 skills</span></div>
+      <!-- The fallback stated a director and skill count — the reference
+           design's headcount claim, sitting in the shipped markup. Script
+           overwrites it a frame later, so it was invisible in review and
+           published anyway: it shows before the script runs, it greps out of
+           the served file, and it is what remains if the script fails. A
+           placeholder is not exempt from being a claim. -->
+      <div class="name"><b id="hubName">OVERVIEW</b><span id="hubMeta">—</span></div>
       <div class="arw" id="next">›</div>
     </div>
   </div>
@@ -279,10 +291,10 @@ function mk(list, statuses){                       // "a,b,c" -> child objects
    built page carries measurements; this one is labelled UNMEASURED so a stray
    copy cannot be mistaken for one.                                          */
 const LIVE = /*__WIE_LIVE_BEGIN__*/{
-  "measuredAt": "MEASURED 2026-08-16 00:33 KST",
+  "measuredAt": "MEASURED 2026-08-16 01:47 KST",
   "firstResolution": "2026-08-27",
   "nextDeadline": "2026-09-10",
-  "mentions": 80473,
+  "mentions": 80726,
   "entities": 4125,
   "sealed": 8,
   "openSealed": 5,
@@ -291,16 +303,16 @@ const LIVE = /*__WIE_LIVE_BEGIN__*/{
   "tiers": {
     "1": 142,
     "2": 11555,
-    "3": 238,
-    "4": 68538
+    "3": 239,
+    "4": 68790
   },
   "platforms": [
     {
-      "label": "gdelt · 42739",
+      "label": "gdelt · 42821",
       "status": "run"
     },
     {
-      "label": "bluesky · 23254",
+      "label": "bluesky · 23422",
       "status": "run"
     },
     {
@@ -312,7 +324,7 @@ const LIVE = /*__WIE_LIVE_BEGIN__*/{
       "status": "run"
     },
     {
-      "label": "telegram · 2783",
+      "label": "telegram · 2786",
       "status": "run"
     },
     {
@@ -348,7 +360,7 @@ const LIVE = /*__WIE_LIVE_BEGIN__*/{
   ],
   "ledger": [
     {
-      "label": "mention · 80473",
+      "label": "mention · 80726",
       "status": "ok"
     },
     {
@@ -438,7 +450,7 @@ const DATA = {
 
   { id:'evid', label:'EVIDENCE', color:C(2), ctx:'business', kind:'director',
     meta:'확정 측 tier 1-2 · ' + NUM((LIVE.tiers['1']||0)+(LIVE.tiers['2']||0)) + '건',
-    children: mk("8-K,6-K,10-Q,10-K,20-F,40-F,schedule 13D,425,S-4,DEFM14A,federal register notice,dart filing,tier 1 · 137,tier 2 · 8588") },
+    children: mk("8-K,6-K,10-Q,10-K,20-F,40-F,schedule 13D,425,S-4,DEFM14A,federal register notice,dart filing") },
 
   { id:'counter', label:'COUNTER EVIDENCE', color:C(3), ctx:'business', kind:'director',
     meta:'경쟁자가 안 하는 것',
