@@ -220,9 +220,9 @@ a{color:inherit}
 <div id="hud">
   <nav id="nav" aria-label="주요"><a href="/" class="brand on"><i class="pip" aria-hidden="true"></i>MIGARYOS</a><a href="/glitch/">GLITCH</a><a href="/wie/">WIE</a></nav>
   <span class="sp"></span>
-  <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>0</b><em class="tel"> · 실측 2026-08-13</em></span>
+  <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>0</b><em class="tel"> · 실측 2026-08-15</em></span>
   <span class="sp"></span>
-  <span class="stat opt" aria-hidden="true"><u>원장</u><b>62,893</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>2,989</b></span><span class="stat opt" aria-hidden="true"><u>테스트</u><b>1,580</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
+  <span class="stat opt" aria-hidden="true"><u>원장</u><b>77,580</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>4,103</b></span><span class="stat opt" aria-hidden="true"><u>테스트</u><b>1,732</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
 </div>
 <header class="wrap hero">
   <span class="rdg tl" aria-hidden="true"></span><span class="rdg tr" aria-hidden="true"></span>
@@ -277,9 +277,9 @@ a{color:inherit}
 </div>
 
 <h2>지금 이 순간의 원장</h2>
-<div class="strip"><div class="cell"><u>관측 원장</u><b>62,893</b><i>mentions</i></div><div class="cell"><u>추적 엔티티</u><b>2,989</b><i>entities</i></div><div class="cell"><u>해시체인</u><b>OK</b><i>verified</i></div><div class="cell"><u>테스트</u><b>1,580</b><i>passed</i></div><div class="cell"><u>봉인된 예측</u><b>7</b><i>sealed</i></div><div class="cell w"><u>닫힌 루프</u><b>0</b><i>closed</i></div></div>
-<p class="note">닫힌 루프 0은 오타가 아닙니다. 아직 한 번도 결과로 검증되지 않았고, 그 사실을 숨기지 않는 것이 이 제품이 파는 것의 전부입니다. 첫 판정 예정일은 2026-08-27입니다.
-<br><span style="color:var(--faint)">실측 2026-08-13 · 이 표의 숫자는 전부 측정값입니다. 추정으로 채운 칸은 없습니다.</span></p>
+<div class="strip"><div class="cell"><u>관측 원장</u><b>77,580</b><i>mentions</i></div><div class="cell"><u>추적 엔티티</u><b>4,103</b><i>entities</i></div><div class="cell"><u>해시체인</u><b>OK</b><i>verified</i></div><div class="cell"><u>테스트</u><b>1,732</b><i>passed</i></div><div class="cell"><u>봉인된 예측</u><b>10</b><i>sealed</i></div><div class="cell w"><u>닫힌 루프</u><b>0</b><i>closed</i></div></div>
+<p class="note">닫힌 루프 0은 오타가 아닙니다. 아직 한 번도 결과로 검증되지 않았고, 그 사실을 숨기지 않는 것이 이 제품이 파는 것의 전부입니다. 봉인된 예측 10건 중 6건이 결과로 채점될 수 있고, 첫 판정 예정일은 2026-08-27입니다.
+<br><span style="color:var(--faint)">실측 2026-08-15 · 이 표의 숫자는 전부 측정값입니다. 추정으로 채운 칸은 없습니다.</span></p>
 
 <h2>제품이 되는 루프</h2>
 <div class="rail"><div class="step"><u>EVIDENCE</u><b>증거</b><i>주장을 지지하는 것</i></div><div class="step"><u>COUNTER</u><b>반대증거</b><i>의도적으로 수집한다</i></div><div class="step"><u>PROBABILITY</u><b>확률 갱신</b><i>움직인 이유를 남긴다</i></div><div class="step"><u>DECISION</u><b>판단 변경</b><i>무엇이 바뀌었는가</i></div><div class="step"><u>OUTCOME</u><b>결과 감사</b><i>봉인한 기준으로 채점</i></div></div>
@@ -352,7 +352,9 @@ var FIELDS={
   // The phone gets L1..L6, contiguous. The first pick took L0-L4 and L6: every
   // node stayed reachable from the hub so the connectivity test passed, and the
   // canvas still showed a reader a missing number. A page that cannot count to
-  // six is not believed about 62,893 mentions either. L0 is the level every
+  // six is not believed about its ledger size either — and a figure written
+  // into this comment would itself go stale on a page that sells dated
+  // measurements, so it is not written here. L0 is the level every
   // competitor also has; L6 is the one that closes the loop.
   wie:{hub:'LEDGER',g:[
     {l:'SEC EDGAR',         x:-1.02,y:-0.72,s: 1},
