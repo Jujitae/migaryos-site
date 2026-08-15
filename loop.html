@@ -1,0 +1,1272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MIGARYOS — Evidence Loop</title>
+<style>
+/* ============================================================================
+   SECOND BRAIN — LIVE PRODUCT VISUAL
+   Single file, zero dependencies. Canvas 2D + custom 3D projection.
+
+   Two themes over one graph engine:
+     NEBULA        — dark-space particle core, live ops console
+     CONSTELLATION — ring of directors, workforce map
+
+   Swap DATA (below) for your real graph. Everything else is generic.
+   ========================================================================= */
+
+:root{
+  /* 6 loop stages. Re-validated for the requested cyan/magenta/violet mapping,
+     including the CYCLIC adjacency (stage 6 sits next to stage 1 on the ring).
+     worst adjacent OKLab dE — CVD 8.3 (target >=8) · normal vision 20.9 (floor 15)
+     all six >= 3:1 contrast on this surface. Re-run the check if you change any. */
+  --s1:#aa9100;  /* CLAIM            — gold    */
+  --s2:#009fd5;  /* EVIDENCE         — cyan    */
+  --s3:#fc00ae;  /* COUNTER EVIDENCE — magenta */
+  --s4:#ab00ff;  /* PROBABILITY      — violet  */
+  --s5:#00aa6e;  /* DECISION         — green   */
+  --s6:#af3c23;  /* OUTCOME REVIEW   — rust    */
+
+  --ink:#F2EFE6; --ink2:#B9B3A5; --ink3:#7C776C;
+  --amber:#E8B84A; --live:#7CE0A0;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Pretendard","Apple SD Gothic Neo","Malgun Gothic",monospace;
+  --sans:ui-sans-serif,-apple-system,"Inter","Helvetica Neue","Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --kr:"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",var(--sans);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:#000;
+  font-family:var(--sans);-webkit-font-smoothing:antialiased;user-select:none}
+#stage{position:fixed;inset:0}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+/* ---- label overlay ---- */
+#labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.lb{position:absolute;left:0;top:0;white-space:nowrap;will-change:transform,opacity;
+  transform-origin:0 50%}
+
+/* NEBULA label — boxed terminal chip */
+.t-nebula .lb.grp{font:600 10.5px/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;
+  color:#FFF3D6;padding:4px 7px;border:1px solid rgba(232,184,74,.42);
+  background:rgba(10,9,14,.72);border-radius:2px;
+  box-shadow:0 0 14px rgba(232,184,74,.14)}
+.t-nebula .lb.leaf{font:500 9px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  color:#D7D2C4;padding:3px 6px;border:1px solid rgba(255,255,255,.14);
+  background:rgba(8,8,12,.6);border-radius:2px}
+
+/* CONSTELLATION label — letterspaced caps, no box */
+.t-const .lb.grp{font:400 12px/1 var(--sans);letter-spacing:.34em;text-transform:uppercase;
+  color:#EDE6D4;text-shadow:0 0 18px rgba(0,0,0,.9)}
+.t-const .lb.grp b{display:block;font:400 10px/1.5 var(--kr);letter-spacing:.04em;
+  color:var(--ink2);margin-top:7px;text-shadow:0 0 12px rgba(0,0,0,.95)}
+.t-const .lb.leaf{font:400 8.5px/1 var(--mono);letter-spacing:.1em;
+  color:rgba(226,219,203,.62);text-shadow:0 0 10px rgba(0,0,0,.9)}
+
+/* ---- product chrome ---- */
+.chrome{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .5s}
+.chrome.on{opacity:1}
+.chrome.on > *{pointer-events:auto}
+.chrome:not(.on),.chrome:not(.on) *{pointer-events:none}
+
+/* NEBULA chrome */
+#cN .pills{position:absolute;top:22px;left:24px;display:flex;gap:7px}
+.pill{font:600 9.5px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink3);padding:6px 11px;border:1px solid rgba(255,255,255,.13);
+  border-radius:3px;background:rgba(8,8,12,.55);cursor:pointer;transition:.25s}
+.pill:hover{color:var(--ink2);border-color:rgba(255,255,255,.26)}
+.pill.act{color:#EAFBEF;border-color:rgba(124,224,160,.5);background:rgba(20,48,32,.5)}
+.pill.act::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
+  background:var(--live);margin-right:7px;vertical-align:1px;box-shadow:0 0 8px var(--live)}
+#cN .brief{position:absolute;top:22px;left:50%;transform:translateX(-50%);
+  font:600 10px/1 var(--mono);letter-spacing:.2em;color:var(--amber);
+  padding:7px 16px;border:1px solid rgba(232,184,74,.42);border-radius:3px;
+  background:rgba(14,10,4,.72);box-shadow:0 0 22px rgba(232,184,74,.12)}
+@keyframes bl{0%,45%{opacity:1}55%,100%{opacity:.25}}
+.ctr.amber b{color:var(--amber)}
+.ctr u{display:block;text-decoration:none;font:500 7px/1 var(--mono);letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink3);margin-top:6px}
+#cN .firstres{position:absolute;top:92px;right:24px;font:500 8px/1 var(--mono);
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+#cN .firstres b{color:var(--amber);font-weight:500}
+#cC .tally b{color:var(--amber)}
+#cC .tally u{display:block;text-decoration:none;font:500 7.5px/1 var(--mono);
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink3);margin-top:7px}
+#cN .counters{position:absolute;top:22px;right:24px;display:flex;gap:0;
+  border:1px solid rgba(255,255,255,.13);border-radius:3px;background:rgba(8,8,12,.55);overflow:hidden}
+.ctr{padding:7px 14px 8px;border-right:1px solid rgba(255,255,255,.09);text-align:right}
+.ctr.amber{background:rgba(232,184,74,.07);box-shadow:inset 2px 0 0 rgba(232,184,74,.55);padding-left:16px}
+.ctr:last-child{border-right:0}
+.ctr span{display:block;font:600 7.5px/1 var(--mono);letter-spacing:.16em;color:var(--ink3);margin-bottom:5px}
+.ctr b{font:600 12px/1 var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
+/* The chrome is absolutely positioned into three corners, which collides once
+   the viewport is narrower than the strip it assumes. The file shipped with no
+   media query at all, and the counters, the measured stamp and the brand ran
+   over each other on a phone — which is the screen this gets checked on. The
+   numbers are the point of the page, so they are what must stay readable:
+   below 720px the chrome stacks and the counters wrap instead of tiling. */
+@media (max-width:720px){
+  #cN .pills{position:static;padding:14px 14px 0;flex-wrap:wrap}
+  #cN .brief{position:static;transform:none;padding:10px 14px 0;text-align:left}
+  #cN .counters{position:static;margin:10px 14px 0;flex-wrap:wrap}
+  #cN .counters .ctr{flex:1 1 44%;text-align:left}
+  #cN .firstres{position:static;padding:8px 14px 0;text-align:left}
+}
+#cN .cmd{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+  width:min(430px,62vw);display:flex;align-items:center;gap:10px;
+  padding:11px 15px;border:1px solid rgba(255,255,255,.15);border-radius:999px;
+  background:rgba(8,8,12,.7);backdrop-filter:blur(6px)}
+#cN .cmd .dot{width:6px;height:6px;border-radius:50%;background:var(--amber);
+  box-shadow:0 0 10px var(--amber);flex:0 0 auto}
+#cN .cmd .txt{font:400 12px/1 var(--kr);letter-spacing:.01em;color:var(--ink);flex:1;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#cN .cmd .txt em{font-style:normal;color:var(--ink3)}
+#cN .cmd .car{display:inline-block;width:6px;height:12px;background:var(--ink);
+  vertical-align:-2px;animation:bl 1s steps(1) infinite}
+#cN .cmd .kbd{font:600 8.5px/1 var(--mono);letter-spacing:.1em;color:var(--ink3);
+  border:1px solid rgba(255,255,255,.15);border-radius:3px;padding:4px 7px}
+
+/* CONSTELLATION chrome */
+#cC .tabs{position:absolute;top:24px;left:50%;transform:translateX(-50%);display:flex;gap:4px}
+.tab{font:500 9px/1 var(--mono);letter-spacing:.19em;text-transform:uppercase;
+  color:var(--ink3);padding:8px 15px;border-radius:3px;cursor:pointer;transition:.25s}
+.tab:hover{color:var(--ink2)}
+.tab.act{color:#1a1712;background:#E3DAC4}
+#cC .foot{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:22px}
+#cC .arw{font:400 15px/1 var(--sans);color:var(--ink3);cursor:pointer;padding:8px 12px;transition:.25s}
+#cC .arw:hover{color:var(--ink)}
+#cC .foot .name{text-align:center;min-width:250px}
+#cC .foot .name b{display:block;font:400 15px/1 var(--sans);letter-spacing:.4em;
+  text-transform:uppercase;color:#EDE6D4}
+#cC .foot .name span{display:block;font:400 9.5px/1.4 var(--kr);letter-spacing:.06em;
+  color:var(--ink2);margin-top:10px}
+#cC .legend{position:absolute;top:24px;left:26px;display:grid;gap:7px}
+.lg{display:flex;align-items:center;gap:9px;font:500 8.5px/1 var(--mono);
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink3);cursor:pointer;transition:.2s}
+.lg:hover{color:var(--ink)}
+.lg i{width:7px;height:7px;border-radius:50%;flex:0 0 auto}
+#cC .tally{position:absolute;top:24px;right:26px;text-align:right}
+#cC .tally b{display:block;font:300 34px/1 var(--sans);color:#EDE6D4;font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em}
+#cC .tally span{display:block;font:500 8px/1 var(--mono);letter-spacing:.2em;
+  color:var(--ink3);margin-top:7px}
+
+/* ---- director dashboard panel (both themes) ---- */
+#panel{position:absolute;right:26px;top:50%;transform:translate(24px,-50%);
+  width:236px;padding:16px 18px;border:1px solid rgba(255,255,255,.12);border-radius:5px;
+  background:rgba(8,8,11,.82);backdrop-filter:blur(8px);opacity:0;transition:.35s;pointer-events:none}
+#panel.on{opacity:1;transform:translate(0,-50%)}
+#panel h4{margin:0 0 3px;font:500 11px/1.3 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#EDE6D4}
+#panel .sc{font:400 10px/1.4 var(--kr);letter-spacing:.02em;color:var(--ink2);margin-bottom:14px}
+#panel .row{display:flex;justify-content:space-between;gap:10px;padding:5px 0;
+  font:400 9.5px/1.4 var(--mono);letter-spacing:.04em;color:var(--ink2);
+  border-bottom:1px solid rgba(255,255,255,.06)}
+#panel .row:last-child{border-bottom:0}
+#panel .row i{font-style:normal;font-size:7.5px;letter-spacing:.1em;text-transform:uppercase}
+#panel .row i.ok{color:var(--live)} #panel .row i.run{color:var(--amber)} #panel .row i.idle{color:var(--ink3)}
+
+/* ---- dev controls ---- */
+#hud{position:absolute;left:22px;bottom:22px;display:flex;flex-direction:column;gap:8px;
+  padding:14px 15px;border:1px solid rgba(255,255,255,.11);border-radius:6px;
+  background:rgba(8,8,11,.8);backdrop-filter:blur(8px);transition:.3s}
+#hud.hide{opacity:0;pointer-events:none;transform:translateY(8px)}
+#hud .grp{display:flex;gap:5px;align-items:center}
+#hud label{font:600 7.5px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink3);width:52px;flex:0 0 auto}
+.btn{font:600 8.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);
+  padding:6px 10px;border:1px solid rgba(255,255,255,.14);border-radius:3px;
+  background:transparent;cursor:pointer;transition:.2s}
+.btn:hover{color:var(--ink);border-color:rgba(255,255,255,.3)}
+.btn.act{color:#14120e;background:#E3DAC4;border-color:#E3DAC4}
+#hud .meta{font:500 8px/1.6 var(--mono);letter-spacing:.08em;color:var(--ink3);
+  padding-top:9px;border-top:1px solid rgba(255,255,255,.08);margin-top:2px}
+#hud .meta b{color:var(--ink2)}
+#hint{position:absolute;right:26px;bottom:24px;font:500 8px/1.7 var(--mono);
+  letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.2);text-align:right;transition:.3s}
+#hint.hide{opacity:0}
+</style>
+</head>
+<body>
+<div id="stage" class="t-nebula">
+  <canvas id="gl"></canvas>
+  <div id="labels"></div>
+
+  <!-- NEBULA chrome -->
+  <div class="chrome" id="cN">
+    <div class="pills">
+      <div class="pill act" data-ctx="business">Loop</div>
+      <div class="pill" data-ctx="personal">Machine</div>
+    </div>
+    <div class="brief"><span id="briefTxt">MEASURED</span></div>
+    <div class="counters">
+      <div class="ctr"><span>Mentions</span><b id="kMent">0</b></div>
+      <div class="ctr"><span>Sealed predictions</span><b id="kSeal">0</b></div>
+      <div class="ctr"><span>Chain</span><b id="kChain">—</b></div>
+      <div class="ctr amber"><span>Closed loops</span><b id="kLoops">0</b>
+        <u>verified against reality</u></div>
+    </div>
+    <div class="firstres">first resolution <b id="kFirst">—</b></div>
+    <div class="cmd"><div class="dot"></div>
+      <div class="txt"><span id="cmdTxt"></span><span class="car"></span></div>
+      <div class="kbd">↵</div></div>
+  </div>
+
+  <!-- CONSTELLATION chrome -->
+  <div class="chrome" id="cC">
+    <div class="tabs"><div class="tab act">Map</div><div class="tab">Dashboards</div><div class="tab">Workforce</div></div>
+    <div class="legend" id="legend"></div>
+    <div class="tally"><b id="tallyN">0</b><span>Closed loops</span>
+      <u id="tallyU">first resolution —</u></div>
+    <div class="foot">
+      <div class="arw" id="prev">‹</div>
+      <div class="name"><b id="hubName">OVERVIEW</b><span id="hubMeta">7 directors · 137 skills</span></div>
+      <div class="arw" id="next">›</div>
+    </div>
+  </div>
+
+  <div id="panel"><h4 id="pTitle"></h4><div class="sc" id="pSub"></div><div id="pRows"></div></div>
+
+  <!-- dev controls -->
+  <div id="hud">
+    <div class="grp"><label>Theme</label>
+      <button class="btn act" data-theme="nebula">Nebula</button>
+      <button class="btn" data-theme="const">Constellation</button></div>
+    <div class="grp"><label>Camera</label>
+      <button class="btn act" id="bOrbit">Auto orbit</button>
+      <button class="btn" id="bCine">Play sequence</button></div>
+    <div class="grp"><label>Look</label>
+      <button class="btn act" id="bBloom">Bloom</button>
+      <button class="btn act" id="bGrain">Grain</button>
+      <button class="btn" id="bRec">Record mode</button></div>
+    <div class="grp"><label>Quality</label>
+      <button class="btn" data-q="0.55">Low</button>
+      <button class="btn act" data-q="1">Auto</button>
+      <button class="btn" data-q="1.6">High</button></div>
+    <div class="meta"><b id="fps">–</b> fps · <b id="pcount">0</b> particles · <b id="ncount">0</b> nodes</div>
+  </div>
+  <div id="hint">drag orbit · scroll zoom · click node<br>1 / 2 theme · space orbit · c sequence · h hide ui · r record</div>
+</div>
+
+<script>
+"use strict";
+/* ===========================================================================
+   1. DATA  — replace this object with your real graph.
+
+   group : { id, label, color, ctx, kind, meta, children:[{label,status}] }
+     ctx    'business' | 'personal'   (Nebula BUSINESS/PERSONAL toggle)
+     kind   'director' | 'entity'     (only 'director' appears in Constellation)
+     status 'ok' | 'run' | 'idle'     (dashboard panel + node pulse)
+   ======================================================================== */
+const C = n => getComputedStyle(document.documentElement).getPropertyValue('--s'+n).trim();
+
+function mk(list, statuses){                       // "a,b,c" -> child objects
+  const st = statuses || ['ok','run','ok','idle','ok','ok','run','ok','idle','ok'];
+  return list.split(',').map((s,i)=>({label:s.trim(), status:st[i%st.length]}));
+}
+
+/* ── measured block ───────────────────────────────────────────────────────
+   Replaced wholesale at build time by commercial/build_visual.py, which reads
+   the ledgers. Every figure this page states comes from here.
+
+   It used to be typed into the file. On 2026-08-16 the four headline counters
+   said 68,219 mentions and 7 sealed predictions against a ledger holding
+   80,390 and 8 — two of four wrong after two days — and the runtime audit
+   below could not tell, because it cross-checked the file against itself.
+   Internal consistency is not truth, and this page's whole subject is the
+   difference.
+
+   The literal below is the fallback for opening the template directly. The
+   built page carries measurements; this one is labelled UNMEASURED so a stray
+   copy cannot be mistaken for one.                                          */
+const LIVE = /*__WIE_LIVE_BEGIN__*/{
+  "measuredAt": "MEASURED 2026-08-16 00:33 KST",
+  "firstResolution": "2026-08-27",
+  "nextDeadline": "2026-09-10",
+  "mentions": 80473,
+  "entities": 4125,
+  "sealed": 8,
+  "openSealed": 5,
+  "chain": "OK",
+  "closedLoops": 0,
+  "tiers": {
+    "1": 142,
+    "2": 11555,
+    "3": 238,
+    "4": 68538
+  },
+  "platforms": [
+    {
+      "label": "gdelt · 42739",
+      "status": "run"
+    },
+    {
+      "label": "bluesky · 23254",
+      "status": "run"
+    },
+    {
+      "label": "dart · 7864",
+      "status": "run"
+    },
+    {
+      "label": "sec · 3691",
+      "status": "run"
+    },
+    {
+      "label": "telegram · 2783",
+      "status": "run"
+    },
+    {
+      "label": "news · 142",
+      "status": "run"
+    }
+  ],
+  "anchors": [
+    {
+      "label": "P-000003 · 9 captures",
+      "status": "run"
+    },
+    {
+      "label": "P-000004 · 32 captures",
+      "status": "run"
+    },
+    {
+      "label": "P-000007 · 30 captures",
+      "status": "run"
+    },
+    {
+      "label": "P-000008 · 16 captures",
+      "status": "run"
+    },
+    {
+      "label": "P-000009 · 10 captures",
+      "status": "run"
+    },
+    {
+      "label": "P-000010 · 15 captures",
+      "status": "run"
+    }
+  ],
+  "ledger": [
+    {
+      "label": "mention · 80473",
+      "status": "ok"
+    },
+    {
+      "label": "entity · 4125",
+      "status": "ok"
+    },
+    {
+      "label": "tier 1 · 142",
+      "status": "ok"
+    },
+    {
+      "label": "tier 2 · 11555",
+      "status": "ok"
+    },
+    {
+      "label": "chain OK",
+      "status": "ok"
+    }
+  ],
+  "predictions": [
+    {
+      "label": "P-000001 · unresolvable",
+      "status": "idle",
+      "sealed": false
+    },
+    {
+      "label": "P-000002 · unanchored",
+      "status": "idle",
+      "sealed": false
+    },
+    {
+      "label": "P-000003 · 0.90 · 12-15",
+      "status": "run",
+      "sealed": true
+    },
+    {
+      "label": "P-000004 · 0.62 · 09-10",
+      "status": "run",
+      "sealed": true
+    },
+    {
+      "label": "P-000005 · did_not_occur",
+      "status": "ok",
+      "sealed": true
+    },
+    {
+      "label": "P-000006 · invalid",
+      "status": "idle",
+      "sealed": true
+    },
+    {
+      "label": "P-000007 · 0.05 · 10-07",
+      "status": "run",
+      "sealed": true
+    },
+    {
+      "label": "P-000008 · 0.52 · 09-21",
+      "status": "run",
+      "sealed": true
+    },
+    {
+      "label": "P-000009 · 0.72 · 12-31",
+      "status": "run",
+      "sealed": true
+    },
+    {
+      "label": "P-000010 · 0.48 · 09-21",
+      "status": "run",
+      "sealed": true
+    }
+  ]
+}/*__WIE_LIVE_END__*/;
+
+const NUM = n => (n == null ? "—" : n.toLocaleString());
+
+const DATA = {
+  brand   : "MIGARYOS",
+  tagline : "evidence & decision OS",
+  measuredAt : LIVE.measuredAt,
+  firstResolution : LIVE.firstResolution,
+  groups  : [
+
+  { id:'claim', label:'CLAIM', color:C(1), ctx:'business', kind:'director',
+    meta:'도착하는 모든 것은 주장이다',
+    children: mk("telegram,bluesky feeds,bluesky voices,bluesky media,gdelt,sec edgar,dart krx,federal register bis,federal register commerce,dedup,language detect,entity extract,novelty,velocity,source trust,spread",
+    ['run','run','run','run','run','run','run','run','run','ok','ok','ok','ok','ok','ok','ok']) },
+
+  { id:'evid', label:'EVIDENCE', color:C(2), ctx:'business', kind:'director',
+    meta:'확정 측 tier 1-2 · ' + NUM((LIVE.tiers['1']||0)+(LIVE.tiers['2']||0)) + '건',
+    children: mk("8-K,6-K,10-Q,10-K,20-F,40-F,schedule 13D,425,S-4,DEFM14A,federal register notice,dart filing,tier 1 · 137,tier 2 · 8588") },
+
+  { id:'counter', label:'COUNTER EVIDENCE', color:C(3), ctx:'business', kind:'director',
+    meta:'경쟁자가 안 하는 것',
+    children: mk("invalidation rule,null rule,bear case,hidden assumption,evidence independence,overconfidence check,conflict detect,tie goes against us,absence is not rejection,missing stays undefined,syndication check,digest filter,routine filing reject,self-grading guard",
+    ['run','run','ok','ok','ok','ok','run','ok','ok','ok','ok','ok','ok','run']) },
+
+  { id:'prob', label:'PROBABILITY', color:C(4), ctx:'business', kind:'director',
+    meta:'봉인된 예측 ' + NUM(LIVE.sealed) + '건',
+    children: LIVE.predictions },
+
+  { id:'dec', label:'DECISION', color:C(5), ctx:'business', kind:'director',
+    meta:'논제 5 · 결정 21건',
+    children: mk("thesis T-000001,thesis update,decision log,invalidation trigger,architecture freeze,deletion rule,source gate,cost gate,scope gate,handoff record") },
+
+  { id:'review', label:'OUTCOME REVIEW', color:C(6), ctx:'business', kind:'director',
+    meta:'현실과 대조 · 첫 판정 08-27',
+    children: mk("anchor seal,authority,source locator,selection rule,operator,null rule,capture 8x daily,sha256 snapshot,staleness check,assessment date,resolution,recalibrate",
+    ['ok','ok','ok','ok','ok','ok','run','run','run','run','idle','idle']) },
+
+  { id:'plat', label:'PLATFORMS', color:C(1), ctx:'personal', kind:'entity',
+    meta: NUM(LIVE.platforms.length) + ' 소스 가동',
+    children: LIVE.platforms },
+
+  { id:'anchor', label:'ANCHORS', color:C(6), ctx:'personal', kind:'entity',
+    meta: NUM(LIVE.anchors.length) + '건 캡처 중 · 1일 8회',
+    children: LIVE.anchors },
+
+  { id:'ledger', label:'LEDGER', color:C(5), ctx:'personal', kind:'entity',
+    meta:'append-only 해시체인',
+    children: LIVE.ledger },
+  ]
+};
+
+/* Top counters. Measured values only — nothing derived, nothing projected.
+   audit() below cross-checks these against DATA and shouts if they drift. */
+const METRICS = {
+  mentions    : LIVE.mentions,
+  sealed      : LIVE.sealed,
+  chain       : LIVE.chain,
+  closedLoops : LIVE.closedLoops,   // 숨기지 않는다. 이 화면에서 제일 정직한 숫자다.
+};
+
+/* The one group that must not blend in. */
+const POP_GROUP = 'counter';
+
+const DIRECTORS = DATA.groups.filter(g=>g.kind==='director');
+const SKILL_TOTAL = DIRECTORS.reduce((n,g)=>n+g.children.length,0);
+
+/* ===========================================================================
+   2. MATH / CAMERA
+   ======================================================================== */
+const clamp=(v,a,b)=>v<a?a:v>b?b:v;
+const lerp=(a,b,t)=>a+(b-a)*t;
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+let seed=1337; const rnd=()=>(seed=(seed*1664525+1013904223)>>>0)/4294967296;
+
+const cam = {
+  yaw:0, pitch:-.12, dist:1150, tx:0, ty:0, tz:0, focal:900, roll:0,
+  _yaw:0, _pitch:-.12, _dist:1150, _tx:0, _ty:0, _tz:0, _roll:0,
+  step(k){ this._yaw=lerp(this._yaw,this.yaw,k); this._pitch=lerp(this._pitch,this.pitch,k);
+    this._dist=lerp(this._dist,this.dist,k); this._tx=lerp(this._tx,this.tx,k);
+    this._ty=lerp(this._ty,this.ty,k);  this._tz=lerp(this._tz,this.tz,k);
+    this._roll=lerp(this._roll,this.roll,k); }
+};
+
+let W=0,H=0,DPR=1,cx=0,cy=0;
+const P={x:0,y:0,z:0,s:0,vis:false};
+function project(x,y,z,out){
+  let dx=x-cam._tx, dy=y-cam._ty, dz=z-cam._tz;
+  const cy_=Math.cos(cam._yaw), sy=Math.sin(cam._yaw);
+  let rx=dx*cy_-dz*sy, rz=dx*sy+dz*cy_;
+  const cp=Math.cos(cam._pitch), sp=Math.sin(cam._pitch);
+  let ry=dy*cp-rz*sp; rz=dy*sp+rz*cp;
+  const zc=rz+cam._dist;
+  if(zc<40){ out.vis=false; return out; }
+  const s=cam.focal/zc;
+  let sx=rx*s, sy2=-ry*s;
+  if(cam._roll){ const cr=Math.cos(cam._roll), sr=Math.sin(cam._roll);
+    const t=sx*cr-sy2*sr; sy2=sx*sr+sy2*cr; sx=t; }
+  out.x=cx+sx; out.y=cy+sy2; out.z=zc; out.s=s; out.vis=true;
+  return out;
+}
+
+/* ===========================================================================
+   3. SCENE BUILD  — one node list, two layouts
+   ======================================================================== */
+let NODES=[], LINKS=[], PARTS=null, PN=0, STAGE=[], HUBS=[];
+
+function buildParticles(n0, coreR){
+  const n=Math.max(500,Math.round(n0*S.q));
+  const a=new Float32Array(n*3), col=new Uint8Array(n), sz=new Float32Array(n), ph=new Float32Array(n);
+  for(let i=0;i<n;i++){
+    const u=rnd()*2-1, th=rnd()*Math.PI*2, r=Math.sqrt(1-u*u);
+    // shell with a denser equatorial band, plus a sparse halo
+    const halo = rnd()<.14;
+    let rad = halo ? coreR*(1.15+rnd()*2.4) : coreR*(.28+Math.pow(rnd(),.42)*.86);
+    const flat = halo?1:(.55+rnd()*.45);
+    a[i*3]   = Math.cos(th)*r*rad;
+    a[i*3+1] = u*rad*flat;
+    a[i*3+2] = Math.sin(th)*r*rad;
+    col[i]=(rnd()*6)|0; sz[i]=halo?(.5+rnd()*.9):(.6+Math.pow(rnd(),2.2)*2.6); ph[i]=rnd()*Math.PI*2;
+  }
+  PARTS={a,col,sz,ph}; PN=n;
+}
+
+/* --- NEBULA layout: groups on a sphere shell, children fanned outward ------ */
+function layoutNebula(ctx){
+  NODES=[]; LINKS=[]; STAGE=[]; HUBS=[];
+  const gs=DATA.groups.filter(g=>g.ctx===ctx);
+  const core={id:'__core',x:0,y:0,z:0,r:0,color:'#ffffff',kind:'core',label:DATA.brand};
+  NODES.push(core);
+  const N=gs.length;
+  gs.forEach((g,gi)=>{
+    // even-ish sphere distribution (fibonacci) pushed outward
+    const t=(gi+.5)/N, phi=Math.acos(1-2*t), th=Math.PI*(1+Math.sqrt(5))*gi;
+    const R=430+rnd()*90;
+    const gx=Math.cos(th)*Math.sin(phi)*R, gy=(Math.cos(phi))*R*.62, gz=Math.sin(th)*Math.sin(phi)*R;
+    const gn={id:g.id,x:gx,y:gy,z:gz,color:g.color,kind:'grp',label:g.label,meta:g.meta,
+              group:g,r:0,pop:g.id===POP_GROUP};
+    NODES.push(gn); LINKS.push([core,gn,.10,g.color]);
+    const M=g.children.length;
+    // fan children into a disc facing away from the core
+    const ax=[-gz,0,gx], al=Math.hypot(ax[0],ax[2])||1; ax[0]/=al; ax[2]/=al;
+    const up=[0,1,0];
+    g.children.forEach((c,ci)=>{
+      const ang=(ci/M)*Math.PI*2 + gi*.7;
+      const spread=95+rnd()*150, out=95+rnd()*185;
+      const nx=gx+(gx/R)*out + ax[0]*Math.cos(ang)*spread;
+      const ny=gy+(gy/R)*out + up[1]*Math.sin(ang)*spread*.85;
+      const nz=gz+(gz/R)*out + ax[2]*Math.cos(ang)*spread;
+      const ln={id:g.id+'/'+ci,x:nx,y:ny,z:nz,color:g.color,kind:'leaf',
+                label:c.label,status:c.status,group:g,parent:gn,r:0};
+      NODES.push(ln); LINKS.push([gn,ln,.07,g.color]);
+    });
+  });
+  buildParticles(7000, 300);
+}
+
+/* --- CONSTELLATION layout: directors on a ring, children fanned outward ---- */
+function layoutConst(focusIdx){
+  NODES=[]; LINKS=[];
+  const core={id:'__core',x:0,y:0,z:0,r:0,color:'#ffffff',kind:'core',label:DATA.brand};
+  NODES.push(core);
+  const N=DIRECTORS.length, R=318;
+  STAGE=[];                                       // consecutive stage arcs
+  DIRECTORS.forEach((g,gi)=>{
+    const focused = focusIdx>=0;
+    const isF = gi===focusIdx;
+    const ang = -Math.PI/2 + (gi/N)*Math.PI*2;
+    let gx=Math.cos(ang)*R, gy=-Math.sin(ang)*R*.66-72, gz=0;
+    if(focused){                                   // focused hub drops to center-bottom
+      if(isF){ gx=0; gy=-250; gz=0; }
+      else   { gx*=2.6; gy*=2.6; gz=-500; }
+    }
+    const gn={id:g.id,x:gx,y:gy,z:gz,color:g.color,kind:'grp',label:g.label,meta:g.meta,
+              group:g,r:0,dim:focused&&!isF, idx:gi, pop:g.id===POP_GROUP};
+    NODES.push(gn); LINKS.push([core,gn,focused?.03:.08,g.color]);
+    HUBS[gi]=gn;
+    const M=g.children.length;
+    // --- ring mode: two-level branching (stems -> leaves) reads as a constellation
+    const STEMS = isF ? 0 : Math.max(3, Math.round(M/4));
+    const stems=[];
+    if(!isF){
+      const spanA=(Math.PI*2/N)*.80;
+      for(let si=0; si<STEMS; si++){
+        const a2=ang - spanA/2 + (si/(STEMS-1||1))*spanA;
+        const rr=R+82+ (si%2)*34;
+        let sx=Math.cos(a2)*rr, sy=-Math.sin(a2)*rr*.66-72, sz=(rnd()*50-25);
+        if(focused){ sx*=2.6; sy*=2.6; sz-=500; }
+        const st={id:g.id+'#s'+si,x:sx,y:sy,z:sz,color:g.color,kind:'stem',
+                  group:g,parent:gn,r:0,dim:focused,_a:a2,_r:rr};
+        NODES.push(st); LINKS.push([gn,st,focused?.03:.13,g.color]);
+        stems.push(st);
+      }
+    }
+    // --- focus mode: staggered tiers, generous horizontal spacing (label-safe)
+    const tiers=4, perTier=Math.ceil(M/tiers);
+    g.children.forEach((c,ci)=>{
+      let nx,ny,nz,par;
+      if(isF){
+        const tier=Math.floor(ci/perTier), col=ci%perTier;
+        const cnt=Math.min(perTier, M-tier*perTier);
+        const gapX=Math.max(150, 760/Math.max(cnt,1))*1.32;
+        nx=(col-(cnt-1)/2)*gapX + (tier%2?54:-54);
+        ny=-250+150+tier*128; nz=(rnd()*70-35);
+        par=gn;
+      }else{
+        const st=stems[ci%STEMS], k=Math.floor(ci/STEMS);
+        const a2=st._a + (((ci*7919)%13)/13-.5)*.20;
+        const rr=st._r + 58 + k*50 + rnd()*24;
+        nx=Math.cos(a2)*rr; ny=-Math.sin(a2)*rr*.66-72; nz=st.z+(rnd()*54-27);
+        if(focused){ nx*=1; ny*=1; }
+        par=st;
+      }
+      const ln={id:g.id+'/'+ci,x:nx,y:ny,z:nz,color:g.color,kind:'leaf',
+                label:c.label,status:c.status,group:g,parent:par,r:0,
+                dim:focused&&!isF, showLabel:isF};
+      NODES.push(ln); LINKS.push([par,ln,isF?.22:.10,g.color]);
+    });
+  });
+  for(let i=0;i<N;i++){
+    const a=HUBS[i], b=HUBS[(i+1)%N];
+    if(!a||!b) continue;
+    // last arc closes the loop back to CLAIM. It is drawn OPEN on purpose:
+    // closed loops = 0 until the first resolution date.
+    /* The last arc — OUTCOME REVIEW back to CLAIM — is drawn open while no
+       loop has ever closed, and that dashed gap is the picture of
+       `closed loops = 0`. It closes when the ledger says it closed, not when
+       somebody remembers to flip a flag: on 2026-08-27 a resolution lands and
+       the next build draws the arc solid by itself. A hand-set flag here would
+       be one more copy of a fact the ledger already holds, which is the exact
+       defect that put three different mention counts on three screens. */
+    STAGE.push({a,b,closing:(i===N-1) && !(LIVE.closedLoops > 0)});
+  }
+  buildParticles(focusIdx>=0?900:2400, focusIdx>=0?48:74);
+}
+
+/* ===========================================================================
+   4. RENDERER
+   ======================================================================== */
+const cv=document.getElementById('gl'), ctx2=cv.getContext('2d',{alpha:false});
+const bloomA=document.createElement('canvas'), bA=bloomA.getContext('2d');
+const bloomB=document.createElement('canvas'), bB=bloomB.getContext('2d');
+let grainTile=null, grainPat=null, bgGrad=null, bgGradKey='', vigGrad=null;
+
+const PAL=['#ff6ad5','#8a7bff','#5fd6ff','#ffd08a','#ff9a6a','#b9f5ff'];
+const CONST_PAL=['#e6dcbf','#c9a227','#9fb8a8','#d8c9a0','#b59a63','#eae2ce'];
+const ALV=6, PBUF=[]; for(let i=0;i<6;i++){ const r=[]; for(let l=0;l<ALV;l++) r.push([]); PBUF.push(r); }
+const glowCache={};
+function glow(color,size){
+  const k=color+'|'+size; if(glowCache[k])return glowCache[k];
+  const c=document.createElement('canvas'); c.width=c.height=size;
+  const g=c.getContext('2d'), r=size/2;
+  const gr=g.createRadialGradient(r,r,0,r,r,r);
+  gr.addColorStop(0,color); gr.addColorStop(.18,color);
+  gr.addColorStop(.42,hexA(color,.35)); gr.addColorStop(1,hexA(color,0));
+  g.fillStyle=gr; g.fillRect(0,0,size,size);
+  return glowCache[k]=c;
+}
+function hexA(h,a){
+  h=h.trim();
+  if(h[0]!=='#') return h;
+  const n=parseInt(h.slice(1),16);
+  return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${a})`;
+}
+function makeGrain(){
+  const s=180, c=document.createElement('canvas'); c.width=c.height=s;
+  const g=c.getContext('2d'), im=g.createImageData(s,s), d=im.data;
+  for(let i=0;i<d.length;i+=4){ const v=(Math.random()*255)|0;
+    d[i]=d[i+1]=d[i+2]=v; d[i+3]=13; }
+  g.putImageData(im,0,0); grainTile=c; grainPat=ctx2.createPattern(c,'repeat');
+}
+
+function resize(){
+  DPR=Math.min(window.devicePixelRatio||1,2);
+  W=window.innerWidth; H=window.innerHeight; cx=W/2; cy=H/2;
+  cv.width=W*DPR; cv.height=H*DPR; ctx2.setTransform(DPR,0,0,DPR,0,0);
+  bloomA.width=Math.max(2,(W/4)|0); bloomA.height=Math.max(2,(H/4)|0);
+  bloomB.width=Math.max(2,(W/14)|0); bloomB.height=Math.max(2,(H/14)|0);
+  cam.focal = Math.max(720, Math.min(W,H)*1.15); bgGradKey='';
+}
+window.addEventListener('resize',resize);
+
+const S={ theme:'nebula', ctx:'business', orbit:true, bloom:true, grain:true,
+  rec:false, focus:-1, hover:null, sel:null, t:0, q:1.25, auto:true };
+
+const tmp={x:0,y:0,z:0,s:0,vis:false}, tmp2={x:0,y:0,z:0,s:0,vis:false};
+
+function draw(dt){
+  S.t+=dt;
+  const neb = S.theme==='nebula';
+  const coreK = (S.theme==='const'&&S.focus>=0)?.12:1;
+  // ---- background ----
+  ctx2.globalCompositeOperation='source-over';
+  ctx2.fillStyle = neb?'#04050A':'#0C0B09';
+  ctx2.fillRect(0,0,W,H);
+  const key=(neb?'n':'c')+W+'x'+H;
+  if(bgGradKey!==key){
+    bgGradKey=key;
+    const bg=ctx2.createRadialGradient(cx,cy*.92,0,cx,cy*.92,Math.max(W,H)*.72);
+    if(neb){ bg.addColorStop(0,'rgba(52,28,86,.42)'); bg.addColorStop(.45,'rgba(16,14,40,.22)');
+             bg.addColorStop(1,'rgba(0,0,0,0)'); }
+    else   { bg.addColorStop(0,'rgba(78,70,56,.30)'); bg.addColorStop(.5,'rgba(34,31,26,.14)');
+             bg.addColorStop(1,'rgba(0,0,0,0)'); }
+    bgGrad=bg;
+    const vg=ctx2.createRadialGradient(cx,cy,Math.min(W,H)*.28,cx,cy,Math.max(W,H)*.78);
+    vg.addColorStop(0,'rgba(0,0,0,0)'); vg.addColorStop(1,'rgba(0,0,0,.72)'); vigGrad=vg;
+  }
+  ctx2.fillStyle=bgGrad; ctx2.fillRect(0,0,W,H);
+
+  ctx2.globalCompositeOperation='lighter';
+
+  // ---- core haze ----
+  const cp=project(0,0,0,tmp);
+  if(cp.vis){
+    const R=(neb?520:190)*cp.s;
+    const cols = neb?['#7a2cff','#ff3fae','#00d4ff']:['#c9a227','#8a7a4a','#3f6f5f'];
+    cols.forEach((c,i)=>{
+      const rr=R*(1-i*.22), off=Math.sin(S.t*.5+i*2)*R*.07;
+      ctx2.globalAlpha=(neb?.22:.085)*(1-i*.2)*coreK;
+      const g=glow(c,256);
+      ctx2.drawImage(g,cp.x-rr+off,cp.y-rr-off*.5,rr*2,rr*2);
+    });
+    ctx2.globalAlpha=1;
+  }
+
+  // ---- particles ----
+  if(PARTS){
+    const {a,col,sz,ph}=PARTS;
+    const rot=S.t*(neb?.055:.028);
+    const cr=Math.cos(rot), sr=Math.sin(rot);
+    const buckets=PBUF; for(let i=0;i<6;i++) for(let l=0;l<ALV;l++) buckets[i][l].length=0;
+    for(let i=0;i<PN;i++){
+      const x0=a[i*3], y0=a[i*3+1], z0=a[i*3+2];
+      const x=x0*cr-z0*sr, z=x0*sr+z0*cr;
+      const p=project(x,y0,z,tmp2);
+      if(!p.vis) continue;
+      if(p.x<-60||p.x>W+60||p.y<-60||p.y>H+60) continue;
+      const tw=.55+.45*Math.sin(S.t*1.7+ph[i]);
+      const s=sz[i]*p.s*(neb?1.5:1.1); if(s<.18) continue;
+      const al=clamp(tw*(neb?.62:.5)*clamp(s*.8,.15,1)*coreK,0,1);
+      const lv=Math.min(ALV-1,(al*ALV)|0);          // quantise alpha -> few state changes
+      const bk=buckets[col[i]][lv];
+      bk.push(p.x-s/2,p.y-s/2,s);
+    }
+    for(let b=0;b<6;b++){
+      ctx2.fillStyle = neb?PAL[b]:CONST_PAL[b];
+      for(let lv=0;lv<ALV;lv++){
+        const bk=buckets[b][lv]; if(!bk.length) continue;
+        ctx2.globalAlpha=(lv+.5)/ALV;
+        for(let i=0;i<bk.length;i+=3) ctx2.fillRect(bk[i],bk[i+1],bk[i+2],bk[i+2]);
+      }
+    }
+    ctx2.globalAlpha=1;
+  }
+
+  // ---- links ----
+  const byColor={};
+  for(let i=0;i<LINKS.length;i++){
+    const [A,B,al,c]=LINKS[i];
+    const pa=project(A.x,A.y,A.z,tmp); if(!pa.vis) continue;
+    const ax=pa.x, ay=pa.y;
+    const pb=project(B.x,B.y,B.z,tmp2); if(!pb.vis) continue;
+    let alpha=al*(B.dim?.22:1);
+    if(S.sel && (A.group===S.sel||B.group===S.sel)) alpha*=3.2;
+    else if(S.sel) alpha*=.3;
+    (byColor[c]=byColor[c]||[]).push(ax,ay,pb.x,pb.y,alpha);
+  }
+  ctx2.lineWidth=1;
+  for(const c in byColor){
+    const arr=byColor[c];
+    const groups={};
+    for(let i=0;i<arr.length;i+=5){
+      const q=Math.round(arr[i+4]*40)/40;
+      (groups[q]=groups[q]||[]).push(arr[i],arr[i+1],arr[i+2],arr[i+3]);
+    }
+    for(const q in groups){
+      const a2=+q; if(a2<=.004) continue;
+      ctx2.strokeStyle=hexA(c,clamp(a2,0,1)); ctx2.beginPath();
+      const g=groups[q];
+      for(let i=0;i<g.length;i+=4){ ctx2.moveTo(g[i],g[i+1]); ctx2.lineTo(g[i+2],g[i+3]); }
+      ctx2.stroke();
+    }
+  }
+
+  // ---- stage arcs: the loop. The closing arc stays open until it resolves ----
+  if(S.theme==='const' && S.focus<0 && STAGE.length){
+    for(let i=0;i<STAGE.length;i++){
+      const {a,b,closing}=STAGE[i];
+      const mx=(a.x+b.x)*.5, my=(a.y+b.y)*.5, mz=(a.z+b.z)*.5;
+      const ml=Math.hypot(mx,my)||1, bow=1+ (closing?.34:.20);
+      const kx=mx/ml*ml*bow, ky=my/ml*ml*bow;      // control point, bowed outward
+      const pa=project(a.x,a.y,a.z,tmp); if(!pa.vis) continue;
+      const ax=pa.x, ay=pa.y;
+      const pk=project(kx,ky,mz,tmp2); if(!pk.vis) continue;
+      const kX=pk.x, kY=pk.y;
+      const pb=project(b.x,b.y,b.z,tmp); if(!pb.vis) continue;
+      ctx2.beginPath(); ctx2.moveTo(ax,ay); ctx2.quadraticCurveTo(kX,kY,pb.x,pb.y);
+      if(closing){
+        ctx2.setLineDash([5,9]); ctx2.lineDashOffset=-S.t*14;
+        ctx2.strokeStyle=hexA('#E8B84A',.55); ctx2.lineWidth=1.5; ctx2.stroke();
+        ctx2.setLineDash([]);
+      }else{
+        ctx2.strokeStyle=hexA(a.color,.46); ctx2.lineWidth=1.6; ctx2.stroke();
+        // one packet travelling a -> b : evidence moving down the loop
+        const t=((S.t*.26)+i/STAGE.length)%1, u=1-t;
+        const px=u*u*ax+2*u*t*kX+t*t*pb.x, py=u*u*ay+2*u*t*kY+t*t*pb.y;
+        const gs=26*Math.max(.4,pa.s);
+        ctx2.globalAlpha=.55; ctx2.drawImage(glow(a.color,128),px-gs/2,py-gs/2,gs,gs);
+        ctx2.globalAlpha=1;
+      }
+    }
+  }
+
+  // ---- nodes ----
+  const vis=[];
+  for(let i=0;i<NODES.length;i++){
+    const n=NODES[i];
+    const p=project(n.x,n.y,n.z,tmp); if(!p.vis) continue;
+    n._x=p.x; n._y=p.y; n._z=p.z; n._s=p.s;
+    if(p.x<-140||p.x>W+140||p.y<-140||p.y>H+140){ n._on=false; continue; }
+    n._on=true; vis.push(n);
+  }
+  vis.sort((a,b)=>b._z-a._z);
+  for(let i=0;i<vis.length;i++){
+    const n=vis[i];
+    if(n.kind==='core') continue;
+    if(n.kind==='stem'){
+      let a=n.dim?.10:.5;
+      if(S.sel) a*=(n.group===S.sel)?1.6:.2;
+      ctx2.globalAlpha=clamp(a,0,1); ctx2.fillStyle=n.color;
+      const r=Math.max(.6,2.4*n._s);
+      ctx2.beginPath(); ctx2.arc(n._x,n._y,r,0,6.283); ctx2.fill();
+      continue;
+    }
+    const isGrp=n.kind==='grp';
+    let a=n.dim?.16:1;
+    if(S.sel){ a *= (n.group===S.sel)?1:.22; }
+    if(S.hover===n) a=1;
+    const puls = n.status==='run' ? .72+.28*Math.sin(S.t*3.1+n._x*.01) : 1;
+    const base = (isGrp?(n.pop?22:18):6.2)*n._s*(S.theme==='nebula'?1:1.12);
+    const gsz = base*(isGrp?7:6);
+    ctx2.globalAlpha=clamp(a*(isGrp?.5:.34)*puls,0,1);
+    ctx2.drawImage(glow(n.color,128), n._x-gsz/2, n._y-gsz/2, gsz, gsz);
+    // hot core
+    ctx2.globalAlpha=clamp(a*.95*puls,0,1);
+    ctx2.fillStyle = isGrp?'#FFFFFF':'#FFF8E8';
+    const r=Math.max(.7, base*(isGrp?.30:.26));
+    ctx2.beginPath(); ctx2.arc(n._x,n._y,r,0,6.283); ctx2.fill();
+    if(isGrp){                                     // ring around stages
+      ctx2.globalAlpha=clamp(a*.85,0,1);
+      ctx2.strokeStyle=n.color; ctx2.lineWidth=1.3;
+      ctx2.beginPath(); ctx2.arc(n._x,n._y,base*.92,0,6.283); ctx2.stroke();
+      if(S.theme==='const'){
+        ctx2.globalAlpha=clamp(a*.3,0,1);
+        ctx2.beginPath(); ctx2.arc(n._x,n._y,base*1.5,0,6.283); ctx2.stroke();
+      }
+      if(n.pop){                                   // COUNTER EVIDENCE — shape, not just hue
+        const br=base*(2.1+.12*Math.sin(S.t*1.6));
+        ctx2.globalAlpha=clamp(a*.55,0,1); ctx2.lineWidth=1.1;
+        ctx2.beginPath(); ctx2.arc(n._x,n._y,br,0,6.283); ctx2.stroke();
+        ctx2.globalAlpha=clamp(a*.9,0,1); ctx2.lineWidth=1.6;
+        for(let q=0;q<4;q++){                      // four ticks = a target reticle
+          const th=S.t*.5+q*Math.PI/2;
+          ctx2.beginPath();
+          ctx2.moveTo(n._x+Math.cos(th)*br*.78, n._y+Math.sin(th)*br*.78);
+          ctx2.lineTo(n._x+Math.cos(th)*br*1.24, n._y+Math.sin(th)*br*1.24);
+          ctx2.stroke();
+        }
+      }
+    }
+  }
+  ctx2.globalAlpha=1;
+
+  // ---- brand mark at core ----
+  if(cp.vis && S.theme==='nebula'){
+    const r=42*cp.s;
+    ctx2.globalAlpha=.34; ctx2.strokeStyle='#CFE3FF'; ctx2.lineWidth=Math.max(1,1.8*cp.s);
+    ctx2.beginPath(); ctx2.arc(cp.x,cp.y,r,S.t*.4,S.t*.4+2.3); ctx2.stroke();
+    ctx2.beginPath(); ctx2.arc(cp.x,cp.y,r*.62,-S.t*.55+2.2,-S.t*.55+4.1); ctx2.stroke();
+    ctx2.globalAlpha=.2; ctx2.beginPath(); ctx2.arc(cp.x,cp.y,r*1.5,S.t*.25+3,S.t*.25+4.4); ctx2.stroke();
+    ctx2.globalAlpha=1;
+  }
+
+  // ---- ghost text behind focused hub (constellation) ----
+  if(S.theme==='const' && S.focus>=0){
+    const g=DIRECTORS[S.focus];
+    ctx2.globalCompositeOperation='source-over';
+    ctx2.globalAlpha=.055; ctx2.fillStyle='#F2EFE6';
+    const fam=getComputedStyle(document.body).fontFamily;
+    let fs=Math.round(Math.min(W*.155,190));
+    ctx2.textAlign='center'; ctx2.letterSpacing='14px';
+    ctx2.font='300 '+fs+'px '+fam;                 // shrink long stage names to fit
+    const wNeed=ctx2.measureText(g.label).width, wMax=W*.88;
+    if(wNeed>wMax){ fs=Math.max(34,Math.floor(fs*wMax/wNeed)); ctx2.font='300 '+fs+'px '+fam; }
+    ctx2.fillText(g.label, cx, cy+40);
+    ctx2.letterSpacing='0px'; ctx2.globalAlpha=1;
+  }
+
+  // ---- bloom ----
+  if(S.bloom){
+    bA.globalCompositeOperation='source-over';
+    bA.clearRect(0,0,bloomA.width,bloomA.height);
+    bA.drawImage(cv,0,0,bloomA.width,bloomA.height);
+    bB.clearRect(0,0,bloomB.width,bloomB.height);
+    bB.drawImage(bloomA,0,0,bloomB.width,bloomB.height);
+    ctx2.globalCompositeOperation='lighter';
+    ctx2.globalAlpha=.30; ctx2.drawImage(bloomA,0,0,W,H);
+    ctx2.globalAlpha=.40; ctx2.drawImage(bloomB,0,0,W,H);
+    ctx2.globalAlpha=1;
+  }
+
+  // ---- vignette + grain ----
+  ctx2.globalCompositeOperation='source-over';
+  ctx2.fillStyle=vigGrad; ctx2.fillRect(0,0,W,H);
+  if(S.grain && grainPat){
+    ctx2.globalAlpha=.5;
+    const ox=(Math.random()*180)|0, oy=(Math.random()*180)|0;
+    ctx2.save(); ctx2.translate(-ox,-oy); ctx2.fillStyle=grainPat;
+    ctx2.fillRect(0,0,W+180,H+180); ctx2.restore(); ctx2.globalAlpha=1;
+  }
+}
+
+/* ===========================================================================
+   5. LABEL OVERLAY  (DOM — stays crisp at any zoom, easy to restyle)
+   ======================================================================== */
+const labelHost=document.getElementById('labels'); const pool=[];
+function getLb(i){
+  if(pool[i]) return pool[i];
+  const d=document.createElement('div'); d.className='lb'; labelHost.appendChild(d);
+  return pool[i]=d;
+}
+const occ=[];                                    // placed label rects this frame
+let chromeRects=[], chromeAge=1e9;
+const CHROME_SEL='#cN .pills,#cN .brief,#cN .counters,#cN .cmd,'+
+                 '#cC .tabs,#cC .legend,#cC .tally,#cC .foot,#panel,#hud,#hint';
+function measureChrome(){
+  chromeRects=[];
+  document.querySelectorAll(CHROME_SEL).forEach(el=>{
+    const host=el.closest('.chrome');
+    if(host && !host.classList.contains('on')) return;
+    if(el.id==='panel' && !el.classList.contains('on')) return;
+    if((el.id==='hud'||el.id==='hint') && S.rec) return;
+    const r=el.getBoundingClientRect();
+    if(r.width<2||r.height<2) return;
+    chromeRects.push(r.left-8,r.top-6,r.width+16,r.height+12);
+  });
+}
+function fits(x,y,w,h){
+  const m=3;
+  for(let i=0;i<occ.length;i+=4){
+    if(x < occ[i]+occ[i+2]+m && x+w+m > occ[i] && y < occ[i+1]+occ[i+3]+m && y+h+m > occ[i+1]) return false;
+  }
+  return true;
+}
+function drawLabels(){
+  occ.length=0;
+  chromeAge++;
+  if(chromeAge>20){ chromeAge=0; measureChrome(); }
+  for(let i=0;i<chromeRects.length;i++) occ.push(chromeRects[i]);
+  const keepR = 16;
+  const cands=[];
+  for(let i=0;i<NODES.length;i++){
+    const n=NODES[i]; if(!n._on||n.kind==='core'||n.kind==='stem') continue;
+    const isGrp=n.kind==='grp';
+    if(S.theme==='const'){
+      if(!isGrp && !(n.showLabel||S.hover===n)) continue;
+    }else{
+      if(!isGrp && n._s<.62 && S.hover!==n && n.group!==S.sel) continue;
+    }
+    if(n.dim && S.hover!==n) continue;
+    cands.push(n);
+  }
+  cands.sort((a,b)=>(b.kind==='grp')-(a.kind==='grp') || b._s-a._s);
+  const cap=S.theme==='const'?76:60;
+  let k=0;
+  for(let ci=0; ci<cands.length && k<cap; ci++){
+    const n=cands[ci];
+    const isGrp=n.kind==='grp';
+    // --- estimate box, cull off-screen / overlapping ---
+    const cw = S.theme==='const' ? (isGrp?11.4:6.7) : (isGrp?8.7:7.5);
+    const pad= S.theme==='const' ? 0 : (isGrp?15:13);
+    const bw = n.label.length*cw + pad;
+    const bh = isGrp ? (S.theme==='const'?30:20) : (S.theme==='const'?13:16);
+    const off0 = isGrp ? (S.theme==='const'? 26*Math.max(.6,n._s) : 16*Math.max(.5,n._s))
+                       : 10*Math.max(.5,n._s);
+    let bx,by;
+    if(S.theme==='const'&&isGrp){ bx=n._x-bw/2; by=n._y+off0; }
+    else { bx=n._x+off0; by=n._y-bh/2; }
+    if(bx<8 || bx+bw>W-keepR || by<8 || by+bh>H-14) continue;
+    if(!fits(bx,by,bw,bh)) continue;
+    occ.push(bx,by,bw,bh);
+    const d=getLb(k); k++;
+    const cls='lb '+(isGrp?'grp':'leaf');
+    if(d._cls!==cls){ d.className=cls; d._cls=cls; }
+    let html;
+    if(S.theme==='const'&&isGrp) html=n.label+'<b>'+n.group.meta+'</b>';
+    else html=n.label;
+    if(d._h!==html){ d.innerHTML=html; d._h=html; }
+    if(S.theme==='const'&&isGrp) d.style.transform=
+        `translate(-50%,0) translate(${n._x.toFixed(1)}px,${(n._y+off0).toFixed(1)}px)`;
+    else d.style.transform=
+        `translate(0,-50%) translate(${(n._x+off0).toFixed(1)}px,${n._y.toFixed(1)}px)`;
+    let a = isGrp?1:clamp((n._s-.5)*3.4,0,.92);
+    if(S.sel) a*= (n.group===S.sel)?1:.18;
+    if(S.hover===n) a=1;
+    if(n.dim) a*=.2;
+    const av=a.toFixed(2);
+    if(d._a!==av){ d.style.opacity=av; d._a=av; }
+    if(d._d!=='b'){ d.style.display='block'; d._d='b'; }
+  }
+  for(;k<pool.length;k++){ const d=pool[k]; if(d._d!=='n'){ d.style.display='none'; d._d='n'; } }
+}
+
+/* ===========================================================================
+   6. CHROME
+   ======================================================================== */
+const $=id=>document.getElementById(id);
+const stage=$('stage');
+/* Cross-check the header numbers against DATA. Any drift is a bug, not a rounding
+   difference — this product cannot afford a number on screen that nothing backs. */
+function audit(){
+  const warn=[];
+  const grab=(gid,pfx)=>{
+    const g=DATA.groups.find(x=>x.id===gid); if(!g) return null;
+    const c=g.children.find(x=>x.label.startsWith(pfx)); if(!c) return null;
+    return +String(c.label).replace(/[^0-9]/g,'');
+  };
+  const led=grab('ledger','mention');
+  if(led!=null && led!==METRICS.mentions) warn.push(`mentions ${METRICS.mentions} != ledger ${led}`);
+  /* Not every prediction on the wall is a sealed one, and the unsealed ones are
+     shown saying so — hiding them would make the sealed count read as the whole
+     ledger. So the invariant is against the `sealed` flag each row carries, not
+     against how many rows there are and not against what a label happens to say:
+     one prediction is unanchored *and* resolved, so it reads "unresolvable" and
+     a label-matching check counted it as anchored. Both looser versions fired on
+     the first build, and both were right to. */
+  const rows=(DATA.groups.find(g=>g.id==='prob')||{children:[]}).children;
+  const sealed=rows.filter(c=>c.sealed).length;
+  if(sealed!==METRICS.sealed) warn.push(`sealed ${METRICS.sealed} != anchored rows ${sealed}`);
+  if(METRICS.closedLoops==null) warn.push('closed loops is unmeasured');
+  if(warn.length) console.warn('[MIGARYOS audit] 화면 숫자와 데이터 불일치:\n  '+warn.join('\n  '));
+  return warn;
+}
+
+function paintChrome(){
+  $('briefTxt').textContent = DATA.measuredAt;
+  $('kMent').textContent  = NUM(METRICS.mentions);
+  $('kSeal').textContent  = NUM(METRICS.sealed);
+  $('kChain').textContent = METRICS.chain;
+  $('kLoops').textContent = NUM(METRICS.closedLoops);
+  $('kFirst').textContent = DATA.firstResolution;
+  $('tallyN').textContent = NUM(METRICS.closedLoops);
+  $('tallyU').textContent = 'first resolution ' + DATA.firstResolution;
+}
+function tickChrome(){}
+
+const CMDS=["이 정보가 기존 판단을 바꾸는가?",
+            "이 주장을 무너뜨리려면 무엇이 사실이어야 하나?",
+            "반대 증거는 어디 있나",
+            "이게 틀렸다고 인정할 조건을 미리 정해줘",
+            "8월 27일에 무엇이 판정되나"];
+let ci=0, cch=0, cdir=1, cwait=0;
+function tickCmd(dt){
+  if(cwait>0){ cwait-=dt; return; }
+  const s=CMDS[ci];
+  cch+=cdir*dt*24;
+  if(cch>=s.length){ cch=s.length; cdir=-1; cwait=2.4; }
+  if(cch<=0 && cdir<0){ cch=0; cdir=1; ci=(ci+1)%CMDS.length; cwait=.35; }
+  $('cmdTxt').innerHTML = cch<1 ? '<em>ask '+DATA.brand.toLowerCase()+'</em>'
+                                : s.slice(0,Math.floor(cch));
+}
+
+function buildLegend(){
+  const el=$('legend'); el.innerHTML='';
+  DIRECTORS.forEach((g,i)=>{
+    const d=document.createElement('div'); d.className='lg';
+    d.innerHTML='<i style="background:'+g.color+';box-shadow:0 0 9px '+g.color+'"></i>'+g.label;
+    d.onclick=()=>focusHub(i);
+    el.appendChild(d);
+  });
+  $('hubMeta').textContent=DIRECTORS.length+' stages · '+METRICS.closedLoops+
+    ' closed loops · first resolution '+DATA.firstResolution;
+}
+
+function showPanel(g){ chromeAge=1e9;
+  if(!g){ $('panel').classList.remove('on'); return; }
+  $('pTitle').textContent=g.label; $('pSub').textContent=g.meta;
+  $('pRows').innerHTML=g.children.slice(0,9).map(c=>
+    '<div class="row"><span>'+c.label+'</span><i class="'+c.status+'">'+
+    (c.status==='ok'?'done':c.status==='run'?'running':'idle')+'</i></div>').join('')+
+    (g.children.length>9?'<div class="row"><span>+ '+(g.children.length-9)+' more</span><i class="idle"></i></div>':'');
+  $('panel').classList.add('on');
+}
+
+/* ===========================================================================
+   7. MODES / INTERACTION
+   ======================================================================== */
+function setTheme(t){ chromeAge=1e9;
+  S.theme=t; S.sel=null; S.focus=-1; showPanel(null);
+  stage.className = t==='nebula'?'t-nebula':'t-const';
+  $('cN').classList.toggle('on', t==='nebula');
+  $('cC').classList.toggle('on', t!=='nebula');
+  document.querySelectorAll('[data-theme]').forEach(b=>
+    b.classList.toggle('act', b.dataset.theme===(t==='nebula'?'nebula':'const')));
+  if(t==='nebula'){ layoutNebula(S.ctx); cam.pitch=-.14; cam.dist=1180; cam.ty=0; }
+  else { layoutConst(-1); cam.pitch=-.05; cam.dist=1180; cam.ty=-10; $('hubName').textContent='OVERVIEW';
+         $('hubMeta').textContent=DIRECTORS.length+' stages · '+METRICS.closedLoops+
+      ' closed loops · first resolution '+DATA.firstResolution; }
+  cam.yaw = t==='nebula'?.4:0; cam.tx=cam.tz=0;
+  $('ncount').textContent=NODES.length; $('pcount').textContent=PN.toLocaleString();
+}
+function setCtx(c){
+  S.ctx=c; S.sel=null; showPanel(null);
+  document.querySelectorAll('[data-ctx]').forEach(p=>p.classList.toggle('act',p.dataset.ctx===c));
+  layoutNebula(c);
+  $('ncount').textContent=NODES.length;
+}
+function focusHub(i){
+  if(S.theme!=='const') return;
+  S.focus = (i===S.focus) ? -1 : i;
+  layoutConst(S.focus);
+  if(S.focus>=0){ const g=DIRECTORS[S.focus];
+    $('hubName').textContent=g.label; $('hubMeta').textContent=g.meta;
+    cam.dist=980; cam.pitch=-.02; cam.ty=-120; showPanel(g); S.orbit=false; syncOrbitBtn();
+  }else{ $('hubName').textContent='OVERVIEW';
+    $('hubMeta').textContent=DIRECTORS.length+' stages · '+METRICS.closedLoops+
+      ' closed loops · first resolution '+DATA.firstResolution;
+    cam.dist=1180; cam.pitch=-.05; cam.ty=-10; cam.yaw=0; showPanel(null); }
+  $('ncount').textContent=NODES.length;
+}
+
+// pointer
+let down=false, lx=0, ly=0, moved=0;
+cv.addEventListener('pointerdown',e=>{down=true;lx=e.clientX;ly=e.clientY;moved=0;cv.setPointerCapture(e.pointerId)});
+cv.addEventListener('pointerup',e=>{
+  down=false;
+  if(moved<5){
+    const n=pick(e.clientX,e.clientY);
+    if(n){ if(n.kind==='grp'&&S.theme==='const') focusHub(n.idx);
+           else { S.sel = (S.sel===n.group)?null:n.group; showPanel(S.sel); } }
+    else { S.sel=null; showPanel(null); if(S.theme==='const'&&S.focus>=0) focusHub(S.focus); }
+  }
+});
+cv.addEventListener('pointermove',e=>{
+  if(down){ const dx=e.clientX-lx, dy=e.clientY-ly; lx=e.clientX; ly=e.clientY;
+    moved+=Math.abs(dx)+Math.abs(dy);
+    cam.yaw-=dx*.0042; cam.pitch=clamp(cam.pitch-dy*.0034,-1.15,1.15); S.orbit=false; syncOrbitBtn();
+  } else { S.hover=pick(e.clientX,e.clientY); cv.style.cursor=S.hover?'pointer':'grab'; }
+});
+cv.addEventListener('wheel',e=>{ e.preventDefault();
+  cam.dist=clamp(cam.dist*(1+Math.sign(e.deltaY)*.09),260,3400); },{passive:false});
+function pick(px,py){
+  let best=null,bd=26*26;
+  for(let i=0;i<NODES.length;i++){ const n=NODES[i];
+    if(!n._on||n.kind==='core'||n.dim) continue;
+    const dx=n._x-px, dy=n._y-py, d=dx*dx+dy*dy;
+    const w = n.kind==='grp'?d*.35:d;
+    if(w<bd){ bd=w; best=n; } }
+  return best;
+}
+
+// controls
+function syncOrbitBtn(){ $('bOrbit').classList.toggle('act',S.orbit); }
+document.querySelectorAll('[data-theme]').forEach(b=>b.onclick=()=>setTheme(b.dataset.theme==='nebula'?'nebula':'const'));
+document.querySelectorAll('[data-ctx]').forEach(p=>p.onclick=()=>setCtx(p.dataset.ctx));
+$('bOrbit').onclick=()=>{S.orbit=!S.orbit;syncOrbitBtn()};
+$('bBloom').onclick=()=>{S.bloom=!S.bloom;$('bBloom').classList.toggle('act',S.bloom)};
+$('bGrain').onclick=()=>{S.grain=!S.grain;$('bGrain').classList.toggle('act',S.grain)};
+$('bRec').onclick=()=>setRec(!S.rec);
+$('bCine').onclick=()=>startCine();
+document.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('[data-q]').forEach(x=>x.classList.remove('act'));
+  b.classList.add('act'); const v=+b.dataset.q;
+  S.auto = (v===1); S.q = (v===1?1.25:v);
+  if(S.theme==='nebula') layoutNebula(S.ctx); else layoutConst(S.focus);
+  $('pcount').textContent=PN.toLocaleString();
+});
+$('prev').onclick=()=>focusHub((S.focus<=0?DIRECTORS.length:S.focus)-1);
+$('next').onclick=()=>focusHub((S.focus+1)%DIRECTORS.length);
+function setRec(v){ chromeAge=1e9; S.rec=v; $('hud').classList.toggle('hide',v); $('hint').classList.toggle('hide',v);
+  $('bRec').classList.toggle('act',v); }
+addEventListener('keydown',e=>{
+  const k=e.key.toLowerCase();
+  if(k==='1') setTheme('nebula'); else if(k==='2') setTheme('const');
+  else if(k===' '){ e.preventDefault(); S.orbit=!S.orbit; syncOrbitBtn(); }
+  else if(k==='c') startCine();
+  else if(k==='h') $('hud').classList.toggle('hide');
+  else if(k==='r') setRec(!S.rec);
+  else if(k==='b'){ S.bloom=!S.bloom; $('bBloom').classList.toggle('act',S.bloom); }
+  else if(k>='3'&&k<='9'&&S.theme==='const') focusHub(+k-3);
+});
+
+/* ===========================================================================
+   8. CINEMATIC SEQUENCE  — scripted camera for screen recording
+   ======================================================================== */
+function rebuild(){ if(S.theme==='nebula') layoutNebula(S.ctx); else layoutConst(S.focus);
+  $('pcount').textContent=PN.toLocaleString(); }
+let cine=null;
+const SEQ=[
+  {t:0.0, do:()=>{ setTheme('nebula'); cam.dist=340; cam.yaw=.4; cam.pitch=-.05; S.orbit=false; syncOrbitBtn(); }},
+  {t:0.1, do:()=>{ cam.dist=1500; cam.yaw=1.2; }},                 // pull out of the core
+  {t:3.2, do:()=>{ cam.dist=900;  cam.yaw=2.1; cam.pitch=-.30; }}, // dive to one side
+  {t:6.4, do:()=>{ cam.dist=2100; cam.yaw=3.4; cam.pitch=.14; }},  // wide
+  {t:9.6, do:()=>{ setCtx('personal'); cam.dist=1250; cam.yaw=4.2; }},
+  {t:12.8,do:()=>{ setCtx('business'); cam.dist=1450; cam.yaw=5.1; cam.pitch=-.10; }},
+  {t:16.0,do:()=>{ setTheme('const'); cam.dist=1800; }},
+  {t:18.0,do:()=>{ cam.dist=1180; }},                              // settle on the ring
+  {t:21.0,do:()=>{ focusHub(2); }},          // COUNTER EVIDENCE
+  {t:24.0,do:()=>{ focusHub(3); }},          // PROBABILITY — where it lands
+  {t:27.0,do:()=>{ focusHub(S.focus); cam.dist=1180; }},           // back to overview
+  {t:30.0,do:()=>{ cine=null; S.orbit=true; syncOrbitBtn(); }},
+];
+function startCine(){ cine={t:0,i:0}; $('bCine').classList.add('act'); }
+function tickCine(dt){
+  if(!cine) return;
+  cine.t+=dt;
+  while(cine.i<SEQ.length && cine.t>=SEQ[cine.i].t){ SEQ[cine.i].do(); cine.i++; }
+  if(cine.i>=SEQ.length){ cine=null; $('bCine').classList.remove('act'); }
+}
+
+/* ===========================================================================
+   9. LOOP
+   ======================================================================== */
+let last=performance.now(), fpsA=60, fpsT=0;
+function frame(now){
+  const dt=Math.min(.05,(now-last)/1000); last=now;
+  fpsA=lerp(fpsA,1/Math.max(dt,1e-4),.06); fpsT+=dt;
+  if(fpsT>.4){ fpsT=0; $('fps').textContent=Math.round(fpsA);
+    if(S.auto){                                    // adaptive: hold ~55fps
+      if(fpsA<44 && S.q>.45){ S.q=Math.max(.45,S.q-.18); rebuild(); }
+      else if(fpsA>72 && S.q<1.6){ S.q=Math.min(1.6,S.q+.12); rebuild(); }
+    } }
+
+  tickCine(dt);
+  if(S.orbit && !cine) cam.yaw += dt*(S.theme==='nebula'?.055:.035);
+  if(S.orbit && !cine) cam.pitch = lerp(cam.pitch, -.10+Math.sin(S.t*.12)*.16, .01);
+  cam.step(cine?.028:.055);
+
+  draw(dt);
+  drawLabels();
+  tickChrome(); tickCmd(dt);
+  requestAnimationFrame(frame);
+}
+
+/* ---- boot ---- */
+makeGrain(); resize(); buildLegend(); setTheme('nebula'); paintChrome(); audit();
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
