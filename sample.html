@@ -3,6 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>샘플 Evidence Case (합성 픽스처) — MIGARYOS</title>
+<link rel="icon" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221000%22%20height%3D%221000%22%20viewBox%3D%220%200%20100%20100%22%3E%0A%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%23111214%22%2F%3E%0A%3Crect%20x%3D%2219.000%22%20y%3D%2221.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%28-22%2044.000%2037.000%29%22%2F%3E%0A%3Crect%20x%3D%2231.000%22%20y%3D%2247.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%2822%2056.000%2063.000%29%22%2F%3E%0A%3C%2Fsvg%3E">
 <style>
 :root{
   --bg:#05060a;--bg2:#0a0c14;--ink:#e8ecf5;--dim:#8590a8;--faint:#4a5468;
@@ -38,6 +39,18 @@ body{margin:0;font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",system-u
 #nav a.on{color:var(--ink);border-color:rgba(160,107,255,.55);
   box-shadow:inset 0 0 14px rgba(160,107,255,.18)}
 #nav .brand{letter-spacing:.2em}
+/* The delivered master is 1000x1000. Inlined without a box it renders at that
+   size and pushes the whole bar off the page, so the box is set here and the
+   SVG is told to fill it. `currentColor` is what the build substitutes for the
+   brand ink, so the mark takes the chip's colour and lights up with it on
+   hover and on the active route — the same behaviour the wordmark had.
+
+   The nav font is small: at 1.05em the mark came out 9px square, and the two
+   interlocking rounded rects carry a 10.5/100 stroke, so below roughly 12px
+   the counters close up and it reads as a blob. A floor in pixels, not only
+   an em size, is what holds that. */
+.mark{display:inline-flex;width:1.35em;height:1.35em;min-width:13px;min-height:13px;flex:none}
+.mark svg{width:100%;height:100%;display:block}
 .pip{width:4px;height:4px;flex:none;background:var(--ev);box-shadow:0 0 7px var(--ev);
   animation:bl 2.4s ease-in-out infinite}
 .pip.w{background:var(--warn);box-shadow:0 0 7px var(--warn)}

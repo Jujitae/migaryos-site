@@ -5,6 +5,7 @@
 <title>GLITCH Decision Audit — MIGARYOS</title>
 <meta name="description" content="비싼 결정을 비싸지기 전에 검토 가능하게 만듭니다.">
 <meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221000%22%20height%3D%221000%22%20viewBox%3D%220%200%20100%20100%22%3E%0A%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%23111214%22%2F%3E%0A%3Crect%20x%3D%2219.000%22%20y%3D%2221.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%28-22%2044.000%2037.000%29%22%2F%3E%0A%3Crect%20x%3D%2231.000%22%20y%3D%2247.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%2822%2056.000%2063.000%29%22%2F%3E%0A%3C%2Fsvg%3E">
 <link rel="canonical" href="https://migaryos.com/glitch/">
 <meta property="og:title" content="GLITCH Decision Audit — MIGARYOS">
 <meta property="og:description" content="비싼 결정을 비싸지기 전에 검토 가능하게 만듭니다.">
@@ -45,6 +46,18 @@ body{margin:0;font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",system-u
 #nav a.on{color:var(--ink);border-color:rgba(160,107,255,.55);
   box-shadow:inset 0 0 14px rgba(160,107,255,.18)}
 #nav .brand{letter-spacing:.2em}
+/* The delivered master is 1000x1000. Inlined without a box it renders at that
+   size and pushes the whole bar off the page, so the box is set here and the
+   SVG is told to fill it. `currentColor` is what the build substitutes for the
+   brand ink, so the mark takes the chip's colour and lights up with it on
+   hover and on the active route — the same behaviour the wordmark had.
+
+   The nav font is small: at 1.05em the mark came out 9px square, and the two
+   interlocking rounded rects carry a 10.5/100 stroke, so below roughly 12px
+   the counters close up and it reads as a blob. A floor in pixels, not only
+   an em size, is what holds that. */
+.mark{display:inline-flex;width:1.35em;height:1.35em;min-width:13px;min-height:13px;flex:none}
+.mark svg{width:100%;height:100%;display:block}
 .pip{width:4px;height:4px;flex:none;background:var(--ev);box-shadow:0 0 7px var(--ev);
   animation:bl 2.4s ease-in-out infinite}
 .pip.w{background:var(--warn);box-shadow:0 0 7px var(--warn)}
@@ -218,15 +231,23 @@ a{color:inherit}
 <div id="grain" aria-hidden="true"></div>
 <div id="vig" aria-hidden="true"></div>
 <div id="hud">
-  <nav id="nav" aria-label="주요"><a href="/" class="brand"><i class="pip" aria-hidden="true"></i>MIGARYOS</a><a href="/glitch/" class="on">GLITCH</a><a href="/wie/">WIE</a><a href="/loop.html">LOOP</a></nav>
+  <nav id="nav" aria-label="주요"><a href="/" class="brand"><i class="pip" aria-hidden="true"></i><span class="mark" role="img" aria-label="MIGARYOS"><svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 100 100">
+<rect width="100" height="100" fill="none"/>
+<rect x="19.000" y="21.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="currentColor" stroke-width="10.500" stroke-linejoin="round" transform="rotate(-22 44.000 37.000)"/>
+<rect x="31.000" y="47.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="currentColor" stroke-width="10.500" stroke-linejoin="round" transform="rotate(22 56.000 63.000)"/>
+</svg></span>MIGARYOS</a><a href="/glitch/" class="on">GLITCH</a><a href="/wie/">WIE</a><a href="/loop.html">LOOP</a></nav>
   <span class="sp"></span>
   <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>0</b><em class="tel"> · 실측 2026-08-16</em></span>
   <span class="sp"></span>
-  <span class="stat opt" aria-hidden="true"><u>원장</u><b>80,726</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>4,125</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>8</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
+  <span class="stat opt" aria-hidden="true"><u>원장</u><b>81,983</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>4,125</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>8</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
 </div>
 <header class="wrap hero">
   <span class="rdg tl" aria-hidden="true"></span><span class="rdg tr" aria-hidden="true"></span>
-  <p class="kicker">MIGARYOS · GLITCH</p>
+  <p class="kicker"><span class="mark" role="img" aria-label="MIGARYOS"><svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 100 100">
+<rect width="100" height="100" fill="none"/>
+<rect x="19.000" y="21.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="#8B5CF6" stroke-width="10.500" stroke-linejoin="round" transform="rotate(-22 44.000 37.000)"/>
+<rect x="31.000" y="47.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="#8B5CF6" stroke-width="10.500" stroke-linejoin="round" transform="rotate(22 56.000 63.000)"/>
+</svg></span> MIGARYOS · GLITCH</p>
   <h1>비싼 결정을 비싸지기 전에 검토 가능하게 만듭니다.</h1>
   <p class="lede">아키텍처·벤더·build vs buy·AI 기능·출시·로드맵 결정 하나를 5영업일 동안 분해합니다. 서로 다른 후보안을 만들고, 약한 가정을 드러내고, 라벨을 가린 채 비교하고, 최종 선택의 근거를 남깁니다.</p>
   <p><a class="cta" href="https://operation-glitch-decision-audit.mettl.chatgpt.site">Decision Audit 신청·문의</a> <a class="cta ghost" href="/wie/">WIE Evidence Case 보기</a></p>
