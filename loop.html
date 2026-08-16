@@ -99,19 +99,6 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .ctr:last-child{border-right:0}
 .ctr span{display:block;font:600 7.5px/1 var(--mono);letter-spacing:.16em;color:var(--ink3);margin-bottom:5px}
 .ctr b{font:600 12px/1 var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
-/* The chrome is absolutely positioned into three corners, which collides once
-   the viewport is narrower than the strip it assumes. The file shipped with no
-   media query at all, and the counters, the measured stamp and the brand ran
-   over each other on a phone — which is the screen this gets checked on. The
-   numbers are the point of the page, so they are what must stay readable:
-   below 720px the chrome stacks and the counters wrap instead of tiling. */
-@media (max-width:720px){
-  #cN .pills{position:static;padding:14px 14px 0;flex-wrap:wrap}
-  #cN .brief{position:static;transform:none;padding:10px 14px 0;text-align:left}
-  #cN .counters{position:static;margin:10px 14px 0;flex-wrap:wrap}
-  #cN .counters .ctr{flex:1 1 44%;text-align:left}
-  #cN .firstres{position:static;padding:8px 14px 0;text-align:left}
-}
 #cN .cmd{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
   width:min(430px,62vw);display:flex;align-items:center;gap:10px;
   padding:11px 15px;border:1px solid rgba(255,255,255,.15);border-radius:999px;
@@ -125,9 +112,19 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
   vertical-align:-2px;animation:bl 1s steps(1) infinite}
 #cN .cmd .kbd{font:600 8.5px/1 var(--mono);letter-spacing:.1em;color:var(--ink3);
   border:1px solid rgba(255,255,255,.15);border-radius:3px;padding:4px 7px}
+/* Open/closed is driven by this one class, not by the `hidden` attribute on
+   each element. `hidden` sets display:none from the UA stylesheet, which the
+   author rule `.car{display:inline-block}` outranks — so the demo caret went
+   on blinking beside the live input. And an emptied `.txt` still holds its
+   `flex:1` share, which pushed the input into the right half of the bar and
+   made typing start from the middle. Both disappear when the element is gone
+   rather than merely blanked. */
 #cN .cmd.on{border-color:rgba(232,184,74,.5);box-shadow:0 0 26px rgba(232,184,74,.12)}
-#cN .cmd input{flex:1;min-width:0;background:none;border:0;outline:none;
-  font:400 12px/1 var(--kr);letter-spacing:.01em;color:var(--ink)}
+#cN .cmd.on .txt{display:none}
+#cN .cmd input{display:none}
+#cN .cmd.on input{display:block;flex:1;min-width:0;background:none;border:0;
+  outline:none;font:400 12px/1 var(--kr);letter-spacing:.01em;color:var(--ink);
+  padding:0;caret-color:var(--amber)}
 /* The answer. Amber because every number in it is a ledger value, the same ink
    the closed-loop counter uses — the page should not have two visual grammars
    for measured and unmeasured. */
@@ -199,6 +196,28 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 #hint{position:absolute;right:26px;bottom:24px;font:500 8px/1.7 var(--mono);
   letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.2);text-align:right;transition:.3s}
 #hint.hide{opacity:0}
+
+/* The chrome is absolutely positioned into three corners, which collides once
+   the viewport is narrower than the strip it assumes. The file shipped with no
+   media query at all, and the counters, the measured stamp and the brand ran
+   over each other on a phone — which is the screen this gets checked on. The
+   numbers are the point of the page, so they are what must stay readable:
+   below 720px the chrome stacks and the counters wrap instead of tiling. */
+@media (max-width:720px){
+  #cN .pills{position:static;padding:14px 14px 0;flex-wrap:wrap}
+  #cN .brief{position:static;transform:none;padding:10px 14px 0;text-align:left}
+  #cN .counters{position:static;margin:10px 14px 0;flex-wrap:wrap}
+  #cN .counters .ctr{flex:1 1 44%;text-align:left}
+  #cN .firstres{position:static;padding:8px 14px 0;text-align:left}
+  /* The bar was pinned bottom-centre, where the dev controls and the keyboard
+     hint already are — on a phone all three landed on top of each other and
+     the input could not be reached. In the stacked flow it sits under the
+     counters, which is the only clear space on the screen. */
+  #cN .ans{position:static;transform:none;width:auto;margin:12px 14px 0}
+  #cN .cmd{position:static;transform:none;width:auto;margin:10px 14px 0}
+  /* Shortcut keys for a device with no keyboard. */
+  #hint{display:none}
+}
 </style>
 </head>
 <body>
@@ -229,7 +248,7 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
     <div class="cmd" id="cmdBar"><div class="dot"></div>
       <div class="txt"><span id="cmdTxt"></span><span class="car" id="cmdCar"></span></div>
       <input id="cmdIn" type="text" autocomplete="off" spellcheck="false"
-             aria-label="ask the ledger" hidden>
+             aria-label="ask the ledger">
       <div class="kbd">↵</div></div>
   </div>
 
@@ -313,11 +332,11 @@ function mk(list, statuses){                       // "a,b,c" -> child objects
    built page carries measurements; this one is labelled UNMEASURED so a stray
    copy cannot be mistaken for one.                                          */
 const LIVE = /*__WIE_LIVE_BEGIN__*/{
-  "measuredAt": "MEASURED 2026-08-16 09:00 KST",
+  "measuredAt": "MEASURED 2026-08-16 09:42 KST",
   "firstResolution": "2026-08-27",
   "nextDeadline": "2026-09-10",
-  "mentions": 82091,
-  "entities": 4125,
+  "mentions": 82191,
+  "entities": 4128,
   "sealed": 8,
   "openSealed": 5,
   "chain": "OK",
@@ -325,16 +344,16 @@ const LIVE = /*__WIE_LIVE_BEGIN__*/{
   "tiers": {
     "1": 142,
     "2": 11555,
-    "3": 242,
-    "4": 70152
+    "3": 245,
+    "4": 70249
   },
   "platforms": [
     {
-      "label": "gdelt · 43611",
+      "label": "gdelt · 43664",
       "status": "run"
     },
     {
-      "label": "bluesky · 23976",
+      "label": "bluesky · 24023",
       "status": "run"
     },
     {
@@ -382,11 +401,11 @@ const LIVE = /*__WIE_LIVE_BEGIN__*/{
   ],
   "ledger": [
     {
-      "label": "mention · 82091",
+      "label": "mention · 82191",
       "status": "ok"
     },
     {
-      "label": "entity · 4125",
+      "label": "entity · 4128",
       "status": "ok"
     },
     {
@@ -1214,15 +1233,14 @@ function tickCmd(dt){
 
 function openCmd(seed){
   cmdOpen=true; chromeAge=0;
-  $('cmdBar').classList.add('on');
-  $('cmdTxt').textContent=''; $('cmdCar').hidden=true;
-  const el=$('cmdIn'); el.hidden=false; el.value=seed||''; el.focus();
+  $('cmdBar').classList.add('on');   // CSS removes the demo text and caret
+  const el=$('cmdIn'); el.value=seed||''; el.focus();
 }
 function closeCmd(){
   cmdOpen=false;
   $('cmdBar').classList.remove('on');
-  const el=$('cmdIn'); el.hidden=true; el.value=''; el.blur();
-  $('cmdCar').hidden=false; $('ansBox').hidden=true;
+  const el=$('cmdIn'); el.value=''; el.blur();
+  $('ansBox').hidden=true;
 }
 function askCmd(){
   const r = answer($('cmdIn').value);
