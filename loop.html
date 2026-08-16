@@ -125,6 +125,20 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
   vertical-align:-2px;animation:bl 1s steps(1) infinite}
 #cN .cmd .kbd{font:600 8.5px/1 var(--mono);letter-spacing:.1em;color:var(--ink3);
   border:1px solid rgba(255,255,255,.15);border-radius:3px;padding:4px 7px}
+#cN .cmd.on{border-color:rgba(232,184,74,.5);box-shadow:0 0 26px rgba(232,184,74,.12)}
+#cN .cmd input{flex:1;min-width:0;background:none;border:0;outline:none;
+  font:400 12px/1 var(--kr);letter-spacing:.01em;color:var(--ink)}
+/* The answer. Amber because every number in it is a ledger value, the same ink
+   the closed-loop counter uses — the page should not have two visual grammars
+   for measured and unmeasured. */
+#cN .ans{position:absolute;bottom:82px;left:50%;transform:translateX(-50%);
+  width:min(430px,62vw);padding:13px 16px;border:1px solid rgba(232,184,74,.4);
+  border-radius:10px;background:rgba(8,8,12,.86);backdrop-filter:blur(6px)}
+#cN .ans div{font:400 12.5px/1.65 var(--kr);color:var(--ink);white-space:pre-line}
+#cN .ans b{color:var(--amber);font-weight:600;font-variant-numeric:tabular-nums}
+#cN .ans u{display:block;text-decoration:none;margin-top:9px;padding-top:8px;
+  border-top:1px solid rgba(255,255,255,.09);font:500 8px/1.5 var(--mono);
+  letter-spacing:.11em;text-transform:uppercase;color:var(--ink3)}
 
 /* CONSTELLATION chrome */
 #cC .tabs{position:absolute;top:24px;left:50%;transform:translateX(-50%);display:flex;gap:4px}
@@ -207,8 +221,15 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
         <u>verified against reality</u></div>
     </div>
     <div class="firstres">first resolution <b id="kFirst">—</b></div>
-    <div class="cmd"><div class="dot"></div>
-      <div class="txt"><span id="cmdTxt"></span><span class="car"></span></div>
+    <!-- The answer box sits above the bar and is empty until asked. It renders
+         only values from the measured block; there is no model behind it and
+         no request leaves the page. -->
+    <div class="ans" id="ansBox" hidden><div id="ansTxt"></div>
+      <u id="ansSrc"></u></div>
+    <div class="cmd" id="cmdBar"><div class="dot"></div>
+      <div class="txt"><span id="cmdTxt"></span><span class="car" id="cmdCar"></span></div>
+      <input id="cmdIn" type="text" autocomplete="off" spellcheck="false"
+             aria-label="ask the ledger" hidden>
       <div class="kbd">↵</div></div>
   </div>
 
@@ -257,7 +278,7 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
       <button class="btn" data-q="1.6">High</button></div>
     <div class="meta"><b id="fps">–</b> fps · <b id="pcount">0</b> particles · <b id="ncount">0</b> nodes</div>
   </div>
-  <div id="hint">drag orbit · scroll zoom · click node<br>1 / 2 theme · space orbit · c sequence · h hide ui · r record</div>
+  <div id="hint">drag orbit · scroll zoom · click node<br>1 / 2 theme · space orbit · c sequence · h hide ui · r record &middot; / ask the ledger</div>
 </div>
 
 <script>
@@ -292,10 +313,10 @@ function mk(list, statuses){                       // "a,b,c" -> child objects
    built page carries measurements; this one is labelled UNMEASURED so a stray
    copy cannot be mistaken for one.                                          */
 const LIVE = /*__WIE_LIVE_BEGIN__*/{
-  "measuredAt": "MEASURED 2026-08-16 08:17 KST",
+  "measuredAt": "MEASURED 2026-08-16 09:00 KST",
   "firstResolution": "2026-08-27",
   "nextDeadline": "2026-09-10",
-  "mentions": 81983,
+  "mentions": 82091,
   "entities": 4125,
   "sealed": 8,
   "openSealed": 5,
@@ -305,15 +326,15 @@ const LIVE = /*__WIE_LIVE_BEGIN__*/{
     "1": 142,
     "2": 11555,
     "3": 242,
-    "4": 70044
+    "4": 70152
   },
   "platforms": [
     {
-      "label": "gdelt · 43563",
+      "label": "gdelt · 43611",
       "status": "run"
     },
     {
-      "label": "bluesky · 23919",
+      "label": "bluesky · 23976",
       "status": "run"
     },
     {
@@ -325,7 +346,7 @@ const LIVE = /*__WIE_LIVE_BEGIN__*/{
       "status": "run"
     },
     {
-      "label": "telegram · 2804",
+      "label": "telegram · 2807",
       "status": "run"
     },
     {
@@ -361,7 +382,7 @@ const LIVE = /*__WIE_LIVE_BEGIN__*/{
   ],
   "ledger": [
     {
-      "label": "mention · 81983",
+      "label": "mention · 82091",
       "status": "ok"
     },
     {
@@ -1089,13 +1110,99 @@ function paintChrome(){
 }
 function tickChrome(){}
 
-const CMDS=["이 정보가 기존 판단을 바꾸는가?",
-            "이 주장을 무너뜨리려면 무엇이 사실이어야 하나?",
-            "반대 증거는 어디 있나",
-            "이게 틀렸다고 인정할 조건을 미리 정해줘",
-            "8월 27일에 무엇이 판정되나"];
-let ci=0, cch=0, cdir=1, cwait=0;
+/* ===========================================================================
+   THE COMMAND BAR — it answers from the ledger, and only from the ledger.
+
+   It was a typing animation: five rhetorical questions typed and deleted on a
+   loop, with no input, no submit, and nothing behind it. Making it a real chat
+   box would have meant an API key, which cannot live in a static page, so a
+   server to hold it — and, more to the point, a language model answering
+   questions about this product on this product's own page. That is an
+   unanchored public claim generator sitting directly beneath a counter that
+   reads `closed loops: 0`, and it is the one thing this project cannot ship.
+
+   So it answers deterministically out of the measured block. No key, no
+   server, no request, nothing to bill, and nothing it can say that the ledger
+   does not already say. What it cannot answer, it says it cannot answer —
+   which is the same rule the capture pipeline follows when it refuses to guess
+   a composite.
+   ======================================================================== */
+
+const N = n => (n == null ? "—" : n.toLocaleString());
+const B = s => '<b>' + s + '</b>';
+
+/* Each entry: the words that select it, and the answer built from LIVE.
+   `src` names where the figure came from, so a reader can go check it. */
+const QUERIES = [
+  { k: ['닫힌', '루프', 'closed', 'loop'],
+    a: () => `닫힌 루프는 ${B(N(LIVE.closedLoops))}건입니다.\n`
+           + `봉인된 예측 ${B(N(LIVE.sealed))}건 중 ${B(N(LIVE.openSealed))}건이 아직 열려 있고, `
+           + `첫 판정 근거가 되는 값은 ${B(LIVE.firstResolution)}에 발표됩니다.`,
+    src: 'interpretation.closed_loop_count()' },
+
+  { k: ['8월', '27', '08-27', 'aug', '판정', '언제', 'resolve', 'next'],
+    a: () => `${B(LIVE.firstResolution)}에 Drewry World Container Index가 그 주차 값을 발표합니다.\n`
+           + `봉인된 연산자는 그 날짜의 assessment 하나만 봅니다 — 그날 캡처한 값이 아니라 `
+           + `${B(LIVE.firstResolution)}자로 적힌 값입니다.\n`
+           + `기한은 ${B(LIVE.nextDeadline || '—')}이고, 그때까지 해당 assessment가 없으면 `
+           + `기각이 아니라 판정 불가입니다.`,
+    src: 'P-000004 sealed anchor' },
+
+  { k: ['예측', '봉인', 'prediction', 'sealed', '몇 건'],
+    a: () => `예측 ${B(N(LIVE.predictions.length))}건 중 ${B(N(LIVE.sealed))}건이 앵커로 봉인돼 있습니다.\n`
+           + LIVE.predictions.map(p => '· ' + p.label).join('\n'),
+    src: 'prediction · anchor_status()' },
+
+  { k: ['mention', '관측', '원장', '수집', 'ledger', '얼마나'],
+    a: () => `관측 원장에 mention ${B(N(LIVE.mentions))}건, 엔티티 ${B(N(LIVE.entities))}건입니다.\n`
+           + `해시체인 ${B(LIVE.chain)}. 소스별로는 ` + LIVE.platforms.map(p => p.label).join(', ') + '.',
+    src: 'analytics.db · lead_time.verify()' },
+
+  { k: ['앵커', '캡처', 'anchor', 'capture', '증거'],
+    a: () => `앵커 ${B(N(LIVE.anchors.length))}건을 3시간마다 캡처하고 있습니다.\n`
+           + LIVE.anchors.map(a => '· ' + a.label).join('\n')
+           + `\nDrewry는 최신 주차 하나만 보여주므로, 그날 못 잡으면 원 권위에서 다시 못 읽습니다.`,
+    src: '.runtime/anchor-captures/' },
+
+  { k: ['확정', 'tier', '측', 'evidence'],
+    a: () => `확정 측(tier 1·2)은 ${B(N((LIVE.tiers['1']||0)+(LIVE.tiers['2']||0)))}건입니다 `
+           + `— tier 1 ${B(N(LIVE.tiers['1']||0))}, tier 2 ${B(N(LIVE.tiers['2']||0))}.\n`
+           + `Telegram은 코드로 tier 4에 고정돼 있어 확정 측에 설 수 없습니다.`,
+    src: 'mention.tier · evidence_side.py' },
+
+  { k: ['언제', '측정', 'measured', '실측', '최신'],
+    a: () => `이 화면의 숫자는 ${B(LIVE.measuredAt.replace('MEASURED ',''))} 기준으로 `
+           + `빌드할 때 원장에서 직접 읽은 값입니다.\n`
+           + `손으로 적은 칸은 없습니다.`,
+    src: 'commercial/live_metrics.py' },
+];
+
+/* What it will not do. Asked something the ledger cannot settle, it says so
+   and lists what it can settle — rather than producing a plausible sentence,
+   which is the failure mode this whole product exists to refuse. */
+function answer(q){
+  const s = (q || '').toLowerCase().trim();
+  if(!s) return null;
+  let best = null, score = 0;
+  for(const e of QUERIES){
+    const n = e.k.filter(k => s.includes(k.toLowerCase())).length;
+    if(n > score){ score = n; best = e; }
+  }
+  if(best) return { text: best.a(), src: best.src };
+  return { text: '이 화면은 원장에 있는 값만 답합니다. 모형도 추정도 쓰지 않습니다.\n'
+                 + '물어볼 수 있는 것: 닫힌 루프 · 봉인된 예측 · 8월 27일 판정 · '
+                 + '관측 원장 · 앵커 캡처 · 확정 측 · 측정 시각.',
+           src: 'no ledger value answers this' };
+}
+
+const CMDS=["닫힌 루프가 몇 건인가",
+            "8월 27일에 무엇이 판정되나",
+            "봉인된 예측을 보여줘",
+            "앵커는 어떻게 캡처하고 있나",
+            "이 숫자는 언제 measured 됐나"];
+let ci=0, cch=0, cdir=1, cwait=0, cmdOpen=false;
 function tickCmd(dt){
+  if(cmdOpen) return;           // a real question is being typed; stop the demo
   if(cwait>0){ cwait-=dt; return; }
   const s=CMDS[ci];
   cch+=cdir*dt*24;
@@ -1103,6 +1210,35 @@ function tickCmd(dt){
   if(cch<=0 && cdir<0){ cch=0; cdir=1; ci=(ci+1)%CMDS.length; cwait=.35; }
   $('cmdTxt').innerHTML = cch<1 ? '<em>ask '+DATA.brand.toLowerCase()+'</em>'
                                 : s.slice(0,Math.floor(cch));
+}
+
+function openCmd(seed){
+  cmdOpen=true; chromeAge=0;
+  $('cmdBar').classList.add('on');
+  $('cmdTxt').textContent=''; $('cmdCar').hidden=true;
+  const el=$('cmdIn'); el.hidden=false; el.value=seed||''; el.focus();
+}
+function closeCmd(){
+  cmdOpen=false;
+  $('cmdBar').classList.remove('on');
+  const el=$('cmdIn'); el.hidden=true; el.value=''; el.blur();
+  $('cmdCar').hidden=false; $('ansBox').hidden=true;
+}
+function askCmd(){
+  const r = answer($('cmdIn').value);
+  if(!r) return;
+  $('ansTxt').innerHTML=r.text;
+  $('ansSrc').textContent='source · '+r.src;
+  $('ansBox').hidden=false;
+  chromeAge=0;
+}
+function wireCmd(){
+  $('cmdBar').addEventListener('click', ()=>{ if(!cmdOpen) openCmd(); });
+  $('cmdIn').addEventListener('keydown', e=>{
+    e.stopPropagation();                       // don't trigger the 1/2/c/h/r keys
+    if(e.key==='Enter') askCmd();
+    else if(e.key==='Escape') closeCmd();
+  });
 }
 
 function buildLegend(){
@@ -1216,6 +1352,10 @@ function setRec(v){ chromeAge=1e9; S.rec=v; $('hud').classList.toggle('hide',v);
   $('bRec').classList.toggle('act',v); }
 addEventListener('keydown',e=>{
   const k=e.key.toLowerCase();
+  // While a question is being typed, every letter belongs to the input — the
+  // single-key shortcuts below would otherwise fire mid-word.
+  if(cmdOpen){ if(k==='escape') closeCmd(); return; }
+  if(k==='/'){ e.preventDefault(); openCmd(); return; }
   if(k==='1') setTheme('nebula'); else if(k==='2') setTheme('const');
   else if(k===' '){ e.preventDefault(); S.orbit=!S.orbit; syncOrbitBtn(); }
   else if(k==='c') startCine();
@@ -1278,7 +1418,7 @@ function frame(now){
 }
 
 /* ---- boot ---- */
-makeGrain(); resize(); buildLegend(); setTheme('nebula'); paintChrome(); audit();
+makeGrain(); resize(); buildLegend(); setTheme('nebula'); paintChrome(); wireCmd(); audit();
 requestAnimationFrame(frame);
 </script>
 </body>
