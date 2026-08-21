@@ -3,12 +3,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MIGARYOS — 되돌릴 수 없어지기 전에, 결정을 검토 가능하게 만듭니다.</title>
-<meta name="description" content="제품은 둘입니다. 하나는 결정이 굳기 전에 그 결정 자체를 감사하고, 다른 하나는 세상이 움직인 뒤에 증거와 반대증거를 구조로 남깁니다.">
+<meta name="description" content="제품은 셋입니다. 하나는 결정이 굳기 전에 그 결정 자체를 감사하고, 하나는 세상이 움직인 뒤에 증거와 반대증거를 구조로 남기고, 하나는 이미 쌓인 코드의 기초를 재어서 보여줍니다.">
 <meta name="color-scheme" content="dark">
 <link rel="icon" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221000%22%20height%3D%221000%22%20viewBox%3D%220%200%20100%20100%22%3E%0A%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%23111214%22%2F%3E%0A%3Crect%20x%3D%2219.000%22%20y%3D%2221.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%28-22%2044.000%2037.000%29%22%2F%3E%0A%3Crect%20x%3D%2231.000%22%20y%3D%2247.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%2822%2056.000%2063.000%29%22%2F%3E%0A%3C%2Fsvg%3E">
 <link rel="canonical" href="https://migaryos.com/">
 <meta property="og:title" content="MIGARYOS — 되돌릴 수 없어지기 전에, 결정을 검토 가능하게 만듭니다.">
-<meta property="og:description" content="제품은 둘입니다. 하나는 결정이 굳기 전에 그 결정 자체를 감사하고, 다른 하나는 세상이 움직인 뒤에 증거와 반대증거를 구조로 남깁니다.">
+<meta property="og:description" content="제품은 셋입니다. 하나는 결정이 굳기 전에 그 결정 자체를 감사하고, 하나는 세상이 움직인 뒤에 증거와 반대증거를 구조로 남기고, 하나는 이미 쌓인 코드의 기초를 재어서 보여줍니다.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://migaryos.com/">
 <style>
@@ -82,7 +82,14 @@ a:focus-visible,.cta:focus-visible{outline:2px solid var(--ev);outline-offset:3p
 .lbl b{color:var(--ct);font-weight:700;font-variant-numeric:tabular-nums}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:.25}}
 @media(max-width:1120px){#hud .opt{display:none}}
-@media(max-width:640px){#hud .tel{display:none}
+/* The bar clips rather than scrolls, so at each width the least load-bearing
+   thing goes first: the optional stats, then the telemetry, then the two
+   utility routes. `.sec` was added when a sixth chip arrived and pushed the
+   closed-loop badge past the right edge of a 390px phone — the one figure the
+   whole offer turns on, cut off on the screen it is mostly read on. Both
+   hidden routes stay reachable from the footer, which is why hiding them here
+   is a layout decision and not a removal. */
+@media(max-width:640px){#hud .tel,#nav .sec{display:none}
   #hud{gap:.4rem;padding:.45rem .62rem}}
 @media(max-width:420px){#nav a{padding:.36rem .42rem;letter-spacing:.08em}
   #hud .loop{padding:.36rem .46rem}}
@@ -214,6 +221,10 @@ ol.fields li{margin:.35rem 0}
 .cta.ghost:hover{border-color:var(--ink);box-shadow:none}
 .cta.off{opacity:.32;cursor:not-allowed;pointer-events:none}
 .notopen{display:block;font:.74rem/1.5 var(--mono);color:var(--warn);margin-top:.6rem;letter-spacing:.02em}
+/* the same slot under a CTA, for terms that are not a warning. `.notopen` is
+   amber because it says something is shut; reusing it to say "free, two days"
+   would teach the reader that amber means nothing. */
+.hint{display:block;font:.74rem/1.6 var(--mono);color:var(--faint);margin-top:.75rem;letter-spacing:.02em}
 .fixture{border:1px solid var(--ct);background:rgba(255,47,126,.06);padding:1rem 1.15rem;margin:1.5rem 0;font-size:.88rem}
 .fixture b{color:var(--ct)}
 table{width:100%;border-collapse:collapse;font-size:.87rem}
@@ -235,17 +246,17 @@ a{color:inherit}
 <rect width="100" height="100" fill="none"/>
 <rect x="19.000" y="21.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="currentColor" stroke-width="10.500" stroke-linejoin="round" transform="rotate(-22 44.000 37.000)"/>
 <rect x="31.000" y="47.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="currentColor" stroke-width="10.500" stroke-linejoin="round" transform="rotate(22 56.000 63.000)"/>
-</svg></span>MIGARYOS</a><a href="/glitch/">GLITCH</a><a href="/wie/">WIE</a><a href="/loop.html">LOOP</a><a href="/record/">기록</a></nav>
+</svg></span>MIGARYOS</a><a href="/invara/">INVARA</a><a href="/glitch/">GLITCH</a><a href="/wie/">WIE</a><a href="/loop.html" class="sec">LOOP</a><a href="/record/" class="sec">기록</a></nav>
   <span class="sp"></span>
-  <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>0</b><em class="tel"> · 실측 2026-08-19</em></span>
+  <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>0</b><em class="tel"> · 실측 2026-08-22</em></span>
   <span class="sp"></span>
-  <span class="stat opt" aria-hidden="true"><u>원장</u><b>106,200</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>4,352</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>8</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
+  <span class="stat opt" aria-hidden="true"><u>원장</u><b>114,978</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>4,488</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>8</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
 </div>
 <header class="wrap hero">
   <span class="rdg tl" aria-hidden="true"></span><span class="rdg tr" aria-hidden="true"></span>
   <p class="kicker">MIGARYOS · Decision Intelligence</p>
   <h1>되돌릴 수 없어지기 전에, 결정을 검토 가능하게 만듭니다.</h1>
-  <p class="lede">제품은 둘입니다. 하나는 결정이 굳기 전에 그 결정 자체를 감사하고, 다른 하나는 세상이 움직인 뒤에 증거와 반대증거를 구조로 남깁니다.</p>
+  <p class="lede">제품은 셋입니다. 하나는 결정이 굳기 전에 그 결정 자체를 감사하고, 하나는 세상이 움직인 뒤에 증거와 반대증거를 구조로 남기고, 하나는 이미 쌓인 코드의 기초를 재어서 보여줍니다.</p>
   <div class="prob">
     <b id="prob">62.0%</b>
     <span>표본 케이스의 사전 봉인 확률 · 반대증거가 도착하면 움직입니다</span>
@@ -293,9 +304,9 @@ a{color:inherit}
 </div>
 
 <h2>지금 이 순간의 원장</h2>
-<div class="strip"><div class="cell"><u>관측 원장</u><b>106,200</b><i>mentions</i></div><div class="cell"><u>추적 엔티티</u><b>4,352</b><i>entities</i></div><div class="cell"><u>해시체인</u><b>OK</b><i>verified</i></div><div class="cell"><u>봉인된 예측</u><b>8</b><i>sealed</i></div><div class="cell w"><u>닫힌 루프</u><b>0</b><i>closed</i></div></div>
+<div class="strip"><div class="cell"><u>관측 원장</u><b>114,978</b><i>mentions</i></div><div class="cell"><u>추적 엔티티</u><b>4,488</b><i>entities</i></div><div class="cell"><u>해시체인</u><b>OK</b><i>verified</i></div><div class="cell"><u>봉인된 예측</u><b>8</b><i>sealed</i></div><div class="cell w"><u>닫힌 루프</u><b>0</b><i>closed</i></div></div>
 <p class="note">닫힌 루프 0은 오타가 아닙니다. 아직 한 번도 결과로 검증되지 않았고, 그 사실을 숨기지 않는 것이 이 제품이 파는 것의 전부입니다. 봉인된 예측 8건 중 5건이 아직 열려 있고, 첫 판정 근거가 되는 값은 2026-08-27에 발표되며 기한은 2026-09-10입니다.
-<br><span style="color:var(--faint)">실측 2026-08-19 21:04 KST · 이 표의 숫자는 빌드 시점에 원장에서 직접 읽은 값입니다. 손으로 적은 칸도, 추정으로 채운 칸도 없습니다.</span></p>
+<br><span style="color:var(--faint)">실측 2026-08-22 05:13 KST · 이 표의 숫자는 빌드 시점에 원장에서 직접 읽은 값입니다. 손으로 적은 칸도, 추정으로 채운 칸도 없습니다.</span></p>
 
 <h2>제품이 되는 루프</h2>
 <div class="rail"><div class="step"><u>EVIDENCE</u><b>증거</b><i>주장을 지지하는 것</i></div><div class="step"><u>COUNTER</u><b>반대증거</b><i>의도적으로 수집한다</i></div><div class="step"><u>PROBABILITY</u><b>확률 갱신</b><i>움직인 이유를 남긴다</i></div><div class="step"><u>DECISION</u><b>판단 변경</b><i>무엇이 바뀌었는가</i></div><div class="step"><u>OUTCOME</u><b>결과 감사</b><i>봉인한 기준으로 채점</i></div></div>
@@ -309,8 +320,12 @@ a{color:inherit}
 다루는 객체와 그 사이의 실제 관계이며, 노드 이름은 전부 제품 자신의 구조입니다 —
 고객사 이름은 하나도 없습니다. 화면의 확률 표시는 그 모형을 읽습니다. 실적이 아닙니다.</p>
 <p>WIE is a decision-evidence and audit tool, not an investment adviser, broker, or automated trading system. Outputs are analytical evidence structures, not buy/sell instructions.</p>
+<!-- Every route, at every width. The bar drops `.sec` chips below 640px to
+     keep the closed-loop badge on screen; this is where they stay reachable,
+     so that trade is a layout decision rather than a phone losing two pages. -->
 <p>MIGARYOS · <a href="mailto:hello@migaryos.com">hello@migaryos.com</a>
-· <a href="/glitch/">GLITCH</a> · <a href="/wie/">WIE</a></p>
+· <a href="/invara/">INVARA</a> · <a href="/glitch/">GLITCH</a> · <a href="/wie/">WIE</a>
+· <a href="/loop.html">LOOP</a> · <a href="/record/">기록</a></p>
 </footer>
 <script>var SEEDP=62.0;
 (function(){

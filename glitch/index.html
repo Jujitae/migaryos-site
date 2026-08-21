@@ -82,7 +82,14 @@ a:focus-visible,.cta:focus-visible{outline:2px solid var(--ev);outline-offset:3p
 .lbl b{color:var(--ct);font-weight:700;font-variant-numeric:tabular-nums}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:.25}}
 @media(max-width:1120px){#hud .opt{display:none}}
-@media(max-width:640px){#hud .tel{display:none}
+/* The bar clips rather than scrolls, so at each width the least load-bearing
+   thing goes first: the optional stats, then the telemetry, then the two
+   utility routes. `.sec` was added when a sixth chip arrived and pushed the
+   closed-loop badge past the right edge of a 390px phone — the one figure the
+   whole offer turns on, cut off on the screen it is mostly read on. Both
+   hidden routes stay reachable from the footer, which is why hiding them here
+   is a layout decision and not a removal. */
+@media(max-width:640px){#hud .tel,#nav .sec{display:none}
   #hud{gap:.4rem;padding:.45rem .62rem}}
 @media(max-width:420px){#nav a{padding:.36rem .42rem;letter-spacing:.08em}
   #hud .loop{padding:.36rem .46rem}}
@@ -214,6 +221,10 @@ ol.fields li{margin:.35rem 0}
 .cta.ghost:hover{border-color:var(--ink);box-shadow:none}
 .cta.off{opacity:.32;cursor:not-allowed;pointer-events:none}
 .notopen{display:block;font:.74rem/1.5 var(--mono);color:var(--warn);margin-top:.6rem;letter-spacing:.02em}
+/* the same slot under a CTA, for terms that are not a warning. `.notopen` is
+   amber because it says something is shut; reusing it to say "free, two days"
+   would teach the reader that amber means nothing. */
+.hint{display:block;font:.74rem/1.6 var(--mono);color:var(--faint);margin-top:.75rem;letter-spacing:.02em}
 .fixture{border:1px solid var(--ct);background:rgba(255,47,126,.06);padding:1rem 1.15rem;margin:1.5rem 0;font-size:.88rem}
 .fixture b{color:var(--ct)}
 table{width:100%;border-collapse:collapse;font-size:.87rem}
@@ -235,11 +246,11 @@ a{color:inherit}
 <rect width="100" height="100" fill="none"/>
 <rect x="19.000" y="21.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="currentColor" stroke-width="10.500" stroke-linejoin="round" transform="rotate(-22 44.000 37.000)"/>
 <rect x="31.000" y="47.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="currentColor" stroke-width="10.500" stroke-linejoin="round" transform="rotate(22 56.000 63.000)"/>
-</svg></span>MIGARYOS</a><a href="/glitch/" class="on">GLITCH</a><a href="/wie/">WIE</a><a href="/loop.html">LOOP</a><a href="/record/">기록</a></nav>
+</svg></span>MIGARYOS</a><a href="/invara/">INVARA</a><a href="/glitch/" class="on">GLITCH</a><a href="/wie/">WIE</a><a href="/loop.html" class="sec">LOOP</a><a href="/record/" class="sec">기록</a></nav>
   <span class="sp"></span>
-  <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>0</b><em class="tel"> · 실측 2026-08-19</em></span>
+  <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>0</b><em class="tel"> · 실측 2026-08-22</em></span>
   <span class="sp"></span>
-  <span class="stat opt" aria-hidden="true"><u>원장</u><b>106,200</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>4,352</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>8</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
+  <span class="stat opt" aria-hidden="true"><u>원장</u><b>114,978</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>4,488</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>8</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
 </div>
 <header class="wrap hero">
   <span class="rdg tl" aria-hidden="true"></span><span class="rdg tr" aria-hidden="true"></span>
@@ -310,8 +321,12 @@ a{color:inherit}
 다루는 객체와 그 사이의 실제 관계이며, 노드 이름은 전부 제품 자신의 구조입니다 —
 고객사 이름은 하나도 없습니다. 화면의 확률 표시는 그 모형을 읽습니다. 실적이 아닙니다.</p>
 <p>WIE is a decision-evidence and audit tool, not an investment adviser, broker, or automated trading system. Outputs are analytical evidence structures, not buy/sell instructions.</p>
+<!-- Every route, at every width. The bar drops `.sec` chips below 640px to
+     keep the closed-loop badge on screen; this is where they stay reachable,
+     so that trade is a layout decision rather than a phone losing two pages. -->
 <p>MIGARYOS · <a href="mailto:hello@migaryos.com">hello@migaryos.com</a>
-· <a href="/glitch/">GLITCH</a> · <a href="/wie/">WIE</a></p>
+· <a href="/invara/">INVARA</a> · <a href="/glitch/">GLITCH</a> · <a href="/wie/">WIE</a>
+· <a href="/loop.html">LOOP</a> · <a href="/record/">기록</a></p>
 </footer>
 <script>var SEEDP=62.0;
 (function(){

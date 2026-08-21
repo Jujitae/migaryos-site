@@ -75,7 +75,14 @@ a:focus-visible,.cta:focus-visible{outline:2px solid var(--ev);outline-offset:3p
 .lbl b{color:var(--ct);font-weight:700;font-variant-numeric:tabular-nums}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:.25}}
 @media(max-width:1120px){#hud .opt{display:none}}
-@media(max-width:640px){#hud .tel{display:none}
+/* The bar clips rather than scrolls, so at each width the least load-bearing
+   thing goes first: the optional stats, then the telemetry, then the two
+   utility routes. `.sec` was added when a sixth chip arrived and pushed the
+   closed-loop badge past the right edge of a 390px phone — the one figure the
+   whole offer turns on, cut off on the screen it is mostly read on. Both
+   hidden routes stay reachable from the footer, which is why hiding them here
+   is a layout decision and not a removal. */
+@media(max-width:640px){#hud .tel,#nav .sec{display:none}
   #hud{gap:.4rem;padding:.45rem .62rem}}
 @media(max-width:420px){#nav a{padding:.36rem .42rem;letter-spacing:.08em}
   #hud .loop{padding:.36rem .46rem}}
@@ -207,6 +214,10 @@ ol.fields li{margin:.35rem 0}
 .cta.ghost:hover{border-color:var(--ink);box-shadow:none}
 .cta.off{opacity:.32;cursor:not-allowed;pointer-events:none}
 .notopen{display:block;font:.74rem/1.5 var(--mono);color:var(--warn);margin-top:.6rem;letter-spacing:.02em}
+/* the same slot under a CTA, for terms that are not a warning. `.notopen` is
+   amber because it says something is shut; reusing it to say "free, two days"
+   would teach the reader that amber means nothing. */
+.hint{display:block;font:.74rem/1.6 var(--mono);color:var(--faint);margin-top:.75rem;letter-spacing:.02em}
 .fixture{border:1px solid var(--ct);background:rgba(255,47,126,.06);padding:1rem 1.15rem;margin:1.5rem 0;font-size:.88rem}
 .fixture b{color:var(--ct)}
 table{width:100%;border-collapse:collapse;font-size:.87rem}
