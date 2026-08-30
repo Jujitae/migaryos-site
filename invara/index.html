@@ -869,5 +869,26 @@ if(reduce){
   draw();
 }else{loop();}
 })();
+</script><script>
+(function(){
+var PARAM='cad',DISCLOSURE='Sponsored',ENDPOINT="https://ad.migaryos.com/api/v1/handoffs/redeem/browser";
+function note(a,b){try{console.warn('[migaryos] ad arrival not redeemed:',a,b);}catch(e){}}
+try{
+  var url=new URL(window.location.href),token=url.searchParams.get(PARAM);
+  if(!token)return;
+  url.searchParams.delete(PARAM);
+  window.history.replaceState(null,'',url.toString());
+  window.fetch(ENDPOINT,{method:'POST',
+    headers:{'content-type':'application/json'},
+    body:JSON.stringify({token:token,disclosure:DISCLOSURE}),
+    keepalive:true,credentials:'omit'})
+  .then(function(r){return r.text().then(function(text){
+    var status='';try{status=(JSON.parse(text)||{}).status||'';}catch(e){}
+    if(r.ok&&status==='captured')return;
+    note('HTTP '+r.status,text);
+  });})
+  .catch(function(err){note('request failed',err);});
+}catch(err){note('skipped',err);}
+})();
 </script>
 </body></html>
