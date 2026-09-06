@@ -1,877 +1,686 @@
 <!doctype html>
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>INVARA 0.1.3 — MIGARYOS</title>
-<meta name="description" content="You don&#x27;t need to read the code to accept an agent&#x27;s work blindly. Seal the acceptance conditions before the work. Judge them afterwards.">
-<meta name="color-scheme" content="dark">
-<link rel="icon" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221000%22%20height%3D%221000%22%20viewBox%3D%220%200%20100%20100%22%3E%0A%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%23111214%22%2F%3E%0A%3Crect%20x%3D%2219.000%22%20y%3D%2221.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%28-22%2044.000%2037.000%29%22%2F%3E%0A%3Crect%20x%3D%2231.000%22%20y%3D%2247.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%2822%2056.000%2063.000%29%22%2F%3E%0A%3C%2Fsvg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; img-src data:; style-src &#x27;unsafe-inline&#x27;; script-src &#x27;sha256-Z0VmKibLF0Gaz4a61sKJQwIE5f1bId4hykaHM5mT30s=&#x27;; connect-src https://invara-events.mettl.chatgpt.site/api/events;">
+<title>INVARA — Check the promises · MIGARYOS</title>
+<meta name="description" content="Choose what must stay unchanged. Ask your coding assistant to check it on your computer. Keep the result and what could not be checked.">
 <link rel="canonical" href="https://migaryos.com/invara/">
-<meta property="og:title" content="INVARA 0.1.3 — MIGARYOS">
-<meta property="og:description" content="You don&#x27;t need to read the code to accept an agent&#x27;s work blindly. Seal the acceptance conditions before the work. Judge them afterwards.">
 <meta property="og:type" content="website">
+<meta property="og:title" content="INVARA — Try a free sample check">
+<meta property="og:description" content="See how a check catches a file changed against the plan. A fixed example, with no account or code upload.">
 <meta property="og:url" content="https://migaryos.com/invara/">
-<style>
-:root{
-  --bg:#05060a;--bg2:#0a0c14;--ink:#e8ecf5;--dim:#8590a8;--faint:#4a5468;
-  --line:#1b2030;--line2:#262d42;
-  --ev:#22e0c8;--ct:#ff2f7e;--gl:#a06bff;--warn:#ffb02e;
-  --acc:#e8ecf5;
-  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+<link rel="icon" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221000%22%20height%3D%221000%22%20viewBox%3D%220%200%20100%20100%22%3E%0A%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%23111214%22%2F%3E%0A%3Crect%20x%3D%2219.000%22%20y%3D%2221.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%28-22%2044.000%2037.000%29%22%2F%3E%0A%3Crect%20x%3D%2231.000%22%20y%3D%2247.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%2822%2056.000%2063.000%29%22%2F%3E%0A%3C%2Fsvg%3E">
+<style>:root {
+  color-scheme: dark;
+  --background: #090e14;
+  --surface: #121b25;
+  --ink: #f1f3ef;
+  --muted: #b0becb;
+  --line: #364654;
+  --control-line: #6d8193;
+  --accent: #b8efcf;
+  --paper: #f5f2e9;
+  --paper-ink: #1a292b;
+  --paper-muted: #47595a;
+  --paper-line: #b1bcb8;
+  --block: #923a31;
+  --pass: #246346;
+  --unknown: #6c5218;
+  --human: #56458c;
+  --radius: .4rem;
+  --mono: ui-monospace, Consolas, monospace;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;overflow-x:clip}
-body{margin:0;font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,"Malgun Gothic",sans-serif;
-  color:var(--ink);background:var(--bg);word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-/* the field sits behind everything and never eats a click */
-#field{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-#grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
-  background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px)}
-#vig{position:fixed;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(ellipse 92% 78% at 50% 40%,transparent 46%,rgba(5,6,10,.55) 100%)}
-/* Fixed HUD, in the chip grammar the field now uses: hairline pills, very
-   small monospace caps, a status pip. Every value in it is a measured figure
-   read out of config next to the date it was measured. The badge the reference
-   gives to a live clock is given here to the closed-loop count, because that is
-   the number this whole offer turns on and it reads zero. */
-#hud{position:fixed;top:0;left:0;right:0;z-index:3;display:flex;gap:.55rem;align-items:center;
-  padding:.5rem .95rem;font:600 .55rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
-  color:var(--faint);background:linear-gradient(180deg,rgba(5,6,10,.97),rgba(5,6,10,.74));
-  border-bottom:1px solid rgba(38,45,66,.55);overflow:hidden;white-space:nowrap}
-#nav{display:flex;gap:.3rem;align-items:center;flex:none}
-#nav a{display:inline-flex;align-items:center;gap:.4rem;color:var(--faint);text-decoration:none;
-  padding:.4rem .55rem;border:1px solid var(--line);border-radius:3px;background:rgba(9,11,18,.72);
-  transition:.15s;white-space:nowrap;letter-spacing:.16em}
-#nav a:hover,#nav a:focus-visible{color:var(--ink);border-color:var(--line2)}
-#nav a.on{color:var(--ink);border-color:rgba(160,107,255,.55);
-  box-shadow:inset 0 0 14px rgba(160,107,255,.18)}
-#nav .brand{letter-spacing:.2em}
-/* The delivered master is 1000x1000. Inlined without a box it renders at that
-   size and pushes the whole bar off the page, so the box is set here and the
-   SVG is told to fill it. `currentColor` is what the build substitutes for the
-   brand ink, so the mark takes the chip's colour and lights up with it on
-   hover and on the active route — the same behaviour the wordmark had.
-
-   The nav font is small: at 1.05em the mark came out 9px square, and the two
-   interlocking rounded rects carry a 10.5/100 stroke, so below roughly 12px
-   the counters close up and it reads as a blob. A floor in pixels, not only
-   an em size, is what holds that. */
-.mark{display:inline-flex;width:1.35em;height:1.35em;min-width:13px;min-height:13px;flex:none}
-.mark svg{width:100%;height:100%;display:block}
-.pip{width:4px;height:4px;flex:none;background:var(--ev);box-shadow:0 0 7px var(--ev);
-  animation:bl 2.4s ease-in-out infinite}
-.pip.w{background:var(--warn);box-shadow:0 0 7px var(--warn)}
-.pip.ct{background:var(--ct);box-shadow:0 0 7px var(--ct)}
-#hud .loop{display:inline-flex;align-items:center;gap:.4rem;flex:none;padding:.4rem .6rem;
-  border:1px solid rgba(255,176,46,.45);border-radius:3px;color:var(--warn);
-  background:rgba(255,176,46,.06);box-shadow:0 0 18px rgba(255,176,46,.09)}
-#hud .loop b{font-weight:700;color:var(--warn);font-variant-numeric:tabular-nums}
-#hud .loop em{font-style:normal;color:rgba(255,176,46,.6);letter-spacing:.1em}
-#hud .stat{display:inline-flex;flex-direction:column;gap:.24rem;flex:none;line-height:1;
-  padding:0 .15rem}
-#hud .stat u{text-decoration:none;color:var(--faint);font-size:.5rem;letter-spacing:.12em}
-#hud .stat b{color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.03em}
-#hud .sp{flex:1;min-width:.35rem}
-a:focus-visible,.cta:focus-visible{outline:2px solid var(--ev);outline-offset:3px}
-/* the label that admits the picture is a model, in the same grammar. The one
-   figure on the page the animation drives lives inside it, and nowhere else. */
-.lbl{display:inline-flex;align-items:center;gap:.45rem;align-self:flex-start;flex-wrap:wrap;
-  font:600 .55rem/1.5 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ct);
-  border:1px solid rgba(255,47,126,.55);border-radius:3px;padding:.42rem .6rem;
-  margin:0 0 1.4rem;background:rgba(255,47,126,.07)}
-.lbl b{color:var(--ct);font-weight:700;font-variant-numeric:tabular-nums}
-@keyframes bl{0%,100%{opacity:1}50%{opacity:.25}}
-@media(max-width:1120px){#hud .opt{display:none}}
-/* The bar clips rather than scrolls, so at each width the least load-bearing
-   thing goes first: the optional stats, then the telemetry, then the two
-   utility routes. `.sec` was added when a sixth chip arrived and pushed the
-   closed-loop badge past the right edge of a 390px phone — the one figure the
-   whole offer turns on, cut off on the screen it is mostly read on. Both
-   hidden routes stay reachable from the footer, which is why hiding them here
-   is a layout decision and not a removal. */
-@media(max-width:640px){#hud .tel,#nav .sec{display:none}
-  #hud{gap:.4rem;padding:.45rem .62rem}}
-@media(max-width:420px){#nav a{padding:.36rem .42rem;letter-spacing:.08em}
-  #hud .loop{padding:.36rem .46rem}}
-.wrap{position:relative;z-index:2;max-width:60rem;margin-inline:auto;padding:0 1.15rem 5rem}
-.kicker{font:600 .68rem/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin:0 0 1.2rem}
-h1{font-size:clamp(1.7rem,5.2vw,3.1rem);line-height:1.22;margin:0 0 1.1rem;letter-spacing:-.025em;font-weight:650}
-.lede{font-size:clamp(1rem,2.2vw,1.14rem);color:var(--dim);margin:0 0 2.2rem;max-width:42rem}
-h2{font:600 .7rem/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:4.5rem 0 1.1rem;
-  display:flex;align-items:center;gap:.8rem}
-h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
-
-/* ---- hero ---------------------------------------------------------- */
-.hero{position:relative;z-index:2;min-height:min(92vh,780px);display:flex;flex-direction:column;justify-content:center;
-  padding:6.5rem 0 3rem}
-/* the field is allowed to be busy because the copy is guaranteed to win:
-   a soft wash sits under the text column and fades out before the right edge */
-.hero::before{content:"";position:absolute;inset:0 30% 0 -50vw;z-index:-1;pointer-events:none;
-  background:linear-gradient(90deg,rgba(5,6,10,.94) 55%,rgba(5,6,10,0))}
-/* only the left bleed may go negative: a negative right inset widens the
-   document and hands a phone a sideways scroll */
-@media(max-width:900px){.hero::before{inset:0 0 0 -50vw;background:rgba(5,6,10,.78)}}
-.hero>*{position:relative}
-.hero .lede{max-width:34rem}
-.rdg{position:absolute;width:14px;height:14px;border:1px solid var(--line2);opacity:.9}
-.rdg.tl{top:2.4rem;left:-.2rem;border-right:0;border-bottom:0}
-.rdg.tr{top:2.4rem;right:-.2rem;border-left:0;border-bottom:0}
-/* the one live readout, and it reads the graph, not a track record */
-.prob{display:flex;align-items:flex-end;flex-wrap:wrap;gap:.2rem 1.1rem;margin:0 0 .9rem;font-family:var(--mono)}
-.prob b{display:block;font-size:clamp(2.4rem,7.5vw,3.8rem);font-weight:600;letter-spacing:-.035em;color:var(--ev);
-  text-shadow:0 0 30px rgba(34,224,200,.5);font-variant-numeric:tabular-nums;line-height:.95}
-.prob span{display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);
-  line-height:1.7;padding-bottom:.35rem;max-width:22rem}
-.bar{position:relative;height:2px;background:var(--line);max-width:34rem;margin:0 0 2.4rem;overflow:visible}
-.bar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--ct),var(--ev));width:62%;
-  box-shadow:0 0 16px rgba(34,224,200,.7);transition:width .18s linear}
-.bar::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,
-  rgba(38,45,66,.9) 0 1px,transparent 1px 10%)}
-
-/* ---- live strip ---------------------------------------------------- */
-.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:1px;background:var(--line);
-  border:1px solid var(--line);margin:0}
-.cell{background:var(--bg2);padding:1rem .95rem}
-.cell u{display:block;font:600 .58rem/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--faint);
-  text-decoration:none;margin-bottom:.5rem}
-.cell b{display:block;font:600 1.5rem/1 var(--mono);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.cell i{font:.6rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-style:normal}
-.cell.w b{color:var(--warn)}
-.note{font-size:.86rem;color:var(--dim);border-left:2px solid var(--warn);padding-left:.9rem;margin:1.3rem 0 0;max-width:44rem}
-
-/* ---- loop rail ----------------------------------------------------- */
-.rail{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:1px;background:var(--line);
-  border:1px solid var(--line)}
-.step{background:var(--bg2);padding:1.1rem .95rem;position:relative;overflow:hidden}
-.step::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--ev),transparent);opacity:0;animation:sweep 5s linear infinite}
-.step:nth-child(2)::before{animation-delay:1s;background:linear-gradient(90deg,transparent,var(--ct),transparent)}
-.step:nth-child(3)::before{animation-delay:2s}
-.step:nth-child(4)::before{animation-delay:3s}
-.step:nth-child(5)::before{animation-delay:4s}
-@keyframes sweep{0%,80%{opacity:0}10%,40%{opacity:1}}
-.step u{display:block;font:600 .55rem/1 var(--mono);letter-spacing:.16em;color:var(--faint);text-decoration:none;margin-bottom:.6rem}
-.step b{display:block;font-size:.98rem;margin-bottom:.2rem}
-.step i{font-size:.8rem;color:var(--dim);font-style:normal}
-
-/* ---- product cards ------------------------------------------------- */
-.deck{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr))}
-.card{position:relative;border:1px solid var(--line2);background:linear-gradient(180deg,rgba(16,20,32,.9),rgba(8,10,16,.9));
-  padding:1.6rem 1.4rem;overflow:hidden}
-.card::before{content:"";position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,var(--gl),transparent)}
-.card.ev::before{background:linear-gradient(90deg,transparent,var(--ev),transparent)}
-.card .tag{font:600 .56rem/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--gl);margin:0 0 .9rem}
-.card.ev .tag{color:var(--ev)}
-.card h3{margin:0 0 .35rem;font-size:1.22rem;letter-spacing:-.015em}
-.card .sub{color:var(--dim);font-size:.92rem;margin:0 0 1.2rem}
-.price{font:600 1.65rem/1 var(--mono);letter-spacing:-.02em;margin:.5rem 0 .2rem;font-variant-numeric:tabular-nums}
-.price small{font-size:.72rem;color:var(--faint);letter-spacing:.08em;margin-left:.5rem;font-weight:400}
-.was{font:.8rem/1 var(--mono);color:var(--faint);margin:0 0 1rem}
-.was s{opacity:.7}
-.terms{color:var(--dim);font-size:.82rem;margin:0 0 1.3rem}
-.list{list-style:none;padding:0;margin:0 0 1.4rem;display:grid;gap:.5rem}
-.list li{font-size:.87rem;color:var(--dim);padding-left:1.1rem;position:relative}
-.list li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;background:var(--gl);
-  box-shadow:0 0 8px var(--gl)}
-.card.ev .list li::before{background:var(--ev);box-shadow:0 0 8px var(--ev)}
-.states{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 1.3rem}
-.states span{font:.6rem/1 var(--mono);letter-spacing:.1em;border:1px solid var(--line2);padding:.4rem .5rem;color:var(--dim)}
-
-
-/* ---- offer: free first, then the paid thing ------------------------- */
-.offer{border:1px solid var(--ev);background:linear-gradient(180deg,rgba(34,224,200,.07),rgba(8,10,16,.9));
-  padding:1.7rem 1.5rem;margin:0 0 1.1rem;position:relative;overflow:hidden}
-.offer::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--ev),transparent)}
-.offer .free{display:inline-block;font:700 .6rem/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
-  color:#05060a;background:var(--ev);padding:.4rem .6rem;margin:0 0 1rem}
-.offer h3{margin:0 0 .4rem;font-size:1.45rem;letter-spacing:-.02em}
-.offer .sub{color:var(--dim);font-size:.98rem;margin:0 0 1.3rem}
-.offer .nocatch{font:.72rem/1.6 var(--mono);color:var(--faint);letter-spacing:.03em;margin:1rem 0 0}
-.gtee{border-left:2px solid var(--warn);padding:.2rem 0 .2rem .9rem;margin:1.4rem 0 0;
-  font-size:.84rem;color:var(--dim)}
-.gtee b{color:var(--warn);display:block;font:600 .58rem/1 var(--mono);letter-spacing:.16em;
-  text-transform:uppercase;margin-bottom:.5rem}
-.gtee ul{list-style:none;padding:0;margin:0 0 .7rem;display:grid;gap:.4rem}
-.gtee li{padding-left:1rem;position:relative}
-.gtee li::before{content:"";position:absolute;left:0;top:.62em;width:4px;height:4px;background:var(--warn)}
-.gtee span{display:block;color:var(--faint);font-size:.8rem;border-top:1px solid var(--line);padding-top:.6rem}
-.proof{display:block;border:1px solid var(--line2);padding:1.2rem 1.3rem;margin:1.1rem 0 0;
-  text-decoration:none;transition:.15s}
-.proof:hover{border-color:var(--gl);box-shadow:0 0 24px rgba(160,107,255,.14)}
-.proof u{display:block;font:600 .56rem/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;
-  color:var(--gl);text-decoration:none;margin-bottom:.5rem}
-.proof b{display:block;font-size:1.02rem;margin-bottom:.3rem}
-.proof span{color:var(--dim);font-size:.87rem}
-
-/* ---- trust ---------------------------------------------------------- */
-ul.trust{list-style:none;padding:0;margin:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
-ul.trust li{background:var(--bg2);padding:1.15rem 1.1rem}
-ul.trust b{display:block;font-size:.95rem;margin-bottom:.28rem}
-ul.trust span{color:var(--dim);font-size:.86rem}
-ol.fields{color:var(--dim);padding-left:1.2rem;margin:0;font-size:.9rem}
-ol.fields li{margin:.35rem 0}
-
-/* ---- controls ------------------------------------------------------ */
-.cta{display:inline-block;background:var(--ink);color:#05060a;text-decoration:none;padding:.8rem 1.5rem;
-  font-weight:650;font-size:.94rem;border:1px solid var(--ink);cursor:pointer;transition:.16s;
-  box-shadow:0 0 0 rgba(232,236,245,0)}
-.cta:hover{box-shadow:0 0 26px rgba(232,236,245,.3)}
-.cta.ghost{background:transparent;color:var(--ink);border-color:var(--line2)}
-.cta.ghost:hover{border-color:var(--ink);box-shadow:none}
-.cta.off{opacity:.32;cursor:not-allowed;pointer-events:none}
-.notopen{display:block;font:.74rem/1.5 var(--mono);color:var(--warn);margin-top:.6rem;letter-spacing:.02em}
-/* the same slot under a CTA, for terms that are not a warning. `.notopen` is
-   amber because it says something is shut; reusing it to say "free, two days"
-   would teach the reader that amber means nothing. */
-.hint{display:block;font:.74rem/1.6 var(--mono);color:var(--faint);margin-top:.75rem;letter-spacing:.02em}
-.fixture{border:1px solid var(--ct);background:rgba(255,47,126,.06);padding:1rem 1.15rem;margin:1.5rem 0;font-size:.88rem}
-.fixture b{color:var(--ct)}
-table{width:100%;border-collapse:collapse;font-size:.87rem}
-th{text-align:left;color:var(--faint);font:600 .58rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
-  border-bottom:1px solid var(--line2);padding:.6rem .5rem}
-td{padding:.65rem .5rem;border-bottom:1px solid var(--line);vertical-align:top;color:var(--dim)}
-code{font:.85em var(--mono);color:var(--ev)}
-footer{position:relative;z-index:2;margin-top:5rem;padding-top:1.4rem;border-top:1px solid var(--line);
-  color:var(--faint);font-size:.79rem;max-width:60rem;margin-inline:auto}
-a{color:inherit}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; scrollbar-color: var(--line) var(--background); }
+body { margin: 0; background: var(--background); color: var(--ink); font: 1rem/1.65 "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; }
+::selection { background: var(--accent); color: var(--background); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+[hidden] { display: none !important; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .3em; }
+a:hover { color: var(--accent); }
+button, input, select, textarea { font: inherit; }
+button, a, input, select, summary { -webkit-tap-highlight-color: transparent; }
+button, select, summary { cursor: pointer; }
+button, .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .7rem 1.2rem; border: 1px solid transparent; border-radius: var(--radius); background: var(--accent); color: var(--background); font-weight: 650; line-height: 1.35; text-decoration: none; text-align: center; }
+button:hover, .button:hover { background: #d4f7e1; color: var(--background); }
+button:disabled { background: var(--line); color: #cad2d8; cursor: not-allowed; }
+.secondary { background: transparent; color: var(--ink); border-color: var(--control-line); }
+.secondary:hover { background: var(--surface); color: var(--ink); border-color: var(--muted); }
+.text-link { display: inline-flex; align-items: center; min-height: 48px; padding-block: .6rem; font-weight: 600; }
+.skip { position: absolute; top: -6rem; left: 1rem; z-index: 10; padding: 1rem; background: var(--accent); color: var(--background); }
+.skip:focus { top: 1rem; }
+.wrap { width: min(1200px, calc(100% - 6rem)); margin-inline: auto; }
+.site-header { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 92px; border-bottom: 1px solid var(--line); }
+.brand { display: inline-flex; align-items: center; gap: .8rem; min-height: 48px; text-decoration: none; font-weight: 600; letter-spacing: .04em; }
+.mark { display: inline-flex; width: 30px; height: 30px; flex-shrink: 0; }
+.mark svg { display: block; width: 100%; height: 100%; }
+.product-name { padding-left: .9rem; border-left: 1px solid var(--line); color: var(--accent); letter-spacing: .06em; }
+.site-header nav { display: flex; gap: 1.7rem; }
+.site-header nav a { display: inline-flex; align-items: center; min-height: 48px; text-decoration: none; font-size: .94rem; }
+h1, h2, h3, p { margin-top: 0; }
+h1, h2, h3 { line-height: 1.15; text-wrap: balance; }
+h1 { font-size: clamp(2.7rem, 4.4vw, 4.3rem); font-weight: 600; letter-spacing: -.035em; margin-bottom: 1.5rem; max-width: 12ch; }
+h1 span { display: block; color: var(--accent); }
+h2 { font-size: clamp(1.85rem, 2.7vw, 2.65rem); font-weight: 600; letter-spacing: -.025em; margin-bottom: 1.1rem; }
+h3 { font-size: 1.22rem; font-weight: 650; margin-bottom: .7rem; }
+p { max-width: 70ch; margin-bottom: 1.1rem; }
+.muted, .fine { color: var(--muted); }
+.fine { font-size: .9rem; }
+.hero { display: grid; grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); align-items: start; gap: 3.4rem; padding-block: 4.3rem 5rem; }
+.hero-copy { padding-top: 1.4rem; }
+.hero-copy .intro { font-size: 1.13rem; color: var(--muted); max-width: 39ch; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem; margin-block: 1.6rem; }
+.hero-copy .actions { align-items: flex-start; flex-direction: column; gap: .3rem; }
+.sample { background: var(--paper); color: var(--paper-ink); border-radius: var(--radius); padding: 1.5rem 1.65rem; box-shadow: 0 16px 40px #00000024; }
+.sample ::selection { background: #225f44; color: #fff; }
+.sample :focus-visible { outline-color: #225f44; }
+.sample h2 { font-size: 1.6rem; letter-spacing: -.02em; margin-bottom: .5rem; }
+.sample-label { color: var(--paper-muted); font-size: .9rem; margin-bottom: 1.3rem; }
+.promise { border-top: 1px solid var(--paper-line); border-bottom: 1px solid var(--paper-line); padding-block: 1rem; margin-bottom: 1.1rem; }
+.promise p { margin: .25rem 0 0; line-height: 1.45; }
+.sample code { font-family: var(--mono); font-size: .85em; overflow-wrap: anywhere; }
+fieldset { padding: 0; margin: 0; border: 0; min-width: 0; }
+legend { font-weight: 650; margin-bottom: .65rem; }
+.sample-choices { display: grid; grid-template-columns: 1fr 1fr; gap: .45rem; }
+.sample-choice { display: flex; align-items: center; gap: .5rem; min-height: 48px; padding: .6rem .7rem; border: 1px solid #7e8c86; border-radius: var(--radius); font-size: .86rem; line-height: 1.35; cursor: pointer; }
+.sample-choice:has(input:checked) { border-color: var(--paper-ink); background: #e1e7df; box-shadow: inset 0 0 0 1px var(--paper-ink); }
+input[type=radio], input[type=checkbox] { accent-color: #225f44; width: 18px; height: 18px; flex-shrink: 0; margin: 0; }
+.comparison { display: grid; grid-template-columns: 1fr 1fr; margin-block: 1.3rem; border-block: 1px solid var(--paper-line); }
+.comparison div { min-width: 0; padding-block: .8rem; }
+.comparison div + div { padding-left: 1rem; border-left: 1px solid var(--paper-line); }
+.comparison small { display: block; color: var(--paper-muted); margin-bottom: .4rem; }
+.comparison code { display: block; line-height: 1.65; padding-right: .7rem; }
+.result { min-height: 145px; }
+.result-name { color: var(--block); font-size: 1.2rem; line-height: 1.35; font-weight: 650; margin-bottom: .55rem; }
+.result[data-verdict=PASS] .result-name { color: var(--pass); }
+.result[data-verdict=UNVERIFIABLE] .result-name { color: var(--unknown); }
+.result[data-verdict=HUMAN_REVIEW] .result-name { color: var(--human); }
+.result p:last-child { margin-bottom: 0; }
+.result-code { font: 700 .82rem/1.5 var(--mono); display: inline-block; }
+.sample .boundary { margin: 1rem 0 0; padding-top: .9rem; border-top: 1px solid var(--paper-line); font-size: .82rem; color: var(--paper-muted); }
+.sample details { margin-top: 1rem; border-color: var(--paper-line); }
+.sample summary { color: var(--paper-ink); }
+.chapter { padding-block: 4.4rem; border-top: 1px solid var(--line); }
+.split { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 5rem; align-items: start; }
+.chapter-intro { max-width: 39ch; }
+.chapter-intro p { color: var(--muted); }
+.field { margin-bottom: 1.25rem; }
+.field label { display: block; font-weight: 600; margin-bottom: .5rem; }
+.field label span { color: var(--muted); font-weight: 400; }
+select, textarea { width: 100%; max-width: 100%; border: 1px solid var(--control-line); border-radius: var(--radius); color: var(--ink); background: var(--surface); padding: .85rem 1rem; caret-color: var(--accent); }
+select { min-height: 52px; }
+textarea { display: block; resize: vertical; line-height: 1.6; min-height: 115px; overflow-wrap: anywhere; }
+textarea::placeholder { color: var(--muted); opacity: 1; }
+textarea[readonly] { font-size: .95rem; }
+.field-help { font-size: .87rem; color: var(--muted); margin: .4rem 0 0; }
+.status { min-height: 1.7em; margin-block: .8rem; font-size: .95rem; }
+.plan-output { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.plan-output h3 { color: var(--accent); }
+.plan-output textarea { min-height: 330px; }
+.plan-output .actions { margin-bottom: .5rem; }
+.steps { margin: 0; padding-left: 1.4rem; }
+.steps li { padding-left: .5rem; padding-bottom: 1.3rem; }
+.steps li::marker { color: var(--accent); font-weight: 650; font-variant-numeric: tabular-nums; }
+.steps strong { display: block; margin-bottom: .25rem; }
+.steps p { color: var(--muted); margin: 0; }
+.free-artifact { margin-block: 1.7rem; padding-block: 1.5rem; border-block: 1px solid var(--line); }
+.free-artifact h3 { margin-bottom: .6rem; }
+.free-artifact .button { max-width: 100%; }
+.artifact-meta { color: var(--muted); font-size: .9rem; }
+.artifact-meta code, .artifact-integrity code { font-family: var(--mono); overflow-wrap: anywhere; word-break: break-word; }
+.artifact-integrity .detail-content p { margin-bottom: .3rem; color: var(--muted); }
+details { border-block-start: 1px solid var(--line); }
+summary { padding: 1rem .2rem; font-weight: 600; min-height: 56px; }
+details[open] > summary { color: var(--accent); }
+.detail-content { padding: .3rem .2rem 1.4rem; }
+.detail-content > :last-child { margin-bottom: 0; }
+pre { overflow-x: auto; padding: 1rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); line-height: 1.6; }
+pre code { font: .9rem/1.6 var(--mono); }
+.plain-instructions { white-space: pre-wrap; overflow-wrap: anywhere; font-family: inherit; font-size: .94rem; line-height: 1.7; }
+.recovery-list { margin: .4rem 0 0; }
+.recovery-list dt { font-weight: 650; padding-top: 1.1rem; }
+.recovery-list dd { margin: .35rem 0 1rem; color: var(--muted); }
+.kit { background: var(--surface); padding: 2.5rem; border-radius: var(--radius); }
+.kit h2 { max-width: 22ch; }
+.availability { color: var(--accent); font-size: 1.08rem; font-weight: 600; margin-block: 1.3rem; }
+.contents { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.contents caption { text-align: left; padding-block: .5rem 1rem; color: var(--muted); }
+.contents th, .contents td { text-align: left; vertical-align: top; padding: 1.1rem .9rem 1.1rem 0; border-top: 1px solid var(--line); }
+.contents th { width: 31%; font-weight: 600; }
+.contents td { color: var(--muted); }
+.share-section { max-width: 730px; margin-inline: auto; padding-block: 4.5rem; }
+.share-section h2 { font-size: 2rem; }
+.share-section textarea { min-height: 135px; }
+.share-section .fallback-link { min-height: 85px; }
+.privacy-control { display: flex; align-items: flex-start; gap: .9rem; min-height: 48px; padding-block: .8rem; cursor: pointer; }
+.privacy-control input { margin-top: .35rem; accent-color: var(--accent); }
+.privacy-control span { max-width: 66ch; }
+.site-footer { border-top: 1px solid var(--line); padding-block: 2rem 3rem; }
+.footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+.site-footer nav { display: flex; gap: 1.4rem; }
+.site-footer nav a { min-height: 48px; display: inline-flex; align-items: center; }
+.site-footer p { font-size: .9rem; color: var(--muted); }
+.site-footer details { max-width: 850px; }
+@media (max-width: 1050px) {
+  .wrap { width: calc(100% - 3rem); }
+  .hero { gap: 2rem; }
+  .sample { padding: 1.25rem; }
+  .split { gap: 3rem; }
+}
+@media (max-width: 800px) {
+  .site-header { flex-wrap: wrap; gap: .2rem 1rem; padding-block: .8rem; min-height: 76px; }
+  .hero { grid-template-columns: 1fr; gap: 2.2rem; padding-block: 2.3rem 3rem; }
+  .hero-copy { padding-top: 0; }
+  h1 { max-width: 17ch; font-size: clamp(2.7rem, 7.5vw, 4rem); }
+  .hero-copy .intro { max-width: 52ch; }
+  .hero-copy .actions { flex-direction: row; gap: .6rem 1.2rem; }
+  .split { grid-template-columns: 1fr; gap: 1.4rem; }
+  .chapter-intro { max-width: 65ch; }
+  .chapter { padding-block: 3rem; }
+  .result { min-height: 0; }
+  .kit { padding: 1.7rem; }
+}
+@media (max-width: 450px) {
+  .wrap { width: calc(100% - 2rem); }
+  .site-header nav { width: 100%; justify-content: space-between; gap: .8rem; }
+  .brand { font-size: .91rem; gap: .6rem; }
+  .product-name { padding-left: .65rem; }
+  .sample { padding: 1.15rem; }
+  .sample-choices { grid-template-columns: 1fr; }
+  .comparison { grid-template-columns: 1fr; }
+  .comparison div + div { border-left: 0; border-top: 1px solid var(--paper-line); padding-left: 0; }
+  .actions { align-items: stretch; }
+  .actions button, .actions .button { flex: 1 1 auto; }
+  .kit { padding: 1.35rem; }
+  .contents th, .contents td { display: block; width: 100%; }
+  .contents th { padding-bottom: .35rem; }
+  .contents td { border-top: 0; padding-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+@media print {
+  :root { color-scheme: light; --background: white; --surface: #f4f4f4; --ink: black; --muted: #333; --line: #777; --accent: #205e40; }
+  .wrap { width: 100%; }
+  .hero, .split { display: block; }
+  .site-header nav, .actions, .privacy-control { display: none; }
+  .sample { box-shadow: none; }
+}
 </style>
-</head><body data-field="home">
-<canvas id="field" aria-hidden="true"></canvas>
-<div id="grain" aria-hidden="true"></div>
-<div id="vig" aria-hidden="true"></div>
-<div id="hud">
-  <nav id="nav" aria-label="주요"><a href="/" class="brand"><i class="pip" aria-hidden="true"></i><span class="mark" role="img" aria-label="MIGARYOS"><svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 100 100">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="/"><span class="mark" role="img" aria-label="MIGARYOS"><svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 100 100">
 <rect width="100" height="100" fill="none"/>
 <rect x="19.000" y="21.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="currentColor" stroke-width="10.500" stroke-linejoin="round" transform="rotate(-22 44.000 37.000)"/>
 <rect x="31.000" y="47.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="currentColor" stroke-width="10.500" stroke-linejoin="round" transform="rotate(22 56.000 63.000)"/>
-</svg></span>MIGARYOS</a><a href="/invara/" class="on">INVARA</a><a href="/glitch/">GLITCH</a><a href="/wie/">WIE</a><a href="/loop.html" class="sec">LOOP</a><a href="/record/" class="sec">기록</a></nav>
-  <span class="sp"></span>
-  <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>1</b><em class="tel"> · 실측 2026-09-02</em></span>
-  <span class="sp"></span>
-  <span class="stat opt" aria-hidden="true"><u>원장</u><b>187,143</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>4,861</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>8</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
-</div>
-<header class="wrap hero">
-  <span class="rdg tl" aria-hidden="true"></span><span class="rdg tr" aria-hidden="true"></span>
-  <p class="kicker">INVARA · Independent acceptance checks for AI-coded work</p>
-  <h1>Your coding agent says &quot;done.&quot; INVARA checks whether it actually kept the promises you gave it.</h1>
-  <p class="lede">You don&#x27;t need to read the code to accept an agent&#x27;s work blindly. Seal the acceptance conditions before the work. Judge them afterwards.</p>
-  <p><a class="cta github_or_docs_click" id="github_or_docs_click" href="https://github.com/Jujitae/invara">View quickstart on GitHub</a>
-<span class="hint">Public 0.1.3 · start now · no email required</span></p>
+</svg></span><span aria-hidden="true">MIGARYOS</span><span class="product-name">INVARA</span></a>
+  <nav aria-label="On this page"><a href="#sample" data-open-sample>Sample</a><a href="#free">Free guide</a><a href="#kit">Task Check Kit</a></nav>
 </header>
-<main class="wrap">
-<section aria-labelledby="install-heading">
-<h2 id="install-heading">Start now</h2>
-<div class="deck">
-  <section class="card ev">
-    <p class="tag">Claude Code</p>
-    <h3>Install the plugin</h3>
-    <pre><code>/plugin marketplace add Jujitae/invara
-/plugin install invara</code></pre>
-    <p><button type="button" class="cta copy-command claude_install_click" id="claude_install_click" data-copy="/plugin marketplace add Jujitae/invara
-/plugin install invara">Copy Claude Code commands</button></p>
-    <p class="terms">Optional after installation: <code>/invara:doctor</code></p>
+<main id="main" class="wrap">
+  <div class="hero">
+    <div class="hero-copy">
+      <h1>Your AI says “done.” <span>Check the promises.</span></h1>
+      <p class="intro">Choose what must stay unchanged. Ask your coding assistant to check it on your computer. Keep the result and what could not be checked.</p>
+      <div class="actions"><a class="button" href="#sample" data-open-sample data-primary-action>Try a sample check</a><a class="text-link" href="#prepare">Prepare my next task</a></div>
+      <p class="fine">No account. No code upload.<br>The sample uses made-up files.</p>
+    </div>
+    <section id="sample" class="sample" aria-labelledby="sample-heading" tabindex="-1">
+      <h2 id="sample-heading">One promise. What changed?</h2>
+      <p class="sample-label">Sample only — this is not a check of your project.</p>
+      <div class="promise"><strong>The promise</strong><p>Clean up a parser. Keep its existing tests unchanged.</p><p><code>tests/test_parser.py</code> is the protected file.</p></div>
+      <fieldset id="sample-controls" disabled><legend>What did the assistant do?</legend><div class="sample-choices">
+        <label class="sample-choice"><input type="radio" name="sample-case" value="BLOCK" checked>Changed the protected file</label>
+        <label class="sample-choice"><input type="radio" name="sample-case" value="PASS">Kept the protected file</label>
+        <label class="sample-choice"><input type="radio" name="sample-case" value="UNVERIFIABLE">Missing before state</label>
+        <label class="sample-choice"><input type="radio" name="sample-case" value="HUMAN_REVIEW">Person required</label>
+      </div></fieldset>
+      <div class="comparison" aria-label="Illustrative file comparison"><div><small>Before the task</small><code id="sample-before">assert parse("12") == 12</code></div><div><small>After the task</small><code id="sample-after">assert parse("12") &gt;= 0</code></div></div>
+      <div id="sample-result" class="result" data-verdict="BLOCK" role="status" aria-live="polite" aria-atomic="true">
+        <p class="result-name"><span id="sample-label">A condition was broken</span> · <span id="sample-verdict" class="result-code">BLOCK</span></p>
+        <p id="sample-reason">The protected test was changed to accept a wider result. Changing it breaks the promise, even if the edited test passes.</p>
+        <p id="sample-scope" class="sample-label">Scope: this made-up file comparison only. It says nothing about your project.</p>
+      </div>
+      <p class="boundary">Illustrative browser demonstration. No INVARA engine runs here. A real check uses your agreed conditions and local evidence.</p>
+      <noscript><p>JavaScript is off. The complete BLOCK example is shown above. All four result meanings and free local instructions are available below.</p></noscript>
+    </section>
+  </div>
+
+  <section id="prepare" class="chapter split" aria-labelledby="prepare-heading">
+    <div class="chapter-intro"><h2 id="prepare-heading">Prepare one task.</h2><p>Start with what you want to do. Your assistant will help identify the real files and existing checks on your computer.</p><p class="fine">The optional note stays in this page’s memory. Reloading clears it. Save a plan yourself if you want to keep it.</p></div>
+    <div>
+      <div class="field"><label for="task-kind">What is your next task?</label><select id="task-kind" autocomplete="off"><option value="feature">Add a small feature</option><option value="cleanup">Clean up Python code</option><option value="handoff">Hand off finished work</option></select></div>
+      <div class="field"><label for="task-goal">What would you like to change? <span>Optional</span></label><textarea id="task-goal" rows="3" maxlength="280" autocomplete="off" spellcheck="false" aria-describedby="goal-help goal-count" placeholder="For example: make the search results easier to read."></textarea><p id="goal-help" class="field-help">One short sentence is enough. No code, file paths or private details needed.</p><p id="goal-count" class="field-help">0 / 280 characters</p></div>
+      <button id="prepare-plan" type="button" disabled>Prepare my check plan</button>
+      <p id="builder-status" class="status" role="status" aria-live="polite"></p>
+      <noscript><p>The custom helper needs JavaScript. <a href="#free-instructions">Use the complete free instructions</a> and tell your assistant which task you chose. No sign-in or payment is needed.</p></noscript>
+      <section id="plan-output" class="plan-output" aria-labelledby="plan-heading" hidden>
+        <h3 id="plan-heading" tabindex="-1">Your check plan is ready.</h3>
+        <p>Your project has not been checked yet.</p>
+        <p id="plan-summary"></p>
+        <label for="plan-text">Instructions to take to your local assistant</label><textarea id="plan-text" readonly rows="12" spellcheck="false"></textarea>
+        <div class="actions"><button id="copy-plan" type="button">Copy instructions for my assistant</button><button id="download-plan" class="secondary" type="button">Save my plan</button></div>
+        <p id="plan-action-status" class="status" role="status" aria-live="polite"></p>
+        <p class="fine">Text above is always selectable. If copying is blocked, select it and use your device’s Copy action. If a download does not appear, check Downloads or copy the text into a local note.</p>
+        <a class="text-link" href="#free">Run a real check — free</a>
+      </section>
+    </div>
   </section>
-  <section class="card ev">
-    <p class="tag">Codex / other coding agents</p>
-    <h3>Use the shell path</h3>
-    <pre><code>uvx invara list
-pip install invara</code></pre>
-    <p><button type="button" class="cta copy-command codex_install_click" id="codex_install_click" data-copy="uvx invara list
-pip install invara">Copy Codex / shell commands</button></p>
-    <p class="terms">Use <code>uvx</code> now, or install persistently with <code>pip</code>.</p>
+
+  <section id="free" class="chapter split" aria-labelledby="free-heading">
+    <div class="chapter-intro"><h2 id="free-heading">Run a real check — free</h2><p>The checker, public docs, your first local check and every verdict are free. This is the full path.</p><p>On a phone? Try and share the sample here, then continue on a computer with your project and a local coding assistant.</p></div>
+    <div>
+      <ol class="steps">
+        <li><strong>Agree on the promise before editing.</strong><p>Your assistant identifies existing protected files and runnable checks, and shows you the proposed plan. Without suitable checks or a trustworthy before state, stop and name what is missing.</p></li>
+        <li><strong>Seal the before state. Then do the work.</strong><p>INVARA records the agreed conditions before the task starts. Do not create a before state after the changes have happened.</p></li>
+        <li><strong>Run the check and keep the exact result.</strong><p>Keep the original verdict, scope, limits, tool version and evidence location. A person still owns the decision to accept, publish or deploy.</p></li>
+      </ol>
+      <p class="fine">You need Python 3.12+ and local command access. Windows and Linux are the intended kit environments. macOS and editor installation remain unverified for this launch. A browser-only app builder can use the demonstration; a real check needs access to the local project.</p>
+      <p class="fine">We do not upload your code. Your chosen assistant has its own data policy. Local commands run with your permissions and may access the network. INVARA is not a sandbox.</p>
+      <div class="free-artifact">
+        <h3>Download the fixed free example</h3>
+        <p>This ZIP is a prepared, local example to inspect alongside the complete instructions below.</p>
+        <p><a id="free-example-download" class="button" href="invara-free-example-1.0.0.zip" download="invara-free-example-1.0.0.zip">Download the free example ZIP</a></p>
+        <p class="artifact-meta"><code>invara-free-example-1.0.0.zip</code> · 19,942 bytes</p>
+        <details class="artifact-integrity"><summary>File integrity</summary><div class="detail-content"><p>SHA-256</p><code>71d67cb9a747ee5c393e76bca44605f94e1ce52cd6c583d06a999ef69a0ecb8a</code></div></details>
+        <p class="fine"><strong>Review candidate.</strong> This ZIP contains a fixed local example. It does not check your project.</p>
+      </div>
+      <details id="free-instructions"><summary>Complete free instructions for your assistant</summary><div class="detail-content"><p>Select and copy this text. You can use it without the task helper.</p><pre class="plain-instructions" tabindex="0">INVARA — free local task instructions
+
+This is a check plan, not a verification result. Use your existing local coding assistant (Codex, Claude Code, or another assistant that can run local commands). No code upload or payment is required by this workflow.
+
+1. Before changing the project, confirm that you can run local commands on the computer holding it. Python 3.12+ is required. Read the public INVARA README and AI Agent Quickstart at https://github.com/Jujitae/invara. Use the published package and record its actual version. Do not assume a newer release or kit has been published.
+
+2. Inspect the existing project without changing it. Identify the actual files that must stay unchanged and existing runnable completion checks. Explain in plain language what each check observes and what it misses. Do not invent a passing command, replace a real check with an always-successful command, or silently weaken the requested conditions.
+
+3. Show me the proposed task contract, protected files, existing check commands and any required human decision. Ask me to confirm that this expresses the task. If no suitable existing check, trustworthy pre-work state or local execution access is available, stop and name what is missing. Do not invent evidence or retroactively seal a before state for work that has already happened.
+
+4. Use the local INVARA CLI. With uv installed, start with `uvx invara list`. Alternatively, install in an appropriate local Python environment with `python -m pip install invara`, then use `invara list`. Follow the published contract schema; replace placeholders with the actual agreed task file and task ID. Seal BEFORE editing: `uvx invara seal &lt;task.json&gt;` (or `invara seal &lt;task.json&gt;` for the persistent install). A plan alone is not a seal or a check.
+
+5. Make only the agreed changes. Afterwards run `uvx invara judge &lt;task_id&gt; --commit` (or `invara judge &lt;task_id&gt; --commit`). Preserve the exact output, actual tool version and evidence location locally. Commands run with my permissions and may access the network. INVARA is not a sandbox.
+
+6. Read the original verdict field, not just the process exit code. PASS: checked conditions met within the declared scope. BLOCK: a condition was broken. UNVERIFIABLE: could not check. HUMAN_REVIEW: needs a person, even when the exit code is 0. An engine error or refusal is not a verdict. Never rename a non-PASS result as success. Do not treat your own completion claim as evidence or a PASS as permission to publish or deploy.
+
+7. Give me a plain-language handoff: task and declared scope; original verdict; what was and was not checked; original evidence location; actual tool version; and instructions for the recipient to recheck. A stored-record replay is not a new execution. Keep reports on my computer. If something failed, preserve the result, identify the broken or missing condition, and agree on a next step before changing the contract or trying again.
+</pre></div></details>
+      <details id="install-instructions"><summary>Installation details, when you need them</summary><div class="detail-content">
+        <h3>Codex or another assistant with a shell</h3><p>If <code>uv</code> is already installed, start with:</p><pre><code>uvx invara list</code></pre><p>Or use an appropriate local Python environment:</p><pre><code>python -m pip install invara
+invara list</code></pre>
+        <p>Use the same command prefix throughout. Replace the placeholders with the task file and ID agreed with your assistant.</p><pre><code>uvx invara seal &lt;task.json&gt;
+# Do the agreed work after sealing.
+uvx invara judge &lt;task_id&gt; --commit</code></pre>
+        <h3>Claude Code</h3><p>The public quickstart describes this optional plugin path:</p><pre><code>/plugin marketplace add Jujitae/invara
+/plugin install invara</code></pre><p>If it does not start, try <code>/invara:doctor</code> or use the shell path. Actual editor installation is not verified by this page.</p>
+        <p><a href="https://github.com/Jujitae/invara" rel="noreferrer">Open the public README and quickstart</a>. Check the published version and its schema before running. This frontend does not establish that a new engine release is public.</p>
+      </div></details>
+      <details><summary>If you cannot reach a result</summary><div class="detail-content"><dl class="recovery-list">
+        <dt>No local project or command access</dt><dd>Continue on the computer holding your project, using an assistant that can run local commands. The browser sample cannot inspect it.</dd>
+        <dt>No suitable existing checks</dt><dd>Name the missing check and decide how to establish it before starting. A command that always succeeds is not evidence.</dd>
+        <dt>The work is already finished</dt><dd>Keep existing evidence, if any. Without a trustworthy pre-work seal, do not claim the original promises were checked. Plan a future check with an honest starting point.</dd>
+        <dt>Installation or the engine stops with an error</dt><dd>Keep the error locally. Check Python, the installed version and the public quickstart. An error or refusal is not a verdict, and retrying is not evidence that it worked.</dd>
+      </dl></div></details>
+      <details><summary>Already tried a local check?</summary><div class="detail-content"><p>This is an optional self-report. We do not receive or inspect your result.</p><button id="report-local" type="button" class="secondary" disabled>I ran a local check</button><p id="local-status" class="status" role="status" aria-live="polite"></p><button id="report-repeat" type="button" class="secondary" disabled>I have used this free flow before</button><p id="repeat-status" class="status" role="status" aria-live="polite"></p></div></details>
+    </div>
   </section>
-</div>
-</section>
 
-<section aria-labelledby="flow-heading">
-<h2 id="flow-heading">One simple acceptance check</h2>
-<ol class="trust"><li><b>1.</b><span>Before work: define what must stay true</span></li><li><b>2.</b><span>Seal the acceptance conditions</span></li><li><b>3.</b><span>Let the coding agent work</span></li><li><b>4.</b><span>Judge the observable evidence</span></li><li><b>5.</b><span>Receive the exact verdict</span></li></ol>
-<p class="lede">Exact verdict: <b>PASS</b> · <b>BLOCK</b> · <b>UNVERIFIABLE</b> · <b>HUMAN_REVIEW</b></p>
-<p class="note">You asked an agent to optimize a parser without changing its tests. The agent edits the protected test file. INVARA returns BLOCK.</p>
-</section>
+  <section id="kit" class="chapter" aria-labelledby="kit-heading"><div class="kit">
+    <h2 id="kit-heading">Ready-to-use workflows for your next tasks</h2>
+    <p>The checker is free. This optional kit is planned to put three prepared workflows, runnable examples and handoff templates in one download.</p>
+    <p class="availability">Planned price: $9 once. Purchases are not open yet.</p>
 
-<section aria-labelledby="trust-heading">
-<h2 id="trust-heading">Evidence you can inspect</h2>
-<ul class="trust"><li>Public INVARA 0.1.3 · wheel SHA256 d8507d777ec01134cdd111441961e945e42b7889790721586e633e6791432d8a</li><li>Zero runtime dependencies and no model in the verdict path</li><li>Verdicts use observable file bytes and command exit codes</li><li>Append-only hash-chain verdict history with replay</li><li>Six MCP tools · public Windows and independent Linux fresh-install verification</li></ul>
-<p class="terms">INVARA verifies declared constraints against observable evidence. It does not prove general software correctness, find bugs, perform a security audit, prevent hallucinations, or autonomously authorize work.</p>
-<p><a class="ghost github_or_docs_click" href="https://github.com/Jujitae/invara">Read the public README and docs</a></p>
-</section>
+    <p class="fine">This is a contents preview. The paid download is not available here, and these intended contents are not a claim that the kit is finished.</p>
+    <details id="kit-preview"><summary>Preview the Task Check Kit contents</summary><div class="detail-content">
+      <table class="contents"><caption>INVARA Task Check Kit · intended contents</caption><tbody>
+        <tr><th scope="row">Add a small feature</th><td>A small example project, editable contract, instructions for choosing protected tests and completion checks, and expected PASS and BLOCK examples. See which parts to replace before your assistant edits anything.</td></tr>
+        <tr><th scope="row">Clean up Python code</th><td>A before/after example, prepared comparison inputs and manifest, the run/verify/export/inspect sequence, and matching and intentionally different outputs. A finite comparison covers only its declared inputs.</td></tr>
+        <tr><th scope="row">Hand off finished work</th><td>An editable acceptance record with scope, original verdict, limits, tool version, evidence location and recipient recheck instructions, plus a completed synthetic example. Stored-record replay stays distinct from a new run.</td></tr>
+      </tbody></table>
+      <p>Planned format: offline <code>START-HERE.html</code>, editable Markdown and JSON files, runnable examples, and a contents/version record.</p>
+      <p class="fine">Intended for local use on Windows or Linux with Python 3.12+. Payment would buy the assembled download and convenience. The engine stays free. Custom analysis, code fixes, human review, a response-time guarantee and unlimited support are not included.</p>
+      <p><a href="#sample" data-open-sample>Explore the full free example</a> or <a href="#free-instructions">use the complete free workflow</a>.</p>
+    </div></details>
+    <a class="text-link" href="#free">Start with the free checker</a>
+  </div></section>
 
-<section class="offer" aria-labelledby="pilot-heading">
-  <span class="free">Self-serve install first</span>
-  <h2 id="pilot-heading">Try it on one real AI-coding task.</h2>
-  <p class="sub">No repository upload required. If you want to share feedback, tell us what happened after your first verdict.</p>
-  <p><a class="cta pilot_feedback_click" id="pilot_feedback_click" href="mailto:hello@migaryos.com?subject=INVARA%20first-verdict%20feedback&amp;body=Tool%20used%20%28Claude%20Code%20%2F%20Codex%20%2F%20other%29%3A%0A%0ADid%20you%20reach%20a%20first%20verdict%3F%0A%0AWhat%20blocked%20you%3F%0A%0AWould%20you%20use%20it%20again%3F%0A%0AOptional%20email%3A">Try it on one real AI-coding task</a></p>
-  <p class="terms">Feedback asks only which tool you used, whether you reached a first verdict, what blocked you, whether you would use it again, and an optional email.</p>
-</section>
+  <section id="limits" class="chapter split" aria-labelledby="limits-heading">
+    <div class="chapter-intro"><h2 id="limits-heading">Keep the limits with the result.</h2><p>INVARA verifies declared constraints against observable evidence. It does not prove general software correctness, find bugs, perform a security audit, prevent hallucinations, or autonomously authorize work.</p><a class="text-link" href="https://github.com/Jujitae/invara" rel="noreferrer">Read the public evidence and docs</a></div>
+    <dl class="recovery-list">
+      <dt>Checked conditions met · PASS</dt><dd>The declared checks met their conditions within the recorded scope. This does not prove software correctness or authorize a release.</dd>
+      <dt>A condition was broken · BLOCK</dt><dd>Keep the failed result. Review the broken condition before fixing the work; do not weaken the condition to obtain a different label.</dd>
+      <dt>Could not check · UNVERIFIABLE</dt><dd>Keep the uncertainty. Find the missing evidence or failed prerequisite before trying again.</dd>
+      <dt>Needs a person · HUMAN_REVIEW</dt><dd>Keep the required human decision open. A process exit code of 0 can still accompany HUMAN_REVIEW; it is not PASS.</dd>
+    </dl>
+  </section>
+
+  <section class="share-section" aria-labelledby="share-heading"><h2 id="share-heading">Give someone a useful example.</h2><p>Share the free example. Your task note and any project result stay out of it.</p>
+    <details id="share-preview"><summary>Share the free example</summary><div class="detail-content"><label for="share-text">Exactly what the fixed message contains</label><textarea id="share-text" readonly rows="4">Try INVARA&#x27;s free example: see how a check catches a file changed against the plan. https://migaryos.com/invara/</textarea>
+      <div class="actions"><button id="copy-share" type="button" disabled>Copy the fixed message</button><button id="native-share" type="button" class="secondary" hidden>Open device share options</button></div>
+      <p id="share-status" class="status" role="status" aria-live="polite"></p>
+      <div id="share-fallback" hidden><label for="share-link">Select and copy the canonical example link</label><textarea id="share-link" class="fallback-link" readonly rows="2">https://migaryos.com/invara/</textarea></div>
+      <p class="fine">No automatic posting. If copying is unavailable, select the message above and use your device’s Copy action.</p>
+      <noscript><p>Select the fixed message above, or copy this <a href="https://migaryos.com/invara/" rel="noreferrer">canonical free example link</a>.</p></noscript>
+    </div></details>
+    <a id="feedback-link" class="text-link" href="mailto:hello@migaryos.com?subject=INVARA%20%E2%80%94%20what%20got%20in%20the%20way&amp;body=" rel="noreferrer">Tell us what got in the way</a><p class="fine">Opens your email app. Describe the obstacle; you do not need to attach code or a report. Opening email does not send a message.</p>
+  </section>
 </main>
-<footer class="wrap">
-<p><b style="color:var(--warn)">아직 공개된 적중률 수치는 없습니다.</b> 루프가 한 번도 닫히지
-않았기 때문이며, 있는 것처럼 쓰지 않습니다. 배경의 지도는 장식이 아니라 이 시스템이
-다루는 객체와 그 사이의 실제 관계이며, 노드 이름은 전부 제품 자신의 구조입니다 —
-고객사 이름은 하나도 없습니다. 화면의 확률 표시는 그 모형을 읽습니다. 실적이 아닙니다.</p>
-<p>WIE is a decision-evidence and audit tool, not an investment adviser, broker, or automated trading system. Outputs are analytical evidence structures, not buy/sell instructions.</p>
-<!-- Every route, at every width. The bar drops `.sec` chips below 640px to
-     keep the closed-loop badge on screen; this is where they stay reachable,
-     so that trade is a layout decision rather than a phone losing two pages. -->
-<p>MIGARYOS · <a href="mailto:hello@migaryos.com">hello@migaryos.com</a>
-· <a href="/invara/">INVARA</a> · <a href="/glitch/">GLITCH</a> · <a href="/wie/">WIE</a>
-· <a href="/loop.html">LOOP</a> · <a href="/record/">기록</a></p>
+<footer class="site-footer wrap">
+  <div class="footer-top"><a class="brand" href="/">MIGARYOS</a><nav aria-label="Other MIGARYOS products"><a href="/invara/" aria-current="page">INVARA</a><a href="/glitch/">GLITCH</a><a href="/wie/">WIE</a></nav></div>
+  <p>INVARA checks declared conditions against observable evidence. Your decisions stay yours.</p>
+  <details id="privacy"><summary>Your data and optional measurement</summary><div class="detail-content">
+    <p>There is no account, upload field or remote model in this page. Your optional note and draft stay in memory until you clear or reload the page. Copy and download happen only when you request them. We use no cookies or browser storage.</p>
+    <label class="privacy-control"><input id="metrics-consent" type="checkbox" disabled autocomplete="off"><span>Help improve this flow by sending optional aggregate button-use counts. We do not send what you type or your project data.</span></label>
+    <p id="metrics-status" class="status" role="status" aria-live="polite">Measurement available. Consent is off.</p>
+    <p class="fine">If you opt in, each request contains only the action name, the fixed flow version and an allowed campaign category. Consent is page-memory only, starts off and sends no earlier actions. Turning it off aborts pending client work and stops future requests; it cannot retract a request already received. A failed request is not retried. Accepted counters are spoofable aggregate interaction counts, not unique people, and do not prove demand, payment, local use or any verdict. No identifiers, note text, project or code content, source URL, task or file path, referrer, payment or verdict data are sent. Missing measurement is unavailable information, not zero demand.</p>
+    <p class="fine">Ordinary hosting providers still process connection information. External documentation links and your chosen email service have their own policies. We do not claim that visiting a website leaves no network trace.</p>
+  </div></details>
+  <p><a href="mailto:hello@migaryos.com">hello@migaryos.com</a> · INVARA by MIGARYOS</p>
 </footer>
-<script>var SEEDP=62.0;
-(function(){
-var c=document.getElementById('field'),x=c&&c.getContext&&c.getContext('2d',{alpha:true});
-if(!x)return;
-var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
-var W=0,H=0,DPR=1,N=[],L=[],CL=[],t=0,run=true,cx=0,cy=0,CORE=200;
-var PX=0,PY=0,TPX=0,TPY=0;   // pointer parallax: depth, never navigation
-var EV='34,224,200',CT='255,47,126',MX='160,107,255',UN='120,134,164',
-    AM='255,176,46',OK='60,224,150',INK='232,236,245';
-var RMIN=54;   // nothing may occupy the centre; that is what blew out to white
-var NODASH=[];
+<script id="invara-config" type="application/json">{"telemetry": {"enabled": true, "endpoint": "https://invara-events.mettl.chatgpt.site/api/events"}, "paymentEnabled": false, "freeInstructions": "INVARA \u2014 free local task instructions\n\nThis is a check plan, not a verification result. Use your existing local coding assistant (Codex, Claude Code, or another assistant that can run local commands). No code upload or payment is required by this workflow.\n\n1. Before changing the project, confirm that you can run local commands on the computer holding it. Python 3.12+ is required. Read the public INVARA README and AI Agent Quickstart at https://github.com/Jujitae/invara. Use the published package and record its actual version. Do not assume a newer release or kit has been published.\n\n2. Inspect the existing project without changing it. Identify the actual files that must stay unchanged and existing runnable completion checks. Explain in plain language what each check observes and what it misses. Do not invent a passing command, replace a real check with an always-successful command, or silently weaken the requested conditions.\n\n3. Show me the proposed task contract, protected files, existing check commands and any required human decision. Ask me to confirm that this expresses the task. If no suitable existing check, trustworthy pre-work state or local execution access is available, stop and name what is missing. Do not invent evidence or retroactively seal a before state for work that has already happened.\n\n4. Use the local INVARA CLI. With uv installed, start with `uvx invara list`. Alternatively, install in an appropriate local Python environment with `python -m pip install invara`, then use `invara list`. Follow the published contract schema; replace placeholders with the actual agreed task file and task ID. Seal BEFORE editing: `uvx invara seal \u003ctask.json>` (or `invara seal \u003ctask.json>` for the persistent install). A plan alone is not a seal or a check.\n\n5. Make only the agreed changes. Afterwards run `uvx invara judge \u003ctask_id> --commit` (or `invara judge \u003ctask_id> --commit`). Preserve the exact output, actual tool version and evidence location locally. Commands run with my permissions and may access the network. INVARA is not a sandbox.\n\n6. Read the original verdict field, not just the process exit code. PASS: checked conditions met within the declared scope. BLOCK: a condition was broken. UNVERIFIABLE: could not check. HUMAN_REVIEW: needs a person, even when the exit code is 0. An engine error or refusal is not a verdict. Never rename a non-PASS result as success. Do not treat your own completion claim as evidence or a PASS as permission to publish or deploy.\n\n7. Give me a plain-language handoff: task and declared scope; original verdict; what was and was not checked; original evidence location; actual tool version; and instructions for the recipient to recheck. A stored-record replay is not a new execution. Keep reports on my computer. If something failed, preserve the result, identify the broken or missing condition, and agree on a next step before changing the contract or trying again.\n"}</script>
+<script>(function () {
+  "use strict";
 
-// The picture is a map, not a mood. Every label below is a real part of this
-// system: an object in the evidence graph, a stage of the pipeline, or an
-// adapter that exists under src/wie/etl. None of them is a customer name. There
-// are no customers yet, and a company name painted on a node would be the same
-// lie as a printed hit rate.
-//
-// An edge is an argument. rel says which one:
-//   1 supports · -1 refutes · 0 derives or carries · 2 sealed, not yet settled
-// An earlier build drew a spoke from the hub to all thirteen nodes. That is a
-// starburst and it says nothing. Only two edges reach DECISION now, because in
-// this product only two things move one: a probability that moved, and an
-// outcome that landed.
-//
-// m: the nodes a phone gets, chosen so the surviving edges still connect. A
-// phone gets a smaller true graph, never the same graph with the lines cut.
-var MODE=(document.body&&document.body.getAttribute('data-field'))||'home';
-var FIELDS={
-  home:{hub:'DECISION',g:[
-    {l:'CLAIM',             x:-0.70,y:-0.40,s: 0},
-    {l:'SOURCE',            x:-1.04,y: 0.06,s: 0},
-    {l:'ENTITY',            x:-0.80,y: 0.56,s: 0},
-    {l:'EVIDENCE',          x: 0.00,y:-0.94,s: 1},
-    {l:'COUNTER EVIDENCE',  x: 0.10,y: 0.96,s:-1,sl:'COUNTER EV.'},
-    {l:'ASSUMPTION',        x:-0.50,y: 0.86,s:-1},
-    {l:'CAUSAL PATH',       x: 0.62,y:-0.56,s: 0},
-    {l:'PROBABILITY',       x: 0.26,y: 0.36,s: 0},
-    {l:'ANCHOR',            x: 1.04,y:-0.66,s: 2},
-    {l:'INVALIDATION RULE', x:-0.98,y:-0.92,s:-1,sl:'INVALIDATION'},
-    {l:'CONFIRMATION RULE', x: 0.98,y: 0.62,s: 2,sl:'CONFIRMATION'},
-    {l:'OUTCOME AUDIT',     x: 1.00,y:-0.04,s: 1},
-    {l:'PROVENANCE',        x:-0.70,y: 0.30,s: 0}],
-   e:[[1,0,0],[1,2,0],[3,0,1],[4,0,-1],[0,5,-1],
-      [3,12,0],[4,12,0],[12,1,0],
-      [3,7,1],[4,7,-1],[0,6,0],[6,7,0],[2,6,0],
-      [8,7,2],[8,11,2],[9,0,-1],[10,0,2],
-      [7,-1,0],[11,-1,1]],
-   m:[0,3,4,7,8,11]},
-  // The seven levels in the order they actually run, with the adapters that
-  // exist under src/wie/etl feeding level 0. Telegram and Bluesky arrive on the
-  // weak side on purpose: tier 4 is enforced in code, so neither can ever be
-  // the confirming side of a measurement.
-  // The phone gets L1..L6, contiguous. The first pick took L0-L4 and L6: every
-  // node stayed reachable from the hub so the connectivity test passed, and the
-  // canvas still showed a reader a missing number. A page that cannot count to
-  // six is not believed about its ledger size either — and a figure written
-  // into this comment would itself go stale on a page that sells dated
-  // measurements, so it is not written here. L0 is the level every
-  // competitor also has; L6 is the one that closes the loop.
-  wie:{hub:'LEDGER',g:[
-    {l:'SEC EDGAR',         x:-1.02,y:-0.72,s: 1},
-    {l:'DART',              x:-1.06,y:-0.22,s: 1},
-    {l:'GDELT',             x:-0.96,y: 0.28,s: 0},
-    {l:'TELEGRAM',          x:-0.62,y: 0.78,s:-1},
-    {l:'BLUESKY',           x:-0.04,y: 1.02,s:-1},
-    {l:'L0 GLOBAL CAPTURE', x:-0.40,y:-0.94,s: 0,sl:'L0 GLOBAL'},
-    {l:'L1 TRIAGE',         x: 0.26,y:-0.98,s: 0},
-    {l:'L2 EVENT FORMATION',x: 0.84,y:-0.66,s: 0,sl:'L2 EVENT'},
-    {l:'L3 RELEVANCE',      x: 1.06,y:-0.18,s: 0},
-    {l:'L4 EVIDENCE INVESTIGATION',x: 1.00,y: 0.34,s: 1,sl:'L4 EVIDENCE'},
-    {l:'L5 DECISION',       x: 0.66,y: 0.80,s: 0},
-    {l:'L6 OUTCOME REVIEW', x: 0.06,y: 0.66,s: 1,sl:'L6 OUTCOME'},
-    {l:'COUNTER EVIDENCE',  x: 0.56,y: 0.08,s:-1,sl:'COUNTER EV.'},
-    {l:'SEALED ANCHOR',     x:-0.66,y: 0.34,s: 2}],
-   e:[[0,5,1],[1,5,1],[2,5,0],[3,5,-1],[4,5,-1],
-      [5,6,0],[6,7,0],[7,8,0],[8,9,0],[9,10,0],[10,11,0],
-      [9,12,-1],[12,10,-1],
-      [13,10,2],[13,11,2],
-      [5,-1,0],[10,-1,0],[11,-1,1]],
-   m:[6,7,8,9,10,11]},
-  // A decision audit is a funnel, not a web: several options are attacked by
-  // the same adversaries, one comparison is made with the labels hidden, and
-  // what comes out carries an owner, a rollback and a review date.
-  glitch:{hub:'DECISION',g:[
-    {l:'OPTION A',      x:-0.92,y:-0.74,s: 1},
-    {l:'OPTION B',      x:-1.06,y:-0.20,s: 1},
-    {l:'OPTION C',      x:-0.94,y: 0.36,s: 1},
-    {l:'ASSUMPTION',    x:-0.40,y:-0.96,s:-1},
-    {l:'BLIND SPOT',    x: 0.30,y:-0.94,s:-1},
-    {l:'FAILURE PATH',  x:-0.52,y: 0.86,s:-1},
-    {l:'PRE-MORTEM',    x: 0.18,y: 0.98,s:-1},
-    {l:'EVIDENCE GAP',  x: 0.98,y:-0.62,s: 0},
-    {l:'BLIND COMPARE', x:-0.44,y: 0.26,s: 0},
-    {l:'ROLLBACK',      x: 1.04,y: 0.06,s: 2},
-    {l:'REVIEW DATE',   x: 0.82,y: 0.62,s: 2},
-    {l:'OWNER',         x: 0.60,y:-0.24,s: 0}],
-   e:[[3,0,-1],[3,1,-1],[4,1,-1],[4,2,-1],[5,0,-1],[5,2,-1],
-      [6,0,-1],[6,1,-1],[6,2,-1],
-      [0,8,1],[1,8,1],[2,8,1],[7,8,0],
-      [8,-1,1],[-1,11,0],[-1,9,2],[-1,10,2]],
-   m:[0,1,2,6,8,9]}
-};
-// A phone gets a hand-checked ladder rather than a ring: six slots whose rows
-// are far enough apart that two chips cannot collide at any width, and whose
-// sides alternate so a label always has room to grow away from the middle.
-var MOFF=[[-1.01,-1.08],[1.01,-0.67],[-1.22,-0.12],[1.22,0.43],[-0.92,0.99],[0.82,1.28]];
-var F=FIELDS[MODE]||FIELDS.home;
-var G=F.g,HUB=F.hub,E=F.e;
-
-function relcol(r){ return r===2?AM:r>0?EV:r<0?CT:UN; }
-
-function size(){
-  DPR=Math.min(window.devicePixelRatio||1,1.75);
-  W=c.clientWidth;H=c.clientHeight;cx=W>900?W*.72:W*.5;cy=H*.46;
-  CORE=Math.min(W,H)*0.235;
-  c.width=Math.round(W*DPR);c.height=Math.round(H*DPR);
-  x.setTransform(DPR,0,0,DPR,0,0);
-}
-function seed(){
-  N=[];CL=[];
-  // density scaled to area, so a phone is not asked to draw a desktop field
-  var n=Math.round(Math.min(900,Math.max(260,(W*H)/1700))),
-      span=Math.max(W,H);
-  for(var i=0;i<n;i++){
-    // Orbits, not free bodies. An earlier version integrated velocity under a
-    // pull toward the centre with no repulsion, so over a few minutes every
-    // node fell into the same point and additive blending turned the pile
-    // pure white. Position is derived from (radius, angle): a point cannot
-    // reach the centre because RMIN is its floor, so the collapse is not
-    // damped, it is unrepresentable.
-    //
-    // Two populations, because the reference reads as a dense disc inside a
-    // thin halo and one distribution cannot do both. This cloud is what
-    // arrived and has not been structured yet; the labelled graph on top of it
-    // is what has.
-    var s=Math.random(),core=Math.random()<0.66,
-        r0=core ? RMIN+Math.pow(Math.random(),0.75)*(CORE*1.15-RMIN)
-                : CORE*1.15+Math.pow(Math.random(),1.5)*(span*.62-CORE*1.15);
-    N.push({
-      r0: r0,
-      r:  r0,
-      th: Math.random()*6.283,
-      dir: Math.random()<.5?-1:1,
-      z:.22+Math.random()*.78,
-      s:s<.40?1:s<.70?-1:0,          // 1 evidence, -1 counter, 0 undecided
-      p:Math.random()*6.283,
-      wob:.5+Math.random()*1.8,
-      x:0,y:0
-    });
-  }
-  // slow nebula: a handful of huge soft blooms give depth that points cannot
-  for(var k=0;k<5;k++){
-    CL.push({x:Math.random()*W,y:Math.random()*H,
-             r:Math.max(W,H)*(.22+Math.random()*.3),
-             c:k%3===0?EV:k%3===1?CT:MX,
-             a:Math.random()*6.283,sp:.00035+Math.random()*.0005});
-  }
-}
-function burst(){
-  // arrive at a point on the ring, not all at the same pixel: converging every
-  // strike on one spot is the other half of the white-out
-  var a=Math.random()*6.283,b=Math.random()*6.283;
-  L.push({x:cx+Math.cos(a)*Math.max(W,H)*.75, y:cy+Math.sin(a)*Math.max(W,H)*.75,
-          tx:cx+Math.cos(b)*RMIN*1.7, ty:cy+Math.sin(b)*RMIN*1.3,
-          life:0,dur:80+Math.random()*50});
-}
-function step(){
-  t++;
-  if(t%110===0&&L.length<5)burst();
-  for(var i=0;i<N.length;i++){
-    var a=N[i];
-    a.p+=0.011;
-    // mostly uniform rotation with a slight inner speed-up, so the field
-    // shears gently instead of turning into a rigid disc
-    a.th += a.dir*(0.00055 + 7.5/(a.r+140));
-    // breathe around the preferred radius; it can never wander to zero
-    a.r += ((a.r0 + Math.sin(a.p*.6)*a.r0*.05) - a.r)*0.02;
-    if(a.r<RMIN)a.r=RMIN;
-    a.x = cx + Math.cos(a.th)*a.r*1.14 + Math.cos(a.p)*3*a.z;
-    a.y = cy + Math.sin(a.th)*a.r*0.88 + Math.sin(a.p*1.3)*3*a.z;
-  }
-  for(var j=L.length-1;j>=0;j--){ L[j].life++; if(L[j].life>L[j].dur)L.splice(j,1); }
-  for(var q=0;q<CL.length;q++){ CL[q].a+=CL[q].sp; }
-  PX+=(TPX-PX)*0.045; PY+=(TPY-PY)*0.045;
-}
-
-// ---- layout ---------------------------------------------------------------
-var MOB=false,SHORT=false,MAXW=136,MR=0,MOBN=[],MOBI={},ACTIVE=E,SCALE=1;
-// how far the graph actually reaches, so the scale can be fitted to the window
-// instead of clamping chips against the right edge on a 1024px laptop
-var MAXX=0.4,MAXY=0.4;
-for(var _g=0;_g<G.length;_g++){
-  if(G[_g].x>MAXX)MAXX=G[_g].x;
-  if(Math.abs(G[_g].y)>MAXY)MAXY=Math.abs(G[_g].y);
-}
-function relayout(){
-  MOB = W < 760;
-  SHORT = W < 980;
-  MAXW = MOB ? 96 : 136;
-  SCALE = Math.min(Math.min(W,H)*(W>900?0.42:0.40),
-                   (W-cx-26)/(MAXX*1.02),
-                   (H*0.40)/(MAXY*0.74));
-  MR = Math.min(W,H)*0.30;
-  MOBN=[];MOBI={};
-  if(!MOB){ ACTIVE=E; return; }
-  // A phone gets its own composition, not the desktop graph shrunk. Six nodes
-  // stay legible; thirteen would be spaghetti at any font size.
-  var pick=F.m||[],n=Math.min(pick.length,MOFF.length);
-  for(var k=0;k<n;k++){ MOBI[pick[k]]=k; MOBN.push({i:pick[k],o:MOFF[k]}); }
-  // Only edges that survive intact. A hub edge counts, because the hub is on
-  // screen. An edge whose other end was cut is simply not drawn — the phone
-  // never gets a line that means something different from the desktop one.
-  var out=[];
-  for(var i=0;i<E.length;i++){
-    var e=E[i],a0=e[0]<0||MOBI[e[0]]!==undefined,b0=e[1]<0||MOBI[e[1]]!==undefined;
-    if(a0&&b0)out.push(e);
-  }
-  ACTIVE=out;
-}
-// Enforced, not hand-placed: no node may sit inside the core, whatever
-// coordinates are typed above. Adding a node cannot break the centre.
-function keepOut(px,py){
-  var dx=px-cx,dy=py-cy,ex=dx/1.14,ey=dy/0.88,
-      ed=Math.hypot(ex,ey)||1,minr=CORE*1.16;
-  if(ed<minr){var k=minr/ed;return [cx+dx*k,cy+dy*k];}
-  return [px,py];
-}
-
-// ---- chips ----------------------------------------------------------------
-var CHIPF='600 8.5px ui-monospace,Menlo,Consolas,monospace',FIT={},
-    CPAD=5,CGAP=6,CDOT=2.2,CH=14;
-// Measured once per label per breakpoint. The collision pass below asks for
-// these boxes a few hundred times a frame, and measureText is not free.
-function fit(s){
-  var key=s+'|'+MAXW,hit=FIT[key];
-  if(hit)return hit;
-  x.font=CHIPF;
-  var out=s;
-  if(x.measureText(s).width>MAXW){
-    out=s.slice(0,1)+'…';
-    for(var i=s.length-1;i>1;i--){
-      var cut=s.slice(0,i)+'…';
-      if(x.measureText(cut).width<=MAXW){out=cut;break;}
+  const CANONICAL = "https://migaryos.com/invara/";
+  const SHARE_TEXT = "Try INVARA's free example: see how a check catches a file changed against the plan.";
+  const SHARE_MESSAGE = SHARE_TEXT + " " + CANONICAL;
+  const ENDPOINT = "https://invara-events.mettl.chatgpt.site/api/events";
+  const EVENTS = new Set([
+    "sample_opened", "sample_result_viewed", "plan_prepared", "handoff_copied",
+    "plan_download_requested", "local_run_reported", "kit_preview_opened",
+    "checkout_open_requested", "kit_use_reported", "share_requested", "feedback_open_requested",
+    "landing_viewed", "primary_cta_clicked", "install_instructions_opened", "referral_entry", "repeat_use_reported"
+  ]);
+  const CAMPAIGNS = new Set(["direct", "owned_docs", "owned_release", "shared_example", "other"]);
+  const TASKS = Object.freeze({
+    feature: {
+      title: "Add a small feature",
+      summary: "Protect the existing behavior you want to keep. Choose real completion checks for the new feature before work starts."
+    },
+    cleanup: {
+      title: "Clean up Python code",
+      summary: "Agree which behavior must stay the same. Use existing tests and, where appropriate, explicitly chosen comparison inputs. A finite comparison does not cover every possible input."
+    },
+    handoff: {
+      title: "Hand off finished work",
+      summary: "Start with the original seal and evidence, if they exist. Without a trustworthy pre-work state, do not retroactively claim the finished work was checked. Record the gap and plan the next check."
     }
-  }
-  hit={t:out,w:CPAD+CDOT*2+CGAP+x.measureText(out).width+CPAD};
-  FIT[key]=hit;return hit;
-}
-function lab(n){ return (SHORT&&n.sl)?n.sl:n.l; }
-function chipLeft(px,w){ return px>cx?px-11-w:px+11; }
-function rrect(px,py,w,h,r){
-  x.beginPath();
-  x.moveTo(px+r,py);
-  x.lineTo(px+w-r,py);   x.quadraticCurveTo(px+w,py,px+w,py+r);
-  x.lineTo(px+w,py+h-r); x.quadraticCurveTo(px+w,py+h,px+w-r,py+h);
-  x.lineTo(px+r,py+h);   x.quadraticCurveTo(px,py+h,px,py+h-r);
-  x.lineTo(px,py+r);     x.quadraticCurveTo(px,py,px+r,py);
-}
-// A named chip, the way the reference draws one: a hairline box, a status pip
-// and very small monospace caps. Composite drops back to source-over for the
-// panel, because a near-black fill is invisible under additive blending.
-function chipAt(px,py,label,col,dot,fade,centred){
-  var m=fit(label),w=m.w,
-      left=centred?(px-w/2):chipLeft(px,w),
-      top=centred?py:(py-CH/2);
-  // Last resort only. SCALE is fitted to the window above, and a test asserts
-  // no chip ever reaches these margins - a clamped chip keeps the label on
-  // screen while leaving its node off it, which is worse than either.
-  if(left<4)left=4;
-  if(left+w>W-4)left=W-4-w;
-  x.globalCompositeOperation='source-over';
-  rrect(left,top,w,CH,3);
-  x.fillStyle='rgba(6,8,13,'+(0.88*fade)+')';x.fill();
-  x.strokeStyle='rgba('+col+','+(0.46*fade)+')';x.lineWidth=1;x.stroke();
-  x.fillStyle='rgba('+dot+','+(0.92*fade)+')';
-  x.fillRect(left+CPAD,top+CH/2-CDOT,CDOT*2,CDOT*2);
-  x.font=CHIPF;x.textAlign='left';x.textBaseline='middle';
-  x.fillStyle='rgba('+INK+','+(0.88*fade)+')';
-  x.fillText(m.t,left+CPAD+CDOT*2+CGAP,top+CH/2+0.5);
-  x.textBaseline='alphabetic';x.textAlign='center';
-  x.globalCompositeOperation='lighter';
-}
-function starburst(px,py,col,rad,spikes,alpha){
-  for(var i=0;i<spikes;i++){
-    var a=(i/spikes)*6.283+t*0.0016,
-        len=rad*(0.55+0.45*Math.abs(Math.sin(i*2.7+t*0.03))),
-        g=x.createLinearGradient(px,py,px+Math.cos(a)*len,py+Math.sin(a)*len);
-    g.addColorStop(0,'rgba('+col+','+alpha+')');
-    g.addColorStop(1,'rgba('+col+',0)');
-    x.strokeStyle=g;x.lineWidth=1.1;
-    x.beginPath();x.moveTo(px,py);x.lineTo(px+Math.cos(a)*len,py+Math.sin(a)*len);x.stroke();
-  }
-}
-
-// ---- positions, resolved once per frame ------------------------------------
-var NP=[],NB=[],HUBY=0;
-function layout(){
-  NP=[];NB=[];
-  var live=MOB?MOBN.length:G.length,k,i,j;
-  for(k=0;k<live;k++){
-    var idx=MOB?MOBN[k].i:k,n=G[idx];
-    NP[idx]=MOB
-      ? keepOut(cx+MOBN[k].o[0]*MR+PX, cy+MOBN[k].o[1]*MR+PY)
-      // gentle independent drift so the graph breathes without restructuring
-      : keepOut(cx+(n.x<0?n.x*0.62:n.x)*SCALE*1.02+Math.cos(t*0.004+n.x*7)*7+PX,
-                cy+n.y*SCALE*0.74+Math.sin(t*0.005+n.y*9)*7+PY);
-    NB.push(idx);
-  }
-  // Chips must never stack. The coordinates above are typed by hand and the
-  // scale shrinks to fit a narrow window, so hand-tuning cannot be the
-  // guarantee. Overlapping labels are pushed apart here, every frame, for
-  // whatever set is on screen - which also means a node added later cannot
-  // quietly land on top of one that was already there.
-  for(var pass=0;pass<5;pass++){
-    var moved=false;
-    for(i=0;i<NB.length;i++)for(j=i+1;j<NB.length;j++){
-      var a=NB[i],b=NB[j],
-          wa=fit(lab(G[a])).w, wb=fit(lab(G[b])).w,
-          la=chipLeft(NP[a][0],wa), lb=chipLeft(NP[b][0],wb),
-          ox=Math.min(la+wa,lb+wb)-Math.max(la,lb),
-          oy=(CH+4)-Math.abs(NP[a][1]-NP[b][1]);
-      if(ox<=2||oy<=0)continue;
-      var up=NP[a][1]<=NP[b][1]?-1:1,push=oy/2+0.5;
-      NP[a][1]+=push*up; NP[b][1]-=push*up;
-      NP[a]=keepOut(NP[a][0],NP[a][1]); NP[b]=keepOut(NP[b][0],NP[b][1]);
-      moved=true;
+  });
+  const SAMPLES = Object.freeze({
+    BLOCK: {
+      label: "A condition was broken", before: 'assert parse("12") == 12', after: 'assert parse("12") >= 0',
+      reason: "The protected test was changed to accept a wider result. Changing it breaks the promise, even if the edited test passes.",
+      scope: "Scope: this made-up file comparison only. It says nothing about your project."
+    },
+    PASS: {
+      label: "Checked conditions met", before: 'assert parse("12") == 12', after: 'assert parse("12") == 12',
+      reason: "The protected file is unchanged in this example. The one illustrated condition is met; we have not shown or checked the parser itself.",
+      scope: "Scope: identical protected-file text in a made-up example. This is not proof of software correctness."
+    },
+    UNVERIFIABLE: {
+      label: "Could not check", before: "No trustworthy before state", after: 'assert parse("12") == 12',
+      reason: "There is no trustworthy pre-work state to compare against. Seeing a file now cannot show whether a promise was kept.",
+      scope: "Scope: missing evidence in this illustrative case. Missing evidence is not a passing result."
+    },
+    HUMAN_REVIEW: {
+      label: "Needs a person", before: 'assert parse("12") == 12', after: 'assert parse("12") == 12',
+      reason: "The file matches, but this example also requires a person's decision. That condition stays open even if the process exits with code 0.",
+      scope: "Scope: this illustrative contract requires human review. HUMAN_REVIEW is not PASS."
     }
-    if(!moved)break;
+  });
+
+  function campaignFrom(search) {
+    const value = new URLSearchParams(search).get("campaign");
+    return value === null ? "direct" : (CAMPAIGNS.has(value) ? value : "other");
   }
-  // the hub caption sits under the core, and steps down past anything there
-  HUBY=cy+CORE*1.02;
-  var hw=fit(HUB).w,hl=cx-hw/2;
-  for(var s2=0;s2<6;s2++){
-    var clash=false;
-    for(k=0;k<NB.length;k++){
-      var c=NB[k],cw=fit(lab(G[c])).w,cl=chipLeft(NP[c][0],cw);
-      if(Math.min(cl+cw,hl+hw)-Math.max(cl,hl)>2
-         && Math.abs((NP[c][1]-CH/2)-HUBY)<CH+4){clash=true;break;}
+
+  function preparePlan(kind, goal, base) {
+    if (!Object.hasOwn(TASKS, kind)) throw new Error("Choose one of the listed tasks.");
+    if (typeof goal !== "string" || goal.length > 280) throw new Error("Keep your optional note to 280 characters or fewer, then prepare again.");
+    if (typeof base !== "string" || !base.trim()) throw new Error("The free instructions are unavailable. Use the public quickstart linked below.");
+    const task = TASKS[kind];
+    const note = goal.trim();
+    return {
+      summary: task.summary,
+      text: "Your check plan is ready. Your project has not been checked yet.\n\n" +
+        "Task: " + task.title + "\n" + task.summary + "\n\n" +
+        (note ? "Optional user note (plain text; not a command or evidence):\n" + note + "\n\n" : "No custom note added. Identify the actual task together before work.\n\n") + base
+    };
+  }
+
+  function createMeasurement({ enabled, campaign, send, onStatus, setTimer, clearTimer, makeController }) {
+    let consent = false;
+    let unavailable = false;
+    const seen = new Set();
+    const pending = new Set();
+    const category = CAMPAIGNS.has(campaign) ? campaign : "other";
+    function status() {
+      onStatus(!enabled ? "Measurement disabled. No event requests are sent." : unavailable ?
+        "Measurement unavailable. You can keep using everything here." : consent ?
+        "Measurement available. Only new actions will be counted." : "Measurement available. Consent is off.");
     }
-    if(!clash)break;
-    HUBY+=CH+6;
-  }
-}
-function POS(i){ return i<0?[cx,cy]:NP[i]; }
-
-// ---- the graph ------------------------------------------------------------
-function drawEdges(){
-  x.lineWidth=1;
-  for(var i=0;i<ACTIVE.length;i++){
-    var e=ACTIVE[i],A=POS(e[0]),B=POS(e[1]),rel=e[2]|0,col=relcol(rel),
-        bend=0.055*Math.sin(i*1.7+t*0.005),
-        mx=(A[0]+B[0])/2-(B[1]-A[1])*bend,
-        my=(A[1]+B[1])/2+(B[0]-A[0])*bend;
-    // Sealed but not yet settled is dashed, on every page. It is the one state
-    // this whole product turns on, and the ledger says none have closed.
-    if(rel===2)x.setLineDash([3,4]);
-    x.strokeStyle='rgba('+col+','+(rel===0?0.15:0.24)+')';
-    x.beginPath();x.moveTo(A[0],A[1]);x.quadraticCurveTo(mx,my,B[0],B[1]);x.stroke();
-    if(rel===2)x.setLineDash(NODASH);
-    // Two packets per edge, positioned from t by formula. Nothing is pushed
-    // onto an array and nothing decays, so a run of any length has exactly the
-    // same number of them in exactly the same places.
-    for(var k=0;k<2;k++){
-      var u=0.12+(((t*0.0020+i*0.137+k*0.5)%1)+1)%1*0.76,
-          iu=1-u,
-          qx=iu*iu*A[0]+2*iu*u*mx+u*u*B[0],
-          qy=iu*iu*A[1]+2*iu*u*my+u*u*B[1];
-      if(Math.hypot(qx-cx,qy-cy)<70)continue;   // never lands on the hollow centre
-      var f=Math.sin(u*3.14159);
-      x.fillStyle='rgba('+col+','+(0.11*f)+')';
-      x.beginPath();x.arc(qx,qy,5,0,6.283);x.fill();
-      x.fillStyle='rgba('+col+','+(0.88*f)+')';
-      x.beginPath();x.arc(qx,qy,1.7,0,6.283);x.fill();
+    function setConsent(value) {
+      consent = enabled && value === true;
+      if (!consent) for (const controller of pending) controller.abort();
+      status();
     }
-  }
-}
-function drawNodes(fade){
-  var n=MOB?MOBN.length:G.length;
-  for(var k=0;k<n;k++){
-    var idx=MOB?MOBN[k].i:k,node=G[idx],P=NP[idx],
-        col=node.s===2?AM:node.s>0?EV:node.s<0?CT:MX,
-        dot=node.s===2?AM:node.s>0?OK:node.s<0?CT:UN,
-        pulse=0.55+0.45*Math.sin(t*0.022+idx*1.3);
-    starburst(P[0],P[1],col,26+10*pulse,8,0.52*pulse*fade);
-    var gg=x.createRadialGradient(P[0],P[1],0,P[0],P[1],20);
-    gg.addColorStop(0,'rgba('+col+','+(0.52*fade)+')');
-    gg.addColorStop(1,'rgba('+col+',0)');
-    x.fillStyle=gg;x.fillRect(P[0]-20,P[1]-20,40,40);
-    x.fillStyle='rgba('+INK+','+(0.90*fade)+')';
-    x.beginPath();x.arc(P[0],P[1],2.5,0,6.283);x.fill();
-    chipAt(P[0],P[1],lab(node),col,dot,fade);
-  }
-}
-function drawHub(cp){
-  // The claim under examination: a ring and two loose arcs, never a disc. The
-  // middle of this picture is empty by construction, and that is the point.
-  starburst(cx,cy,INK,54+16*cp,14,0.20+0.09*cp);
-  x.strokeStyle='rgba('+INK+','+(0.34+0.16*cp)+')';x.lineWidth=1.2;
-  x.beginPath();x.arc(cx,cy,13+2*cp,0,6.283);x.stroke();
-  x.strokeStyle='rgba('+MX+','+(0.16+0.09*cp)+')';x.lineWidth=1;
-  x.beginPath();x.arc(cx,cy,CORE*0.30+8*cp,0,6.283);x.stroke();
-  // the swirl, drawn as curves rather than arcs so it adds nothing to the
-  // centre occupancy the stability test counts
-  var sw=CORE*0.19,a0=t*0.0035;
-  for(var i=0;i<2;i++){
-    var a=a0+i*3.1416;
-    x.strokeStyle='rgba('+INK+','+(0.30+0.16*cp)+')';x.lineWidth=1.5;
-    x.beginPath();
-    x.moveTo(cx+Math.cos(a-0.62)*sw,cy+Math.sin(a-0.62)*sw*0.78);
-    x.quadraticCurveTo(cx+Math.cos(a)*sw*1.55,cy+Math.sin(a)*sw*1.20,
-                       cx+Math.cos(a+0.62)*sw,cy+Math.sin(a+0.62)*sw*0.78);
-    x.stroke();
-  }
-  chipAt(cx,HUBY,HUB,INK,OK,1,true);
-}
-function coreRing(rad,col,a,inner){
-  var g=x.createRadialGradient(cx,cy,0,cx,cy,rad);
-  g.addColorStop(0,'rgba('+col+',0)');
-  g.addColorStop(inner,'rgba('+col+',0)');
-  g.addColorStop((inner+1)/2,'rgba('+col+','+a+')');
-  g.addColorStop(1,'rgba('+col+',0)');
-  x.fillStyle=g;x.fillRect(cx-rad,cy-rad,rad*2,rad*2);
-}
-function draw(){
-  x.clearRect(0,0,W,H);
-  x.globalCompositeOperation='lighter';   // additive: this is the neon
-
-  // nebula
-  for(var q=0;q<CL.length;q++){
-    var m=CL[q],mx=m.x+Math.cos(m.a)*70,my=m.y+Math.sin(m.a*1.2)*50,
-        g=x.createRadialGradient(mx,my,0,mx,my,m.r);
-    g.addColorStop(0,'rgba('+m.c+',0.055)');
-    g.addColorStop(.45,'rgba('+m.c+',0.018)');
-    g.addColorStop(1,'rgba('+m.c+',0)');
-    x.fillStyle=g;x.fillRect(mx-m.r,my-m.r,m.r*2,m.r*2);
-  }
-
-  // Concentric bloom: warm outside, cold inside, nothing at all in the middle.
-  // The shape is the reference's. The colours are ours, and they are the ones
-  // the rest of the page already uses for evidence and counter evidence.
-  var cp=.62+.38*Math.sin(t*.018);
-  coreRing(CORE*1.50,AM,0.040+0.012*cp,0.70);
-  coreRing(CORE*1.14,MX,0.062+0.018*cp,0.34);
-  coreRing(CORE*0.84,CT,0.036+0.014*cp,0.28);
-  coreRing(CORE*0.60,EV,0.044+0.016*cp,0.26);
-
-  // Edges between loose points. O(n^2) is too slow at this count, so bucket
-  // into a grid and only test neighbours — same picture, a fraction of the work
-  var CELL=100,cols=Math.ceil(W/CELL)+2,rows=Math.ceil(H/CELL)+2,grid={};
-  for(var i2=0;i2<N.length;i2++){
-    var p=N[i2],gx=((p.x/CELL)|0)+1,gy=((p.y/CELL)|0)+1;
-    if(p.r<CORE*1.15)continue;
-    if(gx<0||gy<0||gx>=cols||gy>=rows)continue;
-    var key=gx*rows+gy;(grid[key]||(grid[key]=[])).push(p);
-  }
-  var LIM=CELL*CELL;
-  x.lineWidth=.6;
-  for(var gk in grid){
-    var bucket=grid[gk],bx=(gk/rows)|0,by=gk%rows;
-    for(var dx2=0;dx2<=1;dx2++)for(var dy2=(dx2?-1:0);dy2<=1;dy2++){
-      var other=grid[(bx+dx2)*rows+(by+dy2)];if(!other)continue;
-      for(var u2=0;u2<bucket.length;u2++){
-        var a2=bucket[u2];
-        for(var v=(other===bucket?u2+1:0);v<other.length;v++){
-          var b=other[v],ddx=a2.x-b.x,ddy=a2.y-b.y,d2=ddx*ddx+ddy*ddy;
-          if(d2>LIM)continue;
-          var o=(1-d2/LIM)*.10*Math.min(a2.z,b.z);
-          if(o<.006)continue;
-          x.strokeStyle=(a2.s===b.s&&a2.s!==0)
-              ? 'rgba('+(a2.s>0?EV:CT)+','+o+')'
-              : (a2.s*b.s<0) ? 'rgba('+MX+','+(o*1.5)+')'
-              : 'rgba('+UN+','+(o*.45)+')';
-          x.beginPath();x.moveTo(a2.x,a2.y);x.lineTo(b.x,b.y);x.stroke();
-        }
+    async function emit(event) {
+      if (!enabled || !consent || unavailable || !EVENTS.has(event) || seen.has(event)) return false;
+      seen.add(event);
+      let controller, timer;
+      try {
+        controller = makeController();
+        pending.add(controller);
+        timer = setTimer(() => controller.abort(), 3500);
+        const response = await send({ event, flow_version: "launch-1", campaign: category }, controller.signal);
+        if (!response || !response.ok) throw new Error("unavailable");
+        return true;
+      } catch (_) {
+        if (consent) unavailable = true;
+        status();
+        return false;
+      } finally {
+        if (timer !== undefined) clearTimer(timer);
+        if (controller) pending.delete(controller);
       }
     }
+    status();
+    return { emit, setConsent };
   }
 
-  // the loose points themselves: what arrived and has not been structured yet
-  for(var n2=0;n2<N.length;n2++){
-    var p2=N[n2],g2=p2.s>0?EV:p2.s<0?CT:UN,
-        pulse=.5+.5*Math.sin(p2.p*.7),
-        r=(p2.s===0?.9:1.5)*p2.z;
-    x.fillStyle='rgba('+g2+','+(0.045*p2.z*pulse)+')';
-    x.beginPath();x.arc(p2.x,p2.y,r*7,0,6.283);x.fill();
-    x.fillStyle='rgba('+g2+','+(0.52*p2.z)+')';
-    x.beginPath();x.arc(p2.x,p2.y,r,0,6.283);x.fill();
+  async function copyText(text, clipboard) {
+    if (!clipboard || typeof clipboard.writeText !== "function") return false;
+    try { await clipboard.writeText(text); return true; } catch (_) { return false; }
   }
 
-  layout();
-  drawEdges();
-  drawNodes(1);
-  drawHub(cp);
-
-  // counter evidence in flight
-  for(var q2=0;q2<L.length;q2++){
-    var s2=L[q2],u3=s2.life/s2.dur,e2=1-Math.pow(1-u3,3),
-        px=s2.x+(s2.tx-s2.x)*e2,py=s2.y+(s2.ty-s2.y)*e2,fade=Math.sin(u3*3.14159),
-        tx0=s2.x+(s2.tx-s2.x)*Math.max(0,e2-.20),ty0=s2.y+(s2.ty-s2.y)*Math.max(0,e2-.20),
-        gr=x.createLinearGradient(tx0,ty0,px,py);
-    gr.addColorStop(0,'rgba('+CT+',0)');gr.addColorStop(1,'rgba('+CT+','+(0.38*fade)+')');
-    x.strokeStyle=gr;x.lineWidth=1.1;
-    x.beginPath();x.moveTo(tx0,ty0);x.lineTo(px,py);x.stroke();
-    x.fillStyle='rgba('+CT+','+(0.16*fade)+')';
-    x.beginPath();x.arc(px,py,6,0,6.283);x.fill();
-    x.fillStyle='rgba('+CT+','+(0.80*fade)+')';
-    x.beginPath();x.arc(px,py,2.1,0,6.283);x.fill();
-  }
-  x.globalCompositeOperation='source-over';
-}
-// The readout reads the field. Counter evidence in flight pushes it down; it is
-// a model of the product and the page says so on the line beside it.
-var probEl=document.getElementById('prob'),barEl=document.getElementById('bar'),
-    ctEl=document.getElementById('ctc'),val=SEEDP;
-function readout(){
-  if(!probEl)return;
-  var target=SEEDP-L.length*4.2+Math.sin(t*.006)*2.0;
-  val+=(target-val)*.045;
-  probEl.textContent=val.toFixed(1)+'%';
-  if(barEl)barEl.style.width=val.toFixed(1)+'%';
-  if(ctEl&&t%6===0)ctEl.textContent=L.length;
-}
-function loop(){ if(run){step();draw();readout();} requestAnimationFrame(loop); }
-var rt;window.addEventListener('resize',function(){
-  clearTimeout(rt);rt=setTimeout(function(){size();relayout();seed();},160);
-});
-document.addEventListener('visibilitychange',function(){run=!document.hidden;});
-size();relayout();seed();
-if(!reduce){
-  window.addEventListener('pointermove',function(ev){
-    TPX=((ev.clientX/W)-0.5)*26; TPY=((ev.clientY/H)-0.5)*18;
-  },{passive:true});
-}
-if(reduce){
-  // a coherent still frame, not a blank canvas: run the field forward far
-  // enough to settle, then draw once
-  for(var w=0;w<240;w++)step();
-  draw();
-}else{loop();}
-})();
-</script><script>
-(function(){
-  function copy(button){
-    var text=button.getAttribute('data-copy');
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(function(){button.textContent='Copied';});
+  function mount(doc, env, cfg) {
+    const $ = (id) => doc.getElementById(id);
+    const metricsEnabled = cfg.telemetry.enabled === true && cfg.telemetry.endpoint === ENDPOINT;
+    const campaign = campaignFrom(env.location.search);
+    const metrics = createMeasurement({
+      enabled: metricsEnabled, campaign,
+      send: (payload, signal) => env.fetch(ENDPOINT, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload), credentials: "omit", referrerPolicy: "no-referrer",
+        mode: "cors", cache: "no-store", redirect: "error", signal
+      }),
+      onStatus: (text) => { $("metrics-status").textContent = text; },
+      setTimer: env.setTimeout.bind(env), clearTimer: env.clearTimeout.bind(env),
+      makeController: () => new env.AbortController()
+    });
+    const consent = $("metrics-consent");
+    consent.checked = false;
+    consent.disabled = !metricsEnabled;
+    function reportCurrentView() {
+      if (!consent.checked || doc.visibilityState !== "visible") return;
+      void metrics.emit("landing_viewed");
+      if (campaign === "shared_example") void metrics.emit("referral_entry");
     }
+    consent.addEventListener("change", () => {
+      metrics.setConsent(consent.checked);
+      reportCurrentView();
+    });
+    doc.addEventListener("visibilitychange", reportCurrentView);
+    let currentPlan = "";
+    let planRevision = 0;
+    const goal = $("task-goal");
+    const kind = $("task-kind");
+    goal.value = "";
+    kind.value = "feature";
+    $("sample-controls").disabled = false;
+    for (const id of ["prepare-plan", "report-local", "report-repeat", "copy-share"]) $(id).disabled = false;
+
+    function showSample(verdict) {
+      const sample = SAMPLES[verdict];
+      if (!sample) return;
+      $("sample-before").textContent = sample.before;
+      $("sample-after").textContent = sample.after;
+      $("sample-label").textContent = sample.label;
+      $("sample-verdict").textContent = verdict;
+      $("sample-reason").textContent = sample.reason;
+      $("sample-scope").textContent = sample.scope;
+      $("sample-result").dataset.verdict = verdict;
+    }
+    doc.querySelectorAll('input[name="sample-case"]').forEach((radio) => {
+      radio.checked = radio.value === "BLOCK";
+      radio.addEventListener("change", () => {
+        showSample(radio.value);
+        void metrics.emit("sample_opened");
+        void metrics.emit("sample_result_viewed");
+      });
+    });
+    showSample("BLOCK");
+    doc.querySelectorAll("[data-open-sample]").forEach((link) => link.addEventListener("click", () => {
+      $("sample").focus({ preventScroll: true });
+      if (link.hasAttribute("data-primary-action")) void metrics.emit("primary_cta_clicked");
+      void metrics.emit("sample_opened");
+      void metrics.emit("sample_result_viewed");
+    }));
+    function invalidatePlan() {
+      planRevision += 1;
+      const hadPlan = Boolean(currentPlan);
+      currentPlan = "";
+      $("plan-text").value = "";
+      $("plan-output").hidden = true;
+      $("goal-count").textContent = goal.value.length + " / 280 characters";
+      $("builder-status").textContent = goal.value.length > 280 ?
+        "Keep your note to 280 characters or fewer. It has not been sent anywhere." : hadPlan ?
+        "Your task changed. Prepare again to update the instructions." : "";
+    }
+    goal.addEventListener("input", invalidatePlan);
+    kind.addEventListener("change", invalidatePlan);
+    $("prepare-plan").addEventListener("click", () => {
+      try {
+        const plan = preparePlan(kind.value, goal.value, cfg.freeInstructions);
+        currentPlan = plan.text;
+        planRevision += 1;
+        $("plan-text").value = currentPlan;
+        $("plan-summary").textContent = plan.summary;
+        $("plan-output").hidden = false;
+        $("builder-status").textContent = "";
+        $("plan-action-status").textContent = "";
+        $("plan-heading").focus();
+        void metrics.emit("plan_prepared");
+      } catch (error) {
+        invalidatePlan();
+        $("builder-status").textContent = error.message;
+        goal.focus();
+      }
+    });
+    $("copy-plan").addEventListener("click", async () => {
+      if (!currentPlan) return;
+      const revision = planRevision;
+      const button = $("copy-plan");
+      button.disabled = true;
+      $("plan-action-status").textContent = "Copying instructions…";
+      const copied = await copyText(currentPlan, env.navigator.clipboard);
+      button.disabled = false;
+      if (copied) void metrics.emit("handoff_copied");
+      if (revision !== planRevision) return;
+      $("plan-action-status").textContent = copied ?
+        "Instructions copied. Take them to your local assistant before work starts." :
+        "Clipboard access is unavailable. Select the instructions above and use your device’s Copy action.";
+      if (!copied) { $("plan-text").focus(); $("plan-text").select(); }
+    });
+    $("download-plan").addEventListener("click", () => {
+      if (!currentPlan) return;
+      let url, link;
+      try {
+        const blob = new env.Blob([currentPlan], { type: "text/plain;charset=utf-8" });
+        url = env.URL.createObjectURL(blob);
+        link = doc.createElement("a");
+        link.href = url;
+        link.download = "invara-check-plan.txt";
+        doc.body.appendChild(link);
+        link.click();
+        void metrics.emit("plan_download_requested");
+        $("plan-action-status").textContent = "Download requested, not confirmed saved. Check your Downloads folder. If no file appears, copy the instructions above.";
+      } catch (_) {
+        $("plan-action-status").textContent = "The download could not start. Select and copy the instructions above into a local text file.";
+        $("plan-text").focus(); $("plan-text").select();
+      } finally {
+        if (link) link.remove();
+        if (url) env.setTimeout(() => env.URL.revokeObjectURL(url), 1000);
+      }
+    });
+    $("report-local").addEventListener("click", () => {
+      $("local-status").textContent = "You reported a local run. This page has not checked it or received your verdict.";
+      void metrics.emit("local_run_reported");
+    });
+    $("report-repeat").addEventListener("click", () => {
+      $("repeat-status").textContent = "You reported previous use of the free flow. This is a self-report, not verified repeat activity.";
+      void metrics.emit("repeat_use_reported");
+    });
+    $("install-instructions").addEventListener("toggle", () => {
+      if ($("install-instructions").open) void metrics.emit("install_instructions_opened");
+    });
+    $("kit-preview").addEventListener("toggle", () => {
+      if ($("kit-preview").open) void metrics.emit("kit_preview_opened");
+    });
+    const checkout = $("kit-checkout");
+    if (checkout && cfg.paymentEnabled === true) checkout.addEventListener("click", () => {
+      void metrics.emit("checkout_open_requested");
+    });
+    $("share-text").value = SHARE_MESSAGE;
+    $("share-link").value = CANONICAL;
+    $("copy-share").addEventListener("click", async () => {
+      const button = $("copy-share");
+      button.disabled = true;
+      const copied = await copyText(SHARE_MESSAGE, env.navigator.clipboard);
+      button.disabled = false;
+      $("share-status").textContent = copied ? "Fixed example message copied. Nothing has been posted." :
+        "Copying is unavailable. Select the canonical link below and use your device’s Copy action.";
+      $("share-fallback").hidden = copied;
+      if (copied) void metrics.emit("share_requested");
+      else { $("share-link").focus(); $("share-link").select(); }
+    });
+    const nativeShare = $("native-share");
+    nativeShare.hidden = typeof env.navigator.share !== "function";
+    nativeShare.addEventListener("click", async () => {
+      nativeShare.disabled = true;
+      try {
+        await env.navigator.share({ text: SHARE_TEXT, url: CANONICAL });
+        $("share-status").textContent = "Your device’s share step finished. This page cannot confirm a published post.";
+        $("share-fallback").hidden = true;
+        void metrics.emit("share_requested");
+      } catch (_) {
+        $("share-status").textContent = "Sharing was cancelled or unavailable. Nothing is confirmed shared. You can select and copy the canonical link below.";
+        $("share-fallback").hidden = false;
+      } finally { nativeShare.disabled = false; }
+    });
+    $("feedback-link").addEventListener("click", () => { void metrics.emit("feedback_open_requested"); });
+    env.addEventListener("pagehide", () => { consent.checked = false; metrics.setConsent(false); });
   }
-  document.querySelectorAll('[data-copy]').forEach(function(button){
-    button.addEventListener('click',function(){copy(button);});
-  });
+
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = { CANONICAL, SHARE_TEXT, SHARE_MESSAGE, EVENTS, SAMPLES, preparePlan, campaignFrom, createMeasurement, copyText, mount };
+  } else {
+    const config = document.getElementById("invara-config");
+    if (config) mount(document, window, JSON.parse(config.textContent));
+  }
 })();
 </script>
-</body></html>
+</body>
+</html>
