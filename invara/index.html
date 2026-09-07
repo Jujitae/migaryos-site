@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="ko" translate="no">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="google" content="notranslate"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; img-src data:; style-src &#x27;unsafe-inline&#x27;; script-src &#x27;sha256-2YNXH2/juCcmOsKKGPvFOdzXWjXoaJFwfttz0n6MMkg=&#x27;; connect-src https://invara-events.mettl.chatgpt.site/api/events;">
-<title>INVARA — AI에게 수정을 맡겼다면, 바뀌면 안 되는 부분도 확인하세요.</title>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="google" content="notranslate"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; img-src data:; style-src &#x27;unsafe-inline&#x27;; script-src &#x27;sha256-btGA6pmufy3AHNfDCRsw/RJV3GvPDv3Z2gMndhwKfjU=&#x27;; connect-src https://invara-events.mettl.chatgpt.site/api/events;">
+<title>INVARA — 에이전트들에게도 감사팀이 필요하다.</title>
 <meta name="description" content="AI에게 화면 정리를 맡겼는데 가격까지 바뀌었다면? INVARA로 바꾸지 않기로 한 파일을 비교하고 미리 고른 검사를 실행하세요. 예제는 설치 없이, 내 프로젝트 검사는 Codex에서 무료로.">
-<link rel="canonical" href="https://migaryos.com/invara/"><meta property="og:type" content="website"><meta property="og:title" content="AI에게 수정을 맡겼다면, 바뀌면 안 되는 부분도 확인하세요. · INVARA"><meta property="og:description" content="예제를 먼저 살펴보세요. 내 프로젝트는 Codex에서 검사하고, 확인하지 못한 부분도 알려드립니다."><meta property="og:url" content="https://migaryos.com/invara/">
+<link rel="canonical" href="https://migaryos.com/invara/"><meta property="og:type" content="website"><meta property="og:title" content="에이전트들에게도 감사팀이 필요하다. · INVARA"><meta property="og:description" content="예제를 먼저 살펴보세요. 내 프로젝트는 Codex에서 검사하고, 확인하지 못한 부분도 알려드립니다."><meta property="og:url" content="https://migaryos.com/invara/">
 <link rel="icon" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221000%22%20height%3D%221000%22%20viewBox%3D%220%200%20100%20100%22%3E%0A%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%23111214%22%2F%3E%0A%3Crect%20x%3D%2219.000%22%20y%3D%2221.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%28-22%2044.000%2037.000%29%22%2F%3E%0A%3Crect%20x%3D%2231.000%22%20y%3D%2247.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%2822%2056.000%2063.000%29%22%2F%3E%0A%3C%2Fsvg%3E"><style>:root {
   color-scheme: dark;
   --background: #090e14;
@@ -229,16 +229,33 @@ summary { line-height: 1.6; }
 @media(max-width:450px) { .site-header nav { font-size: .85rem; gap: .5rem; } .sample { padding: 1rem; } .sample-choices { grid-template-columns: 1fr 1fr; } .hero { gap: 1.5rem; } }
 
 .sample-choice { word-break: keep-all; overflow-wrap: normal; }
+
+/* Founder message hierarchy: approved copy stays before the first action. */
+.hero-copy .trust-note { font-size: 1.125rem; line-height: 1.6; margin-bottom: 1.5rem; }
+.hero-question { margin-bottom: 1.5rem; }
+.hero-question p { color: var(--muted); font-size: .95rem; margin-bottom: .5rem; }
+.hero-question blockquote { margin: 0; font-size: 1.25rem; font-weight: 600; line-height: 1.5; color: var(--accent); }
+html[lang="ko"] .hero-question blockquote { word-break: keep-all; overflow-wrap: break-word; }
+.hero-copy .intro { font-size: 1rem; }
+@media(max-width:450px) {
+  .hero-copy h1 { font-size: clamp(1.8rem, 8.6vw, 2.25rem); margin-bottom: 1rem; }
+  .hero-copy .trust-note { font-size: 1rem; margin-bottom: 1rem; }
+  .hero-question { margin-bottom: 1rem; }
+  .hero-question blockquote { font-size: 1.125rem; }
+  .hero-copy .actions { margin-block: 1.25rem; }
+}
 </style></head><body>
 <a class="skip" href="#main"><span class="ko" lang="ko">본문으로</span><span class="en" lang="en">Skip to content</span></a><header class="site-header wrap"><a class="brand" href="/"><span class="mark" role="img" aria-label="MIGARYOS"><svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 100 100">
 <rect width="100" height="100" fill="none"/>
 <rect x="19.000" y="21.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="currentColor" stroke-width="10.500" stroke-linejoin="round" transform="rotate(-22 44.000 37.000)"/>
 <rect x="31.000" y="47.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="currentColor" stroke-width="10.500" stroke-linejoin="round" transform="rotate(22 56.000 63.000)"/>
 </svg></span><span>MIGARYOS</span><span class="product-name">INVARA</span></a><nav aria-label="Navigation"><a href="#free"><span class="ko" lang="ko">내 프로젝트에서 시작</span><span class="en" lang="en">Start on my project</span></a><a href="?lang=ko" lang="ko" id="lang-ko">한국어</a><a href="?lang=en" lang="en" id="lang-en">English</a></nav></header>
-<main id="main" class="wrap"><div class="hero"><div class="hero-copy"><h1 ><span class="ko" lang="ko">AI에게 수정을 맡겼다면,<br><em>바뀌면 안 되는 부분도<br>확인하세요.</em></span><span class="en" lang="en">Asked AI to make a change?<br><em>Check what should<br>stay the same.</em></span></h1>
-<p class="intro"><span class="ko" lang="ko">“화면만 정리해 줘. 가격은 그대로 둬.”<br>INVARA는 바꾸지 않기로 한 파일을 비교하고 미리 고른 검사를 실행합니다. 무엇이 바뀌었고 어디까지 확인했는지 알려줍니다.</span><span class="en" lang="en">“Tidy up the page. Keep the prices.”<br>INVARA compares the files you chose to protect and runs the checks you selected before the work. See what changed and what it could not check.</span></p>
-<div class="actions"><a class="button" href="#free" data-primary-action><span class="ko" lang="ko">Codex에서 내 작업 확인하기</span><span class="en" lang="en">Check my task in Codex</span></a><a class="text-link" href="#sample" data-open-sample><span class="ko" lang="ko">어떤 결과가 나오는지 보기</span><span class="en" lang="en">See an example result first</span></a></div>
+<main id="main" class="wrap"><div class="hero"><div class="hero-copy">
+<h1><span class="ko" lang="ko">에이전트들에게도<br><em>감사팀이 필요하다.</em></span><span class="en" lang="en">Agents need<br><em>an audit team, too.</em></span></h1>
 <p class="trust-note"><span class="ko" lang="ko"><strong>AI가 “다 됐다”고 해도, 그냥 믿고 넘기진 마세요.</strong><br>바꾸지 말라고 한 것까지 바뀌었을 수 있으니까요.</span><span class="en" lang="en"><strong>Even if AI says “done,” don’t just take its word for it.</strong><br>It may have changed something you asked it to leave alone.</span></p>
+<div class="hero-question"><p><span class="ko" lang="ko">INVARA가 답하려는 질문은 한 단계 더 구체적입니다.</span><span class="en" lang="en">For INVARA, that comes down to a specific question.</span></p><blockquote><span class="ko" lang="ko">“AI가 일을 끝냈다고 했을 때, 사용자가 그 말을 그대로 믿지 않아도 되게 해주는가?”</span><span class="en" lang="en">“When AI says the work is done, can the user check instead of taking its word for it?”</span></blockquote></div>
+<div class="actions"><a class="button" href="#free" data-primary-action><span class="ko" lang="ko">Codex에서 내 작업 확인하기</span><span class="en" lang="en">Check my task in Codex</span></a><a class="text-link" href="#sample" data-open-sample><span class="ko" lang="ko">어떤 결과가 나오는지 보기</span><span class="en" lang="en">See an example result first</span></a></div>
+<p class="intro"><span class="ko" lang="ko">“화면만 정리해 줘. 가격은 그대로 둬.”<br>INVARA는 바꾸지 않기로 한 파일을 비교하고 미리 고른 검사를 실행합니다. 무엇이 바뀌었고 어디까지 확인했는지 알려줍니다.</span><span class="en" lang="en">“Tidy up the page. Keep the prices.”<br>INVARA compares the files you chose to protect and runs the checks you selected before the work. See what changed and what it could not check.</span></p>
 <p class="fine"><span class="ko" lang="ko">내 컴퓨터에서 무료로 검사할 수 있습니다.<br>이 페이지는 프로젝트에 자동 연결되지 않습니다.</span><span class="en" lang="en">Real checks run on your computer, for free.<br>This page does not automatically connect to a project.</span></p>
 </div>
 <section id="sample" class="sample" aria-labelledby="sample-heading" tabindex="-1"><h2 id="sample-heading"><span class="ko" lang="ko">화면을 정리했는데,<br>가격도 바뀌었습니다.</span><span class="en" lang="en">The page looks tidier.<br>But the price changed too.</span></h2>
@@ -473,7 +490,7 @@ uvx --from invara==0.2.1 invara judge &lt;task_id&gt; --commit</code></pre><p cl
     const $ = id => doc.getElementById(id);
     const lang = new URLSearchParams(env.location.search).get("lang") === "en" ? "en" : "ko";
     doc.documentElement.lang = lang;
-    doc.title = lang === "ko" ? "INVARA — AI에게 수정을 맡겼다면, 바뀌면 안 되는 부분도 확인하세요." : "INVARA — Asked AI to make a change? Check what should stay the same.";
+    doc.title = lang === "ko" ? "INVARA — 에이전트들에게도 감사팀이 필요하다." : "INVARA — Agents need an audit team, too.";
     $("lang-" + lang).setAttribute("aria-current", "true");
     const t = (ko, en) => lang === "ko" ? ko : en;
     const instructions = lang === "ko" ? cfg.freeInstructionsKo : cfg.freeInstructions;
