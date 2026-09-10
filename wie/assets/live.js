@@ -1,7 +1,10 @@
 (function () {
   'use strict';
   const PRIMARY = 'https://raw.githubusercontent.com/Jujitae/migaryos-site/refs/heads/wie-live-data/wie/live.json';
-  const LABELS = {COMPLETE:'자동 실행 완료', COMPLETE_WITH_SOURCE_GAPS:'실행 완료 · 일부 자료 확인 실패', WAITING_FOR_FRESH_SOURCE:'새 자료를 기다립니다',
+  const LABELS = {SUCCESS:'실행 확인', SOURCE_GAPS:'일부 운영 자료 확인 실패', NO_CANDIDATE:'검사 완료 · 후보 없음',
+    NEVER:'실행 전', RUNNING:'실행 중', FAILED:'실행 실패', TIMED_OUT:'실행 시간 초과', STOPPED:'운영 정지',
+    INTERRUPTED:'이전 실행 중단', BLOCKED:'운영 확인 중단',
+    COMPLETE:'자동 실행 완료', COMPLETE_WITH_SOURCE_GAPS:'실행 완료 · 일부 자료 확인 실패', WAITING_FOR_FRESH_SOURCE:'새 자료를 기다립니다',
     WAITING_FOR_DIARY_LEARNING:'확정 결과의 일기 반영 대기', WAITING_FOR_NEXT_CYCLE:'다음 실행 대기',
     BLOCK:'확인이 중단됐습니다', UNAVAILABLE:'아직 확인하지 못했습니다',
     occurred:'조건 충족', did_not_occur:'조건 미충족', partial:'일부 충족',
@@ -131,6 +134,7 @@
     byId('run-summary').textContent=current.run?label(current.run.status):'실행 기록 확인 실패';
     byId('run-explanation').textContent=current.integrity.status==='BLOCK'?'영수증 또는 원장 검증을 통과하지 못했습니다. 실행 근거에서 상태를 확인하세요.':
       current.run.status==='WAITING_FOR_FRESH_SOURCE'?'자동 순환은 실행됐고, 새 정식 예측은 충분히 최신인 자료를 기다립니다.':'실행 기록과 실제 예측 결과는 아래에서 따로 확인하세요.';
+    if(current.operation)byId('run-explanation').textContent+=' 독립 운영: '+label(current.operation.status)+'.';
     replace('facts', [['등록된 예측',current.counts.predictions],['결과 기록',current.counts.resolved],['조건대로 결과 확인',current.counts.closed_loops],['검증한 일기',current.counts.diaries]].map(([name,count])=>{const div=el('div');div.append(el('dt',name),el('dd',num(count)+'건'));return div;}));
     const learning=current.learning;
     replace('learning-content',learning?[facts([['학습에 반영한 확정 결과',num(learning.training_count)+'건'],['비교용 보조 예측',num(learning.shadow_forecast_count)+'건'],['미래 결과와 비교한 표본',num(learning.evaluation.paired_count)+'건'],['비교 결과',label(learning.evaluation.status)],['학습 시각',time(learning.as_of)]]),
@@ -139,6 +143,18 @@
       note('수집 자료와 판단 후보는 확정된 사건이 아닙니다. 새 확정 결과가 0건이면 그날의 결과 학습도 주장하지 않습니다.'),el('code','일기 증거 SHA-256 '+d.sha256,'digest'));return n;}):[note('공개할 수 있는 검증된 일기가 없습니다.')]);
     renderPredictions();renderCharts();renderMarket();
     const machine=[facts([['영수증·원장 대조',label(current.integrity.status)],['최근 실행 상태',label(current.run?.status)],['실행 시작',time(current.run?.started_at)],['실행 종료',time(current.run?.finished_at)]])];
+    if(current.operation){
+      const operation=current.operation;
+      machine.push(facts([['WIE 독립 운영',label(operation.status)],['운영 상태 확인',time(operation.updated_at)]]));
+      machine.push(note('수집기 실행 확인은 최근 체크포인트 활동을 뜻하며, 원천 자료의 최신성은 별도입니다.'));
+      if(operation.stale)machine.push(note('독립 운영 기록이 30분 이상 갱신되지 않았습니다.'));
+      const names={collector:'수집기 점검',anchor:'원본 근거 보존',gate:'Surprise Gate',autonomy:'일기·학습·예측'};
+      for(const [name,job] of Object.entries(operation.jobs||{})){
+        if(!names[name])continue;
+        machine.push(facts([['운영 작업',names[name]],['실행 상태',label(job.status)],['시작',time(job.started_at)],
+          ['종료',time(job.finished_at)],['종료 코드',job.exit_code===null?'미확인':String(job.exit_code)],['다음 예정',time(job.next_due_at)]]));
+      }
+    }
     if(current.run?.error_code)machine.push(note('실행 중단: '+current.run.error_code+' · 내부 오류 원문은 공개하지 않습니다.'));
     for(const code of current.integrity.reasons || [])machine.push(note('확인 실패: '+code));
     if(current.run?.receipt_sha256)machine.push(el('code','실행 영수증 SHA-256 '+current.run.receipt_sha256,'digest'));
