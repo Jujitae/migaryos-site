@@ -11760,7 +11760,7 @@
   "counts": {
     "closed_loops": 1,
     "diaries": 4,
-    "mentions": 258622,
+    "mentions": 258628,
     "predictions": 27,
     "resolved": 4,
     "sealed": 25
@@ -11835,7 +11835,7 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-09-10T23:12:17.729290Z",
+  "generated_at": "2026-09-10T23:17:17.674446Z",
   "integrity": {
     "ledger_sha256": "5d46d040f1c10ca218479040275991c6e18ab00bb89ee1a07d5949359f8f0ec6",
     "reasons": [],
@@ -11917,7 +11917,7 @@
   },
   "observed_at": "2026-09-10T23:01:29.619061Z",
   "operation": {
-    "finished_at": "2026-09-10T23:01:29.739431Z",
+    "finished_at": "2026-09-10T23:15:50.904089Z",
     "jobs": {
       "anchor": {
         "exit_code": 0,
@@ -11934,11 +11934,11 @@
         "status": "SOURCE_GAPS"
       },
       "collector": {
-        "exit_code": 7,
-        "finished_at": "2026-09-10T23:00:49.457338Z",
-        "next_due_at": "2026-09-10T23:15:00Z",
-        "started_at": "2026-09-10T23:00:48.555690Z",
-        "status": "SOURCE_GAPS"
+        "exit_code": 0,
+        "finished_at": "2026-09-10T23:15:49.177413Z",
+        "next_due_at": "2026-09-10T23:30:00Z",
+        "started_at": "2026-09-10T23:15:48.411559Z",
+        "status": "SUCCESS"
       },
       "gate": {
         "exit_code": 2,
@@ -11950,9 +11950,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-09-10T23:00:47.338495Z",
+    "started_at": "2026-09-10T23:15:47.242763Z",
     "status": "SOURCE_GAPS",
-    "updated_at": "2026-09-10T23:01:29.739431Z"
+    "updated_at": "2026-09-10T23:15:50.904089Z"
   },
   "predictions": [
     {
@@ -12441,8 +12441,8 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-09-10T23:12:17.729290Z",
-      "sha256": "7dc88a4bfc5f302d1440024971aa9e5d044e1f751f77127bc5cab6e147a06705"
+      "observed_at": "2026-09-10T23:17:17.674446Z",
+      "sha256": "75192782a7e5e2ae009b186ce9ae980379ac7e9904612527b49c345de211c19c"
     },
     "canonical_chart": "VERIFIED",
     "chart": "VERIFIED",
