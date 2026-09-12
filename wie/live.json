@@ -12291,7 +12291,7 @@
   "counts": {
     "closed_loops": 1,
     "diaries": 5,
-    "mentions": 268854,
+    "mentions": 268888,
     "predictions": 31,
     "resolved": 4,
     "sealed": 29
@@ -12382,7 +12382,7 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-09-12T03:27:18.440551Z",
+  "generated_at": "2026-09-12T03:32:18.543589Z",
   "integrity": {
     "ledger_sha256": "3ee0773c69b872a6e308dc3b332fab5e0abc592072204347e670ddb02c39d3df",
     "reasons": [],
@@ -12464,7 +12464,7 @@
   },
   "observed_at": "2026-09-12T03:01:37.176457Z",
   "operation": {
-    "finished_at": "2026-09-12T03:15:55.473482Z",
+    "finished_at": "2026-09-12T03:30:55.265045Z",
     "jobs": {
       "anchor": {
         "exit_code": 0,
@@ -12481,11 +12481,11 @@
         "status": "SOURCE_GAPS"
       },
       "collector": {
-        "exit_code": 0,
-        "finished_at": "2026-09-12T03:15:52.501584Z",
-        "next_due_at": "2026-09-12T03:30:00Z",
-        "started_at": "2026-09-12T03:15:50.919724Z",
-        "status": "SUCCESS"
+        "exit_code": 7,
+        "finished_at": "2026-09-12T03:30:51.878002Z",
+        "next_due_at": "2026-09-12T03:45:00Z",
+        "started_at": "2026-09-12T03:30:50.040862Z",
+        "status": "SOURCE_GAPS"
       },
       "gate": {
         "exit_code": 2,
@@ -12497,9 +12497,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-09-12T03:15:48.469505Z",
+    "started_at": "2026-09-12T03:30:47.917707Z",
     "status": "SOURCE_GAPS",
-    "updated_at": "2026-09-12T03:15:55.473482Z"
+    "updated_at": "2026-09-12T03:30:55.265045Z"
   },
   "predictions": [
     {
@@ -13052,8 +13052,8 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-09-12T03:27:18.440551Z",
-      "sha256": "74b07f4853cfb6384622db59127354b77063849e6cd58efd1798b9388b1fc1b1"
+      "observed_at": "2026-09-12T03:32:18.543589Z",
+      "sha256": "e02e4269316b2790fa1676371ff17ef6d39c607fe8ecac6809ec567ac748659b"
     },
     "canonical_chart": "VERIFIED",
     "chart": "VERIFIED",
