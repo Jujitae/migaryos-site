@@ -12382,7 +12382,7 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-09-12T11:52:17.708824Z",
+  "generated_at": "2026-09-12T11:58:08.243668Z",
   "integrity": {
     "ledger_sha256": "3ee0773c69b872a6e308dc3b332fab5e0abc592072204347e670ddb02c39d3df",
     "reasons": [],
@@ -12464,42 +12464,10 @@
   },
   "observed_at": "2026-09-12T11:01:42.144059Z",
   "operation": {
-    "finished_at": "2026-09-12T11:45:51.478024Z",
-    "jobs": {
-      "anchor": {
-        "exit_code": 0,
-        "finished_at": "2026-09-12T11:01:00.917850Z",
-        "next_due_at": "2026-09-12T14:00:00Z",
-        "started_at": "2026-09-12T11:00:50.963734Z",
-        "status": "SUCCESS"
-      },
-      "autonomy": {
-        "exit_code": 0,
-        "finished_at": "2026-09-12T11:01:42.332957Z",
-        "next_due_at": "2026-09-12T12:00:00Z",
-        "started_at": "2026-09-12T11:01:02.500195Z",
-        "status": "SOURCE_GAPS"
-      },
-      "collector": {
-        "exit_code": 7,
-        "finished_at": "2026-09-12T11:45:49.617790Z",
-        "next_due_at": "2026-09-12T12:00:00Z",
-        "started_at": "2026-09-12T11:45:48.731334Z",
-        "status": "SOURCE_GAPS"
-      },
-      "gate": {
-        "exit_code": 0,
-        "finished_at": "2026-09-12T05:02:29.504455Z",
-        "next_due_at": "2026-09-13T05:00:00Z",
-        "started_at": "2026-09-12T05:01:01.838094Z",
-        "status": "SUCCESS"
-      }
-    },
+    "error_code": "OPERATING_STATE_UNVERIFIED",
+    "jobs": {},
     "schema": "wie.public-operation/1",
-    "stale": false,
-    "started_at": "2026-09-12T11:45:47.336931Z",
-    "status": "SOURCE_GAPS",
-    "updated_at": "2026-09-12T11:45:51.478024Z"
+    "status": "BLOCKED"
   },
   "predictions": [
     {
@@ -13052,7 +13020,7 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-09-12T11:52:17.708824Z",
+      "observed_at": "2026-09-12T11:58:08.243668Z",
       "sha256": "5bb4b878692c1031c186d5c7303bb503cb1e16a4ea4da227ffd2c53951ea44db"
     },
     "canonical_chart": "VERIFIED",
