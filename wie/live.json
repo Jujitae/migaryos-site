@@ -305,97 +305,125 @@
       "statement": "2026-09-17T04:00:58Z 이후 첫 확정 봉의 종가가 기준 종가 96.05보다 높은가?",
       "title": "CL=F 7일 뒤 종가 조건",
       "topic_id": "P-000027"
+    },
+    {
+      "category": "시장 차트",
+      "expires_at": "2026-09-26T00:00:58Z",
+      "family_training_count": 1,
+      "fit_status": "INSUFFICIENT_DATA",
+      "href": "/record/#prediction-P-000041",
+      "id": "P-000041",
+      "issued_at": "2026-09-19T00:01:37.621123Z",
+      "method": "wie.chart-channels-fibonacci/1",
+      "outcome": null,
+      "probability": 0.55,
+      "probability_mode": "CANONICAL_ADVISORY",
+      "rationale": "확정 피벗으로 만든 복수 채널의 기울기에서 고정 확률 가정을 발행합니다. 과거 적중률을 뜻하지 않습니다.",
+      "raw_probability": 0.55,
+      "resolution_deadline": "2026-09-30T00:00:58Z",
+      "source": {
+        "adjustment": "spot_unadjusted_no_dividends",
+        "currency": "USD",
+        "data_as_of": "2026-09-19T00:00:00Z",
+        "data_date": null,
+        "identity_note": "Kraken BTC/USD spot; not screenshot Binance BTC/USDT",
+        "kind": "official_public",
+        "observed_at": "2026-09-19T00:00:58Z",
+        "provider": "kraken",
+        "provider_symbol": "XBTUSD",
+        "publication_date": null,
+        "sha256": "b16ce0d02e327c235cd03cf5a056cba7b25c35fc93ffd131e8cd116c03a3f290",
+        "source_identity": "76f61954bbe7b7be0040e5858daed6b6913739820b5875f13b8c5c70305cddd5",
+        "url": "https://api.kraken.com/0/public/OHLC?pair=XBTUSD&interval=1440"
+      },
+      "statement": "2026-09-26T00:00:58Z 이후 첫 확정 봉의 종가가 기준 종가 80878.1보다 높은가?",
+      "title": "BTCUSD 7일 뒤 종가 조건",
+      "topic_id": "P-000041"
     }
   ],
   "chart": {
     "analyses": [
       {
-        "as_of": "2026-09-18T23:01:07Z",
-        "atr": 67.48629324776786,
-        "bar_count": 2513,
+        "as_of": "2026-09-19T00:00:58Z",
+        "atr": 65.77772739955357,
+        "bar_count": 2514,
         "channels": [
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 60,
-            "lower": 7501.998792146382,
-            "mid": 7728.71339818051,
+            "lower": 7446.762385670731,
+            "mid": 7678.616865948932,
             "projected": {
-              "lower": 7528.329833984375,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 7981.759046052632
+              "lower": 7464.995665015244,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 7928.704625571647
             },
             "scale": "linear",
-            "slope_per_day": 3.7615774054276314,
+            "slope_per_day": 2.6047541920731705,
             "slope_units": "price_per_day",
-            "upper": 7955.428004214638
+            "upper": 7910.471346227134
           },
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 180,
-            "lower": 6831.783662226096,
-            "mid": 7387.4279376634095,
+            "lower": 6774.323048394942,
+            "mid": 7343.380412892146,
             "projected": {
-              "lower": 6852.860355453187,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 7964.148906327814
+              "lower": 6792.938689354329,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 7931.053418348735
             },
             "scale": "linear",
-            "slope_per_day": 3.0109561752988045,
+            "slope_per_day": 2.659377279912451,
             "slope_units": "price_per_day",
-            "upper": 7943.072213100722
+            "upper": 7912.437777389348
           },
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 600,
-            "lower": 6410.460961318598,
-            "mid": 7224.934905757749,
+            "lower": 6358.413734163242,
+            "mid": 7166.541951356599,
             "projected": {
-              "lower": 6431.347223545477,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 8060.29511242378
+              "lower": 6378.571798181588,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 7994.828232568302
             },
             "scale": "linear",
-            "slope_per_day": 2.9837517466971546,
+            "slope_per_day": 2.87972343119233,
             "slope_units": "price_per_day",
-            "upper": 8039.4088501969
+            "upper": 7974.6701685499565
           }
         ],
-        "data_as_of": "2026-09-18T00:00:00Z",
+        "data_as_of": "2026-09-19T00:00:00Z",
         "fibonacci": {
           "anchors": {
             "one": {
-              "price": 7677.02001953125,
-              "time": "2026-09-11T00:00:00Z"
+              "price": 7507.77001953125,
+              "time": "2026-09-16T00:00:00Z"
             },
             "zero": {
-              "price": 7580.06005859375,
-              "time": "2026-09-10T00:00:00Z"
+              "price": 7677.02001953125,
+              "time": "2026-09-11T00:00:00Z"
             }
           },
           "levels": {
-            "0": 7580.06005859375,
-            "0.236": 7602.942609375,
-            "0.382": 7617.098763671875,
-            "0.5": 7628.5400390625,
-            "0.618": 7639.981314453125,
-            "0.786": 7656.270587890625,
-            "1": 7677.02001953125,
-            "1.618": 7736.941275390625,
-            "2.618": 7833.901236328125
+            "0": 7677.02001953125,
+            "0.236": 7637.07701953125,
+            "0.382": 7612.36651953125,
+            "0.5": 7592.39501953125,
+            "0.618": 7572.42351953125,
+            "0.786": 7543.98951953125,
+            "1": 7507.77001953125,
+            "1.618": 7403.17351953125,
+            "2.618": 7233.92351953125
           },
           "scale": "linear"
         },
         "history": [],
         "pivots": [
-          {
-            "confirmed_at": "2026-03-06T00:00:00Z",
-            "kind": "low",
-            "price": 6710.419921875,
-            "time": "2026-03-03T00:00:00Z"
-          },
           {
             "confirmed_at": "2026-03-12T00:00:00Z",
             "kind": "low",
@@ -629,48 +657,53 @@
             "kind": "high",
             "price": 7677.02001953125,
             "time": "2026-09-11T00:00:00Z"
+          },
+          {
+            "confirmed_at": "2026-09-19T00:00:00Z",
+            "kind": "low",
+            "price": 7507.77001953125,
+            "time": "2026-09-16T00:00:00Z"
           }
         ],
-        "price": 7637.759765625,
+        "price": 7650.5,
         "resistance": [
           {
-            "confluence_count": 2,
-            "lower": 7638.169921875,
+            "confluence_count": 3,
+            "lower": 7677.02001953125,
             "methods": [
+              "channel_mid",
               "confirmed_pivot",
-              "fibonacci_0.618"
+              "fibonacci_0"
             ],
-            "price": 7639.075618164063,
-            "upper": 7639.981314453125
+            "price": 7677.02001953125,
+            "upper": 7678.616865948932
           },
           {
             "confluence_count": 1,
-            "lower": 7656.270587890625,
-            "methods": [
-              "fibonacci_0.786"
-            ],
-            "price": 7656.270587890625,
-            "upper": 7656.270587890625
-          },
-          {
-            "confluence_count": 2,
-            "lower": 7677.02001953125,
-            "methods": [
-              "confirmed_pivot",
-              "fibonacci_1"
-            ],
-            "price": 7677.02001953125,
-            "upper": 7677.02001953125
-          },
-          {
-            "confluence_count": 2,
             "lower": 7717.25,
             "methods": [
-              "channel_mid",
               "confirmed_pivot"
             ],
-            "price": 7722.981699090255,
-            "upper": 7728.71339818051
+            "price": 7717.25,
+            "upper": 7717.25
+          },
+          {
+            "confluence_count": 1,
+            "lower": 7756.759765625,
+            "methods": [
+              "confirmed_pivot"
+            ],
+            "price": 7764.119873046875,
+            "upper": 7771.47998046875
+          },
+          {
+            "confluence_count": 1,
+            "lower": 7773.759765625,
+            "methods": [
+              "confirmed_pivot"
+            ],
+            "price": 7773.759765625,
+            "upper": 7773.759765625
           }
         ],
         "scale": "linear",
@@ -679,43 +712,43 @@
             "condition": {
               "field": "close",
               "operator": "gt",
-              "value": 7639.981314453125
+              "value": 7678.616865948932
             },
             "invalidation": {
               "field": "close",
               "operator": "lt",
-              "value": 7620.89990234375
+              "value": 7637.07701953125
             },
             "name": "상방 돌파",
-            "target": 7656.270587890625
+            "target": 7717.25
           },
           {
             "condition": {
               "field": "close",
               "operator": "lt",
-              "value": 7620.89990234375
+              "value": 7637.07701953125
             },
             "invalidation": {
               "field": "close",
               "operator": "gt",
-              "value": 7639.981314453125
+              "value": 7678.616865948932
             },
             "name": "지지 이탈",
-            "target": 7611.2001953125
+            "target": 7612.36651953125
           }
         ],
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "S&P 500 cash index; publisher series",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:01Z",
+          "observed_at": "2026-09-19T00:00:51Z",
           "provider": "yahoo",
           "provider_symbol": "^GSPC",
           "publication_date": null,
-          "sha256": "8768ffd5c2da1605c8166c5c519c87ae5c9013476b761a630d0915d56f4e6f2e",
+          "sha256": "13243cfb7369dc0c22afa27005bafb55ec519d0167e4f0467cc6be7682e6297c",
           "source_identity": "52a1467f4d957fbffd7b8059e5af34696d4d447c236e148a87802329873c1eda",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -723,50 +756,49 @@
         "support": [
           {
             "confluence_count": 2,
-            "lower": 7620.89990234375,
+            "lower": 7637.07701953125,
             "methods": [
               "confirmed_pivot",
-              "fibonacci_0.5"
+              "fibonacci_0.236"
             ],
-            "price": 7624.719970703125,
-            "upper": 7628.5400390625
-          },
-          {
-            "confluence_count": 3,
-            "lower": 7602.942609375,
-            "methods": [
-              "confirmed_pivot",
-              "fibonacci_0.236",
-              "fibonacci_0.382"
-            ],
-            "price": 7611.2001953125,
-            "upper": 7617.098763671875
+            "price": 7637.623470703125,
+            "upper": 7638.169921875
           },
           {
             "confluence_count": 2,
-            "lower": 7577.919921875,
+            "lower": 7611.2001953125,
             "methods": [
               "confirmed_pivot",
-              "fibonacci_0"
+              "fibonacci_0.382"
             ],
-            "price": 7580.06005859375,
-            "upper": 7581.5
+            "price": 7612.36651953125,
+            "upper": 7620.89990234375
           },
           {
             "confluence_count": 1,
-            "lower": 7551.31005859375,
+            "lower": 7592.39501953125,
             "methods": [
-              "confirmed_pivot"
+              "fibonacci_0.5"
             ],
-            "price": 7551.31005859375,
-            "upper": 7551.31005859375
+            "price": 7592.39501953125,
+            "upper": 7592.39501953125
+          },
+          {
+            "confluence_count": 2,
+            "lower": 7572.42351953125,
+            "methods": [
+              "confirmed_pivot",
+              "fibonacci_0.618"
+            ],
+            "price": 7579.93017578125,
+            "upper": 7581.5
           }
         ],
         "symbol": "SPX",
         "timeframe": "1d"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 176.943603515625,
         "bar_count": 521,
         "channels": [
@@ -1162,15 +1194,15 @@
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "S&P 500 cash index; publisher series",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:01Z",
+          "observed_at": "2026-09-19T00:00:51Z",
           "provider": "yahoo",
           "provider_symbol": "^GSPC",
           "publication_date": null,
-          "sha256": "8768ffd5c2da1605c8166c5c519c87ae5c9013476b761a630d0915d56f4e6f2e",
+          "sha256": "13243cfb7369dc0c22afa27005bafb55ec519d0167e4f0467cc6be7682e6297c",
           "source_identity": "52a1467f4d957fbffd7b8059e5af34696d4d447c236e148a87802329873c1eda",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -1219,7 +1251,7 @@
         "timeframe": "1w"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 357.2784946986607,
         "bar_count": 119,
         "channels": [
@@ -1462,15 +1494,15 @@
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "S&P 500 cash index; publisher series",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:01Z",
+          "observed_at": "2026-09-19T00:00:51Z",
           "provider": "yahoo",
           "provider_symbol": "^GSPC",
           "publication_date": null,
-          "sha256": "8768ffd5c2da1605c8166c5c519c87ae5c9013476b761a630d0915d56f4e6f2e",
+          "sha256": "13243cfb7369dc0c22afa27005bafb55ec519d0167e4f0467cc6be7682e6297c",
           "source_identity": "52a1467f4d957fbffd7b8059e5af34696d4d447c236e148a87802329873c1eda",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -1519,92 +1551,86 @@
         "timeframe": "1mo"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
-        "atr": 347.85714285714283,
-        "bar_count": 2513,
+        "as_of": "2026-09-19T00:00:58Z",
+        "atr": 341.21791294642856,
+        "bar_count": 2514,
         "channels": [
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 60,
-            "lower": 27222.68566347948,
-            "mid": 28812.595892607278,
+            "lower": 27090.541372903965,
+            "mid": 28642.615865567837,
             "projected": {
-              "lower": 27229.217554804105,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 30409.0380130597
+              "lower": 27078.807736280487,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 30182.956721608232
             },
             "scale": "linear",
-            "slope_per_day": 0.9331273320895523,
+            "slope_per_day": -1.6762338033536586,
             "slope_units": "price_per_day",
-            "upper": 30402.506121735074
+            "upper": 30194.69035823171
           },
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 180,
-            "lower": 25573.81647888688,
-            "mid": 29014.890992219785,
+            "lower": 25295.55185280885,
+            "mid": 28792.22471197106,
             "projected": {
-              "lower": 25685.668969524795,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 32567.8179961906
+              "lower": 25395.4293151143,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 32388.775033438716
             },
             "scale": "linear",
-            "slope_per_day": 15.978927233987601,
+            "slope_per_day": 14.26820890077821,
             "slope_units": "price_per_day",
-            "upper": 32455.965505552685
+            "upper": 32288.897571133268
           },
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 600,
-            "lower": 23765.146756850823,
-            "mid": 27988.703706587046,
+            "lower": 23531.89811122912,
+            "mid": 27853.94637906826,
             "projected": {
-              "lower": 23860.905531030192,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 32308.019430502638
+              "lower": 23624.38940092166,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 32268.485936599944
             },
             "scale": "linear",
-            "slope_per_day": 13.679824882766706,
+            "slope_per_day": 13.213041384648616,
             "slope_units": "price_per_day",
-            "upper": 32212.26065632327
+            "upper": 32175.994646907402
           }
         ],
-        "data_as_of": "2026-09-18T00:00:00Z",
+        "data_as_of": "2026-09-19T00:00:00Z",
         "fibonacci": {
           "anchors": {
             "one": {
-              "price": 29655.73046875,
-              "time": "2026-09-08T00:00:00Z"
+              "price": 28753.2890625,
+              "time": "2026-09-16T00:00:00Z"
             },
             "zero": {
-              "price": 28953.259765625,
-              "time": "2026-09-01T00:00:00Z"
+              "price": 29655.73046875,
+              "time": "2026-09-08T00:00:00Z"
             }
           },
           "levels": {
-            "0": 28953.259765625,
-            "0.236": 29119.0428515625,
-            "0.382": 29221.60357421875,
-            "0.5": 29304.4951171875,
-            "0.618": 29387.38666015625,
-            "0.786": 29505.40173828125,
-            "1": 29655.73046875,
-            "1.618": 30089.85736328125,
-            "2.618": 30792.32806640625
+            "0": 29655.73046875,
+            "0.236": 29442.754296875,
+            "0.382": 29310.9978515625,
+            "0.5": 29204.509765625,
+            "0.618": 29098.0216796875,
+            "0.786": 28946.4115234375,
+            "1": 28753.2890625,
+            "1.618": 28195.5802734375,
+            "2.618": 27293.1388671875
           },
           "scale": "linear"
         },
         "history": [],
         "pivots": [
-          {
-            "confirmed_at": "2026-02-25T00:00:00Z",
-            "kind": "high",
-            "price": 25077.560546875,
-            "time": "2026-02-20T00:00:00Z"
-          },
           {
             "confirmed_at": "2026-02-26T00:00:00Z",
             "kind": "low",
@@ -1838,25 +1864,22 @@
             "kind": "high",
             "price": 29655.73046875,
             "time": "2026-09-08T00:00:00Z"
+          },
+          {
+            "confirmed_at": "2026-09-19T00:00:00Z",
+            "kind": "low",
+            "price": 28753.2890625,
+            "time": "2026-09-16T00:00:00Z"
           }
         ],
-        "price": 29446.98046875,
+        "price": 29644.16796875,
         "resistance": [
-          {
-            "confluence_count": 1,
-            "lower": 29505.40173828125,
-            "methods": [
-              "fibonacci_0.786"
-            ],
-            "price": 29505.40173828125,
-            "upper": 29505.40173828125
-          },
           {
             "confluence_count": 2,
             "lower": 29604.9296875,
             "methods": [
               "confirmed_pivot",
-              "fibonacci_1"
+              "fibonacci_0"
             ],
             "price": 29655.73046875,
             "upper": 29678.890625
@@ -1878,6 +1901,15 @@
             ],
             "price": 29850.4150390625,
             "upper": 29856.939453125
+          },
+          {
+            "confluence_count": 1,
+            "lower": 29946.939453125,
+            "methods": [
+              "confirmed_pivot"
+            ],
+            "price": 29946.939453125,
+            "upper": 29946.939453125
           }
         ],
         "scale": "linear",
@@ -1886,43 +1918,43 @@
             "condition": {
               "field": "close",
               "operator": "gt",
-              "value": 29505.40173828125
+              "value": 29678.890625
             },
             "invalidation": {
               "field": "close",
               "operator": "lt",
-              "value": 29387.38666015625
+              "value": 29427.609375
             },
             "name": "상방 돌파",
-            "target": 29655.73046875
+            "target": 29762.3349609375
           },
           {
             "condition": {
               "field": "close",
               "operator": "lt",
-              "value": 29387.38666015625
+              "value": 29427.609375
             },
             "invalidation": {
               "field": "close",
               "operator": "gt",
-              "value": 29505.40173828125
+              "value": 29678.890625
             },
             "name": "지지 이탈",
-            "target": 29263.049345703126
+            "target": 29310.9978515625
           }
         ],
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "Nasdaq 100 cash index; not NAS100 CFD",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:01Z",
+          "observed_at": "2026-09-19T00:00:52Z",
           "provider": "yahoo",
           "provider_symbol": "^NDX",
           "publication_date": null,
-          "sha256": "09caa027883376d0ef0e3628c275149b8512e376fe81073926eef5b4344ace14",
+          "sha256": "f5517dce2cbe99aa54e1edf6cbca7559c59c820e76f7673f69a63fcad8cb6ecf",
           "source_identity": "1970fa9f11004467ebc49f662bd08e2716a4640dd6f07a485cf5bbe550c0b136",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -1930,51 +1962,48 @@
         "support": [
           {
             "confluence_count": 2,
-            "lower": 29387.38666015625,
-            "methods": [
-              "confirmed_pivot",
-              "fibonacci_0.618"
-            ],
-            "price": 29407.498017578124,
-            "upper": 29427.609375
-          },
-          {
-            "confluence_count": 2,
-            "lower": 29221.60357421875,
-            "methods": [
-              "fibonacci_0.382",
-              "fibonacci_0.5"
-            ],
-            "price": 29263.049345703126,
-            "upper": 29304.4951171875
-          },
-          {
-            "confluence_count": 2,
-            "lower": 29119.0428515625,
+            "lower": 29427.609375,
             "methods": [
               "confirmed_pivot",
               "fibonacci_0.236"
             ],
-            "price": 29189.2109375,
-            "upper": 29192.2890625
+            "price": 29435.1818359375,
+            "upper": 29442.754296875
           },
           {
-            "confluence_count": 3,
-            "lower": 28953.259765625,
+            "confluence_count": 1,
+            "lower": 29310.9978515625,
             "methods": [
-              "channel_mid",
-              "confirmed_pivot",
-              "fibonacci_0"
+              "fibonacci_0.382"
             ],
-            "price": 28953.259765625,
-            "upper": 29014.890992219785
+            "price": 29310.9978515625,
+            "upper": 29310.9978515625
+          },
+          {
+            "confluence_count": 2,
+            "lower": 29189.2109375,
+            "methods": [
+              "confirmed_pivot",
+              "fibonacci_0.5"
+            ],
+            "price": 29192.2890625,
+            "upper": 29204.509765625
+          },
+          {
+            "confluence_count": 1,
+            "lower": 29098.0216796875,
+            "methods": [
+              "fibonacci_0.618"
+            ],
+            "price": 29098.0216796875,
+            "upper": 29098.0216796875
           }
         ],
         "symbol": "NASDAQ100",
         "timeframe": "1d"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 1190.1469029017858,
         "bar_count": 521,
         "channels": [
@@ -2371,15 +2400,15 @@
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "Nasdaq 100 cash index; not NAS100 CFD",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:01Z",
+          "observed_at": "2026-09-19T00:00:52Z",
           "provider": "yahoo",
           "provider_symbol": "^NDX",
           "publication_date": null,
-          "sha256": "09caa027883376d0ef0e3628c275149b8512e376fe81073926eef5b4344ace14",
+          "sha256": "f5517dce2cbe99aa54e1edf6cbca7559c59c820e76f7673f69a63fcad8cb6ecf",
           "source_identity": "1970fa9f11004467ebc49f662bd08e2716a4640dd6f07a485cf5bbe550c0b136",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -2430,7 +2459,7 @@
         "timeframe": "1w"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 2100.768136160714,
         "bar_count": 119,
         "channels": [
@@ -2723,15 +2752,15 @@
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "Nasdaq 100 cash index; not NAS100 CFD",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:01Z",
+          "observed_at": "2026-09-19T00:00:52Z",
           "provider": "yahoo",
           "provider_symbol": "^NDX",
           "publication_date": null,
-          "sha256": "09caa027883376d0ef0e3628c275149b8512e376fe81073926eef5b4344ace14",
+          "sha256": "f5517dce2cbe99aa54e1edf6cbca7559c59c820e76f7673f69a63fcad8cb6ecf",
           "source_identity": "1970fa9f11004467ebc49f662bd08e2716a4640dd6f07a485cf5bbe550c0b136",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -2779,60 +2808,60 @@
         "timeframe": "1mo"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
-        "atr": 327.43289620535717,
-        "bar_count": 2513,
+        "as_of": "2026-09-19T00:00:58Z",
+        "atr": 318.64676339285717,
+        "bar_count": 2514,
         "channels": [
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 60,
-            "lower": 9222.440596417684,
-            "mid": 10811.430312738186,
+            "lower": 9337.733728185876,
+            "mid": 10966.457177100245,
             "projected": {
-              "lower": 9051.22061975991,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 12229.200052400915
+              "lower": 9185.695553469968,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 12443.142451298703
             },
             "scale": "linear",
-            "slope_per_day": -24.459996665396343,
+            "slope_per_day": -21.71973924512987,
             "slope_units": "price_per_day",
-            "upper": 12400.420029058689
+            "upper": 12595.180626014611
           },
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 180,
-            "lower": 9763.87983151447,
-            "mid": 12891.275711712671,
+            "lower": 9779.550883846061,
+            "mid": 12906.94676404426,
             "projected": {
-              "lower": 9873.577197835604,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 16128.368958232004
+              "lower": 9889.248250167193,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 16144.040010563593
             },
             "scale": "linear",
             "slope_per_day": 15.671052331590467,
             "slope_units": "price_per_day",
-            "upper": 16018.67159191087
+            "upper": 16034.34264424246
           },
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 600,
-            "lower": 7429.704232372258,
-            "mid": 11375.427361116122,
+            "lower": 7437.357800772228,
+            "mid": 11383.080929516094,
             "projected": {
-              "lower": 7483.2792111720555,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 15374.725468659786
+              "lower": 7490.932779572027,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 15382.379037059758
             },
             "scale": "linear",
             "slope_per_day": 7.653568399971132,
             "slope_units": "price_per_day",
-            "upper": 15321.150489859989
+            "upper": 15328.804058259959
           }
         ],
-        "data_as_of": "2026-09-18T00:00:00Z",
+        "data_as_of": "2026-09-19T00:00:00Z",
         "fibonacci": {
           "anchors": {
             "one": {
@@ -3100,28 +3129,8 @@
             "time": "2026-09-14T00:00:00Z"
           }
         ],
-        "price": 11599.490234375,
+        "price": 11921.685546875,
         "resistance": [
-          {
-            "confluence_count": 2,
-            "lower": 11674.8078515625,
-            "methods": [
-              "confirmed_pivot",
-              "fibonacci_0.382"
-            ],
-            "price": 11691.294062500001,
-            "upper": 11707.7802734375
-          },
-          {
-            "confluence_count": 2,
-            "lower": 11794.150390625,
-            "methods": [
-              "confirmed_pivot",
-              "fibonacci_0.236"
-            ],
-            "price": 11801.18287109375,
-            "upper": 11808.2153515625
-          },
           {
             "confluence_count": 1,
             "lower": 11910.0302734375,
@@ -3140,6 +3149,25 @@
             ],
             "price": 12023.8603515625,
             "upper": 12023.8603515625
+          },
+          {
+            "confluence_count": 1,
+            "lower": 12108.669921875,
+            "methods": [
+              "confirmed_pivot"
+            ],
+            "price": 12125.10498046875,
+            "upper": 12141.5400390625
+          },
+          {
+            "confluence_count": 2,
+            "lower": 12525.7099609375,
+            "methods": [
+              "channel_upper",
+              "confirmed_pivot"
+            ],
+            "price": 12560.445293476056,
+            "upper": 12595.180626014611
           }
         ],
         "scale": "linear",
@@ -3148,48 +3176,68 @@
             "condition": {
               "field": "close",
               "operator": "gt",
-              "value": 11707.7802734375
+              "value": 11960.83984375
             },
             "invalidation": {
               "field": "close",
               "operator": "lt",
-              "value": 11566.9853515625
+              "value": 11794.150390625
             },
             "name": "상방 돌파",
-            "target": 11801.18287109375
+            "target": 12023.8603515625
           },
           {
             "condition": {
               "field": "close",
               "operator": "lt",
-              "value": 11566.9853515625
+              "value": 11794.150390625
             },
             "invalidation": {
               "field": "close",
               "operator": "gt",
-              "value": 11707.7802734375
+              "value": 11960.83984375
             },
             "name": "지지 이탈",
-            "target": 11459.1628515625
+            "target": 11691.294062500001
           }
         ],
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "PHLX Semiconductor index; publisher series",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:02Z",
+          "observed_at": "2026-09-19T00:00:53Z",
           "provider": "yahoo",
           "provider_symbol": "^SOX",
           "publication_date": null,
-          "sha256": "5d7cdeecc6d65bbcf611accd20fe2ebab9d9671c5000c785c92dddcac9bb2874",
+          "sha256": "0457da953b777abd958c4812ca7d7ced00ddc197e03ac093c18a77fb6db5d1ca",
           "source_identity": "104e06c091d0ca9094544f912cfe32e0be218fee37c76dd0ca7798ad8115bc29",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=10y&events=div%2Csplits"
         },
         "status": "ANALYZED",
         "support": [
+          {
+            "confluence_count": 2,
+            "lower": 11794.150390625,
+            "methods": [
+              "confirmed_pivot",
+              "fibonacci_0.236"
+            ],
+            "price": 11801.18287109375,
+            "upper": 11808.2153515625
+          },
+          {
+            "confluence_count": 2,
+            "lower": 11674.8078515625,
+            "methods": [
+              "confirmed_pivot",
+              "fibonacci_0.382"
+            ],
+            "price": 11691.294062500001,
+            "upper": 11707.7802734375
+          },
           {
             "confluence_count": 1,
             "lower": 11566.9853515625,
@@ -3207,32 +3255,13 @@
             ],
             "price": 11459.1628515625,
             "upper": 11459.1628515625
-          },
-          {
-            "confluence_count": 2,
-            "lower": 11305.6528515625,
-            "methods": [
-              "channel_mid",
-              "fibonacci_0.786"
-            ],
-            "price": 11340.540106339311,
-            "upper": 11375.427361116122
-          },
-          {
-            "confluence_count": 1,
-            "lower": 11194.599609375,
-            "methods": [
-              "confirmed_pivot"
-            ],
-            "price": 11263.33984375,
-            "upper": 11263.580078125
           }
         ],
         "symbol": "SOX",
         "timeframe": "1d"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 1211.7479771205358,
         "bar_count": 521,
         "channels": [
@@ -3629,15 +3658,15 @@
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "PHLX Semiconductor index; publisher series",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:02Z",
+          "observed_at": "2026-09-19T00:00:53Z",
           "provider": "yahoo",
           "provider_symbol": "^SOX",
           "publication_date": null,
-          "sha256": "5d7cdeecc6d65bbcf611accd20fe2ebab9d9671c5000c785c92dddcac9bb2874",
+          "sha256": "0457da953b777abd958c4812ca7d7ced00ddc197e03ac093c18a77fb6db5d1ca",
           "source_identity": "104e06c091d0ca9094544f912cfe32e0be218fee37c76dd0ca7798ad8115bc29",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -3687,7 +3716,7 @@
         "timeframe": "1w"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 1613.1820242745537,
         "bar_count": 119,
         "channels": [
@@ -3965,15 +3994,15 @@
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "PHLX Semiconductor index; publisher series",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:02Z",
+          "observed_at": "2026-09-19T00:00:53Z",
           "provider": "yahoo",
           "provider_symbol": "^SOX",
           "publication_date": null,
-          "sha256": "5d7cdeecc6d65bbcf611accd20fe2ebab9d9671c5000c785c92dddcac9bb2874",
+          "sha256": "0457da953b777abd958c4812ca7d7ced00ddc197e03ac093c18a77fb6db5d1ca",
           "source_identity": "104e06c091d0ca9094544f912cfe32e0be218fee37c76dd0ca7798ad8115bc29",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -4020,7 +4049,7 @@
         "timeframe": "1mo"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 15.24214608328683,
         "bar_count": 2513,
         "channels": [
@@ -4421,11 +4450,11 @@
           "data_date": null,
           "identity_note": "iShares Semiconductor ETF; split/dividend caveats",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:03Z",
+          "observed_at": "2026-09-19T00:00:54Z",
           "provider": "yahoo",
           "provider_symbol": "SOXX",
           "publication_date": null,
-          "sha256": "8b19711c1adc7fda1e218745b6691012369a3ad5c1e9f182ca9c97420b7ae18c",
+          "sha256": "20c7161acdd9accc4e779664ccd1ed4e2cdb6daba71c98cb7a73562eee226082",
           "source_identity": "57310eb9e06ba193705cc8177e1ef0961750ecdc36c0831558c1fbf40acc1509",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/SOXX?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -4475,7 +4504,7 @@
         "timeframe": "1d"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 55.414297921316965,
         "bar_count": 521,
         "channels": [
@@ -4876,11 +4905,11 @@
           "data_date": null,
           "identity_note": "iShares Semiconductor ETF; split/dividend caveats",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:03Z",
+          "observed_at": "2026-09-19T00:00:54Z",
           "provider": "yahoo",
           "provider_symbol": "SOXX",
           "publication_date": null,
-          "sha256": "8b19711c1adc7fda1e218745b6691012369a3ad5c1e9f182ca9c97420b7ae18c",
+          "sha256": "20c7161acdd9accc4e779664ccd1ed4e2cdb6daba71c98cb7a73562eee226082",
           "source_identity": "57310eb9e06ba193705cc8177e1ef0961750ecdc36c0831558c1fbf40acc1509",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/SOXX?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -4931,7 +4960,7 @@
         "timeframe": "1w"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 72.41500418526786,
         "bar_count": 119,
         "channels": [
@@ -5207,11 +5236,11 @@
           "data_date": null,
           "identity_note": "iShares Semiconductor ETF; split/dividend caveats",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:03Z",
+          "observed_at": "2026-09-19T00:00:54Z",
           "provider": "yahoo",
           "provider_symbol": "SOXX",
           "publication_date": null,
-          "sha256": "8b19711c1adc7fda1e218745b6691012369a3ad5c1e9f182ca9c97420b7ae18c",
+          "sha256": "20c7161acdd9accc4e779664ccd1ed4e2cdb6daba71c98cb7a73562eee226082",
           "source_identity": "57310eb9e06ba193705cc8177e1ef0961750ecdc36c0831558c1fbf40acc1509",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/SOXX?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -5259,7 +5288,7 @@
         "timeframe": "1mo"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 198.68858119419642,
         "bar_count": 2450,
         "channels": [
@@ -5659,11 +5688,11 @@
           "data_date": null,
           "identity_note": "KOSPI index; publisher series",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:04Z",
+          "observed_at": "2026-09-19T00:00:55Z",
           "provider": "yahoo",
           "provider_symbol": "^KS11",
           "publication_date": null,
-          "sha256": "125abf48749b6207beee0b9e17c05fa5412e77ce8f853f1e9b985d5696430458",
+          "sha256": "3e41a57c448ca7850e82a1044be1f0fe0f7949da49cdeaae3d5b52f48a2a8650",
           "source_identity": "0cac44610ee215c20dc55f79cb9754741f7dcc3a87187865763784bcac650b5f",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EKS11?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -5711,7 +5740,7 @@
         "timeframe": "1d"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 934.6072126116071,
         "bar_count": 520,
         "channels": [
@@ -6111,11 +6140,11 @@
           "data_date": null,
           "identity_note": "KOSPI index; publisher series",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:04Z",
+          "observed_at": "2026-09-19T00:00:55Z",
           "provider": "yahoo",
           "provider_symbol": "^KS11",
           "publication_date": null,
-          "sha256": "125abf48749b6207beee0b9e17c05fa5412e77ce8f853f1e9b985d5696430458",
+          "sha256": "3e41a57c448ca7850e82a1044be1f0fe0f7949da49cdeaae3d5b52f48a2a8650",
           "source_identity": "0cac44610ee215c20dc55f79cb9754741f7dcc3a87187865763784bcac650b5f",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EKS11?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -6167,7 +6196,7 @@
         "timeframe": "1w"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 1146.5300467354912,
         "bar_count": 119,
         "channels": [
@@ -6479,11 +6508,11 @@
           "data_date": null,
           "identity_note": "KOSPI index; publisher series",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:04Z",
+          "observed_at": "2026-09-19T00:00:55Z",
           "provider": "yahoo",
           "provider_symbol": "^KS11",
           "publication_date": null,
-          "sha256": "125abf48749b6207beee0b9e17c05fa5412e77ce8f853f1e9b985d5696430458",
+          "sha256": "3e41a57c448ca7850e82a1044be1f0fe0f7949da49cdeaae3d5b52f48a2a8650",
           "source_identity": "0cac44610ee215c20dc55f79cb9754741f7dcc3a87187865763784bcac650b5f",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EKS11?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -6530,92 +6559,86 @@
         "timeframe": "1mo"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
-        "atr": 406.80357142857144,
-        "bar_count": 2514,
+        "as_of": "2026-09-19T00:00:58Z",
+        "atr": 419.0357142857143,
+        "bar_count": 2515,
         "channels": [
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 60,
-            "lower": 27029.99264705882,
-            "mid": 28679.38051470588,
+            "lower": 26954.740853658535,
+            "mid": 28583.708841463413,
             "projected": {
-              "lower": 27005.981617647056,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 30304.757352941175
+              "lower": 26920.871951219513,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 30178.807926829268
             },
             "scale": "linear",
-            "slope_per_day": -3.4301470588235294,
+            "slope_per_day": -4.838414634146342,
             "slope_units": "price_per_day",
-            "upper": 30328.76838235294
+            "upper": 30212.67682926829
           },
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 180,
-            "lower": 25523.393004115227,
-            "mid": 28964.279320987655,
+            "lower": 25289.295719844355,
+            "mid": 28776.80982490272,
             "projected": {
-              "lower": 25628.882716049382,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 32510.655349794237
+              "lower": 25384.58560311284,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 32359.61381322957
             },
             "scale": "linear",
-            "slope_per_day": 15.069958847736626,
+            "slope_per_day": 13.612840466926071,
             "slope_units": "price_per_day",
-            "upper": 32405.165637860082
+            "upper": 32264.323929961087
           },
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 600,
-            "lower": 23603.784290738568,
-            "mid": 27922.85155334115,
+            "lower": 23401.980968858134,
+            "mid": 27806.937283737025,
             "projected": {
-              "lower": 23698.493552168817,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 32336.628077373975
+              "lower": 23493.840830449826,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 32303.753460207612
             },
             "scale": "linear",
-            "slope_per_day": 13.52989449003517,
+            "slope_per_day": 13.122837370242214,
             "slope_units": "price_per_day",
-            "upper": 32241.918815943725
+            "upper": 32211.89359861592
           }
         ],
-        "data_as_of": "2026-09-18T00:00:00Z",
+        "data_as_of": "2026-09-19T00:00:00Z",
         "fibonacci": {
           "anchors": {
             "one": {
-              "price": 29764.75,
-              "time": "2026-09-08T00:00:00Z"
+              "price": 28763.75,
+              "time": "2026-09-16T00:00:00Z"
             },
             "zero": {
-              "price": 28927.25,
-              "time": "2026-09-02T00:00:00Z"
+              "price": 29764.75,
+              "time": "2026-09-08T00:00:00Z"
             }
           },
           "levels": {
-            "0": 28927.25,
-            "0.236": 29124.9,
-            "0.382": 29247.175,
-            "0.5": 29346.0,
-            "0.618": 29444.825,
-            "0.786": 29585.525,
-            "1": 29764.75,
-            "1.618": 30282.325,
-            "2.618": 31119.825
+            "0": 29764.75,
+            "0.236": 29528.514,
+            "0.382": 29382.368,
+            "0.5": 29264.25,
+            "0.618": 29146.132,
+            "0.786": 28977.964,
+            "1": 28763.75,
+            "1.618": 28145.132,
+            "2.618": 27144.132
           },
           "scale": "linear"
         },
         "history": [],
         "pivots": [
-          {
-            "confirmed_at": "2026-01-31T00:00:00Z",
-            "kind": "high",
-            "price": 26349.0,
-            "time": "2026-01-28T00:00:00Z"
-          },
           {
             "confirmed_at": "2026-02-06T00:00:00Z",
             "kind": "high",
@@ -6849,30 +6872,16 @@
             "kind": "high",
             "price": 29764.75,
             "time": "2026-09-08T00:00:00Z"
+          },
+          {
+            "confirmed_at": "2026-09-19T00:00:00Z",
+            "kind": "low",
+            "price": 28763.75,
+            "time": "2026-09-16T00:00:00Z"
           }
         ],
-        "price": 29446.75,
+        "price": 29955.0,
         "resistance": [
-          {
-            "confluence_count": 2,
-            "lower": 29585.525,
-            "methods": [
-              "confirmed_pivot",
-              "fibonacci_0.786"
-            ],
-            "price": 29600.7625,
-            "upper": 29616.0
-          },
-          {
-            "confluence_count": 2,
-            "lower": 29764.75,
-            "methods": [
-              "confirmed_pivot",
-              "fibonacci_1"
-            ],
-            "price": 29773.375,
-            "upper": 29811.5
-          },
           {
             "confluence_count": 1,
             "lower": 30062.5,
@@ -6883,15 +6892,31 @@
             "upper": 30077.75
           },
           {
-            "confluence_count": 3,
-            "lower": 30282.325,
+            "confluence_count": 1,
+            "lower": 30212.67682926829,
             "methods": [
-              "channel_upper",
-              "confirmed_pivot",
-              "fibonacci_1.618"
+              "channel_upper"
             ],
-            "price": 30328.76838235294,
+            "price": 30212.67682926829,
+            "upper": 30212.67682926829
+          },
+          {
+            "confluence_count": 1,
+            "lower": 30343.0,
+            "methods": [
+              "confirmed_pivot"
+            ],
+            "price": 30343.0,
             "upper": 30343.0
+          },
+          {
+            "confluence_count": 1,
+            "lower": 30599.75,
+            "methods": [
+              "confirmed_pivot"
+            ],
+            "price": 30632.125,
+            "upper": 30664.5
           }
         ],
         "scale": "linear",
@@ -6900,43 +6925,43 @@
             "condition": {
               "field": "close",
               "operator": "gt",
-              "value": 29616.0
+              "value": 30077.75
             },
             "invalidation": {
               "field": "close",
               "operator": "lt",
-              "value": 29364.75
+              "value": 29764.75
             },
             "name": "상방 돌파",
-            "target": 29773.375
+            "target": 30212.67682926829
           },
           {
             "condition": {
               "field": "close",
               "operator": "lt",
-              "value": 29364.75
+              "value": 29764.75
             },
             "invalidation": {
               "field": "close",
               "operator": "gt",
-              "value": 29616.0
+              "value": 30077.75
             },
             "name": "지지 이탈",
-            "target": 29296.5875
+            "target": 29572.256999999998
           }
         ],
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "Yahoo front futures series; not TradingView NQ1! or fixed NQU2026",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:05Z",
+          "observed_at": "2026-09-19T00:00:56Z",
           "provider": "yahoo",
           "provider_symbol": "NQ=F",
           "publication_date": null,
-          "sha256": "5ce3598a4b0c281220117d3dcba8bf5e323589bc3ea641aae4fe5804ed231427",
+          "sha256": "87f1b8c8e8898ce3b8be96d2b8fcd0dd459c47a828a7bb36e2393031e748f702",
           "source_identity": "959de88246c4c4ac50a04b922a8b5faed5e4e85ae7d2fdfb7c064e096ab50021",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/NQ%3DF?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -6944,51 +6969,49 @@
         "support": [
           {
             "confluence_count": 2,
-            "lower": 29364.75,
+            "lower": 29764.75,
             "methods": [
               "confirmed_pivot",
-              "fibonacci_0.618"
+              "fibonacci_0"
             ],
-            "price": 29404.7875,
-            "upper": 29444.825
+            "price": 29773.375,
+            "upper": 29811.5
           },
           {
             "confluence_count": 2,
-            "lower": 29247.175,
-            "methods": [
-              "fibonacci_0.382",
-              "fibonacci_0.5"
-            ],
-            "price": 29296.5875,
-            "upper": 29346.0
-          },
-          {
-            "confluence_count": 2,
-            "lower": 29124.9,
+            "lower": 29528.514,
             "methods": [
               "confirmed_pivot",
               "fibonacci_0.236"
             ],
-            "price": 29142.7,
-            "upper": 29160.5
+            "price": 29572.256999999998,
+            "upper": 29616.0
           },
           {
-            "confluence_count": 3,
-            "lower": 28909.75,
+            "confluence_count": 1,
+            "lower": 29382.368,
             "methods": [
-              "channel_mid",
-              "confirmed_pivot",
-              "fibonacci_0"
+              "fibonacci_0.382"
             ],
-            "price": 28927.25,
-            "upper": 28964.279320987655
+            "price": 29382.368,
+            "upper": 29382.368
+          },
+          {
+            "confluence_count": 2,
+            "lower": 29264.25,
+            "methods": [
+              "confirmed_pivot",
+              "fibonacci_0.5"
+            ],
+            "price": 29314.5,
+            "upper": 29364.75
           }
         ],
         "symbol": "NQ=F",
         "timeframe": "1d"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 1240.8214285714287,
         "bar_count": 521,
         "channels": [
@@ -7383,15 +7406,15 @@
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "Yahoo front futures series; not TradingView NQ1! or fixed NQU2026",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:05Z",
+          "observed_at": "2026-09-19T00:00:56Z",
           "provider": "yahoo",
           "provider_symbol": "NQ=F",
           "publication_date": null,
-          "sha256": "5ce3598a4b0c281220117d3dcba8bf5e323589bc3ea641aae4fe5804ed231427",
+          "sha256": "87f1b8c8e8898ce3b8be96d2b8fcd0dd459c47a828a7bb36e2393031e748f702",
           "source_identity": "959de88246c4c4ac50a04b922a8b5faed5e4e85ae7d2fdfb7c064e096ab50021",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/NQ%3DF?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -7440,7 +7463,7 @@
         "timeframe": "1w"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 2208.589285714286,
         "bar_count": 119,
         "channels": [
@@ -7733,15 +7756,15 @@
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "Yahoo front futures series; not TradingView NQ1! or fixed NQU2026",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:05Z",
+          "observed_at": "2026-09-19T00:00:56Z",
           "provider": "yahoo",
           "provider_symbol": "NQ=F",
           "publication_date": null,
-          "sha256": "5ce3598a4b0c281220117d3dcba8bf5e323589bc3ea641aae4fe5804ed231427",
+          "sha256": "87f1b8c8e8898ce3b8be96d2b8fcd0dd459c47a828a7bb36e2393031e748f702",
           "source_identity": "959de88246c4c4ac50a04b922a8b5faed5e4e85ae7d2fdfb7c064e096ab50021",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/NQ%3DF?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -7789,65 +7812,65 @@
         "timeframe": "1mo"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
-        "atr": 76.71428571428571,
-        "bar_count": 2514,
+        "as_of": "2026-09-19T00:00:58Z",
+        "atr": 78.75,
+        "bar_count": 2515,
         "channels": [
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 60,
-            "lower": 7474.16447368421,
-            "mid": 7711.777960526315,
+            "lower": 7418.536585365854,
+            "mid": 7661.884146341464,
             "projected": {
-              "lower": 7495.1875,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 7970.414473684211
+              "lower": 7431.512195121952,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 7918.207317073171
             },
             "scale": "linear",
-            "slope_per_day": 3.0032894736842106,
+            "slope_per_day": 1.8536585365853657,
             "slope_units": "price_per_day",
-            "upper": 7949.391447368421
+            "upper": 7905.231707317073
           },
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 180,
-            "lower": 6840.052788844621,
-            "mid": 7391.717629482071,
+            "lower": 6780.75,
+            "mid": 7355.5,
             "projected": {
-              "lower": 6860.097609561753,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 7963.427290836654
+              "lower": 6798.25,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 7947.75
             },
             "scale": "linear",
-            "slope_per_day": 2.863545816733068,
+            "slope_per_day": 2.5,
             "slope_units": "price_per_day",
-            "upper": 7943.382470119522
+            "upper": 7930.25
           },
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 600,
-            "lower": 6395.303135888502,
-            "mid": 7232.886324041812,
+            "lower": 6340.900807381777,
+            "mid": 7163.845011534026,
             "projected": {
-              "lower": 6416.028745644599,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 8091.195121951219
+              "lower": 6360.8673587081885,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 8006.755767012687
             },
             "scale": "linear",
-            "slope_per_day": 2.960801393728223,
+            "slope_per_day": 2.8523644752018456,
             "slope_units": "price_per_day",
-            "upper": 8070.469512195122
+            "upper": 7986.789215686275
           }
         ],
-        "data_as_of": "2026-09-18T00:00:00Z",
+        "data_as_of": "2026-09-19T00:00:00Z",
         "fibonacci": {
           "anchors": {
             "one": {
-              "price": 7585.5,
-              "time": "2026-09-10T00:00:00Z"
+              "price": 7509.25,
+              "time": "2026-09-16T00:00:00Z"
             },
             "zero": {
               "price": 7766.5,
@@ -7856,25 +7879,19 @@
           },
           "levels": {
             "0": 7766.5,
-            "0.236": 7723.784,
-            "0.382": 7697.358,
-            "0.5": 7676.0,
-            "0.618": 7654.642,
-            "0.786": 7624.234,
-            "1": 7585.5,
-            "1.618": 7473.642,
-            "2.618": 7292.642
+            "0.236": 7705.789,
+            "0.382": 7668.2305,
+            "0.5": 7637.875,
+            "0.618": 7607.5195,
+            "0.786": 7564.3015,
+            "1": 7509.25,
+            "1.618": 7350.2695,
+            "2.618": 7093.0195
           },
           "scale": "linear"
         },
         "history": [],
         "pivots": [
-          {
-            "confirmed_at": "2026-02-25T00:00:00Z",
-            "kind": "high",
-            "price": 6931.5,
-            "time": "2026-02-20T00:00:00Z"
-          },
           {
             "confirmed_at": "2026-02-27T00:00:00Z",
             "kind": "low",
@@ -8108,47 +8125,52 @@
             "kind": "low",
             "price": 7585.5,
             "time": "2026-09-10T00:00:00Z"
+          },
+          {
+            "confirmed_at": "2026-09-19T00:00:00Z",
+            "kind": "low",
+            "price": 7509.25,
+            "time": "2026-09-16T00:00:00Z"
           }
         ],
-        "price": 7640.0,
+        "price": 7725.0,
         "resistance": [
           {
             "confluence_count": 2,
-            "lower": 7654.642,
+            "lower": 7766.5,
             "methods": [
               "confirmed_pivot",
-              "fibonacci_0.618"
+              "fibonacci_0"
             ],
-            "price": 7654.821,
-            "upper": 7655.0
+            "price": 7766.5,
+            "upper": 7782.5
           },
           {
             "confluence_count": 1,
-            "lower": 7676.0,
+            "lower": 7798.0,
             "methods": [
-              "fibonacci_0.5"
+              "confirmed_pivot"
             ],
-            "price": 7676.0,
-            "upper": 7676.0
-          },
-          {
-            "confluence_count": 2,
-            "lower": 7697.358,
-            "methods": [
-              "channel_mid",
-              "fibonacci_0.382"
-            ],
-            "price": 7704.567980263158,
-            "upper": 7711.777960526315
+            "price": 7798.0,
+            "upper": 7798.0
           },
           {
             "confluence_count": 1,
-            "lower": 7723.784,
+            "lower": 7820.25,
             "methods": [
-              "fibonacci_0.236"
+              "confirmed_pivot"
             ],
-            "price": 7723.784,
-            "upper": 7723.784
+            "price": 7829.375,
+            "upper": 7838.5
+          },
+          {
+            "confluence_count": 1,
+            "lower": 7905.231707317073,
+            "methods": [
+              "channel_upper"
+            ],
+            "price": 7905.231707317073,
+            "upper": 7905.231707317073
           }
         ],
         "scale": "linear",
@@ -8157,92 +8179,94 @@
             "condition": {
               "field": "close",
               "operator": "gt",
-              "value": 7655.0
+              "value": 7782.5
             },
             "invalidation": {
               "field": "close",
               "operator": "lt",
-              "value": 7618.5
+              "value": 7705.789
             },
             "name": "상방 돌파",
-            "target": 7676.0
+            "target": 7798.0
           },
           {
             "condition": {
               "field": "close",
               "operator": "lt",
-              "value": 7618.5
+              "value": 7705.789
             },
             "invalidation": {
               "field": "close",
               "operator": "gt",
-              "value": 7655.0
+              "value": 7782.5
             },
             "name": "지지 이탈",
-            "target": 7585.5
+            "target": 7661.884146341464
           }
         ],
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "Yahoo front futures series; not TradingView ES1! or fixed ESU2026",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:06Z",
+          "observed_at": "2026-09-19T00:00:57Z",
           "provider": "yahoo",
           "provider_symbol": "ES=F",
           "publication_date": null,
-          "sha256": "55b19c72842f35d44d0eb711ff63078eac9692756f56ba3aa2b8fe0a6ca3c2cc",
+          "sha256": "c07ad25dbaf06d2874e0b615f43bc76730777d86b72f4b4acf5e0ac7663e474c",
           "source_identity": "42df92c714d4d3a82f128261d9e73bee1287ac5a78456003955652af20ff882b",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/ES%3DF?interval=1d&range=10y&events=div%2Csplits"
         },
         "status": "ANALYZED",
         "support": [
           {
+            "confluence_count": 1,
+            "lower": 7705.789,
+            "methods": [
+              "fibonacci_0.236"
+            ],
+            "price": 7705.789,
+            "upper": 7705.789
+          },
+          {
+            "confluence_count": 3,
+            "lower": 7655.0,
+            "methods": [
+              "channel_mid",
+              "confirmed_pivot",
+              "fibonacci_0.382"
+            ],
+            "price": 7661.884146341464,
+            "upper": 7668.2305
+          },
+          {
             "confluence_count": 2,
-            "lower": 7618.5,
+            "lower": 7628.75,
             "methods": [
               "confirmed_pivot",
-              "fibonacci_0.786"
+              "fibonacci_0.5"
             ],
-            "price": 7628.75,
-            "upper": 7632.25
+            "price": 7632.125,
+            "upper": 7637.875
           },
           {
             "confluence_count": 2,
-            "lower": 7584.5,
+            "lower": 7607.5195,
             "methods": [
               "confirmed_pivot",
-              "fibonacci_1"
+              "fibonacci_0.618"
             ],
-            "price": 7585.5,
-            "upper": 7602.5
-          },
-          {
-            "confluence_count": 1,
-            "lower": 7563.5,
-            "methods": [
-              "confirmed_pivot"
-            ],
-            "price": 7563.5,
-            "upper": 7563.5
-          },
-          {
-            "confluence_count": 1,
-            "lower": 7531.5,
-            "methods": [
-              "confirmed_pivot"
-            ],
-            "price": 7535.75,
-            "upper": 7540.0
+            "price": 7613.00975,
+            "upper": 7618.5
           }
         ],
         "symbol": "ES=F",
         "timeframe": "1d"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 182.19642857142858,
         "bar_count": 521,
         "channels": [
@@ -8638,15 +8662,15 @@
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "Yahoo front futures series; not TradingView ES1! or fixed ESU2026",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:06Z",
+          "observed_at": "2026-09-19T00:00:57Z",
           "provider": "yahoo",
           "provider_symbol": "ES=F",
           "publication_date": null,
-          "sha256": "55b19c72842f35d44d0eb711ff63078eac9692756f56ba3aa2b8fe0a6ca3c2cc",
+          "sha256": "c07ad25dbaf06d2874e0b615f43bc76730777d86b72f4b4acf5e0ac7663e474c",
           "source_identity": "42df92c714d4d3a82f128261d9e73bee1287ac5a78456003955652af20ff882b",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/ES%3DF?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -8694,7 +8718,7 @@
         "timeframe": "1w"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 373.76785714285717,
         "bar_count": 119,
         "channels": [
@@ -8943,15 +8967,15 @@
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "Yahoo front futures series; not TradingView ES1! or fixed ESU2026",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:06Z",
+          "observed_at": "2026-09-19T00:00:57Z",
           "provider": "yahoo",
           "provider_symbol": "ES=F",
           "publication_date": null,
-          "sha256": "55b19c72842f35d44d0eb711ff63078eac9692756f56ba3aa2b8fe0a6ca3c2cc",
+          "sha256": "c07ad25dbaf06d2874e0b615f43bc76730777d86b72f4b4acf5e0ac7663e474c",
           "source_identity": "42df92c714d4d3a82f128261d9e73bee1287ac5a78456003955652af20ff882b",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/ES%3DF?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -9000,60 +9024,60 @@
         "timeframe": "1mo"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
-        "atr": 1927.6785714285725,
+        "as_of": "2026-09-19T00:00:58Z",
+        "atr": 2095.107142857144,
         "bar_count": 720,
         "channels": [
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 60,
-            "lower": 68774.57368421054,
-            "mid": 77246.91578947369,
+            "lower": 69466.49433962264,
+            "mid": 77876.90754716982,
             "projected": {
-              "lower": 70150.0,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 87094.68421052632
+              "lower": 70950.29622641508,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 87771.12264150944
             },
             "scale": "linear",
-            "slope_per_day": 196.48947368421054,
+            "slope_per_day": 211.97169811320757,
             "slope_units": "price_per_day",
-            "upper": 85719.25789473685
+            "upper": 86287.32075471699
           },
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 180,
-            "lower": 61066.41355932203,
-            "mid": 74785.96073446327,
+            "lower": 62355.226470588226,
+            "mid": 76516.45294117645,
             "projected": {
-              "lower": 61364.937853107345,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 88804.03220338983
+              "lower": 62764.17058823528,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 91086.62352941175
             },
             "scale": "linear",
-            "slope_per_day": 42.64632768361578,
+            "slope_per_day": 58.42058823529412,
             "slope_units": "price_per_day",
-            "upper": 88505.50790960451
+            "upper": 90677.6794117647
           },
           {
-            "at_time": "2026-09-17T00:00:00Z",
+            "at_time": "2026-09-18T00:00:00Z",
             "fit_status": "PAST_ENVELOPE_ONLY",
             "lookback": 600,
-            "lower": 51970.175167785244,
-            "mid": 82466.82953020136,
+            "lower": 51931.924832214776,
+            "mid": 82428.57919463087,
             "projected": {
-              "lower": 51702.42281879195,
-              "time": "2026-09-24T00:00:00Z",
-              "upper": 112695.73154362416
+              "lower": 51664.17248322148,
+              "time": "2026-09-25T00:00:00Z",
+              "upper": 112657.4812080537
             },
             "scale": "linear",
             "slope_per_day": -38.250335570469794,
             "slope_units": "price_per_day",
-            "upper": 112963.48389261746
+            "upper": 112925.23355704699
           }
         ],
-        "data_as_of": "2026-09-18T00:00:00Z",
+        "data_as_of": "2026-09-19T00:00:00Z",
         "fibonacci": {
           "anchors": {
             "one": {
@@ -9082,13 +9106,13 @@
           "calibration": "NOT_VALIDATED",
           "causal_status": "NOT_ESTABLISHED",
           "control_count": 29,
-          "control_distance_median": 0.029187643447185125,
-          "control_forward_positive_fraction": 0.5517241379310345,
+          "control_distance_median": 0.03069795702071661,
+          "control_forward_positive_fraction": 0.4827586206896552,
           "event_at": "2025-10-10T00:00:00Z",
-          "event_distance_percentile": 0.4482758620689655,
+          "event_distance_percentile": 0.3448275862068966,
           "event_forward_return": -0.09527440652758035,
           "event_note": "2025-10-10 사건 시점 비교입니다. 노벨상 실망·관세·시장조성자 행동의 인과관계를 입증하지 않습니다.",
-          "event_similarity_distance": 0.027730050133792886,
+          "event_similarity_distance": 0.029110242032964945,
           "status": "DESCRIPTIVE_COMPARISON"
         },
         "history": [],
@@ -9334,37 +9358,112 @@
             "time": "2026-09-15T00:00:00Z"
           }
         ],
-        "price": 76354.8,
+        "price": 80878.1,
         "resistance": [
           {
-            "confluence_count": 2,
-            "lower": 76682.9654,
+            "confluence_count": 1,
+            "lower": 81200.0,
             "methods": [
-              "confirmed_pivot",
-              "fibonacci_0.618"
+              "confirmed_pivot"
             ],
-            "price": 76767.9827,
-            "upper": 76853.0
+            "price": 81330.5,
+            "upper": 81461.0
           },
           {
             "confluence_count": 2,
-            "lower": 77236.35,
+            "lower": 82017.4,
             "methods": [
               "channel_mid",
-              "fibonacci_0.5"
+              "confirmed_pivot"
             ],
-            "price": 77241.63289473685,
-            "upper": 77246.91578947369
+            "price": 82358.33959731544,
+            "upper": 82436.6
+          },
+          {
+            "confluence_count": 1,
+            "lower": 86287.32075471699,
+            "methods": [
+              "channel_upper"
+            ],
+            "price": 86287.32075471699,
+            "upper": 86287.32075471699
+          },
+          {
+            "confluence_count": 1,
+            "lower": 90677.6794117647,
+            "methods": [
+              "channel_upper"
+            ],
+            "price": 90677.6794117647,
+            "upper": 90677.6794117647
+          }
+        ],
+        "scale": "linear",
+        "scenarios": [
+          {
+            "condition": {
+              "field": "close",
+              "operator": "gt",
+              "value": 81461.0
+            },
+            "invalidation": {
+              "field": "close",
+              "operator": "lt",
+              "value": 79832.3
+            },
+            "name": "상방 돌파",
+            "target": 82358.33959731544
+          },
+          {
+            "condition": {
+              "field": "close",
+              "operator": "lt",
+              "value": 79832.3
+            },
+            "invalidation": {
+              "field": "close",
+              "operator": "gt",
+              "value": 81461.0
+            },
+            "name": "지지 이탈",
+            "target": 79546.15
+          }
+        ],
+        "source": {
+          "adjustment": "spot_unadjusted_no_dividends",
+          "currency": "USD",
+          "data_as_of": "2026-09-19T00:00:00Z",
+          "data_date": null,
+          "identity_note": "Kraken BTC/USD spot; not screenshot Binance BTC/USDT",
+          "kind": "official_public",
+          "observed_at": "2026-09-19T00:00:58Z",
+          "provider": "kraken",
+          "provider_symbol": "XBTUSD",
+          "publication_date": null,
+          "sha256": "b16ce0d02e327c235cd03cf5a056cba7b25c35fc93ffd131e8cd116c03a3f290",
+          "source_identity": "76f61954bbe7b7be0040e5858daed6b6913739820b5875f13b8c5c70305cddd5",
+          "url": "https://api.kraken.com/0/public/OHLC?pair=XBTUSD&interval=1440"
+        },
+        "status": "ANALYZED",
+        "support": [
+          {
+            "confluence_count": 1,
+            "lower": 79832.3,
+            "methods": [
+              "confirmed_pivot"
+            ],
+            "price": 79832.3,
+            "upper": 79832.3
           },
           {
             "confluence_count": 2,
-            "lower": 77789.7346,
+            "lower": 79168.1,
             "methods": [
               "confirmed_pivot",
-              "fibonacci_0.382"
+              "fibonacci_0"
             ],
-            "price": 77989.3,
-            "upper": 78100.0
+            "price": 79546.15,
+            "upper": 79581.2
           },
           {
             "confluence_count": 1,
@@ -9374,102 +9473,24 @@
             ],
             "price": 78474.4308,
             "upper": 78474.4308
-          }
-        ],
-        "scale": "linear",
-        "scenarios": [
-          {
-            "condition": {
-              "field": "close",
-              "operator": "gt",
-              "value": 76853.0
-            },
-            "invalidation": {
-              "field": "close",
-              "operator": "lt",
-              "value": 75895.0958
-            },
-            "name": "상방 돌파",
-            "target": 77241.63289473685
-          },
-          {
-            "condition": {
-              "field": "close",
-              "operator": "lt",
-              "value": 75895.0958
-            },
-            "invalidation": {
-              "field": "close",
-              "operator": "gt",
-              "value": 76853.0
-            },
-            "name": "지지 이탈",
-            "target": 74891.5
-          }
-        ],
-        "source": {
-          "adjustment": "spot_unadjusted_no_dividends",
-          "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
-          "data_date": null,
-          "identity_note": "Kraken BTC/USD spot; not screenshot Binance BTC/USDT",
-          "kind": "official_public",
-          "observed_at": "2026-09-18T23:01:07Z",
-          "provider": "kraken",
-          "provider_symbol": "XBTUSD",
-          "publication_date": null,
-          "sha256": "9194c0a5922c40ca021378be31c01b91da93ed085294f31bdb866ef882c76855",
-          "source_identity": "76f61954bbe7b7be0040e5858daed6b6913739820b5875f13b8c5c70305cddd5",
-          "url": "https://api.kraken.com/0/public/OHLC?pair=XBTUSD&interval=1440"
-        },
-        "status": "ANALYZED",
-        "support": [
-          {
-            "confluence_count": 2,
-            "lower": 75895.0958,
-            "methods": [
-              "confirmed_pivot",
-              "fibonacci_0.786"
-            ],
-            "price": 76010.4,
-            "upper": 76236.9
           },
           {
             "confluence_count": 3,
-            "lower": 74785.96073446327,
+            "lower": 77789.7346,
             "methods": [
               "channel_mid",
               "confirmed_pivot",
-              "fibonacci_1"
+              "fibonacci_0.382"
             ],
-            "price": 74891.5,
-            "upper": 74891.5
-          },
-          {
-            "confluence_count": 1,
-            "lower": 74209.4,
-            "methods": [
-              "confirmed_pivot"
-            ],
-            "price": 74209.4,
-            "upper": 74209.4
-          },
-          {
-            "confluence_count": 2,
-            "lower": 71993.2654,
-            "methods": [
-              "confirmed_pivot",
-              "fibonacci_1.618"
-            ],
-            "price": 72178.03270000001,
-            "upper": 72362.8
+            "price": 77933.10377358491,
+            "upper": 78100.0
           }
         ],
         "symbol": "BTCUSD",
         "timeframe": "1d"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 5414.300000000003,
         "bar_count": 102,
         "channels": [
@@ -9771,15 +9792,15 @@
         "source": {
           "adjustment": "spot_unadjusted_no_dividends",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "Kraken BTC/USD spot; not screenshot Binance BTC/USDT",
           "kind": "official_public",
-          "observed_at": "2026-09-18T23:01:07Z",
+          "observed_at": "2026-09-19T00:00:58Z",
           "provider": "kraken",
           "provider_symbol": "XBTUSD",
           "publication_date": null,
-          "sha256": "9194c0a5922c40ca021378be31c01b91da93ed085294f31bdb866ef882c76855",
+          "sha256": "b16ce0d02e327c235cd03cf5a056cba7b25c35fc93ffd131e8cd116c03a3f290",
           "source_identity": "76f61954bbe7b7be0040e5858daed6b6913739820b5875f13b8c5c70305cddd5",
           "url": "https://api.kraken.com/0/public/OHLC?pair=XBTUSD&interval=1440"
         },
@@ -9827,7 +9848,7 @@
         "timeframe": "1w"
       },
       {
-        "as_of": "2026-09-18T23:01:07Z",
+        "as_of": "2026-09-19T00:00:58Z",
         "atr": 16704.93571428571,
         "bar_count": 23,
         "channels": [
@@ -9981,15 +10002,15 @@
         "source": {
           "adjustment": "spot_unadjusted_no_dividends",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "Kraken BTC/USD spot; not screenshot Binance BTC/USDT",
           "kind": "official_public",
-          "observed_at": "2026-09-18T23:01:07Z",
+          "observed_at": "2026-09-19T00:00:58Z",
           "provider": "kraken",
           "provider_symbol": "XBTUSD",
           "publication_date": null,
-          "sha256": "9194c0a5922c40ca021378be31c01b91da93ed085294f31bdb866ef882c76855",
+          "sha256": "b16ce0d02e327c235cd03cf5a056cba7b25c35fc93ffd131e8cd116c03a3f290",
           "source_identity": "76f61954bbe7b7be0040e5858daed6b6913739820b5875f13b8c5c70305cddd5",
           "url": "https://api.kraken.com/0/public/OHLC?pair=XBTUSD&interval=1440"
         },
@@ -10063,11 +10084,11 @@
         "symbol": "SOX"
       },
       {
-        "status": "FRESH",
+        "status": "COVERAGE_GAPS",
         "symbol": "SOXX"
       },
       {
-        "status": "FRESH",
+        "status": "COVERAGE_GAPS",
         "symbol": "KOSPI"
       },
       {
@@ -10085,11 +10106,11 @@
     ],
     "evaluation": {
       "baseline_brier_score": 0.25,
-      "brier_score": 0.30250000000000005,
+      "brier_score": 0.2775,
       "constant_brier": null,
       "frequency_brier": null,
       "model_brier": null,
-      "paired_count": 3,
+      "paired_count": 4,
       "raw_brier": null,
       "status": "INSUFFICIENT_DATA"
     },
@@ -10536,7 +10557,7 @@
         "id": "CH-b1c7f80e7ebba27868017644",
         "issued_at": "2026-09-11T00:00:58Z",
         "method": "wie.chart-channels-fibonacci/1",
-        "outcome": null,
+        "outcome": "occurred",
         "probability": 0.55,
         "rationale": "확정 피벗으로 만든 복수 채널의 기울기에서 고정 확률 가정을 발행합니다. 과거 적중률을 뜻하지 않습니다.",
         "source": {
@@ -12065,6 +12086,180 @@
         "statement": "2026-09-25T03:00:58Z 이후 첫 확정 봉의 종가가 기준 종가 6715.41보다 높은가?",
         "title": "KOSPI 7일 뒤 종가 조건",
         "topic_id": "CH-aa064f3e68110cd6601ee414"
+      },
+      {
+        "category": "financial_markets",
+        "expires_at": "2026-09-26T00:00:58Z",
+        "href": "/record/#prediction-CH-a8bc787c5ccbbcf631a2a143",
+        "id": "CH-a8bc787c5ccbbcf631a2a143",
+        "issued_at": "2026-09-19T00:00:58Z",
+        "method": "wie.chart-channels-fibonacci/1",
+        "outcome": null,
+        "probability": 0.55,
+        "rationale": "확정 피벗으로 만든 복수 채널의 기울기에서 고정 확률 가정을 발행합니다. 과거 적중률을 뜻하지 않습니다.",
+        "source": {
+          "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
+          "currency": "USD",
+          "data_as_of": "2026-09-19T00:00:00Z",
+          "data_date": null,
+          "identity_note": "S&P 500 cash index; publisher series",
+          "kind": "market_data_provider",
+          "observed_at": "2026-09-19T00:00:51Z",
+          "provider": "yahoo",
+          "provider_symbol": "^GSPC",
+          "publication_date": null,
+          "sha256": "13243cfb7369dc0c22afa27005bafb55ec519d0167e4f0467cc6be7682e6297c",
+          "source_identity": "52a1467f4d957fbffd7b8059e5af34696d4d447c236e148a87802329873c1eda",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?interval=1d&range=10y&events=div%2Csplits"
+        },
+        "statement": "2026-09-26T00:00:58Z 이후 첫 확정 봉의 종가가 기준 종가 7650.5보다 높은가?",
+        "title": "SPX 7일 뒤 종가 조건",
+        "topic_id": "CH-a8bc787c5ccbbcf631a2a143"
+      },
+      {
+        "category": "financial_markets",
+        "expires_at": "2026-09-26T00:00:58Z",
+        "href": "/record/#prediction-CH-2bbbea546ede6d58d46e0146",
+        "id": "CH-2bbbea546ede6d58d46e0146",
+        "issued_at": "2026-09-19T00:00:58Z",
+        "method": "wie.chart-channels-fibonacci/1",
+        "outcome": null,
+        "probability": 0.55,
+        "rationale": "확정 피벗으로 만든 복수 채널의 기울기에서 고정 확률 가정을 발행합니다. 과거 적중률을 뜻하지 않습니다.",
+        "source": {
+          "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
+          "currency": "USD",
+          "data_as_of": "2026-09-19T00:00:00Z",
+          "data_date": null,
+          "identity_note": "Nasdaq 100 cash index; not NAS100 CFD",
+          "kind": "market_data_provider",
+          "observed_at": "2026-09-19T00:00:52Z",
+          "provider": "yahoo",
+          "provider_symbol": "^NDX",
+          "publication_date": null,
+          "sha256": "f5517dce2cbe99aa54e1edf6cbca7559c59c820e76f7673f69a63fcad8cb6ecf",
+          "source_identity": "1970fa9f11004467ebc49f662bd08e2716a4640dd6f07a485cf5bbe550c0b136",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?interval=1d&range=10y&events=div%2Csplits"
+        },
+        "statement": "2026-09-26T00:00:58Z 이후 첫 확정 봉의 종가가 기준 종가 29644.2보다 높은가?",
+        "title": "NASDAQ100 7일 뒤 종가 조건",
+        "topic_id": "CH-2bbbea546ede6d58d46e0146"
+      },
+      {
+        "category": "financial_markets",
+        "expires_at": "2026-09-26T00:00:58Z",
+        "href": "/record/#prediction-CH-e00496d3d0c81ea385cde7fc",
+        "id": "CH-e00496d3d0c81ea385cde7fc",
+        "issued_at": "2026-09-19T00:00:58Z",
+        "method": "wie.chart-channels-fibonacci/1",
+        "outcome": null,
+        "probability": 0.55,
+        "rationale": "확정 피벗으로 만든 복수 채널의 기울기에서 고정 확률 가정을 발행합니다. 과거 적중률을 뜻하지 않습니다.",
+        "source": {
+          "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
+          "currency": "USD",
+          "data_as_of": "2026-09-19T00:00:00Z",
+          "data_date": null,
+          "identity_note": "PHLX Semiconductor index; publisher series",
+          "kind": "market_data_provider",
+          "observed_at": "2026-09-19T00:00:53Z",
+          "provider": "yahoo",
+          "provider_symbol": "^SOX",
+          "publication_date": null,
+          "sha256": "0457da953b777abd958c4812ca7d7ced00ddc197e03ac093c18a77fb6db5d1ca",
+          "source_identity": "104e06c091d0ca9094544f912cfe32e0be218fee37c76dd0ca7798ad8115bc29",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?interval=1d&range=10y&events=div%2Csplits"
+        },
+        "statement": "2026-09-26T00:00:58Z 이후 첫 확정 봉의 종가가 기준 종가 11921.7보다 높은가?",
+        "title": "SOX 7일 뒤 종가 조건",
+        "topic_id": "CH-e00496d3d0c81ea385cde7fc"
+      },
+      {
+        "category": "financial_markets",
+        "expires_at": "2026-09-26T00:00:58Z",
+        "href": "/record/#prediction-CH-5b6579a7cef4cdb3fbe94f80",
+        "id": "CH-5b6579a7cef4cdb3fbe94f80",
+        "issued_at": "2026-09-19T00:00:58Z",
+        "method": "wie.chart-channels-fibonacci/1",
+        "outcome": null,
+        "probability": 0.55,
+        "rationale": "확정 피벗으로 만든 복수 채널의 기울기에서 고정 확률 가정을 발행합니다. 과거 적중률을 뜻하지 않습니다.",
+        "source": {
+          "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
+          "currency": "USD",
+          "data_as_of": "2026-09-19T00:00:00Z",
+          "data_date": null,
+          "identity_note": "Yahoo front futures series; not TradingView NQ1! or fixed NQU2026",
+          "kind": "market_data_provider",
+          "observed_at": "2026-09-19T00:00:56Z",
+          "provider": "yahoo",
+          "provider_symbol": "NQ=F",
+          "publication_date": null,
+          "sha256": "87f1b8c8e8898ce3b8be96d2b8fcd0dd459c47a828a7bb36e2393031e748f702",
+          "source_identity": "959de88246c4c4ac50a04b922a8b5faed5e4e85ae7d2fdfb7c064e096ab50021",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/NQ%3DF?interval=1d&range=10y&events=div%2Csplits"
+        },
+        "statement": "2026-09-26T00:00:58Z 이후 첫 확정 봉의 종가가 기준 종가 29955보다 높은가?",
+        "title": "NQ=F 7일 뒤 종가 조건",
+        "topic_id": "CH-5b6579a7cef4cdb3fbe94f80"
+      },
+      {
+        "category": "financial_markets",
+        "expires_at": "2026-09-26T00:00:58Z",
+        "href": "/record/#prediction-CH-c66b0a73970e71e127a9e429",
+        "id": "CH-c66b0a73970e71e127a9e429",
+        "issued_at": "2026-09-19T00:00:58Z",
+        "method": "wie.chart-channels-fibonacci/1",
+        "outcome": null,
+        "probability": 0.55,
+        "rationale": "확정 피벗으로 만든 복수 채널의 기울기에서 고정 확률 가정을 발행합니다. 과거 적중률을 뜻하지 않습니다.",
+        "source": {
+          "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
+          "currency": "USD",
+          "data_as_of": "2026-09-19T00:00:00Z",
+          "data_date": null,
+          "identity_note": "Yahoo front futures series; not TradingView ES1! or fixed ESU2026",
+          "kind": "market_data_provider",
+          "observed_at": "2026-09-19T00:00:57Z",
+          "provider": "yahoo",
+          "provider_symbol": "ES=F",
+          "publication_date": null,
+          "sha256": "c07ad25dbaf06d2874e0b615f43bc76730777d86b72f4b4acf5e0ac7663e474c",
+          "source_identity": "42df92c714d4d3a82f128261d9e73bee1287ac5a78456003955652af20ff882b",
+          "url": "https://query1.finance.yahoo.com/v8/finance/chart/ES%3DF?interval=1d&range=10y&events=div%2Csplits"
+        },
+        "statement": "2026-09-26T00:00:58Z 이후 첫 확정 봉의 종가가 기준 종가 7725보다 높은가?",
+        "title": "ES=F 7일 뒤 종가 조건",
+        "topic_id": "CH-c66b0a73970e71e127a9e429"
+      },
+      {
+        "category": "financial_markets",
+        "expires_at": "2026-09-26T00:00:58Z",
+        "href": "/record/#prediction-CH-06bad725123a3a8283b1826c",
+        "id": "CH-06bad725123a3a8283b1826c",
+        "issued_at": "2026-09-19T00:00:58Z",
+        "method": "wie.chart-channels-fibonacci/1",
+        "outcome": null,
+        "probability": 0.55,
+        "rationale": "확정 피벗으로 만든 복수 채널의 기울기에서 고정 확률 가정을 발행합니다. 과거 적중률을 뜻하지 않습니다.",
+        "source": {
+          "adjustment": "spot_unadjusted_no_dividends",
+          "currency": "USD",
+          "data_as_of": "2026-09-19T00:00:00Z",
+          "data_date": null,
+          "identity_note": "Kraken BTC/USD spot; not screenshot Binance BTC/USDT",
+          "kind": "official_public",
+          "observed_at": "2026-09-19T00:00:58Z",
+          "provider": "kraken",
+          "provider_symbol": "XBTUSD",
+          "publication_date": null,
+          "sha256": "b16ce0d02e327c235cd03cf5a056cba7b25c35fc93ffd131e8cd116c03a3f290",
+          "source_identity": "76f61954bbe7b7be0040e5858daed6b6913739820b5875f13b8c5c70305cddd5",
+          "url": "https://api.kraken.com/0/public/OHLC?pair=XBTUSD&interval=1440"
+        },
+        "statement": "2026-09-26T00:00:58Z 이후 첫 확정 봉의 종가가 기준 종가 80878.1보다 높은가?",
+        "title": "BTCUSD 7일 뒤 종가 조건",
+        "topic_id": "CH-06bad725123a3a8283b1826c"
       }
     ],
     "hypotheses": [
@@ -12079,24 +12274,24 @@
           {
             "field": "close",
             "operator": "gt",
-            "value": 29616.0
+            "value": 30077.75
           }
         ],
-        "observed_at": "2026-09-18T23:01:07Z",
+        "observed_at": "2026-09-19T00:00:58Z",
         "origin": "OPERATOR_HYPOTHESIS",
         "probability": null,
         "source": {
           "adjustment": "provider_quote_ohlc_split_adjusted_no_adjclose_mixing",
           "currency": "USD",
-          "data_as_of": "2026-09-18T00:00:00Z",
+          "data_as_of": "2026-09-19T00:00:00Z",
           "data_date": null,
           "identity_note": "Yahoo front futures series; not TradingView NQ1! or fixed NQU2026",
           "kind": "market_data_provider",
-          "observed_at": "2026-09-18T23:01:05Z",
+          "observed_at": "2026-09-19T00:00:56Z",
           "provider": "yahoo",
           "provider_symbol": "NQ=F",
           "publication_date": null,
-          "sha256": "5ce3598a4b0c281220117d3dcba8bf5e323589bc3ea641aae4fe5804ed231427",
+          "sha256": "87f1b8c8e8898ce3b8be96d2b8fcd0dd459c47a828a7bb36e2393031e748f702",
           "source_identity": "959de88246c4c4ac50a04b922a8b5faed5e4e85ae7d2fdfb7c064e096ab50021",
           "url": "https://query1.finance.yahoo.com/v8/finance/chart/NQ%3DF?interval=1d&range=10y&events=div%2Csplits"
         },
@@ -12107,7 +12302,7 @@
           "value": 15000.0
         },
         "timing": {
-          "as_of": "2026-09-18T23:01:07Z",
+          "as_of": "2026-09-19T00:00:58Z",
           "block_length": 5,
           "calendar": "weekdays",
           "empirical_calibration": "NOT_VALIDATED",
@@ -12161,8 +12356,8 @@
           "no_hit_fraction": 1.0,
           "path_count": 1024,
           "probability_kind": "SIMULATED_PATH_FRACTION_NOT_CALIBRATED_PROBABILITY",
-          "reference_price": 29446.75,
-          "required_move_fraction": -0.4906059242531009,
+          "reference_price": 29955.0,
+          "required_move_fraction": -0.4992488733099649,
           "sample_count": 756,
           "status": "NO_SIMULATED_HIT",
           "target_field": "low",
@@ -12170,17 +12365,17 @@
         }
       }
     ],
-    "observed_at": "2026-09-18T23:01:07Z",
-    "sample_count": 18250,
+    "observed_at": "2026-09-19T00:00:58Z",
+    "sample_count": 18255,
     "status": "PARTIAL"
   },
   "counts": {
     "closed_loops": 4,
     "diaries": 12,
-    "mentions": 299597,
-    "predictions": 40,
+    "mentions": 299627,
+    "predictions": 41,
     "resolved": 7,
-    "sealed": 38
+    "sealed": 39
   },
   "diary": [
     {
@@ -12380,14 +12575,14 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-09-18T23:57:18.273406Z",
+  "generated_at": "2026-09-19T00:02:16.796749Z",
   "integrity": {
-    "ledger_sha256": "be1b8b4a91d601e42ac04a56d081ef22d2ba566272a89df026c5746436fa6c82",
+    "ledger_sha256": "648a88f9a25eb2323b8806d6dda73eae6dabac89fca3f09ec262d39e142e0d2d",
     "reasons": [],
     "status": "VERIFIED"
   },
   "learning": {
-    "as_of": "2026-09-18T23:00:59.746521Z",
+    "as_of": "2026-09-19T00:00:50.693659Z",
     "evaluation": {
       "baseline_brier_score": null,
       "brier_score": null,
@@ -12401,36 +12596,36 @@
     "fit_status": "INSUFFICIENT_DATA",
     "missing_diary_dates": [],
     "mode": "ADVISORY_SHADOW",
-    "sha256": "ad6037a7f161998f83ce45888e5dd756a0b621f9996bda96d5c4222ee0faf967",
+    "sha256": "5d9ad7ba68e6dc0434dc0fa9b59962cd435fafc7e16596e48ad5d6965fa07aa9",
     "shadow_forecast_count": 35,
     "training_count": 3
   },
   "market_context": {
-    "observed_at": "2026-09-18T17:01:22.097331Z",
+    "observed_at": "2026-09-19T00:01:06.070642Z",
     "series": [
       {
-        "change_30d": 0.29000000000000004,
-        "change_yoy_percent": 24.00990099009901,
-        "data_date": "2026-09-16",
+        "change_30d": 0.23000000000000043,
+        "change_yoy_percent": 21.67487684729066,
+        "data_date": "2026-09-17",
         "id": "DGS10",
         "label": "미국 10년 국채금리",
-        "raw_sha256": "ff982c129b8016115182f9b8c12fd3b15443894893ce673329d00ae7e426bc63",
+        "raw_sha256": "87b8ed95ffe6f90c9e8c74d80cd2d5c14f029be1d517890481c87e4f4e63802c",
         "source_url": "https://fred.stlouisfed.org/series/DGS10",
         "status": "FRESH",
         "units": "%",
-        "value": 5.01
+        "value": 4.94
       },
       {
-        "change_30d": 0.5499999999999998,
-        "change_yoy_percent": 35.04273504273505,
-        "data_date": "2026-09-16",
+        "change_30d": 0.47999999999999954,
+        "change_yoy_percent": 32.67045454545454,
+        "data_date": "2026-09-17",
         "id": "DGS2",
         "label": "미국 2년 국채금리",
-        "raw_sha256": "08e36a7accbd9c8553256a4ece6b4dc95e7ce3b1ae62fdb90f617578ead3a4a5",
+        "raw_sha256": "5159e8d8d8d76d27348752bdb864ee0b483da590dac6cd5ca2f74300bc27c092",
         "source_url": "https://fred.stlouisfed.org/series/DGS2",
         "status": "FRESH",
         "units": "%",
-        "value": 4.74
+        "value": 4.67
       },
       {
         "change_30d": 102.79999999999927,
@@ -12450,7 +12645,7 @@
         "data_date": "2026-09-16",
         "id": "WALCL",
         "label": "미 연준 총자산",
-        "raw_sha256": "519426ae7b909d1c82b6e7c24342004266e5d4e01868e2a9ebf5ab97e2698dbb",
+        "raw_sha256": "4531ab61762ce0b76aad39c6bdfeb9045a4a1a2828e585a7c00647c54e80b0b2",
         "source_url": "https://fred.stlouisfed.org/series/WALCL",
         "status": "FRESH",
         "units": "백만 달러",
@@ -12460,9 +12655,9 @@
     "status": "OBSERVATIONS_ONLY",
     "target_probability": null
   },
-  "observed_at": "2026-09-18T23:01:52.797547Z",
+  "observed_at": "2026-09-19T00:01:38.906111Z",
   "operation": {
-    "finished_at": "2026-09-18T23:45:50.650020Z",
+    "finished_at": "2026-09-19T00:01:39.043732Z",
     "jobs": {
       "anchor": {
         "exit_code": 0,
@@ -12473,16 +12668,16 @@
       },
       "autonomy": {
         "exit_code": 0,
-        "finished_at": "2026-09-18T23:01:52.919283Z",
-        "next_due_at": "2026-09-19T00:00:00Z",
-        "started_at": "2026-09-18T23:00:59.512172Z",
+        "finished_at": "2026-09-19T00:01:39.040725Z",
+        "next_due_at": "2026-09-19T01:00:00Z",
+        "started_at": "2026-09-19T00:00:50.483734Z",
         "status": "SOURCE_GAPS"
       },
       "collector": {
         "exit_code": 7,
-        "finished_at": "2026-09-18T23:45:49.274225Z",
-        "next_due_at": "2026-09-19T00:00:00Z",
-        "started_at": "2026-09-18T23:45:48.640573Z",
+        "finished_at": "2026-09-19T00:00:49.085899Z",
+        "next_due_at": "2026-09-19T00:15:00Z",
+        "started_at": "2026-09-19T00:00:48.460559Z",
         "status": "SOURCE_GAPS"
       },
       "gate": {
@@ -12495,9 +12690,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-09-18T23:45:47.594537Z",
+    "started_at": "2026-09-19T00:00:47.535509Z",
     "status": "SOURCE_GAPS",
-    "updated_at": "2026-09-18T23:45:50.650020Z"
+    "updated_at": "2026-09-19T00:01:39.043732Z"
   },
   "predictions": [
     {
@@ -13166,6 +13361,22 @@
       "sealed": true,
       "source": null,
       "title": "기존 예측 기록"
+    },
+    {
+      "category": "기존 예측 기록",
+      "closed_loop": false,
+      "expires_at": "2026-09-30T00:00:58Z",
+      "href": "/record/#prediction-P-000041",
+      "id": "P-000041",
+      "issued_at": "2026-09-19T00:01:37.621123Z",
+      "method": "등록 당시 정한 조건과 결과를 감사 기록에 대조합니다.",
+      "outcome": null,
+      "probability": 0.55,
+      "rationale": "기존 원장의 등록 확률과 결과입니다. 새 학습이 만든 예측으로 세지 않습니다.",
+      "resolved_at": null,
+      "sealed": true,
+      "source": null,
+      "title": "기존 예측 기록"
     }
   ],
   "publication": {
@@ -13175,7 +13386,7 @@
   },
   "run": {
     "error_code": null,
-    "finished_at": "2026-09-18T23:01:52.797547Z",
+    "finished_at": "2026-09-19T00:01:38.906111Z",
     "phases": {
       "chart": {
         "status": "RECORDED"
@@ -13190,15 +13401,15 @@
         "status": "RECORDED"
       }
     },
-    "receipt_sha256": "76574935aa3a198ab62d2d1ea147ebeadb7de719678dbf77642d1c22ea59bc55",
-    "started_at": "2026-09-18T23:00:59.746521Z",
+    "receipt_sha256": "e96ba0122ddaa2cbe7490b8b6bb492c0b2b96fe04c6ab28bb2257d45e9c52a36",
+    "started_at": "2026-09-19T00:00:50.693659Z",
     "status": "COMPLETE_WITH_SOURCE_GAPS"
   },
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-09-18T23:57:18.273406Z",
-      "sha256": "79ac30997e09445f96b270df8aba0aa89e6f1905186fe7fb4357bb382cfc1f18"
+      "observed_at": "2026-09-19T00:02:16.796749Z",
+      "sha256": "bed34247e7564255e913e4103c600b56739db52d814345a4a7ca2df95c045d3a"
     },
     "canonical_chart": "VERIFIED",
     "chart": "VERIFIED",
@@ -14199,6 +14410,15 @@
         "status": "idle"
       },
       {
+        "group": "prob",
+        "id": "prediction-P-000041",
+        "label": "BTCUSD 7일 뒤 종가 조건 · P-000041",
+        "record_id": "P-000041",
+        "record_kind": "prediction",
+        "sealed": true,
+        "status": "idle"
+      },
+      {
         "group": "dec",
         "id": "chart-CH-fc25f27120395ea61566ac22",
         "label": "SPX 7일 뒤 종가 조건",
@@ -14743,6 +14963,54 @@
         "status": "idle"
       },
       {
+        "group": "dec",
+        "id": "chart-CH-a8bc787c5ccbbcf631a2a143",
+        "label": "SPX 7일 뒤 종가 조건",
+        "record_id": "CH-a8bc787c5ccbbcf631a2a143",
+        "record_kind": "chart",
+        "status": "idle"
+      },
+      {
+        "group": "dec",
+        "id": "chart-CH-2bbbea546ede6d58d46e0146",
+        "label": "NASDAQ100 7일 뒤 종가 조건",
+        "record_id": "CH-2bbbea546ede6d58d46e0146",
+        "record_kind": "chart",
+        "status": "idle"
+      },
+      {
+        "group": "dec",
+        "id": "chart-CH-e00496d3d0c81ea385cde7fc",
+        "label": "SOX 7일 뒤 종가 조건",
+        "record_id": "CH-e00496d3d0c81ea385cde7fc",
+        "record_kind": "chart",
+        "status": "idle"
+      },
+      {
+        "group": "dec",
+        "id": "chart-CH-5b6579a7cef4cdb3fbe94f80",
+        "label": "NQ=F 7일 뒤 종가 조건",
+        "record_id": "CH-5b6579a7cef4cdb3fbe94f80",
+        "record_kind": "chart",
+        "status": "idle"
+      },
+      {
+        "group": "dec",
+        "id": "chart-CH-c66b0a73970e71e127a9e429",
+        "label": "ES=F 7일 뒤 종가 조건",
+        "record_id": "CH-c66b0a73970e71e127a9e429",
+        "record_kind": "chart",
+        "status": "idle"
+      },
+      {
+        "group": "dec",
+        "id": "chart-CH-06bad725123a3a8283b1826c",
+        "label": "BTCUSD 7일 뒤 종가 조건",
+        "record_id": "CH-06bad725123a3a8283b1826c",
+        "record_kind": "chart",
+        "status": "idle"
+      },
+      {
         "group": "evid",
         "id": "analysis-SPX-1d",
         "label": "SPX · 1d",
@@ -15282,6 +15550,15 @@
         "record_id": "P-000040",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-25&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-16&per_page=1000&page=1&order=oldest",
+        "status": "ok"
+      },
+      {
+        "group": "plat",
+        "id": "source-P-000041",
+        "label": "BTCUSD 7일 뒤 종가 조건 출처",
+        "record_id": "P-000041",
+        "record_kind": "prediction",
+        "source_url": "https://api.kraken.com/0/public/OHLC?pair=XBTUSD&interval=1440",
         "status": "ok"
       },
       {
