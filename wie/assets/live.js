@@ -65,7 +65,7 @@
       times:[{label:'계산 시각',value:time(c.as_of)}],
       sections:[{title:'관찰한 가격대',body:'지지 '+(c.support||[]).map(z=>num(z.price)).join(', ')+' · 저항 '+(c.resistance||[]).map(z=>num(z.price)).join(', ')},
         {title:'해석의 한계',body:'과거 가격에서 고저점과 채널을 계산한 값입니다. 미래의 적중률이나 인과관계를 입증하지 않습니다.'}],
-      sources:[{label:'차트와 조건 상세',url:'https://migaryos.com/record/#chart-'+c.symbol+'-'+c.timeframe},...(c.source?.url?[{label:'자료 출처',url:c.source.url}]:[])],node_labels:[]});
+      sources:[{label:'차트와 조건 상세',url:'https://migaryos.com/record/#chart-'+c.symbol+'-'+c.timeframe},...(c.source?.url?[{label:c.source.attribution||'자료 출처',url:c.source.url}]:[])],node_labels:[]});
     for (const h of data.chart?.hypotheses || []) items.push({id:'hypothesis-'+h.id,star_label:h.symbol+' 목표 가격 가설',title:h.symbol+' 목표 가격 가설',
       kind:'운영자 가설 · 실제 확률 미산출',summary:conditionText(h.target)+' · '+label(h.timing.status),
       times:[{label:'모형 계산 시각',value:time(h.observed_at)}],
@@ -82,7 +82,7 @@
         {label:'자료 관측일',value:p.source?.data_date||'미확인'}],
       sections:[{title:'무엇을 예상하나요?',body:`등록 확률 ${percent(p.probability)} · 현재 결과 ${label(raw.outcome)}`},
         {title:'왜 이 예측을 살피나요?',body:p.rationale},{title:'어떤 방법으로 판단하나요?',body:p.method}],
-      sources:p.source?.url?[{label:'근거 출처 열기',url:p.source.url}]:[],node_labels:[raw.id]};
+      sources:p.source?.url?[{label:p.source.attribution||'근거 출처 열기',url:p.source.url}]:[],node_labels:[raw.id]};
   }
   const api = {valid,freshness,stories,time,label,PRIMARY};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
@@ -103,7 +103,9 @@
   }
   function sourceLink(p) {
     if(!p?.url)return note('공개 출처 링크가 등록되지 않았습니다.');
-    const a=el('a','근거 출처 열기 ↗');a.href=p.url;a.target='_blank';a.rel='noopener noreferrer';return a;
+    const a=el('a','근거 출처 열기 ↗');a.href=p.url;a.target='_blank';a.rel='noopener noreferrer';
+    const citation=el('div',undefined,'source-citation');citation.append(a);
+    if(p.attribution)citation.append(note(p.attribution));return citation;
   }
   function sourceInfo(source) {
     if(!source)return note('출처 세부 정보는 아직 공개되지 않았습니다.');
@@ -231,7 +233,7 @@
     if(!context?.series?.length){replace('market-context',[note('검증된 경제 지표가 아직 공개되지 않았습니다.')]);return;}
     const children=[note('자료 확인 '+time(context.observed_at)+' · 관측값만 표시')];
     for(const row of context.series){const d=detail('macro-'+row.id,row.label+' · '+num(row.value)+' '+row.units);
-      d.append(facts([['지표 관측일',row.data_date||'미확인'],['자료 상태',label(row.status)],['30일 변화',num(row.change_30d)],['전년 대비 변화율',row.change_yoy_percent===null?'미확인':num(row.change_yoy_percent)+'%']]),sourceLink({url:row.source_url}));
+      d.append(facts([['지표 관측일',row.data_date||'미확인'],['자료 상태',label(row.status)],['30일 변화',num(row.change_30d)],['전년 대비 변화율',row.change_yoy_percent===null?'미확인':num(row.change_yoy_percent)+'%']]),sourceLink(row.source||{url:row.source_url}));
       if(row.raw_sha256)d.append(el('code','출처 보관본 SHA-256 '+row.raw_sha256,'digest'));children.push(d);}
     replace('market-context',children);
   }

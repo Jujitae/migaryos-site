@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><meta name="referrer" content="strict-origin-when-cross-origin">
+<title>세계 탐색 · MIGARYOS</title><meta name="description" content="무엇이 바뀌었는지, 어떤 근거와 다른 설명이 있는지 WIE 세계 모델에서 탐색하세요.">
+<link rel="stylesheet" href="/wie/assets/world_app.css"><script defer src="/wie/assets/world_workspace.js"></script><link rel="stylesheet" href="/wie/assets/workspace_shell.css"><script defer src="/wie/assets/world_search.js"></script><script defer src="/wie/assets/world_app.js"></script></head>
+<body data-world-delivery="STATIC_READ_ONLY" data-world-page="explorer" class="workspace-shell"><a class="skip" href="#content">본문으로 이동</a>
+<header class="app-header"><a class="brand" href="/">MIGARYOS</a><nav aria-label="작업공간"><a href="/loop.html">World</a><a href="/explore/" aria-current="page">WIE Lens</a><a href="/market/">Market</a><a href="/quant/">Quant</a><a href="/explore/#workspace">내 작업공간</a></nav><span class="private-unavailable">Founder Lab · 잠금 · 비공개 서버에서 제공</span></header>
+<div class="workspace-toolbar"><div class="workspace-context"><strong>세계 탐색</strong><span>대상 · 관측 · 연결된 근거</span></div>
+<form id="search-form" class="workspace-search" role="search"><label for="world-search">이름 · 코드 · 등록 별칭으로 검색</label><div class="input-row"><input id="world-search" type="search" maxlength="200" placeholder="삼성전자, SPX, 통화량, 관측된 주제"><button type="submit">찾기</button></div><div id="search-candidates" data-autocomplete="true"></div></form>
+<div class="workspace-tools"><a href="#workspace">저장한 판단</a><button id="refresh-world" type="button">새로고침</button></div></div>
+<div class="workspace-status"><p id="world-status" role="status" aria-live="polite">공개 기록을 불러오는 중입니다.</p><p id="world-asof"></p></div>
+<div class="app-layout">
+<aside class="sidebar" aria-label="대상과 관심목록"><div class="panel-heading"><h2 id="records-heading">탐색 가능한 기록</h2><span id="record-count"></span></div><div id="record-list" class="sidebar-records"></div><button id="more-records" type="button" hidden>기록 더 보기</button>
+<section id="interests"><h2>내 관심 주제</h2><div id="interest-list" class="chips"></div><form id="interest-form"><label for="interest-input">관심 검색어 저장</label><input id="interest-input" maxlength="60" placeholder="기업, 지역, 주제" required><button id="interest-submit" type="submit">저장</button></form></section>
+<nav aria-label="기록과 학습"><a href="/wie/status/">관측·학습 현황</a><a href="/record/">기록 원장</a><a href="#notes">내 메모</a></nav></aside>
+<main id="content" tabindex="-1" class="workspace-main">
+<section id="lens" class="lens detail-workspace" aria-label="WIE Lens"><div class="lens-top"><h1>대상 상세</h1><a href="#world-connections">연결 맵 보기</a></div><div id="lens-content"><p class="empty">대상이나 기록을 선택하면 근거와 예측 이력을 확인할 수 있습니다.</p></div></section>
+<details id="world-connections" class="map-workspace" open><summary>세계의 연결<span>관측과 가설의 관계</span></summary><section class="map-panel" aria-labelledby="map-heading"><div class="section-heading"><div><h2 id="map-heading">WIE · 세계의 연결을 한눈에</h2><p class="muted">사건과 주제의 관계를 선택해 살펴보세요.</p></div><label class="compact-check"><input id="connected-only" type="checkbox">선택 경로만</label></div><div id="world-map" class="world-map"></div><p class="map-legend"><span class="line-sample"></span>기록 연결·연관 후보 <span class="line-sample hypothesis"></span>인과 가설 · 인과 입증 아님</p><div id="map-relations" class="map-relations"></div></section>
+</details>
+<div id="world-scope" class="model-scope"></div>
+<section id="workspace" class="workspace"><h2>내 작업공간</h2>
+<p id="workspace-identity" class="muted">로그인 후 서버에 저장합니다. 현재 실제 로그인은 미활성입니다.</p>
+<p id="workspace-status" role="status" aria-live="polite"></p><button id="workspace-login" type="button" hidden>Google로 로그인</button><button id="workspace-refresh" type="button">저장 상태 다시 확인</button><button id="workspace-logout" type="button" hidden>로그아웃</button>
+<p class="muted"><a href="/wie/privacy/">개인정보 처리 안내</a> · <a href="/wie/terms/">이용약관</a> · Google 로그인은 본인 작업공간을 구분하는 데 사용합니다.</p>
+<h3>저장한 판단</h3><label for="watchlist-select">관심목록</label><select id="watchlist-select"></select><p id="watchlist-limit" class="muted"></p><div id="saved-list"></div>
+<h3 id="notes">내 메모</h3><form id="note-form"><label for="note-input">새 메모</label><textarea id="note-input" maxlength="2000" rows="3" required placeholder="확인할 조건이나 내 생각을 남겨보세요."></textarea><button id="note-submit" type="submit">메모 저장</button></form><div id="note-list"></div>
+<h3>화면과 대화 저장 설정</h3><form id="workspace-preferences">
+<label for="workspace-persona">기본 관심 화면</label><select id="workspace-persona"><option value="research">Research · 근거와 다른 설명</option><option value="trader">Trader · 시장 관측</option><option value="risk">Risk / Strategy · 위험과 거시</option></select>
+<label class="compact-check"><input id="conversation-opt-in" type="checkbox">선택한 대화를 서버에 저장하는 데 동의합니다</label>
+<label for="conversation-retention">대화 보존 기간</label><select id="conversation-retention"><option value="1">1일</option><option value="7">7일</option><option value="30">30일</option></select>
+<p class="muted">동의해도 자동으로 저장하지 않습니다. 답변 아래에서 직접 저장한 대화만 보관합니다. 동의를 해제하면 저장한 대화가 삭제됩니다.</p><button id="workspace-preferences-save" type="submit">설정 저장</button></form>
+<h3>직접 저장한 대화</h3><button id="conversation-delete-all" type="button">저장한 대화 모두 삭제</button><div id="conversation-list"></div>
+<details><summary>이 브라우저의 이전 보관함</summary><p class="muted">이전에 브라우저에 저장한 자료입니다. 로그인한 작업공간으로 자동 전송하거나 삭제하지 않습니다. 다른 기기와 동기화되지 않습니다.</p><div id="legacy-workspace"></div></details>
+</section>
+</main><aside class="decision-rail" aria-label="현재 판단과 다음 확인"><div class="panel-heading"><h2>현재 판단</h2><span>원문 근거 기준</span></div><div id="decision-content"><p class="empty">대상을 선택하세요.</p></div><div class="panel-heading"><h2>최근 변화</h2><span>현재 표시 범위</span></div><section aria-label="변화 요약" id="change-cards" class="change-cards" aria-busy="true"><div class="loading-row">공개 가능한 기록을 확인합니다.</div></section></aside>
+</div><footer class="app-footer">관측 · 해석 · 예측 · 결과를 구분합니다. <span>상세 범위와 기준 시각은 각 기록에서 확인하세요.</span></footer></body></html>

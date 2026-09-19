@@ -1,0 +1,319 @@
+{
+  "asset_classes": [
+    "index",
+    "equity",
+    "crypto",
+    "futures",
+    "fx",
+    "gov_bond",
+    "corp_bond",
+    "etf",
+    "economy"
+  ],
+  "instruments": [
+    {
+      "aliases": [
+        "s&p 500",
+        "s&p500",
+        "spx500",
+        "에스앤피"
+      ],
+      "asset_class": "index",
+      "entity_id": "MIGARYOS:INSTRUMENT:SPX",
+      "id": "SPX",
+      "name": "S&P 500",
+      "region": "US",
+      "tradingview": "SP:SPX",
+      "wie_symbols": [
+        "SPX",
+        "^GSPC"
+      ]
+    },
+    {
+      "aliases": [
+        "nasdaq 100",
+        "nasdaq100",
+        "나스닥100",
+        "나스닥 100"
+      ],
+      "asset_class": "index",
+      "entity_id": "MIGARYOS:INSTRUMENT:NDX",
+      "id": "NDX",
+      "name": "NASDAQ 100",
+      "region": "US",
+      "tradingview": "NASDAQ:NDX",
+      "wie_symbols": [
+        "NASDAQ100",
+        "^NDX"
+      ]
+    },
+    {
+      "aliases": [
+        "반도체 지수",
+        "philadelphia semiconductor"
+      ],
+      "asset_class": "index",
+      "entity_id": "MIGARYOS:INSTRUMENT:SOX",
+      "id": "SOX",
+      "name": "PHLX Semiconductor",
+      "region": "US",
+      "tradingview": "NASDAQ:SOX",
+      "wie_symbols": [
+        "SOX",
+        "^SOX"
+      ]
+    },
+    {
+      "aliases": [],
+      "asset_class": "etf",
+      "entity_id": "MIGARYOS:INSTRUMENT:SOXX",
+      "id": "SOXX",
+      "name": "iShares Semiconductor ETF",
+      "region": "US",
+      "tradingview": "NASDAQ:SOXX",
+      "wie_symbols": [
+        "SOXX"
+      ]
+    },
+    {
+      "aliases": [
+        "코스피"
+      ],
+      "asset_class": "index",
+      "entity_id": "MIGARYOS:INSTRUMENT:KOSPI",
+      "id": "KOSPI",
+      "name": "KOSPI",
+      "region": "KR",
+      "tradingview": "KRX:KOSPI",
+      "wie_symbols": [
+        "KOSPI",
+        "^KS11"
+      ]
+    },
+    {
+      "aliases": [
+        "nq",
+        "나스닥 선물"
+      ],
+      "asset_class": "futures",
+      "entity_id": "MIGARYOS:INSTRUMENT:NQ",
+      "id": "NQ",
+      "name": "Nasdaq 100 futures (front)",
+      "region": "US",
+      "tradingview": "CME_MINI:NQ1!",
+      "wie_symbols": [
+        "NQ=F"
+      ]
+    },
+    {
+      "aliases": [
+        "es",
+        "에스앤피 선물"
+      ],
+      "asset_class": "futures",
+      "entity_id": "MIGARYOS:INSTRUMENT:ES",
+      "id": "ES",
+      "name": "S&P 500 futures (front)",
+      "region": "US",
+      "tradingview": "CME_MINI:ES1!",
+      "wie_symbols": [
+        "ES=F"
+      ]
+    },
+    {
+      "aliases": [
+        "wti",
+        "crude",
+        "원유"
+      ],
+      "asset_class": "futures",
+      "entity_id": "MIGARYOS:INSTRUMENT:CL",
+      "id": "CL",
+      "name": "WTI crude futures (front)",
+      "region": "US",
+      "tradingview": "NYMEX:CL1!",
+      "wie_symbols": [
+        "CL=F"
+      ]
+    },
+    {
+      "aliases": [
+        "btc",
+        "bitcoin",
+        "비트코인"
+      ],
+      "asset_class": "crypto",
+      "entity_id": "MIGARYOS:INSTRUMENT:BTCUSD",
+      "id": "BTCUSD",
+      "name": "Bitcoin / USD",
+      "region": "GLOBAL",
+      "tradingview": "BITSTAMP:BTCUSD",
+      "wie_symbols": [
+        "BTCUSD",
+        "BTC/USD",
+        "XBTUSD"
+      ]
+    },
+    {
+      "aliases": [
+        "원달러",
+        "달러원",
+        "usd krw"
+      ],
+      "asset_class": "fx",
+      "entity_id": "MIGARYOS:INSTRUMENT:USDKRW",
+      "id": "USDKRW",
+      "name": "USD / KRW",
+      "region": "KR",
+      "tradingview": "FX_IDC:USDKRW",
+      "wie_symbols": []
+    },
+    {
+      "aliases": [
+        "us 10y",
+        "10년물",
+        "10년 국채"
+      ],
+      "asset_class": "economy",
+      "entity_id": "FRED:DGS10",
+      "id": "DGS10",
+      "name": "미국 10년 국채금리",
+      "region": "US",
+      "tradingview": "TVC:US10Y",
+      "wie_symbols": [
+        "DGS10"
+      ]
+    },
+    {
+      "aliases": [
+        "us 2y",
+        "2년물",
+        "2년 국채"
+      ],
+      "asset_class": "economy",
+      "entity_id": "FRED:DGS2",
+      "id": "DGS2",
+      "name": "미국 2년 국채금리",
+      "region": "US",
+      "tradingview": "TVC:US02Y",
+      "wie_symbols": [
+        "DGS2"
+      ]
+    },
+    {
+      "aliases": [
+        "m2",
+        "통화량"
+      ],
+      "asset_class": "economy",
+      "entity_id": "FRED:M2SL",
+      "id": "M2SL",
+      "name": "미국 M2 통화량",
+      "region": "US",
+      "tradingview": null,
+      "wie_symbols": [
+        "M2SL"
+      ]
+    },
+    {
+      "aliases": [
+        "회사채 etf"
+      ],
+      "asset_class": "corp_bond",
+      "entity_id": "MIGARYOS:INSTRUMENT:LQD",
+      "id": "LQD",
+      "name": "iShares iBoxx IG Corporate Bond ETF",
+      "region": "US",
+      "tradingview": "AMEX:LQD",
+      "wie_symbols": []
+    },
+    {
+      "aliases": [
+        "장기 국채 etf"
+      ],
+      "asset_class": "gov_bond",
+      "entity_id": "MIGARYOS:INSTRUMENT:TLT",
+      "id": "TLT",
+      "name": "iShares 20+ Year Treasury ETF",
+      "region": "US",
+      "tradingview": "NASDAQ:TLT",
+      "wie_symbols": []
+    },
+    {
+      "aliases": [
+        "005930",
+        "samsung electronics"
+      ],
+      "asset_class": "equity",
+      "entity_id": "MIGARYOS:INSTRUMENT:SAMSUNG",
+      "id": "SAMSUNG",
+      "name": "삼성전자",
+      "region": "KR",
+      "tradingview": "KRX:005930",
+      "wie_symbols": []
+    },
+    {
+      "aliases": [],
+      "asset_class": "economy",
+      "entity_id": "FRED:WALCL",
+      "id": "WALCL",
+      "name": "미 연준 총자산",
+      "provider_mapping_status": "UNVERIFIED_NO_WIDGET",
+      "region": "US",
+      "tradingview": null,
+      "wie_symbols": [
+        "WALCL"
+      ]
+    },
+    {
+      "aliases": [],
+      "asset_class": "equity",
+      "entity_id": "SEC:CIK0001304492",
+      "id": "CIK0001304492",
+      "name": "Anterix Inc.",
+      "provider_mapping_status": "UNVERIFIED_NO_WIDGET",
+      "region": "US",
+      "tradingview": null,
+      "wie_symbols": []
+    },
+    {
+      "aliases": [],
+      "asset_class": "equity",
+      "entity_id": "SEC:CIK0001783398",
+      "id": "CIK0001783398",
+      "name": "UWM HOLDINGS CORPORATION",
+      "provider_mapping_status": "UNVERIFIED_NO_WIDGET",
+      "region": "US",
+      "tradingview": null,
+      "wie_symbols": []
+    },
+    {
+      "aliases": [],
+      "asset_class": "equity",
+      "entity_id": "SEC:CIK0001921865",
+      "id": "CIK0001921865",
+      "name": "ASP Isotopes Inc.",
+      "provider_mapping_status": "UNVERIFIED_NO_WIDGET",
+      "region": "US",
+      "tradingview": null,
+      "wie_symbols": []
+    },
+    {
+      "aliases": [],
+      "asset_class": "equity",
+      "entity_id": "SEC:CIK0002001557",
+      "id": "CIK0002001557",
+      "name": "INNVENTURE, INC.",
+      "provider_mapping_status": "UNVERIFIED_NO_WIDGET",
+      "region": "US",
+      "tradingview": null,
+      "wie_symbols": []
+    }
+  ],
+  "note": "Explicit navigation catalogue. Canonical identity and provider symbols are separate. WIE coverage requires the matching evidence manifest.",
+  "provider_terms": {
+    "tradingview": "official embed widgets only; loaded on request; no personal subscription data",
+    "wie": "public projection wie.world-projection/1; symbols map to WIE analysis/forecast records, never to raw market feeds"
+  },
+  "schema": "migaryos.universe-registry/1"
+}

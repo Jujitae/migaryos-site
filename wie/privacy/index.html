@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>개인정보 처리 안내 · MIGARYOS WIE</title><meta name="description" content="WIE 공개 베타의 Google 로그인, 작업공간 저장, 보관 기간과 삭제 방법을 안내합니다.">
+<style>body{margin:0;background:#10151d;color:#e7edf5;font:16px/1.8 system-ui,sans-serif}main{max-width:760px;margin:auto;padding:32px 20px 72px}nav{display:flex;gap:20px;flex-wrap:wrap}a{color:#96caff;text-underline-offset:4px}a:focus-visible{outline:2px solid #96caff;outline-offset:5px}h1{font-size:30px;line-height:1.35;margin-top:42px}h2{font-size:21px;margin-top:34px}p,li{overflow-wrap:anywhere}.date{color:#a8b6c8}li{margin:8px 0}</style></head>
+<body><main><nav aria-label="서비스 안내"><a href="/explore/">WIE 탐색</a><a href="/wie/terms/">이용약관</a></nav>
+<h1>개인정보 처리 안내</h1><p class="date">MIGARYOS WIE 공개 베타 · 2026년 9월 20일 기준</p>
+<p>WIE는 공개된 근거와 판단 이력을 탐색하고, 로그인한 이용자가 관심목록·메모·질문을 저장하는 서비스입니다. 운영 및 개인정보 문의는 <a href="mailto:founder@migaryos.com">founder@migaryos.com</a>으로 받습니다.</p>
+<h2>로그인할 때 처리하는 정보</h2>
+<p>Google 로그인은 계정을 구분하는 기본 권한인 <code>openid</code>만 요청합니다. Google에서 받은 계정 식별자(sub)와 발급자, 이를 해시해 만든 WIE 회원·작업공간 식별자, 권한·세션·만료 상태를 저장합니다. 이름·이메일·프로필 사진·Gmail·Drive·연락처 접근 권한은 요청하지 않습니다. Google 계정 비밀번호를 WIE에 입력하지 않습니다.</p>
+<p>로그인 확인에는 일회성 코드와 검증값을 사용합니다. 서버의 로그인 검증 정보와 브라우저 로그인 쿠키는 5분, WIE 로그인 세션 쿠키는 1시간 동안 유효합니다. 쿠키는 로그인 보호에 사용하며, Google 액세스 토큰·갱신 토큰·ID 토큰은 사용자 자료로 저장하지 않습니다.</p>
+<h2>작업공간에 저장되는 정보</h2>
+<p>이용자가 저장한 관심목록, 종목·기록 식별자, 메모, 질문, 표시 설정과 생성·만료 시각을 처리합니다. 본인 작업공간의 권한에 따라 조회·수정·삭제할 수 있습니다. 현재 Google 신규 로그인은 본인용 무료 작업공간을 만듭니다.</p>
+<p>대화 본문 저장은 기본으로 꺼져 있습니다. 이용자가 별도로 켰을 때만 대화를 저장하며, 대화 보관 기간은 1~30일 중 선택할 수 있고 기본값은 30일입니다. 대화 저장을 끄면 현재 작업공간의 본인 대화와 관련 캐시를 삭제합니다. 저장한 질문과 메모는 대화 저장 설정과 별도의 자료입니다.</p>
+<p>접근 보호와 사용량 제한을 위해 세션·권한·요청 식별자, 요청 횟수와 처리 상태도 사용합니다. 현재 공개 베타의 모델 답변 생성은 사용할 수 없습니다. 이 베타는 저장 자료를 모델 학습이나 광고 타기팅에 연결하지 않습니다.</p>
+<h2>보관 기간과 삭제</h2>
+<ul><li>일반 관심목록·메모·저장한 질문은 생성 후 최대 365일 또는 작업공간·권한의 만료 시점 중 더 이른 때까지 조회할 수 있습니다. 대화에는 선택한 1~30일과 권한 만료 중 더 이른 시점이 적용됩니다.</li>
+<li>자료 목록의 삭제 기능은 해당 자료를 서비스 DB에서 삭제합니다. 대화 저장 설정을 끄면 본인 대화를 삭제합니다. 로그아웃은 현재 세션을 해제하며 저장 자료나 Google 계정 연결을 모두 삭제하는 기능은 아닙니다.</li>
+<li>유효기간이 끝난 자료는 조회에서 제외됩니다. 일부 만료 자료는 작업공간 요청 처리 중 정리되며, 만료 시각에 모든 DB 행·백업·인프라 기록이 물리적으로 완전 삭제된다고 보장하지 않습니다. 계정 식별자·권한·사용량 기록에는 아직 자동 전체 삭제 기능이 없습니다.</li>
+<li>계정 자료 전체 삭제나 처리 내역 확인은 문의 주소로 요청할 수 있습니다. 본인 확인 후 처리 범위와 결과를 안내합니다. <a href="https://myaccount.google.com/connections" rel="noreferrer">Google 계정의 연결 관리</a>에서 WIE 연결을 해제할 수도 있습니다. 연결 해제만으로 이미 저장된 WIE 자료가 삭제되지는 않습니다.</li></ul>
+<h2>서비스 제공 과정의 외부 처리</h2>
+<p>Google은 로그인과 계정 확인을 처리합니다. Cloudflare는 웹페이지·API 제공과 D1 데이터 저장을 처리하며, 이 과정에서 요청 IP 주소·브라우저 정보 등 접속 정보가 해당 인프라에 전달될 수 있습니다. 인프라의 운영·보안 기록과 데이터 처리 위치는 각 제공자의 정책과 실제 서비스 설정을 따르며, 한국 내 저장만을 보장하지 않습니다.</p>
+<p>Market 화면에서 외부 TradingView 차트를 불러오면 브라우저가 TradingView에 직접 연결됩니다. 로그인 정보나 WIE 메모를 차트에 전달하는 기능은 없습니다. 외부 페이지·차트에는 각각 <a href="https://policies.google.com/privacy" rel="noreferrer">Google 개인정보처리방침</a>, <a href="https://www.cloudflare.com/privacypolicy/" rel="noreferrer">Cloudflare 개인정보처리방침</a>, <a href="https://www.tradingview.com/privacy-policy/" rel="noreferrer">TradingView 개인정보처리방침</a>이 적용됩니다.</p>
+<h2>변경과 문의</h2><p>처리하는 정보나 이용 목적이 달라지면 이 페이지의 기준일과 내용을 갱신하고 필요한 동의 절차를 안내합니다. 민감한 개인정보, 계좌 정보, 비밀번호나 API 키를 메모에 입력하지 마세요. 열람·정정·삭제·처리 중지 문의: <a href="mailto:founder@migaryos.com">founder@migaryos.com</a>.</p>
+</main></body></html>
