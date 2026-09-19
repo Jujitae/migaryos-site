@@ -12,6 +12,15 @@
   function catalogueItems(registry){
     if(registry?.schema!=='migaryos.universe-registry/1'||!Array.isArray(registry.instruments)||registry.instruments.length>10000)
       throw new Error('INVALID_CATALOGUE');
+    // Market resolves against raw rows and all registered lookup keys. Display
+    // deduplication cannot turn multiple raw matches into a unique destination.
+    const lookup=new Map();
+    for(const row of registry.instruments){
+      if(!row||typeof row!=='object')continue;
+      const keys=new Set([row.id,row.entity_id,row.name,row.tradingview,...list(row.wie_symbols),...list(row.aliases)]
+        .filter(Boolean).map(value=>norm(String(value))));
+      for(const key of keys)lookup.set(key,(lookup.get(key)||0)+1);
+    }
     const seen=new Set();
     return registry.instruments.flatMap(row=>{
       if(!row||!clean(row.id)||!clean(row.name)||!clean(row.entity_id))return [];
@@ -22,6 +31,7 @@
       if(seen.has(key))return [];seen.add(key);
       return [{key,kind:'instrument',id:row.id,target:row.entity_id,name:row.name,code,exchange,
         type:kinds[row.asset_class]||row.asset_class||'등록 대상',canonical:row.entity_id,
+        canonicalMatchCount:/^[\p{L}\p{N} :&=^/!.\-]{1,80}$/u.test(row.entity_id)?lookup.get(norm(row.entity_id))||0:0,
         codes:[row.id,code,provider,row.entity_id,...list(row.wie_symbols)].filter(clean),
         names:[row.name,clean(row.name_ko),clean(row.name_en)].filter(clean),aliases:list(row.aliases).filter(clean),
         support:'탐색 가능 · 관측·예측·시나리오는 별도 확인',synthetic:row.synthetic===true,source:row}];
