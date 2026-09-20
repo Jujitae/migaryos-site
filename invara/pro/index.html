@@ -13,23 +13,32 @@
 <body>
 <header><a href="/invara/">MIGARYOS / INVARA</a><nav aria-label="INVARA Pro 안내"><a href="/invara/pro/">제품·가격</a><a href="/invara/pro/terms/">이용약관</a><a href="/invara/pro/privacy/">개인정보</a><a href="/invara/pro/refunds/">환불</a></nav></header>
 <main>
-<aside class="notice" aria-label="판매 상태"><strong>구독 결제 가능 · Paddle 결제로 진행합니다</strong><p>INVARA는 에이전트 우선 설치와 Free 검증을 제공합니다. 결제·세금·영수증은 Paddle이 처리하고, 카드 정보는 Paddle 결제 화면 밖으로 전달되지 않습니다.</p></aside>
+<aside class="notice" aria-label="판매 상태"><strong>Pro 구독 · Paddle 결제</strong><p>Free로 먼저 확인한 뒤, 에이전트가 만든 활성화 요청에서 Pro를 검토하세요. 결제·세금·영수증은 Paddle이 처리하고, 카드 정보는 Paddle 결제 화면 밖으로 전달되지 않습니다.</p></aside>
 <p class="label">Windows용 로컬 작업 도구</p>
 <h1>“INVARA 설치해줘.”<br>Free로 시작하고, 필요하면 Pro를 적용하세요.</h1>
 <p>에이전트에게 설치를 요청하면 공식 패키지를 설치하고 현재 프로젝트를 초기화한 뒤 Free 검증을 실행합니다. 수동 명령 복사, 별도 활성화 파일 전달, 매달 입력은 정상 경로에 필요하지 않습니다.</p>
+<section aria-labelledby="agent-path-heading">
+<h2 id="agent-path-heading">에이전트 우선 시작</h2>
+<ol><li><strong>“INVARA 설치해줘.”</strong> — 공식 패키지 설치, 현재 프로젝트 초기화, Free 검증.</li><li><strong>“Pro 뭐가 좋아?”</strong> — 실제 Free/Pro 차이, USD 14.99/month, 세금 가능성, 자동 갱신, 별도 Codex/API 비용을 읽어 설명.</li><li><strong>“Pro 결제하고 적용해줘.”</strong> — 조건을 보여준 뒤 반복 결제에 대해 한 번의 명시적 승인을 받고 Paddle 화면을 엽니다.</li></ol>
+</section>
+<section aria-labelledby="pro-scope-heading">
+<h2 id="pro-scope-heading">Pro가 더하는 일과 지원 범위</h2>
+<p>한 고객의 Windows 설치 한 곳에서 Codex 작업 범위를 확인하고 로컬 기록을 이어갑니다.</p>
+<p class="muted">현재 Pro 적용 범위는 한 고객의 Windows 설치 한 곳입니다. Free의 로컬 검증 안내에는 Windows와 Linux 증거가 있지만, macOS 설치 경로는 아직 확인하지 않았습니다.</p>
 <p class="price">USD 14.99 <small>/ month</small></p>
-<p class="muted">한 고객의 Windows 설치 한 곳 · 취소할 때까지 자동 갱신<br>세금이 부과될 수 있으며, 최종 금액은 Paddle 결제 전에 표시됩니다. Codex/API 이용 비용은 별도입니다.</p>
+<p class="muted">취소할 때까지 자동 갱신<br>세금이 부과될 수 있으며, 최종 금액은 Paddle 결제 전에 표시됩니다. Codex/API 이용 비용은 별도입니다.</p>
 <p>Paddle은 구매자에 대한 재판매자이자 Merchant of Record로 결제·세금·영수증을 처리하고, MIGARYOS는 INVARA Pro 제품·사용·지원을 공급합니다.</p>
+</section>
 <section class="checkout" aria-labelledby="checkout-heading">
 <h2 id="checkout-heading">Pro 구독 시작</h2>
-<p>“Pro 결제하고 적용해줘”라는 요청 뒤 에이전트는 위 조건을 보여주고 반복 결제에 대한 한 번의 명시적 승인을 요청합니다. 승인 후 아래 공식 Paddle Checkout에서 결제하세요. 결제가 확인되면 설치 적용은 자동으로 이어집니다.</p>
+<p>위 조건을 읽은 뒤 “Pro 결제하고 적용해줘”라고 요청하면 에이전트가 반복 결제에 대한 한 번의 명시적 승인을 요청합니다. 승인 후 아래 공식 Paddle Checkout에서 결제하세요. 결제가 확인되면 설치 적용은 자동으로 이어집니다.</p>
 <button id="paddle-checkout" type="button" class="checkout-button">Paddle에서 구독 결제</button>
 <p id="paddle-status" class="checkout-status" role="status" aria-live="polite">결제 창은 버튼을 눌렀을 때 열립니다.</p>
 </section>
-<h2>에이전트 경로</h2>
-<ol><li><strong>“INVARA 설치해줘.”</strong> — 공식 패키지 설치, 현재 프로젝트 초기화, Free 검증.</li><li><strong>“Pro 뭐가 좋아?”</strong> — 실제 Free/Pro 차이, USD 14.99/month, 세금 가능성, 자동 갱신, 별도 Codex/API 비용을 읽어 설명.</li><li><strong>“Pro 결제하고 적용해줘.”</strong> — 한 번의 명시적 승인 뒤 Paddle 화면을 열고, 결제 확인 후 자동 적용.</li></ol>
-<h2>알아둘 점</h2>
+<section aria-labelledby="policy-heading">
+<h2 id="policy-heading">결제와 사용 전에 알아둘 점</h2>
 <ul><li>카드·결제 정보는 Paddle의 보안 화면에서만 입력합니다. 에이전트는 카드 정보를 요청하거나 보관하지 않습니다.</li><li>취소하면 다음 갱신은 중단되고 이미 결제한 기간 동안 Pro가 유지됩니다. 취소·결제 관리는 공식 Paddle 화면에서 진행합니다.</li><li>Pro가 끝나도 Free 검증과 기존 로컬 기록은 유지됩니다.</li><li>코드가 반드시 고쳐지거나 안전해진다는 보장, 작업 성공·정확성·시간 절감 보장은 없습니다.</li></ul>
+</section>
 <p class="muted">브라우저에서 직접 시작하려면 <a href="https://invara-pro-access.mettl.chatgpt.site/">INVARA 설치·활성화 페이지</a>를 이용할 수 있습니다.</p>
 </main>
 <footer><p>MIGARYOS · <a href="mailto:hello@migaryos.com">hello@migaryos.com</a><br>문서 기준일: 2026-09-11 · 구독 결제 가능 · Paddle Merchant of Record</p><nav aria-label="INVARA Pro 안내"><a href="/invara/pro/">제품·가격</a><a href="/invara/pro/terms/">이용약관</a><a href="/invara/pro/privacy/">개인정보</a><a href="/invara/pro/refunds/">환불</a></nav></footer>
