@@ -241,6 +241,7 @@ export function boot(window) {
   let localChartError = null;
   let localChartPromise = null;
   let chartController = null;
+  let publicChart = null;
   let chartRequest = 0;
   const disposeChart = () => { chartRequest += 1; if (chartController) { chartController.destroy(); chartController = null; } };
   const say = text => { if (status) status.textContent = text; };
@@ -329,6 +330,7 @@ export function boot(window) {
     }
     const rows = coverageRows(activeRegistry(), snapshot, {rights, firstCoverage});
     const row = rows.find(r => selected.entity_id?r.entity_id===selected.entity_id:r.id===selected.id);
+    publicChart = null;
     $('sel-name').textContent = selected.name + ' (' + selected.id + ')';
     renderPersona();renderMetadata(row);renderPriceStatistics(row);renderRisk(rows);
     const evidenceText = {active: '있음', restricted: '있음 · 권리 제한', none: '없음', unknown: '확인 불가'}[row.coverage.evidence] || row.coverage.evidence;
@@ -368,7 +370,12 @@ export function boot(window) {
       fetchMarketChart(selected).then(result => {
         if (request !== chartRequest) return;
         host.replaceChildren();
-        if (result.chart) chartController = mountLightweightChart({window, document, host, input: result.chart});
+        if (result.chart) {
+          publicChart = result.chart;
+          chartController = mountLightweightChart({window, document, host, input: result.chart});
+          host.append(el('p', `자료 출처: 금융위원회 · ${result.chart.data_as_of || 'UNKNOWN'} · EOD / 일 단위`, 'muted'));
+          renderMetadata(row);
+        }
         else {
           host.append(el('p', result.status === 'KR_DATA_RIGHTS_RESTRICTED' ? 'KR_DATA_RIGHTS_RESTRICTED · 공개 표시 권리가 확인될 때까지 한국 원천 수치를 표시하지 않습니다.' : result.status + ' · 한국 시장 자료를 확인할 수 없습니다.', 'notice'));
           const source = el('a', '금융위원회 공공데이터포털 원자료 조건 확인'); source.href = 'https://www.data.go.kr/data/15094808/openapi.do'; source.target = '_blank'; source.rel = 'noopener noreferrer'; host.append(source);
@@ -439,8 +446,11 @@ export function boot(window) {
     if(selected?.id==='NET'){const a=el('a','Cloudflare issuer filing (SEC)');a.href='https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1477333';a.target='_blank';a.rel='noopener noreferrer';box.append(a);}
     const route = marketProviderRoute(selected);
     const widget=el('details');widget.append(el('summary', route.provider === 'data.go.kr' ? '한국 EOD 차트 · 원자료 기준' : 'TradingView 차트 · 표시 설정과 원자료 기준'));
-    fields(widget,[['차트 경로',route.provider || 'UNKNOWN'],['출처',route.provider === 'tradingview-embed' ? 'TradingView 공식 embed 위젯' : route.provider || 'UNKNOWN'],['위젯 요청 심볼',route.provider_symbol || selected.tradingview],['데이터 거래소',selected.exchange || 'UNKNOWN'],
-      ['차트 표시 시간대','Asia/Seoul · 표시 설정'],['원자료 시간대','UNKNOWN'],['거래 세션','UNKNOWN'],['가격 조정 방식','UNKNOWN'],['자료 시각·지연','UNKNOWN']]);box.append(widget);
+     const chartSource = route.provider === 'data.go.kr' && publicChart ? '금융위원회 공공데이터포털' : route.provider === 'tradingview-embed' ? 'TradingView 공식 embed 위젯' : route.provider || 'UNKNOWN';
+     const chartAsOf = route.provider === 'data.go.kr' && publicChart ? publicChart.data_as_of : null;
+     const chartCadence = route.provider === 'data.go.kr' && publicChart?.observed_status === 'EOD_T_PLUS_ONE' ? 'EOD · 일 단위 (실시간 아님)' : 'UNKNOWN';
+     fields(widget,[['차트 경로',route.provider || 'UNKNOWN'],['출처',chartSource],['위젯 요청 심볼',route.provider_symbol || selected.tradingview],['데이터 거래소',selected.exchange || 'UNKNOWN'],
+       ['차트 표시 시간대','Asia/Seoul · 표시 설정'],['원자료 시간대',route.provider === 'data.go.kr' ? 'Asia/Seoul' : 'UNKNOWN'],['거래 세션',route.provider === 'data.go.kr' ? 'regular' : 'UNKNOWN'],['가격 조정 방식',route.provider === 'data.go.kr' ? 'none' : 'UNKNOWN'],['자료 시각·주기',chartAsOf ? `${chartAsOf} · ${chartCadence}` : chartCadence]]);box.append(widget);
     for(const analysis of row.analyses){const detail=el('details');detail.open=true;detail.append(el('summary','WIE 가격 관측 · '+analysis.timeframe));
       const m=analysis.metadata;fields(detail,[['자료 출처',m.source],['제공자',m.provider],['제공자 심볼',m.provider_symbol],['거래소',m.exchange],
         ['원자료 시간대',m.timezone],['거래 세션',m.session],['가격 조정 방식',m.adjustment],['통화',m.currency],['가격 자료 시각',m.data_as_of],
