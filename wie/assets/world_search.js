@@ -2,6 +2,16 @@
    inference, scenario or trading authority. No LLM, telemetry or local storage. */
 (function(root){
   'use strict';
+  // The public explorer is hosted on GitHub Pages, while the catalogue API
+  // lives on the Worker origin. Keep an explicit origin so static hosting
+  // cannot accidentally turn an API request into a same-origin 404.
+  const DEFAULT_API_ORIGIN='https://migaryos-world-interface.founder-685.workers.dev';
+  function apiURL(path){
+    const value=String(path||'');
+    if(!value.startsWith('/api/'))return value;
+    const origin=clean(root.WIE_WORLD_API_ORIGIN||DEFAULT_API_ORIGIN).replace(/\/$/,'');
+    return origin+value;
+  }
   const list=value=>Array.isArray(value)?value:[];
   const clean=value=>typeof value==='string'?value.normalize('NFC').trim():'';
   const norm=value=>clean(value).toLowerCase().replace(/\s+/g,' ');
@@ -86,7 +96,7 @@
   function catalogueSearchLoader(fetchImpl){
     return async({query,signal}={})=>{
       const q=clean(query);if(!q)return [];
-      const response=await fetchImpl('/api/world/catalogue?q='+encodeURIComponent(q)+'&limit=12',{credentials:'same-origin',cache:'no-store',signal});
+      const response=await fetchImpl(apiURL('/api/world/catalogue?q='+encodeURIComponent(q)+'&limit=12'),{credentials:'omit',cache:'no-store',signal});
       if(!response.ok)throw new Error(response.status===401||response.status===403?'SEARCH_AUTH_REQUIRED':'CATALOGUE_UNAVAILABLE');
       const data=await response.json();
       if(!data||data.schema!=='migaryos.instrument-catalogue-search/1'||!Array.isArray(data.items))throw new Error('INVALID_CATALOGUE');
@@ -195,6 +205,6 @@
       get state(){return {open:!wrap.hidden,pending,failed,active,column,version};},
       destroy(){destroyed=true;invalidate();for(const [node,event,fn] of listeners)node.removeEventListener?.(event,fn);wrap.remove?.();}};
   }
-  const api={catalogueItems,recordItems,rankItems,highlight,registryLoader,catalogueSearchLoader,mount};
+  const api={apiURL,catalogueItems,recordItems,rankItems,highlight,registryLoader,catalogueSearchLoader,mount};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;root.WIESearch=api;
 })(typeof globalThis!=='undefined'?globalThis:this);

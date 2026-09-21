@@ -156,7 +156,7 @@
       let merged=items;
       if(isAtlas&&atlas?.route.entity&&!items.some(item=>item.canonical===atlas.route.entity)){
         try{
-          const response=await fetchImpl('/api/world/catalogue/'+encodeURIComponent(atlas.route.entity),{credentials:'same-origin',cache:'no-store'});
+          const response=await fetchImpl(searchModule.apiURL('/api/world/catalogue/'+encodeURIComponent(atlas.route.entity)),{credentials:'omit',cache:'no-store'});
           const data=response.ok?await response.json():null;
           if(data?.schema==='migaryos.instrument-catalogue-detail/1'&&data.status==='OK')
             merged=mergeCatalogue(items,searchModule.catalogueItems({schema:'migaryos.universe-registry/1',instruments:[data.item]}));
