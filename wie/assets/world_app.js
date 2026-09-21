@@ -2,6 +2,7 @@
 (function (root) {
   'use strict';
   const workspaceModule=root.WIEWorkspace||(typeof require==='function'?require('./world_workspace.js'):null);
+  const atlasModule=root.WIEAtlas||(typeof require==='function'?require('./world_atlas.js'):null);
   const searchModule=root.WIESearch||(typeof require==='function'?require('./world_search.js'):null);
   const TYPES = {prediction:'예측',outcome:'결과',journal:'관측 일기',source:'출처',analysis:'시장 관측',hypothesis:'인과 가설',claim:'관측된 주장',observation:'관측',entity:'주제 후보',event:'사건',revision:'모델 수정',learning:'학습 기록'};
   const RELATIONS = {cites:'출처 인용',recorded_outcome:'기록된 결과',same_symbol:'같은 심볼',issued_in_window:'발행 시점 기록',CO_OCCURRENCE:'함께 언급됨 · 연관 후보',MENTIONS:'언급된 주제',TEMPORAL_PRECEDENCE:'시간상 앞선 관측',CONFLICTING_CLAIMS:'엇갈리는 주장',CAUSAL_HYPOTHESIS:'인과 가설 · 미입증'};
@@ -130,7 +131,9 @@
       el('p','기존 자료 묶음 SHA-256 '+str(value.legacy_parent_manifest_sha256),'evidence-hash'));
     container.append(details);return until;
   }
-  function createApp({document:d,fetchImpl,storage=null,location={hash:''},founder=false,now=()=>Date.now(),setTimer=setTimeout,clearTimer=clearTimeout}={}) {
+  function createApp({document:d,fetchImpl,storage=null,location={hash:''},history=root.history,eventTarget=root,founder=false,now=()=>Date.now(),setTimer=setTimeout,clearTimer=clearTimeout}={}) {
+    const isAtlas=!founder&&d.body?.dataset.worldShell==='atlas';
+    let atlas=null;
     const staticOnly=!founder&&d.body?.dataset.worldDelivery==='STATIC_READ_ONLY';
     const $=id=>d.getElementById(id), el=(tag,value,cls)=>{const n=d.createElement(tag);if(value!==undefined)n.textContent=str(value);if(cls)n.className=cls;return n;};
     const append=(id,...nodes)=>{const n=$(id);if(n)n.append(...nodes);};
@@ -139,10 +142,31 @@
     const empty=message=>el('p',message,'empty');
     let view=null,selected=null,query='',limit=20,loadId=0,expiryTimer=null,chatId=0;
     let saveAction=null,adaptiveTimer=null,adaptiveLensActive=false,searchBox=null;
+    let reloadTimer=null,requestController=null,evidenceBusy=false,evidenceDeadline=null,revalidateOnReturn=false;
+    let evidenceState='loading';
+    let activeLensTab='영향과 조건',lensRecord=null,questionDraft={id:null,text:''},noteDraft=null;
     let catalogue=null,cataloguePending=null,catalogueFailed=false,destroyed=false;
     const registryLoader=searchModule.registryLoader(fetchImpl);
+    const remoteCatalogueSearch=searchModule.catalogueSearchLoader(fetchImpl);
+    const mergeCatalogue=(base,extra)=>{const rows=[...(base||[])];for(const item of extra||[]){if(!item?.canonical||rows.some(row=>row.canonical===item.canonical))continue;rows.push(item);}return rows;};
     async function loadCatalogue(options){const items=await registryLoader(options);
-      if(!destroyed){catalogue=items;catalogueFailed=false;renderWorkspace();}return items;}
+      let merged=items;
+      if(isAtlas&&atlas?.route.entity&&!items.some(item=>item.canonical===atlas.route.entity)){
+        try{
+          const response=await fetchImpl('/api/world/catalogue/'+encodeURIComponent(atlas.route.entity),{credentials:'same-origin',cache:'no-store'});
+          const data=response.ok?await response.json():null;
+          if(data?.schema==='migaryos.instrument-catalogue-detail/1'&&data.status==='OK')
+            merged=mergeCatalogue(items,searchModule.catalogueItems({schema:'migaryos.universe-registry/1',instruments:[data.item]}));
+        }catch{/* direct remote detail is optional; static catalogue remains available */}
+      }
+      if(!destroyed){catalogue=merged;catalogueFailed=false;atlas?.catalogue(merged);renderWorkspace();}return merged;}
+    async function loadSearchItems(options){
+      const local=catalogue||await loadCatalogue();
+      const remote=await remoteCatalogueSearch(options);
+      const merged=mergeCatalogue(local,remote);
+      if(!destroyed){catalogue=merged;atlas?.catalogue(merged);}
+      return merged;
+    }
     const legacy=guestStore(storage);
     const workspace=founder?null:workspaceModule.createWorkspace({fetchImpl,now,setTimer,clearTimer,staticOnly,onChange:()=>renderWorkspace()});
     const session=root.crypto?.randomUUID?.() || 'guest-'+String(now())+'-'+Math.random().toString(36).slice(2);
@@ -151,7 +175,7 @@
     function fieldList(parent,entries){const dl=el('dl');for(const [label,value] of entries){dl.append(el('dt',label),el('dd',value||'미확인'));}parent.append(dl);}
     function section(parent,title,values,missing){const box=el('section',undefined,'lens-section');box.append(el('h3',title));const data=arr(values).map(text).filter(Boolean);if(data.length){const ul=el('ul');for(const item of data)ul.append(el('li',item));box.append(ul);}else box.append(empty(missing));parent.append(box);return box;}
     function rows(){return view ? newest(view.records.filter(r=>(str(r.title)+' '+str(r.summary)+' '+str(r.content)+' '+str(r.symbol)).toLocaleLowerCase().includes(query.toLocaleLowerCase())),now()):[];}
-    function focus(id,move=true){if(!view?.byId.has(id))return;selected=id;renderMap();renderLens();renderRecords();if(move){$('lens-content')?.setAttribute('tabindex','-1');$('lens-content')?.focus();}if(!founder && location)location.hash='focus='+encodeURIComponent(id);}
+    function focus(id,move=true){if(!view?.byId.has(id))return;selected=id;if(atlas)atlas.openRecord(id);renderMap();renderLens();renderRecords();if(move){$('lens-content')?.setAttribute('tabindex','-1');$('lens-content')?.focus();}if(!founder && !isAtlas && location)location.hash='focus='+encodeURIComponent(id);}
     function renderCards(){clear('change-cards');$('change-cards')?.setAttribute('aria-busy','false');if(!view)return;
       if(founder){const m=view.model;for(const [title,key,desc] of [['새로 연결된 사건','changed_world_candidates','검토가 필요한 변화 후보'],['경쟁하는 설명','hypotheses','등록된 인과 가설 · 미입증'],['수정된 모델','revisions','남겨진 모델 버전'],['아직 모르는 영역','unresolved_gaps','추가 관측이 필요한 질문']]){const box=el('div',undefined,'change-card');box.append(el('span',title,'change-label'),el('strong',arr(m[key]).length+'건'),el('p','현재 표시 범위 · '+desc));append('change-cards',box);}return;}
       const chosen=rows().filter(r=>r.type!=='source').slice(0,3);
@@ -172,8 +196,17 @@
       for(const e of relevant.slice(0,12)){const row=el('div',undefined,'relation-row');row.append(button(view.byId.get(e.from).title,()=>focus(e.from)),el('span','→ '+(RELATIONS[e.relation]||e.relation)+' →'),button(view.byId.get(e.to).title,()=>focus(e.to)));append('map-relations',row);}
       if(relevant.length>12)append('map-relations',el('p','연결 '+relevant.length+'건 중 12건 표시. 연결된 점을 선택해 계속 탐색하세요.','muted'));
     }
-    function renderRecords(){clear('record-list');if(!view)return;const data=rows();if($('record-count'))$('record-count').textContent=(founder?'표시 범위의 검색 결과 ':'')+data.length+'건';if(!data.length)append('record-list',empty('일치하는 기록이 없습니다. 검색어를 바꾸거나 다시 불러오세요.'));for(const r of data.slice(0,limit)){const row=el('div',undefined,'record-row');const b=button('',()=>focus(r.id));b.setAttribute('aria-pressed',String(r.id===selected));b.append(el('strong',r.title),el('p',(TYPES[r.type]||r.type)+' · '+(r.status||'상태 미확인')));row.append(b,el('time',time(r.as_of||r.observed_at||r.recorded_at)));append('record-list',row);}if($('more-records'))$('more-records').hidden=data.length<=limit;}
-    function renderLens(){adaptiveLensActive=false;clear('lens-content');chatId++;if(!view||!selected)return;const r=view.byId.get(selected);if(!r)return;const rel=related(view,r),parent=$('lens-content');if(!parent)return;
+    function renderRecords(){clear('record-list');if(!view){
+      if(isAtlas){const loading=evidenceState==='loading',expired=evidenceState==='expired';
+        if($('record-count'))$('record-count').textContent=loading?'확인 중':expired?'표시 기한 지남':'현재 확인 불가';
+        append('record-list',empty(loading?'공개 기록을 확인하고 있습니다.':expired?
+          '표시 유효 기한이 지났습니다. 공개 기록을 다시 확인해 주세요.':
+          '공개 기록을 확인하지 못했습니다. 연결 상태를 확인한 뒤 다시 시도해 주세요.'));
+        if(!loading)append('record-list',button('공개 기록 다시 확인',()=>load()));
+        if($('more-records'))$('more-records').hidden=true;
+      }return;
+    }const data=rows();if($('record-count'))$('record-count').textContent=(founder?'표시 범위의 검색 결과 ':'')+data.length+'건';if(!data.length)append('record-list',empty('일치하는 기록이 없습니다. 검색어를 바꾸거나 다시 불러오세요.'));for(const r of data.slice(0,limit)){const row=el('div',undefined,'record-row');const b=button('',()=>focus(r.id));b.setAttribute('aria-pressed',String(r.id===selected));b.append(el('strong',r.title),el('p',(TYPES[r.type]||r.type)+' · '+(r.status||'상태 미확인')));row.append(b,el('time',time(r.as_of||r.observed_at||r.recorded_at)));append('record-list',row);}if($('more-records'))$('more-records').hidden=data.length<=limit;}
+    function renderLens(){if(lensRecord!==selected){activeLensTab='영향과 조건';lensRecord=selected;}adaptiveLensActive=false;clear('lens-content');chatId++;if(!view||!selected)return;const r=view.byId.get(selected);if(!r)return;const rel=related(view,r),parent=$('lens-content');if(!parent)return;
       const nextQuestion=rel.hypothesis?.next_question||text(arr(rel.proposal.falsifiers)[0])||'관측 시각과 원문 근거를 확인하세요. 행동을 판단할 조건은 아직 등록되지 않았습니다.';
       const rail=$('decision-content');if(rail){rail.replaceChildren();const summary=el('section',undefined,'rail-section');
         summary.append(el('h3','현재 기록의 상태'),el('p',r.status||'판정 상태 미확인'));
@@ -181,14 +214,14 @@
           ['현재 조건 평가','별도 확인 필요'],['주문 실행','지원하지 않음']]);
         const next=el('section',undefined,'rail-section');next.append(el('h3','다음 확인'),
           el('p',nextQuestion),
-          link('조건부 시나리오 · 비공개','/founder/?scenario_focus='+encodeURIComponent(r.id)+'#private-scenarios'),
+          ...(founder?[link('조건부 시나리오 · 비공개','/founder/?scenario_focus='+encodeURIComponent(r.id)+'#private-scenarios')]:[]),
           link('학습·실험 비교','/quant/?focus='+encodeURIComponent(r.id)+'#adaptive-audit'));rail.append(summary,next);}
       parent.append(el('h2',r.title,'lens-title'),el('span',TYPES[r.type]||r.type,'badge'),el('span',r.synthetic||view.model.synthetic?'합성 자료 · 실세계 증거 아님':r.status||'상태 미확인','badge hypothesis'));
       if(r.type==='claim'||r.type==='event')parent.append(el('p','이 주장이 관측됐다는 기록이며, 내용이 참이라는 확인은 아닙니다.','muted'));
       parent.append(el('p',r.summary||r.content||'현재 기록에 별도 요약이 없습니다.','lens-summary'));
       const mobileDecision=el('section',undefined,'mobile-decision');mobileDecision.append(el('h3','현재 판단 · '+(r.status||'미확인')),el('p','현재 조건은 별도 확인이 필요합니다.'),el('h3','다음 확인'),el('p',nextQuestion));parent.append(mobileDecision);
       const tabs=el('div',undefined,'lens-tabs');tabs.setAttribute('role','group');tabs.setAttribute('aria-label','Lens 내용 선택');parent.append(tabs);const panes=[];
-      function pane(title){const box=el('div');const b=button(title,()=>{for(const p of panes){p.box.hidden=p.box!==box;p.button.setAttribute('aria-pressed',String(p.box===box));}});b.setAttribute('aria-pressed',String(panes.length===0));box.hidden=panes.length>0;panes.push({box,button:b});tabs.append(b);parent.append(box);return box;}
+      function pane(title){const box=el('div');const b=button(title,()=>{activeLensTab=title;for(const p of panes){p.box.hidden=p.box!==box;p.button.setAttribute('aria-pressed',String(p.box===box));}});b.setAttribute('aria-pressed',String(title===activeLensTab));box.hidden=title!==activeLensTab;panes.push({box,button:b});tabs.append(b);parent.append(box);return box;}
       const impact=pane('영향과 조건');const about=section(impact,'지금 확인한 것',[r.content||r.summary],'공개된 본문이 없습니다.');fieldList(about,[['기준 시각',time(r.as_of||r.observed_at||r.recorded_at)],['유효 기한',time(r.valid_until||r.expires_at)],['기록 ID',r.id],['관계 의미','연관·설명 후보 · 인과 미입증']]);
       const conditions=[['설명하는 과정',[rel.proposal.mechanism],'등록된 전달 과정이 없습니다.'],['성립 조건',arr(rel.proposal.conditions).map(conditionText),'명시된 성립 조건이 없습니다.'],['틀렸다고 판단할 조건',rel.proposal.falsifiers,'반증 조건이 등록되지 않았습니다. 이 상태를 검증 완료로 보지 않습니다.'],['아직 모르는 것',rel.proposal.missing_variables,'추가로 확인할 변수가 이 기록에 명시되지 않았습니다.']];
       const missing=el('details',undefined,'missing-conditions');missing.append(el('summary','등록되지 않은 판단 조건'));
@@ -199,17 +232,17 @@
       for(const e of rel.linked){const b=button((RELATIONS[e.relation]||e.relation)+' · '+e.record.title,()=>focus(e.record.id));sources.append(b);}
       const alternatives=pane('다른 설명');section(alternatives,'경쟁하는 가설',rel.alternatives,'명시된 대안 가설이 없습니다. 다른 설명이 배제된 것은 아닙니다.');for(const other of arr(view.model.hypotheses).filter(h=>h.id!==rel.hypothesis?.id&&arr(h.observation_ids).some(id=>arr(r.observation_ids).includes(id)))) alternatives.append(button('관련 가설 · '+(other.proposal?.cause||other.hypothesis_id)+' → '+(other.proposal?.effect||'결과 미정'),()=>focus(other.id)));if(rel.hypothesis?.next_question)section(alternatives,'다음 조사 질문',[rel.hypothesis.next_question],'');
       const history=pane('예측 이력');section(history,'예측 발행',rel.predictions.map(p=>predictionText(p)+' · 발행 '+time(p.issued_at)),'연결된 모델 예측 발행 기록이 없습니다.');if(r.type==='prediction'){const p=section(history,'이 기록의 예측',[r.selector?predictionText(r):r.content||r.summary],'기록 내용 없음');fieldList(p,[['발행',time(r.issued_at||r.as_of)],['만기',time(r.valid_until||r.expires_at||r.window_end)],['등록 확률',typeof r.probability==='number'&&Number.isFinite(r.probability)?(100*r.probability).toFixed(1)+'% · 등록값, 예측력 증거 아님':'미확인']]);}section(history,'결과 관측',[...rel.reviews.map(x=>resultText(x)),...rel.linked.filter(e=>e.relation==='recorded_outcome').map(e=>e.record.summary||e.record.title)],r.outcome?str(r.outcome):'연결된 결과 관측이 없습니다. 미확정은 실패가 아닙니다.');section(history,'판단을 바꾼 이유',rel.revisions.map(x=>(x.reason||x.status||'모델 버전')+' · '+time(x.recorded_at)),'연결된 수정 이력이 없습니다.');
-      const actions=el('div',undefined,'lens-actions');if(!founder){saveAction=button(workspace.state.saved.includes(r.id)?'저장 해제':'관심 판단 저장',async()=>{await workspace.toggleSaved(r.id);renderWorkspace();});saveAction.disabled=staticOnly||workspace.busy||workspace.state.principal?.role==='viewer';actions.append(saveAction);}actions.append(link(r.symbol?'Market에서 '+r.symbol+' 보기':'Market 탐색',r.symbol?'/market/?symbol='+encodeURIComponent(r.symbol):'/market/'),link(founder?'Quant 자료 연구':'Quant에서 가설 검토',founder?'/quant/#research':'/quant/?focus='+encodeURIComponent(r.id)+'#research'));
+      const actions=el('div',undefined,'lens-actions');if(!founder){saveAction=button(isAtlas?(workspace.state.saved.includes(r.id)?'관심목록에 저장됨':'관심목록에 저장'):(workspace.state.saved.includes(r.id)?'저장 해제':'관심 판단 저장'),async()=>{if(atlas&&!atlas.requireAccount('이 기록을 관심목록에 저장하고 다시 살펴보세요.'))return;await workspace.toggleSaved(r.id);renderWorkspace();});saveAction.disabled=staticOnly||workspace.busy||workspace.state.principal?.role==='viewer';actions.append(saveAction);}actions.append(link(r.symbol?'Market에서 '+r.symbol+' 보기':'Market 탐색',r.symbol?'/market/?symbol='+encodeURIComponent(r.symbol):'/market/'),link(founder?'Quant 자료 연구':'Quant에서 가설 검토',founder?'/quant/#research':'/quant/?focus='+encodeURIComponent(r.id)+'#research'));
       if(founder)actions.append(button('연결된 시나리오 보기',()=>root.WIEScenarios?.focus(r.id)));
-      else actions.append(link('비공개 시나리오로 확인','/founder/?scenario_focus='+encodeURIComponent(r.id)+'#private-scenarios'));
+
       parent.append(actions);if(!founder)renderChat(parent,r);
     }
     function renderChat(parent,r){
       if(staticOnly){parent.append(el('p','공개 기록 열람 모드 · 대화와 저장은 서버 연결 후 사용할 수 있습니다.','empty'));return;}
       const form=el('form',undefined,'chat-form'),label=el('label','이 기록에 대해 묻기');label.htmlFor='lens-question';
-      const input=el('input');input.id='lens-question';input.maxLength=500;input.required=true;input.placeholder='다른 원인일 가능성은?';
+      const input=el('input');input.id='lens-question';input.maxLength=500;input.required=true;input.placeholder='다른 원인일 가능성은?';input.value=questionDraft.id===r.id?questionDraft.text:'';input.addEventListener('input',()=>{questionDraft={id:r.id,text:input.value};});
       const b=el('button','묻기');b.type='submit';const answer=el('p','','chat-answer');answer.setAttribute('role','status');answer.setAttribute('aria-live','polite');
-      let returned=null,asked='';const save=button('이 대화 저장',async()=>{if(returned)await workspace.saveConversation(asked,returned);});save.hidden=true;
+      let returned=null,asked='';const save=button('이 대화 저장',async()=>{if(atlas&&!atlas.requireAccount('직접 선택한 대화를 내 계정에 보관하세요.'))return;if(returned)await workspace.saveConversation(asked,returned);});save.hidden=true;
       form.append(label,input,b,el('p','공개 기록에 근거한 설명입니다. 생성된 문장은 증거가 아닙니다.','muted'),answer,save,
         el('p','대화는 자동 저장되지 않습니다. 내 작업공간에서 저장에 동의한 뒤 원하는 대화만 직접 저장할 수 있습니다.','muted'));
       form.addEventListener('submit',async event=>{event.preventDefault();const question=input.value.trim();if(!question)return;
@@ -224,7 +257,19 @@
     function renderWorkspace(){
       searchBox?.update();
       if(founder)return;
+      atlas?.updateAccount();
       const state=workspace.state,viewer=state.principal?.role==='viewer',locked=workspace.busy||viewer||staticOnly;
+      function workspaceEmpty(id,normal){
+        if(!isAtlas||state.status==='AUTHENTICATED'){append(id,empty(normal));return;}
+        const unavailable=state.status==='UNAVAILABLE';
+        append(id,empty(unavailable?'저장 내역을 확인하지 못했습니다. 잠시 후 다시 확인해 주세요.':
+          state.status==='LOADING'?'저장 내역을 확인하고 있습니다.':
+          state.status==='STATIC_READ_ONLY'?'공개 기록 열람 모드입니다. 저장 내역은 서버 연결 후 확인할 수 있습니다.':
+          '로그인하면 내 계정에 저장한 내용을 확인할 수 있습니다.'));
+        if(unavailable){const retry=button('저장 내역 다시 확인',()=>workspace.refresh());retry.disabled=workspace.busy;append(id,retry);}
+      }
+      const draftOwner=state.principal?JSON.stringify([state.principal.user_id,state.principal.workspace_id]):null;
+      if(noteDraft&&((draftOwner&&noteDraft.owner!==draftOwner)||(!draftOwner&&state.status!=='LOADING')))noteDraft=null;
       if(!destroyed&&!staticOnly&&catalogue===null&&!cataloguePending&&state.saved.some(id=>!view?.byId.has(id)))
         cataloguePending=loadCatalogue().catch(()=>{catalogue=[];catalogueFailed=true;if(!destroyed)renderWorkspace();})
           .finally(()=>{cataloguePending=null;});
@@ -232,28 +277,43 @@
       if($('workspace-status'))$('workspace-status').textContent=state.message||'';
       if($('workspace-identity'))$('workspace-identity').textContent=staticOnly?'STATIC_READ_ONLY · 로그인 서버 미연결':state.principal?
         (state.syntheticOnly?'합성 계정 · ':'내 계정 · ')+state.principal.plan+' · '+(viewer?'읽기 전용':'서버 저장'):
+        isAtlas&&state.status==='UNAVAILABLE'?'계정과 저장 상태를 다시 확인해 주세요.':
+        isAtlas&&state.status==='LOADING'?'계정 상태를 확인하고 있습니다.':
         state.loginEnabled?'로그인 후 서버에 저장합니다.':'로그인 후 서버에 저장합니다. 현재 실제 로그인은 미활성입니다.';
       if($('workspace-login')){$('workspace-login').hidden=staticOnly||!state.loginEnabled||!!state.principal;$('workspace-login').disabled=workspace.busy;}
       if($('workspace-logout'))$('workspace-logout').hidden=!state.principal;
       for(const id of ['note-input','note-submit','interest-input','interest-submit','workspace-preferences-save','conversation-opt-in','conversation-retention','workspace-persona','conversation-delete-all'])if($(id))$(id).disabled=locked;
-      if(saveAction){saveAction.disabled=locked;saveAction.textContent=state.saved.includes(selected)?'저장 해제':'관심 판단 저장';}
+      if(saveAction){saveAction.disabled=locked;saveAction.textContent=isAtlas?(state.saved.includes(selected)?'관심목록에 저장됨':'관심목록에 저장'):(state.saved.includes(selected)?'저장 해제':'관심 판단 저장');}
       for(const list of state.watchlists){const option=el('option',list.payload?.name||'관심목록');option.value=list.id;append('watchlist-select',option);}
       if($('watchlist-select')){$('watchlist-select').value=state.activeList||'';$('watchlist-select').disabled=workspace.busy||!state.watchlists.length;}
       if($('watchlist-limit'))$('watchlist-limit').textContent=state.principal?'선택 목록 '+state.saved.length+' / '+state.limits.watchlist_targets+'개':'Free 로그인 계정의 관심목록은 1개, 대상은 30개까지입니다.';
-      for(const topic of state.interests){append('interest-list',button(topic.question,()=>{$('world-search').value=topic.question;query=topic.question;render();$('content')?.focus();}));
+      for(const topic of state.interests){append('interest-list',button(topic.question,()=>{$('world-search').value=topic.question;query=topic.question;atlas?.search(query);render();$('content')?.focus();}));
         const del=button('삭제',()=>workspace.removeInterest(topic.id));del.disabled=locked;del.setAttribute('aria-label',topic.question+' 관심 주제 삭제');append('interest-list',del);}
-      if(!state.interests.length)append('interest-list',el('p','로그인 후 자주 찾는 검색어를 저장할 수 있습니다.','muted'));
+      if(!state.interests.length)workspaceEmpty('interest-list',isAtlas?'저장한 검색어가 없습니다. 탐색에서 자주 찾는 검색어를 저장할 수 있습니다.':'로그인 후 자주 찾는 검색어를 저장할 수 있습니다.');
       for(const id of state.saved){const row=el('div',undefined,'workspace-entry'),record=view?.byId.get(id);
         const matches=arr(catalogue).filter(item=>item.canonical===id),instrument=!record&&matches.length===1&&matches[0].canonicalMatchCount===1?matches[0]:null;
-        const open=instrument?link(instrument.name+' · '+instrument.code+' · '+instrument.exchange,
-          '/market/?entity='+encodeURIComponent(instrument.canonical)+'&symbol='+encodeURIComponent(instrument.id)):
+        const open=instrument?(atlas?button(instrument.name+' · '+instrument.code+' · '+instrument.exchange,()=>atlas.openEntity(instrument)):link(instrument.name+' · '+instrument.code+' · '+instrument.exchange,
+          '/market/?entity='+encodeURIComponent(instrument.canonical)+'&symbol='+encodeURIComponent(instrument.id))):
           button(record?.title||(catalogueFailed?'대상 목록 확인 실패 · 새로고침해 주세요':'현재 공개 범위에서 확인할 수 없는 저장 기록'),()=>focus(id));
         if(!instrument)open.disabled=!record;
         row.append(open);if(instrument)row.append(el('p',instrument.support,'muted'));
         const del=button('삭제',()=>workspace.toggleSaved(id));del.disabled=locked;row.append(del);append('saved-list',row);}
-      if(!state.saved.length)append('saved-list',empty('Lens에서 관심 판단 저장을 누르면 로그인한 작업공간에 기록 ID를 저장합니다. 원문은 복제하지 않습니다.'));
-      for(const note of state.notes){const row=el('div',undefined,'workspace-entry'),del=button('삭제',()=>workspace.removeNote(note.id));del.disabled=locked;row.append(el('p',note.text),del);append('note-list',row);}
-      if(!state.notes.length)append('note-list',empty('저장된 메모가 없습니다. 내 메모는 WIE의 근거가 아닙니다.'));
+      if(!state.saved.length)workspaceEmpty('saved-list',isAtlas?'저장한 대상과 기록이 없습니다. 대상을 찾은 뒤 북마크나 ‘관심목록에 저장’을 누르면 이곳에서 다시 볼 수 있습니다.':'Lens에서 관심 판단 저장을 누르면 로그인한 작업공간에 기록 ID를 저장합니다. 원문은 복제하지 않습니다.');
+      for(const note of state.notes){
+        const row=el('div',undefined,'workspace-entry'),del=button('삭제',()=>workspace.removeNote(note.id));del.disabled=locked;
+        function editor(){
+          if(!noteDraft||noteDraft.id!==note.id)noteDraft={id:note.id,text:note.text,owner:draftOwner};
+          const form=el('form'),input=el('textarea'),save=el('button','수정 저장');input.value=noteDraft.text;input.maxLength=2000;input.required=true;input.setAttribute('aria-label','메모 수정');save.type='submit';save.disabled=locked;input.disabled=locked;
+          input.addEventListener('input',()=>{if(noteDraft?.id===note.id)noteDraft.text=input.value;});
+          form.append(input,save,button('취소',()=>{noteDraft=null;renderWorkspace();}));
+          form.addEventListener('submit',async event=>{event.preventDefault();const value=input.value.trim();if(value&&await workspace.updateNote(note.id,value)){noteDraft=null;renderWorkspace();}});
+          row.replaceChildren(form);return input;
+        }
+        const edit=button('수정',()=>editor().focus());edit.disabled=locked;
+        row.append(el('p',note.text),el('time','작성 '+time(typeof note.created_at==='number'?new Date(note.created_at).toISOString():note.created_at)),edit,del);
+        if(noteDraft?.id===note.id&&draftOwner===noteDraft.owner)editor();append('note-list',row);
+      }
+      if(!state.notes.length)workspaceEmpty('note-list','저장된 메모가 없습니다. 내 메모는 WIE의 근거가 아닙니다.');
       if($('conversation-opt-in'))$('conversation-opt-in').checked=!!state.preferences.conversation_opt_in;
       if($('conversation-retention'))$('conversation-retention').value=String(state.preferences.retention_days||30);
       if($('workspace-persona'))$('workspace-persona').value=state.preferences.preferences?.persona||state.principal?.persona||'research';
@@ -261,7 +321,7 @@
         const del=button('삭제',()=>workspace.removeConversation(conversation.id));del.disabled=locked;
         row.append(el('h4',value.question||'저장된 대화'),el('p',value.answer?.answer||'현재 표시할 수 없는 저장 답변'),
           el('p','직접 저장한 대화 · WIE 근거 아님 · 보존 기한 '+time(conversation.expires_at),'muted'),del);append('conversation-list',row);}
-      if(!state.conversations.length)append('conversation-list',empty('직접 저장한 대화가 없습니다. 저장 동의만으로 대화를 자동 수집하지 않습니다.'));
+      if(!state.conversations.length)workspaceEmpty('conversation-list','직접 저장한 대화가 없습니다. 저장 동의만으로 대화를 자동 수집하지 않습니다.');
     }
     function showAdaptiveLens({family,epoch,projection,authority}){
       adaptiveLensActive=true;clear('lens-content');chatId++;const parent=$('lens-content');if(!parent)return;
@@ -287,28 +347,91 @@
       const catButtons=[];for(let i=0;i<CATEGORIES.length;i++){const cat=CATEGORIES[i];const b=button(CATEGORY_LABELS[i],()=>{for(const other of catButtons)other.setAttribute('aria-pressed',String(other===b));showHealth(cat);});b.setAttribute('aria-pressed','false');catButtons.push(b);append('source-categories',b);}showHealth(null);
     }
     function renderScope(){clear('world-scope');if(!view?.payload.model)return;const p=view.model.presentation||{},count=value=>Number.isSafeInteger(value)&&value>=0?value+'건':'미확인';const values=[Number.isSafeInteger(p.observations_total)?(founder?'모델 보관 관측 ':'공개 응답 대상 관측 ')+count(p.observations_total):'전체 관측 수 미확인','화면에 받은 관측 '+count(arr(view.model.observations).length),'표시에서 생략 '+count(p.observations_omitted)];if(Number.isSafeInteger(p.hypothesis_groups_omitted))values.push('생략된 가설 묶음 '+count(p.hypothesis_groups_omitted));if(view.model.extraction?.bounded)values.push('관계 추출 범위도 제한됨');values.push('카드와 검색 결과는 현재 표시 범위 기준이며, 관측·기록·지도 점은 다른 단위입니다.');append('world-scope',el('p',values.join(' · '),'muted'));}
-    function render(){renderScope();renderCards();renderMap();renderRecords();renderWorkspace();searchBox?.update();}
-    function clearEvidence(){searchBox?.reset();clear('decision-content');view=null;selected=null;chatId++;clearTimer(adaptiveTimer);adaptiveLensActive=false;for(const id of ['adaptive-content','world-scope','change-cards','world-map','map-relations','record-list','lens-content','founder-hypotheses','question-list','review-history','source-health','source-categories'])clear(id);if($('record-count'))$('record-count').textContent='';if($('more-records'))$('more-records').hidden=true;if($('founder-private'))$('founder-private').hidden=true;renderWorkspace();}
-    async function load(){if(catalogueFailed){catalogue=null;catalogueFailed=false;}const workspaceReady=founder?null:workspace.refresh();const ticket=++loadId;clearTimer(expiryTimer);clearEvidence();status(founder?'Founder 연결을 확인하는 중입니다.':'공개 기록을 불러오는 중입니다.');if($('refresh-world'))$('refresh-world').disabled=true;if($('world-asof'))$('world-asof').textContent='';if($('founder-gate'))$('founder-gate').hidden=true;
-      try{const response=await fetchImpl(founder?'/api/founder/model':staticOnly?'/wie/explorer.json':'/api/world/explorer',{credentials:'same-origin',cache:'no-store',headers:{Accept:'application/json'}});if(ticket!==loadId)return;if(founder&&response.status===401){status('Founder 세션이 연결되지 않았습니다.','warning');$('founder-gate').hidden=false;return;}if(!response.ok)throw new Error('HTTP_ERROR');const payload=await response.json();if(ticket!==loadId)return;if(staticOnly&&(payload.delivery!=='STATIC_READ_ONLY'||payload.model!==null||payload.valid_until!==null))throw new Error('INVALID_STATIC_RESPONSE');if(staticOnly&&(!payload.as_of||!Number.isFinite(Date.parse(payload.as_of))||now()-Date.parse(payload.as_of)>Number(payload.stale_after_seconds||7200)*1000))payload.status='PROJECTION_STALE';const next=normalize(payload,founder);const deadline=payload.valid_until?Date.parse(payload.valid_until):null;if(payload.valid_until&&(!Number.isFinite(deadline)||deadline<=now()))throw new Error('EXPIRED');view=next;status(staticOnly?'공개 기록 열람 · STATIC_READ_ONLY · '+(payload.status==='PROJECTION_STALE'?'지난 자료입니다. 현재 상태로 해석하지 마세요.':'자료 기준 시점의 기록입니다.')+' 세계 모델·현재 조건 평가·대화·저장은 서버 미연결.':payload.status==='OK'?'서버가 제공한 기록을 표시합니다.':payload.status==='PROJECTION_STALE'||payload.status==='STALE'?'기준 시각이 오래된 기록입니다. 현재 상태로 해석하지 마세요.':'세계 모델 입력을 확인할 수 없습니다. 제공된 공개 기록 범위만 표시합니다.',payload.status==='OK'?'':'warning');if($('world-asof'))$('world-asof').textContent='자료 기준 '+time(payload.as_of)+(payload.valid_until?' · 표시 유효 기한 '+time(payload.valid_until):'')+(view.model.synthetic?' · 합성 모델, 실세계 증거 아님':'')+(payload.records_truncated?' · 최근 '+payload.records_limit+'건 표시, 이전 기록은 생략':'');if($('founder-private'))$('founder-private').hidden=false;
-        const hash=location.hash||'';let requested=null;try{if(hash.startsWith('#focus='))requested=decodeURIComponent(hash.slice(7));}catch{/* malformed bookmark cannot become a record */}selected=view.byId.has(requested)?requested:rows().find(r=>r.type!=='source')?.id||rows()[0]?.id||null;render();renderFounder();renderLens();if(deadline){expiryTimer=setTimer(()=>{clearEvidence();status('표시 유효 기한이 지나 내용을 닫았습니다. 새로고침으로 다시 확인하세요.','warning');},Math.min(deadline-now(),2147483647));}
-      }catch(error){if(ticket!==loadId)return;clearEvidence();status(error.message==='EXPIRED'?'표시 유효 기한이 지난 응답입니다. 새로고침으로 다시 확인하세요.':'기록을 불러오지 못했습니다. 서버 연결을 확인하고 다시 시도하세요.','error');append('world-map',empty('자료를 확인할 수 없습니다. 이전 자료로 현재 상태를 대신하지 않습니다.'));if(founder)$('founder-gate').hidden=false;}finally{if(ticket===loadId&&$('refresh-world'))$('refresh-world').disabled=false;await workspaceReady;await cataloguePending;}}
+    function render(includeWorkspace=true){renderScope();renderCards();renderMap();renderRecords();if(includeWorkspace)renderWorkspace();searchBox?.update();atlas?.render();}
+    function clearEvidence(preserveWorkspace=false,reason='unavailable'){evidenceState=reason;evidenceDeadline=null;searchBox?.reset();clear('decision-content');view=null;selected=null;chatId++;clearTimer(adaptiveTimer);adaptiveLensActive=false;for(const id of ['adaptive-content','world-scope','change-cards','world-map','map-relations','record-list','lens-content','founder-hypotheses','question-list','review-history','source-health','source-categories'])clear(id);if($('record-count'))$('record-count').textContent='';if($('more-records'))$('more-records').hidden=true;if($('founder-private'))$('founder-private').hidden=true;if(isAtlas&&!destroyed)renderRecords();if(!preserveWorkspace)renderWorkspace();atlas?.render();}
+    function scheduleEvidence(deadline,payload){
+      clearTimer(expiryTimer);clearTimer(reloadTimer);reloadTimer=null;evidenceDeadline=deadline;
+      if(!deadline)return;
+      // This guard remains live during a pre-expiry request. Starting a fetch
+      // never extends the authority of the currently rendered evidence.
+      expiryTimer=setTimer(()=>{if(evidenceDeadline!==deadline)return;clearEvidence(isAtlas,'expired');
+        status('표시 유효 기한이 지나 내용을 닫았습니다. 새로고침으로 다시 확인하세요.','warning');
+      },Math.min(Math.max(1,deadline-now()),2147483647));
+      if(isAtlas&&!destroyed&&d.visibilityState!=='hidden'&&['OK','MODEL_UNAVAILABLE'].includes(payload.status)){
+        const delay=deadline-now()-2000;
+        // Very short leases cannot create a tight retry loop. Their expiry
+        // guard still closes the content, with an explicit manual retry.
+        if(delay>=5000)reloadTimer=setTimer(()=>{reloadTimer=null;void load({automatic:true});},Math.min(delay,2147483647));
+      }
+    }
+    async function load(options={}){
+      const automatic=isAtlas&&options?.automatic===true;
+      if(destroyed||(isAtlas&&evidenceBusy)||(automatic&&d.visibilityState==='hidden'))return false;
+      if(isAtlas)evidenceBusy=true;
+      clearTimer(reloadTimer);reloadTimer=null;
+      if(catalogueFailed){catalogue=null;catalogueFailed=false;}
+      const workspaceReady=founder||automatic?null:workspace.refresh();
+      if(atlas&&catalogue===null&&!cataloguePending)cataloguePending=atlas.refreshCatalogue().finally(()=>{cataloguePending=null;});
+      const ticket=++loadId;
+      if(!automatic){clearTimer(expiryTimer);clearEvidence(false,'loading');status(founder?'Founder 연결을 확인하는 중입니다.':'공개 기록을 불러오는 중입니다.');if($('world-asof'))$('world-asof').textContent='';}
+      if($('refresh-world'))$('refresh-world').disabled=true;if($('founder-gate'))$('founder-gate').hidden=true;
+      let timeout=null,controller=null;
+      if(isAtlas){controller=new AbortController();requestController=controller;timeout=setTimer(()=>controller.abort(),10000);}
+      try{
+        const response=await fetchImpl(founder?'/api/founder/model':staticOnly?'/wie/explorer.json':'/api/world/explorer',{
+          credentials:'same-origin',cache:'no-store',headers:{Accept:'application/json'},...(controller?{signal:controller.signal}:{})});
+        if(ticket!==loadId||destroyed)return false;
+        if(founder&&response.status===401){status('Founder 세션이 연결되지 않았습니다.','warning');$('founder-gate').hidden=false;return false;}
+        if(!response.ok)throw new Error('HTTP_ERROR');const payload=await response.json();
+        if(ticket!==loadId||destroyed)return false;
+        if(isAtlas&&(controller.signal.aborted||d.visibilityState==='hidden'))return false;
+        if(staticOnly&&(payload.delivery!=='STATIC_READ_ONLY'||payload.model!==null||payload.valid_until!==null))throw new Error('INVALID_STATIC_RESPONSE');
+        if(staticOnly&&(!payload.as_of||!Number.isFinite(Date.parse(payload.as_of))||now()-Date.parse(payload.as_of)>Number(payload.stale_after_seconds||7200)*1000))payload.status='PROJECTION_STALE';
+        const next=normalize(payload,founder),deadline=payload.valid_until?Date.parse(payload.valid_until):null;
+        if(payload.valid_until&&(!Number.isFinite(deadline)||deadline<=now()))throw new Error('EXPIRED');view=next;
+        status(staticOnly?'공개 기록 열람 · STATIC_READ_ONLY · '+(payload.status==='PROJECTION_STALE'?'지난 자료입니다. 현재 상태로 해석하지 마세요.':'자료 기준 시점의 기록입니다.')+' 세계 모델·현재 조건 평가·대화·저장은 서버 미연결.':payload.status==='OK'?'서버가 제공한 기록을 표시합니다.':payload.status==='PROJECTION_STALE'||payload.status==='STALE'?'기준 시각이 오래된 기록입니다. 현재 상태로 해석하지 마세요.':'세계 모델 입력을 확인할 수 없습니다. 제공된 공개 기록 범위만 표시합니다.',payload.status==='OK'?'':'warning');
+        if($('world-asof'))$('world-asof').textContent='자료 기준 '+time(payload.as_of)+(payload.valid_until?' · 표시 유효 기한 '+time(payload.valid_until):'')+(view.model.synthetic?' · 합성 모델, 실세계 증거 아님':'')+(payload.records_truncated?' · 최근 '+payload.records_limit+'건 표시, 이전 기록은 생략':'');
+        if($('founder-private'))$('founder-private').hidden=false;
+        const hash=location.hash||'';let requested=null;try{if(hash.startsWith('#focus='))requested=decodeURIComponent(hash.slice(7));}catch{/* malformed bookmark cannot become a record */}
+        selected=isAtlas?(view.byId.has(atlas?.route.focus)?atlas.route.focus:null):view.byId.has(requested)?requested:rows().find(r=>r.type!=='source')?.id||rows()[0]?.id||null;
+        render(!automatic);renderFounder();if(!isAtlas)renderLens();scheduleEvidence(deadline,payload);return true;
+      }catch(error){
+        if(ticket!==loadId||destroyed)return false;
+        if(isAtlas&&controller.signal.aborted&&d.visibilityState==='hidden')return false;
+        clearEvidence(isAtlas,error.message==='EXPIRED'?'expired':'unavailable');clearTimer(reloadTimer);reloadTimer=null;
+        status(error.message==='EXPIRED'?'표시 유효 기한이 지난 응답입니다. 새로고침으로 다시 확인하세요.':'기록을 불러오지 못했습니다. 서버 연결을 확인하고 다시 시도하세요.','error');
+        append('world-map',empty('자료를 확인할 수 없습니다. 이전 자료로 현재 상태를 대신하지 않습니다.'));if(founder)$('founder-gate').hidden=false;return false;
+      }finally{
+        clearTimer(timeout);if(requestController===controller)requestController=null;evidenceBusy=false;
+        if(ticket===loadId&&$('refresh-world'))$('refresh-world').disabled=false;
+        if(revalidateOnReturn&&!destroyed&&d.visibilityState!=='hidden'){revalidateOnReturn=false;void load({automatic:true});}
+        await workspaceReady;await cataloguePending;
+      }
+    }
+    const visibilityTarget=d.addEventListener?d:eventTarget;
+    function visibilityChanged(){if(!isAtlas||destroyed)return;
+      if(d.visibilityState==='hidden'){clearTimer(reloadTimer);reloadTimer=null;revalidateOnReturn=false;requestController?.abort();return;}
+      if(!evidenceDeadline||now()>=evidenceDeadline)clearEvidence(true,evidenceDeadline?'expired':evidenceState);
+      if(evidenceBusy){revalidateOnReturn=true;return;}void load({automatic:true});
+    }
+    if(isAtlas)visibilityTarget.addEventListener?.('visibilitychange',visibilityChanged);
     if($('search-candidates')?.dataset.autocomplete==='true')searchBox=searchModule.mount({document:d,input:$('world-search'),host:$('search-candidates'),now,setTimer,clearTimer,
       localItems:()=>searchModule.recordItems(view?.records,{synthetic:view?.model.synthetic,stale:['STALE','PROJECTION_STALE'].includes(view?.payload.status)}),
-      loadItems:loadCatalogue,
+      loadItems:loadSearchItems,
       onSelect:item=>{if(item.kind==='record'){query='';$('world-search').value=item.name;focus(item.id);renderRecords();}
+        else if(atlas){catalogue=mergeCatalogue(catalogue,[item]);atlas.catalogue(catalogue);atlas.openEntity(item);}
         else location.href='/market/?entity='+encodeURIComponent(item.canonical)+'&symbol='+encodeURIComponent(item.id);},
       saved:item=>!!workspace?.state.saved.includes(item.target),
       watchState:()=>({busy:workspace?.busy,readOnly:workspace?.state.principal?.role==='viewer',message:workspace?.state.message}),
-      onWatch:founder||staticOnly?null:item=>workspace.toggleSaved(item.target)});
-    $('refresh-world')?.addEventListener('click',load);$('search-form')?.addEventListener('submit',e=>{e.preventDefault();if(searchBox?.suppressSubmit())return;searchBox?.close();query=$('world-search').value.trim();limit=20;render();});$('connected-only')?.addEventListener('change',renderMap);$('more-records')?.addEventListener('click',()=>{limit+=20;renderRecords();});
+      onWatch:founder||staticOnly?null:item=>atlas?atlas.watch(item):workspace.toggleSaved(item.target)});
+    $('refresh-world')?.addEventListener('click',load);$('search-form')?.addEventListener('submit',e=>{e.preventDefault();if(searchBox?.suppressSubmit())return;searchBox?.close();query=$('world-search').value.trim();limit=20;atlas?.search(query);render();});$('connected-only')?.addEventListener('change',renderMap);$('more-records')?.addEventListener('click',()=>{limit+=20;renderRecords();});
     if(!founder){
       $('interest-form')?.addEventListener('submit',async e=>{e.preventDefault();const input=$('interest-input'),value=input.value.trim();if(value&&await workspace.addInterest(value))input.value='';});
-      $('note-form')?.addEventListener('submit',async e=>{e.preventDefault();const input=$('note-input'),value=input.value.trim();if(value&&await workspace.addNote(value))input.value='';});
+      $('note-form')?.addEventListener('submit',async e=>{e.preventDefault();const input=$('note-input'),value=input.value.trim();if(atlas&&!atlas.requireAccount('내 생각과 확인할 조건을 메모로 남겨보세요.'))return;if(value&&await workspace.addNote(value))input.value='';});
       $('workspace-refresh')?.addEventListener('click',()=>workspace.refresh());$('workspace-logout')?.addEventListener('click',()=>workspace.logout());
-      $('workspace-login')?.addEventListener('click',()=>workspace.login());
+      $('workspace-login')?.addEventListener('click',()=>workspace.login(atlas?.returnTo));
       $('watchlist-select')?.addEventListener('change',()=>workspace.selectList($('watchlist-select').value));
-      $('workspace-preferences')?.addEventListener('submit',async e=>{e.preventDefault();await workspace.setPreferences({
+      $('workspace-preferences')?.addEventListener('submit',async e=>{e.preventDefault();if(atlas&&!atlas.requireAccount('내 화면과 대화 저장 범위를 설정하세요.'))return;await workspace.setPreferences({
         conversation_opt_in:$('conversation-opt-in').checked,retention_days:Number($('conversation-retention').value),
         preferences:{...workspace.state.preferences.preferences,persona:$('workspace-persona').value}});});
       $('conversation-delete-all')?.addEventListener('click',()=>workspace.deleteConversations());
@@ -317,7 +440,8 @@
       for(const note of legacy.state.notes)append('legacy-workspace',el('p',note.text));
       if(!legacy.state.interests.length&&!legacy.state.saved.length&&!legacy.state.notes.length)append('legacy-workspace',empty(legacy.error||'이 브라우저의 이전 저장 자료가 없습니다.'));
     }
-    renderWorkspace();return {load,focus,get view(){return view;},get workspace(){return workspace;},get search(){return searchBox;},destroy(){destroyed=true;searchBox?.destroy();clearTimer(expiryTimer);workspace?.destroy();loadId++;chatId++;clearEvidence();}};
+    if(isAtlas){atlas=atlasModule.create({document:d,location,history,eventTarget,workspace,loadCatalogue,getView:()=>view,focusRecord:focus,renderEvidence:q=>{query=q;renderCards();renderRecords();renderMap();},now,staticOnly});query=atlas.route.q;}
+    renderWorkspace();return {load,focus,get atlas(){return atlas;},get view(){return view;},get workspace(){return workspace;},get search(){return searchBox;},destroy(){destroyed=true;clearTimer(reloadTimer);requestController?.abort();visibilityTarget.removeEventListener?.('visibilitychange',visibilityChanged);questionDraft={id:null,text:''};noteDraft=null;atlas?.destroy();searchBox?.destroy();clearTimer(expiryTimer);workspace?.destroy();loadId++;chatId++;clearEvidence();}};
   }
   function validateResearch(request){return !!(request&&request.schema==='wie.quant-request/1'&&['stat-arb','vol-surface','factor-decomp','insider-cluster'].includes(request.family)&&request.dataset?.schema==='wie.quant-dataset/1'&&Array.isArray(request.dataset.rows)&&request.dataset.metadata&&request.config&&request.as_of!==undefined);}
   function mountResearch(d,fetchImpl,options={}){

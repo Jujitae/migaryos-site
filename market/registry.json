@@ -10,6 +10,132 @@
     "etf",
     "economy"
   ],
+  "catalogue": {
+    "as_of": "2026-09-20T12:11:04Z",
+    "browser_row_count": 40,
+    "known_limitations": [
+      "Catalogue rows establish source-backed issuer/listing identity, not price, liquidity, or trading eligibility.",
+      "SEC and Nasdaq Trader snapshots use different issuer/listing scopes; duplicate listings are merged only on exact listing identity.",
+      "KRX masters provide exchange instruments; DART issuer mapping is included only when a local corpCode.xml export is supplied.",
+      "The browser registry remains compact; full storage rows are served by the authenticated/rate-limited catalogue API."
+    ],
+    "market_coverage": [
+      "US SEC/Nasdaq Trader listed symbols",
+      "KRX KOSPI/KOSDAQ/KONEX listed instruments",
+      "WIE navigation instruments retained in browser registry"
+    ],
+    "row_count": 21497,
+    "schema": "migaryos.instrument-catalogue-manifest/1",
+    "source_as_of": "2026-09-20T12:11:04Z",
+    "storage_row_count": 21497
+  },
+  "catalogue_schema": "migaryos.instrument-catalogue/1",
+  "catalogue_sources": [
+    {
+      "accepted_row_count": 10438,
+      "access_mode": "official_json",
+      "as_of": "2026-09-20T12:11:04Z",
+      "authority": "US SEC",
+      "excluded_row_count": 0,
+      "known_limitations": "Issuer-level CIK/ticker/exchange snapshot; not a complete security master.",
+      "market_coverage": "US SEC reporting issuers with ticker and exchange fields",
+      "raw_bytes": 523768,
+      "row_count": 10438,
+      "sha256": "a4aa20329b32644f7ac3b50ef5fa431343ada802f91286c58423afa88c8f0e55",
+      "source_id": "sec-company-tickers-exchange",
+      "status": "IMPORTED",
+      "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+    },
+    {
+      "accepted_row_count": 5615,
+      "access_mode": "official_text",
+      "as_of": "2026-09-20T12:11:04Z",
+      "authority": "Nasdaq Trader",
+      "excluded_row_count": 8,
+      "known_limitations": "Exchange directory; issuer identity and lifecycle require separate verification.",
+      "market_coverage": "Nasdaq listed symbols including equities, ETFs, rights, units and warrants",
+      "raw_bytes": 349031,
+      "row_count": 5623,
+      "sha256": "b27c880b9495665f2da9505ce5665de8dfed08b97679217d73faeb98b9a45de1",
+      "source_id": "nasdaq-trader-nasdaqlisted",
+      "status": "IMPORTED",
+      "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+    },
+    {
+      "accepted_row_count": 7605,
+      "access_mode": "official_text",
+      "as_of": "2026-09-20T12:11:04Z",
+      "authority": "Nasdaq Trader",
+      "excluded_row_count": 30,
+      "known_limitations": "Exchange directory; it is not a global security master.",
+      "market_coverage": "NYSE, NYSE American, NYSE Arca and other listed symbols",
+      "raw_bytes": 541678,
+      "row_count": 7635,
+      "sha256": "10e431be1032c06767abeb1f77a8221dfd458561146ca1562abe9ae812754f2d",
+      "source_id": "nasdaq-trader-otherlisted",
+      "status": "IMPORTED",
+      "url": "https://www.nasdaqtrader.com/dynamic/symdir/otherlisted.txt"
+    },
+    {
+      "accepted_row_count": 2583,
+      "access_mode": "official_fixed_width",
+      "as_of": "2026-09-20T12:11:04Z",
+      "authority": "Korea Exchange (KRX)",
+      "excluded_row_count": 0,
+      "known_limitations": "KRX master snapshot has market identity but no issuer CIK; DART mapping is optional.",
+      "market_coverage": "KOSPI listed instruments",
+      "raw_bytes": 119498,
+      "row_count": 2583,
+      "sha256": "c65a6f5a1b991b8239b31c52ca5f801c9d96d61cf77ffdcb66cc36c2ae6fe7ac",
+      "source_id": "krx-kospi",
+      "status": "IMPORTED",
+      "url": "https://new.real.download.dws.co.kr/common/master/kospi_code.mst.zip"
+    },
+    {
+      "accepted_row_count": 1823,
+      "access_mode": "official_fixed_width",
+      "as_of": "2026-09-20T12:11:04Z",
+      "authority": "Korea Exchange (KRX)",
+      "excluded_row_count": 0,
+      "known_limitations": "KRX master snapshot has market identity but no issuer CIK; DART mapping is optional.",
+      "market_coverage": "KOSDAQ listed instruments",
+      "raw_bytes": 103503,
+      "row_count": 1823,
+      "sha256": "d5182cf7fcc41469df7b55c83fda68fcac0e3907d62445084e33414bae7262f0",
+      "source_id": "krx-kosdaq",
+      "status": "IMPORTED",
+      "url": "https://new.real.download.dws.co.kr/common/master/kosdaq_code.mst.zip"
+    },
+    {
+      "accepted_row_count": 108,
+      "access_mode": "official_fixed_width",
+      "as_of": "2026-09-20T12:11:04Z",
+      "authority": "Korea Exchange (KRX)",
+      "excluded_row_count": 0,
+      "known_limitations": "KRX master snapshot has market identity but no issuer CIK; DART mapping is optional.",
+      "market_coverage": "KONEX listed instruments",
+      "raw_bytes": 5869,
+      "row_count": 108,
+      "sha256": "7dcac88dbdf82d33a30b9d12cf7508ac285493aef12e77b62c75be6a9edd95c9",
+      "source_id": "krx-konex",
+      "status": "IMPORTED",
+      "url": "https://new.real.download.dws.co.kr/common/master/konex_code.mst.zip"
+    },
+    {
+      "access_mode": "official_xml_optional",
+      "as_of": null,
+      "authority": "Financial Supervisory Service OpenDART",
+      "excluded_reason": "OpenDART API key/export not supplied",
+      "known_limitations": "OpenDART export requires an operator API key; absence is reported as an explicit exclusion.",
+      "market_coverage": "Korean issuer/corporation identity reference",
+      "raw_bytes": 0,
+      "row_count": null,
+      "sha256": null,
+      "source_id": "dart-corp-code",
+      "status": "NOT_SUPPLIED",
+      "url": "https://opendart.fss.or.kr/api/corpCode.xml"
+    }
+  ],
   "instruments": [
     {
       "aliases": [
@@ -18,11 +144,44 @@
         "spx500",
         "에스앤피"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "index",
+      "canonical_identity": {
+        "exchange": "SP",
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:SPX",
+        "listing_id": "US:SP:SPX",
+        "mic": null,
+        "symbol": "SPX"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "MIGARYOS:INSTRUMENT:SPX",
+      "exchange": "SP",
       "id": "SPX",
+      "issuer_id": "MIGARYOS:ISSUER:SPX",
+      "listing_id": "US:SP:SPX",
+      "listing_type": "INDEX",
+      "market": "US",
+      "mic": null,
       "name": "S&P 500",
+      "name_en": "S&P 500",
+      "name_ko": null,
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=MIGARYOS:INSTRUMENT:SPX&symbol=SPX",
+        "market": "/market/?entity=MIGARYOS:INSTRUMENT:SPX&symbol=SPX",
+        "research": "/wie/?entity=MIGARYOS:INSTRUMENT:SPX"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "SPX",
       "tradingview": "SP:SPX",
       "wie_symbols": [
         "SPX",
@@ -36,11 +195,49 @@
         "나스닥100",
         "나스닥 100"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "index",
+      "canonical_identity": {
+        "exchange": "NASDAQ",
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:NDX",
+        "listing_id": "US:NASDAQ:NDX",
+        "mic": "XNAS",
+        "symbol": "NDX"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "MIGARYOS:INSTRUMENT:NDX",
+      "exchange": "NASDAQ",
       "id": "NDX",
+      "issuer_id": "MIGARYOS:ISSUER:NDX",
+      "listing_id": "US:NASDAQ:NDX",
+      "listing_type": "INDEX",
+      "market": "US",
+      "mic": "XNAS",
       "name": "NASDAQ 100",
+      "name_en": "NASDAQ 100",
+      "name_ko": null,
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=MIGARYOS:INSTRUMENT:NDX&symbol=NDX",
+        "market": "/market/?entity=MIGARYOS:INSTRUMENT:NDX&symbol=NDX",
+        "research": "/wie/?entity=MIGARYOS:INSTRUMENT:NDX"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "NDX",
       "tradingview": "NASDAQ:NDX",
       "wie_symbols": [
         "NASDAQ100",
@@ -52,11 +249,49 @@
         "반도체 지수",
         "philadelphia semiconductor"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "index",
+      "canonical_identity": {
+        "exchange": "NASDAQ",
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:SOX",
+        "listing_id": "US:NASDAQ:SOX",
+        "mic": "XNAS",
+        "symbol": "SOX"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "MIGARYOS:INSTRUMENT:SOX",
+      "exchange": "NASDAQ",
       "id": "SOX",
+      "issuer_id": "MIGARYOS:ISSUER:SOX",
+      "listing_id": "US:NASDAQ:SOX",
+      "listing_type": "INDEX",
+      "market": "US",
+      "mic": "XNAS",
       "name": "PHLX Semiconductor",
+      "name_en": "PHLX Semiconductor",
+      "name_ko": null,
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=MIGARYOS:INSTRUMENT:SOX&symbol=SOX",
+        "market": "/market/?entity=MIGARYOS:INSTRUMENT:SOX&symbol=SOX",
+        "research": "/wie/?entity=MIGARYOS:INSTRUMENT:SOX"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "SOX",
       "tradingview": "NASDAQ:SOX",
       "wie_symbols": [
         "SOX",
@@ -65,11 +300,49 @@
     },
     {
       "aliases": [],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "etf",
+      "canonical_identity": {
+        "exchange": "NASDAQ",
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:SOXX",
+        "listing_id": "US:NASDAQ:SOXX",
+        "mic": "XNAS",
+        "symbol": "SOXX"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "MIGARYOS:INSTRUMENT:SOXX",
+      "exchange": "NASDAQ",
       "id": "SOXX",
+      "issuer_id": "MIGARYOS:ISSUER:SOXX",
+      "listing_id": "US:NASDAQ:SOXX",
+      "listing_type": "ETF",
+      "market": "US",
+      "mic": "XNAS",
       "name": "iShares Semiconductor ETF",
+      "name_en": "iShares Semiconductor ETF",
+      "name_ko": null,
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=MIGARYOS:INSTRUMENT:SOXX&symbol=SOXX",
+        "market": "/market/?entity=MIGARYOS:INSTRUMENT:SOXX&symbol=SOXX",
+        "research": "/wie/?entity=MIGARYOS:INSTRUMENT:SOXX"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "SOXX",
       "tradingview": "NASDAQ:SOXX",
       "wie_symbols": [
         "SOXX"
@@ -79,11 +352,49 @@
       "aliases": [
         "코스피"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "index",
+      "canonical_identity": {
+        "exchange": "KRX",
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:KOSPI",
+        "listing_id": "KR:KRX:KOSPI",
+        "mic": null,
+        "symbol": "KOSPI"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "KRW",
       "entity_id": "MIGARYOS:INSTRUMENT:KOSPI",
+      "exchange": "KRX",
       "id": "KOSPI",
+      "issuer_id": "MIGARYOS:ISSUER:KOSPI",
+      "listing_id": "KR:KRX:KOSPI",
+      "listing_type": "INDEX",
+      "market": "KR",
+      "mic": null,
       "name": "KOSPI",
+      "name_en": null,
+      "name_ko": "KOSPI",
       "region": "KR",
+      "routes": {
+        "detail": "/market/?entity=MIGARYOS:INSTRUMENT:KOSPI&symbol=KOSPI",
+        "market": "/market/?entity=MIGARYOS:INSTRUMENT:KOSPI&symbol=KOSPI",
+        "research": "/wie/?entity=MIGARYOS:INSTRUMENT:KOSPI"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "krx-market-reference",
+          "url": "https://global.krx.co.kr/contents/GLB/02/0201/0201010100/GLB0201010100.jsp"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "dart-corp-code",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "KOSPI",
       "tradingview": "KRX:KOSPI",
       "wie_symbols": [
         "KOSPI",
@@ -95,11 +406,44 @@
         "nq",
         "나스닥 선물"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "futures",
+      "canonical_identity": {
+        "exchange": "CME_MINI",
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:NQ",
+        "listing_id": "US:CME_MINI:NQ1!",
+        "mic": null,
+        "symbol": "NQ1!"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "MIGARYOS:INSTRUMENT:NQ",
+      "exchange": "CME_MINI",
       "id": "NQ",
+      "issuer_id": "MIGARYOS:ISSUER:NQ",
+      "listing_id": "US:CME_MINI:NQ1!",
+      "listing_type": "DERIVATIVE",
+      "market": "US",
+      "mic": null,
       "name": "Nasdaq 100 futures (front)",
+      "name_en": "Nasdaq 100 futures (front)",
+      "name_ko": null,
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=MIGARYOS:INSTRUMENT:NQ&symbol=NQ",
+        "market": "/market/?entity=MIGARYOS:INSTRUMENT:NQ&symbol=NQ",
+        "research": "/wie/?entity=MIGARYOS:INSTRUMENT:NQ"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "NQ1!",
       "tradingview": "CME_MINI:NQ1!",
       "wie_symbols": [
         "NQ=F"
@@ -110,11 +454,44 @@
         "es",
         "에스앤피 선물"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "futures",
+      "canonical_identity": {
+        "exchange": "CME_MINI",
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:ES",
+        "listing_id": "US:CME_MINI:ES1!",
+        "mic": null,
+        "symbol": "ES1!"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "MIGARYOS:INSTRUMENT:ES",
+      "exchange": "CME_MINI",
       "id": "ES",
+      "issuer_id": "MIGARYOS:ISSUER:ES",
+      "listing_id": "US:CME_MINI:ES1!",
+      "listing_type": "DERIVATIVE",
+      "market": "US",
+      "mic": null,
       "name": "S&P 500 futures (front)",
+      "name_en": "S&P 500 futures (front)",
+      "name_ko": null,
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=MIGARYOS:INSTRUMENT:ES&symbol=ES",
+        "market": "/market/?entity=MIGARYOS:INSTRUMENT:ES&symbol=ES",
+        "research": "/wie/?entity=MIGARYOS:INSTRUMENT:ES"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "ES1!",
       "tradingview": "CME_MINI:ES1!",
       "wie_symbols": [
         "ES=F"
@@ -126,11 +503,44 @@
         "crude",
         "원유"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "futures",
+      "canonical_identity": {
+        "exchange": "NYMEX",
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:CL",
+        "listing_id": "US:NYMEX:CL1!",
+        "mic": null,
+        "symbol": "CL1!"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "MIGARYOS:INSTRUMENT:CL",
+      "exchange": "NYMEX",
       "id": "CL",
+      "issuer_id": "MIGARYOS:ISSUER:CL",
+      "listing_id": "US:NYMEX:CL1!",
+      "listing_type": "DERIVATIVE",
+      "market": "US",
+      "mic": null,
       "name": "WTI crude futures (front)",
+      "name_en": "WTI crude futures (front)",
+      "name_ko": null,
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=MIGARYOS:INSTRUMENT:CL&symbol=CL",
+        "market": "/market/?entity=MIGARYOS:INSTRUMENT:CL&symbol=CL",
+        "research": "/wie/?entity=MIGARYOS:INSTRUMENT:CL"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "CL1!",
       "tradingview": "NYMEX:CL1!",
       "wie_symbols": [
         "CL=F"
@@ -142,11 +552,44 @@
         "bitcoin",
         "비트코인"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "crypto",
+      "canonical_identity": {
+        "exchange": "BITSTAMP",
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:BTCUSD",
+        "listing_id": "GLOBAL:BITSTAMP:BTCUSD",
+        "mic": null,
+        "symbol": "BTCUSD"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "UNKNOWN",
       "entity_id": "MIGARYOS:INSTRUMENT:BTCUSD",
+      "exchange": "BITSTAMP",
       "id": "BTCUSD",
+      "issuer_id": "MIGARYOS:ISSUER:BTCUSD",
+      "listing_id": "GLOBAL:BITSTAMP:BTCUSD",
+      "listing_type": "REFERENCE",
+      "market": "GLOBAL",
+      "mic": null,
       "name": "Bitcoin / USD",
+      "name_en": "Bitcoin / USD",
+      "name_ko": null,
       "region": "GLOBAL",
+      "routes": {
+        "detail": "/market/?entity=MIGARYOS:INSTRUMENT:BTCUSD&symbol=BTCUSD",
+        "market": "/market/?entity=MIGARYOS:INSTRUMENT:BTCUSD&symbol=BTCUSD",
+        "research": "/wie/?entity=MIGARYOS:INSTRUMENT:BTCUSD"
+      },
+      "source_refs": [
+        {
+          "kind": "catalogue_internal",
+          "source_id": "migaryos-registry",
+          "url": "https://migaryos.com/market/"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "BTCUSD",
       "tradingview": "BITSTAMP:BTCUSD",
       "wie_symbols": [
         "BTCUSD",
@@ -160,11 +603,49 @@
         "달러원",
         "usd krw"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "fx",
+      "canonical_identity": {
+        "exchange": "FX_IDC",
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:USDKRW",
+        "listing_id": "KR:FX_IDC:USDKRW",
+        "mic": null,
+        "symbol": "USDKRW"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "KRW",
       "entity_id": "MIGARYOS:INSTRUMENT:USDKRW",
+      "exchange": "FX_IDC",
       "id": "USDKRW",
+      "issuer_id": "MIGARYOS:ISSUER:USDKRW",
+      "listing_id": "KR:FX_IDC:USDKRW",
+      "listing_type": "REFERENCE",
+      "market": "KR",
+      "mic": null,
       "name": "USD / KRW",
+      "name_en": null,
+      "name_ko": "USD / KRW",
       "region": "KR",
+      "routes": {
+        "detail": "/market/?entity=MIGARYOS:INSTRUMENT:USDKRW&symbol=USDKRW",
+        "market": "/market/?entity=MIGARYOS:INSTRUMENT:USDKRW&symbol=USDKRW",
+        "research": "/wie/?entity=MIGARYOS:INSTRUMENT:USDKRW"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "krx-market-reference",
+          "url": "https://global.krx.co.kr/contents/GLB/02/0201/0201010100/GLB0201010100.jsp"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "dart-corp-code",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "USDKRW",
       "tradingview": "FX_IDC:USDKRW",
       "wie_symbols": []
     },
@@ -174,11 +655,44 @@
         "10년물",
         "10년 국채"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "economy",
+      "canonical_identity": {
+        "exchange": "TVC",
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:DGS10",
+        "listing_id": "US:TVC:US10Y",
+        "mic": null,
+        "symbol": "US10Y"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "FRED:DGS10",
+      "exchange": "TVC",
       "id": "DGS10",
+      "issuer_id": "MIGARYOS:ISSUER:DGS10",
+      "listing_id": "US:TVC:US10Y",
+      "listing_type": "REFERENCE",
+      "market": "US",
+      "mic": null,
       "name": "미국 10년 국채금리",
+      "name_en": "미국 10년 국채금리",
+      "name_ko": null,
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=FRED:DGS10&symbol=DGS10",
+        "market": "/market/?entity=FRED:DGS10&symbol=DGS10",
+        "research": "/wie/?entity=FRED:DGS10"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "US10Y",
       "tradingview": "TVC:US10Y",
       "wie_symbols": [
         "DGS10"
@@ -190,11 +704,44 @@
         "2년물",
         "2년 국채"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "economy",
+      "canonical_identity": {
+        "exchange": "TVC",
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:DGS2",
+        "listing_id": "US:TVC:US02Y",
+        "mic": null,
+        "symbol": "US02Y"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "FRED:DGS2",
+      "exchange": "TVC",
       "id": "DGS2",
+      "issuer_id": "MIGARYOS:ISSUER:DGS2",
+      "listing_id": "US:TVC:US02Y",
+      "listing_type": "REFERENCE",
+      "market": "US",
+      "mic": null,
       "name": "미국 2년 국채금리",
+      "name_en": "미국 2년 국채금리",
+      "name_ko": null,
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=FRED:DGS2&symbol=DGS2",
+        "market": "/market/?entity=FRED:DGS2&symbol=DGS2",
+        "research": "/wie/?entity=FRED:DGS2"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "US02Y",
       "tradingview": "TVC:US02Y",
       "wie_symbols": [
         "DGS2"
@@ -205,11 +752,44 @@
         "m2",
         "통화량"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "economy",
+      "canonical_identity": {
+        "exchange": null,
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:M2SL",
+        "listing_id": "US:M2SL",
+        "mic": null,
+        "symbol": "M2SL"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "FRED:M2SL",
+      "exchange": null,
       "id": "M2SL",
+      "issuer_id": "MIGARYOS:ISSUER:M2SL",
+      "listing_id": "US:M2SL",
+      "listing_type": "REFERENCE",
+      "market": "US",
+      "mic": null,
       "name": "미국 M2 통화량",
+      "name_en": "미국 M2 통화량",
+      "name_ko": null,
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=FRED:M2SL&symbol=M2SL",
+        "market": "/market/?entity=FRED:M2SL&symbol=M2SL",
+        "research": "/wie/?entity=FRED:M2SL"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "M2SL",
       "tradingview": null,
       "wie_symbols": [
         "M2SL"
@@ -219,11 +799,44 @@
       "aliases": [
         "회사채 etf"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "corp_bond",
+      "canonical_identity": {
+        "exchange": "AMEX",
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:LQD",
+        "listing_id": "US:AMEX:LQD",
+        "mic": null,
+        "symbol": "LQD"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "MIGARYOS:INSTRUMENT:LQD",
+      "exchange": "AMEX",
       "id": "LQD",
+      "issuer_id": "MIGARYOS:ISSUER:LQD",
+      "listing_id": "US:AMEX:LQD",
+      "listing_type": "REFERENCE",
+      "market": "US",
+      "mic": null,
       "name": "iShares iBoxx IG Corporate Bond ETF",
+      "name_en": "iShares iBoxx IG Corporate Bond ETF",
+      "name_ko": null,
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=MIGARYOS:INSTRUMENT:LQD&symbol=LQD",
+        "market": "/market/?entity=MIGARYOS:INSTRUMENT:LQD&symbol=LQD",
+        "research": "/wie/?entity=MIGARYOS:INSTRUMENT:LQD"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "LQD",
       "tradingview": "AMEX:LQD",
       "wie_symbols": []
     },
@@ -231,35 +844,146 @@
       "aliases": [
         "장기 국채 etf"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "gov_bond",
+      "canonical_identity": {
+        "exchange": "NASDAQ",
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:TLT",
+        "listing_id": "US:NASDAQ:TLT",
+        "mic": "XNAS",
+        "symbol": "TLT"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "MIGARYOS:INSTRUMENT:TLT",
+      "exchange": "NASDAQ",
       "id": "TLT",
+      "issuer_id": "MIGARYOS:ISSUER:TLT",
+      "listing_id": "US:NASDAQ:TLT",
+      "listing_type": "REFERENCE",
+      "market": "US",
+      "mic": "XNAS",
       "name": "iShares 20+ Year Treasury ETF",
+      "name_en": "iShares 20+ Year Treasury ETF",
+      "name_ko": null,
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=MIGARYOS:INSTRUMENT:TLT&symbol=TLT",
+        "market": "/market/?entity=MIGARYOS:INSTRUMENT:TLT&symbol=TLT",
+        "research": "/wie/?entity=MIGARYOS:INSTRUMENT:TLT"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "TLT",
       "tradingview": "NASDAQ:TLT",
       "wie_symbols": []
     },
     {
       "aliases": [
         "005930",
-        "samsung electronics"
+        "samsung electronics",
+        "삼전",
+        "Samsung"
       ],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "KRX",
+        "isin": null,
+        "issuer_id": "KR:DART:00126380",
+        "listing_id": "KRX:KR7005930003",
+        "mic": "XKRX",
+        "symbol": "005930"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "KRW",
       "entity_id": "MIGARYOS:INSTRUMENT:SAMSUNG",
+      "exchange": "KRX",
       "id": "SAMSUNG",
+      "issuer_id": "KR:DART:00126380",
+      "listing_id": "KRX:KR7005930003",
+      "listing_type": "COMMON",
+      "market": "KOSPI",
+      "mic": "XKRX",
       "name": "삼성전자",
+      "name_en": "Samsung Electronics Co., Ltd.",
+      "name_ko": "삼성전자",
       "region": "KR",
+      "routes": {
+        "detail": "/market/?entity=MIGARYOS:INSTRUMENT:SAMSUNG&symbol=SAMSUNG",
+        "market": "/market/?entity=MIGARYOS:INSTRUMENT:SAMSUNG&symbol=SAMSUNG",
+        "research": "/wie/?entity=MIGARYOS:INSTRUMENT:SAMSUNG"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "krx-market-reference",
+          "url": "https://global.krx.co.kr/contents/GLB/02/0201/0201010100/GLB0201010100.jsp"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "dart-corp-code",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "005930",
       "tradingview": "KRX:005930",
       "wie_symbols": []
     },
     {
       "aliases": [],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "economy",
+      "canonical_identity": {
+        "exchange": null,
+        "isin": null,
+        "issuer_id": "MIGARYOS:ISSUER:WALCL",
+        "listing_id": "US:WALCL",
+        "mic": null,
+        "symbol": "WALCL"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "FRED:WALCL",
+      "exchange": null,
       "id": "WALCL",
+      "issuer_id": "MIGARYOS:ISSUER:WALCL",
+      "listing_id": "US:WALCL",
+      "listing_type": "REFERENCE",
+      "market": "US",
+      "mic": null,
       "name": "미 연준 총자산",
+      "name_en": "미 연준 총자산",
+      "name_ko": null,
       "provider_mapping_status": "UNVERIFIED_NO_WIDGET",
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=FRED:WALCL&symbol=WALCL",
+        "market": "/market/?entity=FRED:WALCL&symbol=WALCL",
+        "research": "/wie/?entity=FRED:WALCL"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "WALCL",
       "tradingview": null,
       "wie_symbols": [
         "WALCL"
@@ -267,47 +991,1171 @@
     },
     {
       "aliases": [],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": null,
+        "isin": null,
+        "issuer_id": "SEC:CIK0001304492",
+        "listing_id": "US:CIK0001304492",
+        "mic": null,
+        "symbol": "CIK0001304492"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "SEC:CIK0001304492",
+      "exchange": null,
       "id": "CIK0001304492",
+      "issuer_id": "SEC:CIK0001304492",
+      "listing_id": "US:CIK0001304492",
+      "listing_type": "REFERENCE",
+      "market": "US",
+      "mic": null,
       "name": "Anterix Inc.",
+      "name_en": "Anterix Inc.",
+      "name_ko": null,
       "provider_mapping_status": "UNVERIFIED_NO_WIDGET",
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=SEC:CIK0001304492&symbol=CIK0001304492",
+        "market": "/market/?entity=SEC:CIK0001304492&symbol=CIK0001304492",
+        "research": "/wie/?entity=SEC:CIK0001304492"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "CIK0001304492",
       "tradingview": null,
       "wie_symbols": []
     },
     {
       "aliases": [],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": null,
+        "isin": null,
+        "issuer_id": "SEC:CIK0001783398",
+        "listing_id": "US:CIK0001783398",
+        "mic": null,
+        "symbol": "CIK0001783398"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "SEC:CIK0001783398",
+      "exchange": null,
       "id": "CIK0001783398",
+      "issuer_id": "SEC:CIK0001783398",
+      "listing_id": "US:CIK0001783398",
+      "listing_type": "REFERENCE",
+      "market": "US",
+      "mic": null,
       "name": "UWM HOLDINGS CORPORATION",
+      "name_en": "UWM HOLDINGS CORPORATION",
+      "name_ko": null,
       "provider_mapping_status": "UNVERIFIED_NO_WIDGET",
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=SEC:CIK0001783398&symbol=CIK0001783398",
+        "market": "/market/?entity=SEC:CIK0001783398&symbol=CIK0001783398",
+        "research": "/wie/?entity=SEC:CIK0001783398"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "CIK0001783398",
       "tradingview": null,
       "wie_symbols": []
     },
     {
       "aliases": [],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": null,
+        "isin": null,
+        "issuer_id": "SEC:CIK0001921865",
+        "listing_id": "US:CIK0001921865",
+        "mic": null,
+        "symbol": "CIK0001921865"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "SEC:CIK0001921865",
+      "exchange": null,
       "id": "CIK0001921865",
+      "issuer_id": "SEC:CIK0001921865",
+      "listing_id": "US:CIK0001921865",
+      "listing_type": "REFERENCE",
+      "market": "US",
+      "mic": null,
       "name": "ASP Isotopes Inc.",
+      "name_en": "ASP Isotopes Inc.",
+      "name_ko": null,
       "provider_mapping_status": "UNVERIFIED_NO_WIDGET",
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=SEC:CIK0001921865&symbol=CIK0001921865",
+        "market": "/market/?entity=SEC:CIK0001921865&symbol=CIK0001921865",
+        "research": "/wie/?entity=SEC:CIK0001921865"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "CIK0001921865",
       "tradingview": null,
       "wie_symbols": []
     },
     {
       "aliases": [],
+      "as_of": "2026-09-20T12:11:04Z",
       "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": null,
+        "isin": null,
+        "issuer_id": "SEC:CIK0002001557",
+        "listing_id": "US:CIK0002001557",
+        "mic": null,
+        "symbol": "CIK0002001557"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
       "entity_id": "SEC:CIK0002001557",
+      "exchange": null,
       "id": "CIK0002001557",
+      "issuer_id": "SEC:CIK0002001557",
+      "listing_id": "US:CIK0002001557",
+      "listing_type": "REFERENCE",
+      "market": "US",
+      "mic": null,
       "name": "INNVENTURE, INC.",
+      "name_en": "INNVENTURE, INC.",
+      "name_ko": null,
       "provider_mapping_status": "UNVERIFIED_NO_WIDGET",
       "region": "US",
+      "routes": {
+        "detail": "/market/?entity=SEC:CIK0002001557&symbol=CIK0002001557",
+        "market": "/market/?entity=SEC:CIK0002001557&symbol=CIK0002001557",
+        "research": "/wie/?entity=SEC:CIK0002001557"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "CIK0002001557",
       "tradingview": null,
       "wie_symbols": []
+    },
+    {
+      "aliases": [
+        "aapl"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "Nasdaq",
+        "isin": null,
+        "issuer_id": "320193",
+        "listing_id": "US:Nasdaq:AAPL",
+        "mic": "NASDAQ",
+        "symbol": "AAPL"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:Nasdaq:AAPL",
+      "exchange": "Nasdaq",
+      "id": "AAPL",
+      "issuer_id": "SEC:CIK0000320193",
+      "listing_id": "US:Nasdaq:AAPL",
+      "listing_type": "COMMON",
+      "market": "Nasdaq",
+      "mic": "NASDAQ",
+      "name": "Apple Inc.",
+      "name_en": "Apple Inc.",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:Nasdaq:AAPL&symbol=AAPL",
+        "market": "/market/?entity=US:Nasdaq:AAPL&symbol=AAPL",
+        "research": "/wie/?entity=US:Nasdaq:AAPL"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "AAPL",
+      "tradingview": "NASDAQ:AAPL",
+      "wie_symbols": [
+        "AAPL"
+      ]
+    },
+    {
+      "aliases": [
+        "nvda"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "Nasdaq",
+        "isin": null,
+        "issuer_id": "1045810",
+        "listing_id": "US:Nasdaq:NVDA",
+        "mic": "NASDAQ",
+        "symbol": "NVDA"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:Nasdaq:NVDA",
+      "exchange": "Nasdaq",
+      "id": "NVDA",
+      "issuer_id": "SEC:CIK0001045810",
+      "listing_id": "US:Nasdaq:NVDA",
+      "listing_type": "COMMON",
+      "market": "Nasdaq",
+      "mic": "NASDAQ",
+      "name": "NVIDIA Corporation",
+      "name_en": "NVIDIA CORP",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:Nasdaq:NVDA&symbol=NVDA",
+        "market": "/market/?entity=US:Nasdaq:NVDA&symbol=NVDA",
+        "research": "/wie/?entity=US:Nasdaq:NVDA"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "NVDA",
+      "tradingview": "NASDAQ:NVDA",
+      "wie_symbols": [
+        "NVDA"
+      ]
+    },
+    {
+      "aliases": [
+        "msft"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "Nasdaq",
+        "isin": null,
+        "issuer_id": "789019",
+        "listing_id": "US:Nasdaq:MSFT",
+        "mic": "NASDAQ",
+        "symbol": "MSFT"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:Nasdaq:MSFT",
+      "exchange": "Nasdaq",
+      "id": "MSFT",
+      "issuer_id": "SEC:CIK0000789019",
+      "listing_id": "US:Nasdaq:MSFT",
+      "listing_type": "COMMON",
+      "market": "Nasdaq",
+      "mic": "NASDAQ",
+      "name": "Microsoft Corporation",
+      "name_en": "MICROSOFT CORP",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:Nasdaq:MSFT&symbol=MSFT",
+        "market": "/market/?entity=US:Nasdaq:MSFT&symbol=MSFT",
+        "research": "/wie/?entity=US:Nasdaq:MSFT"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "MSFT",
+      "tradingview": "NASDAQ:MSFT",
+      "wie_symbols": [
+        "MSFT"
+      ]
+    },
+    {
+      "aliases": [
+        "amzn"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "Nasdaq",
+        "isin": null,
+        "issuer_id": "1018724",
+        "listing_id": "US:Nasdaq:AMZN",
+        "mic": "NASDAQ",
+        "symbol": "AMZN"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:Nasdaq:AMZN",
+      "exchange": "Nasdaq",
+      "id": "AMZN",
+      "issuer_id": "SEC:CIK0001018724",
+      "listing_id": "US:Nasdaq:AMZN",
+      "listing_type": "COMMON",
+      "market": "Nasdaq",
+      "mic": "NASDAQ",
+      "name": "Amazon.com, Inc.",
+      "name_en": "AMAZON COM INC",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:Nasdaq:AMZN&symbol=AMZN",
+        "market": "/market/?entity=US:Nasdaq:AMZN&symbol=AMZN",
+        "research": "/wie/?entity=US:Nasdaq:AMZN"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "AMZN",
+      "tradingview": "NASDAQ:AMZN",
+      "wie_symbols": [
+        "AMZN"
+      ]
+    },
+    {
+      "aliases": [
+        "googl"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "Nasdaq",
+        "isin": null,
+        "issuer_id": "1652044",
+        "listing_id": "US:Nasdaq:GOOGL",
+        "mic": "NASDAQ",
+        "symbol": "GOOGL"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:Nasdaq:GOOGL",
+      "exchange": "Nasdaq",
+      "id": "GOOGL",
+      "issuer_id": "SEC:CIK0001652044",
+      "listing_id": "US:Nasdaq:GOOGL",
+      "listing_type": "COMMON",
+      "market": "Nasdaq",
+      "mic": "NASDAQ",
+      "name": "Alphabet Inc. Class A",
+      "name_en": "Alphabet Inc.",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:Nasdaq:GOOGL&symbol=GOOGL",
+        "market": "/market/?entity=US:Nasdaq:GOOGL&symbol=GOOGL",
+        "research": "/wie/?entity=US:Nasdaq:GOOGL"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "GOOGL",
+      "tradingview": "NASDAQ:GOOGL",
+      "wie_symbols": [
+        "GOOGL"
+      ]
+    },
+    {
+      "aliases": [
+        "meta"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "Nasdaq",
+        "isin": null,
+        "issuer_id": "1326801",
+        "listing_id": "US:Nasdaq:META",
+        "mic": "NASDAQ",
+        "symbol": "META"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:Nasdaq:META",
+      "exchange": "Nasdaq",
+      "id": "META",
+      "issuer_id": "SEC:CIK0001326801",
+      "listing_id": "US:Nasdaq:META",
+      "listing_type": "COMMON",
+      "market": "Nasdaq",
+      "mic": "NASDAQ",
+      "name": "Meta Platforms, Inc.",
+      "name_en": "Meta Platforms, Inc.",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:Nasdaq:META&symbol=META",
+        "market": "/market/?entity=US:Nasdaq:META&symbol=META",
+        "research": "/wie/?entity=US:Nasdaq:META"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "META",
+      "tradingview": "NASDAQ:META",
+      "wie_symbols": [
+        "META"
+      ]
+    },
+    {
+      "aliases": [
+        "tsla"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "Nasdaq",
+        "isin": null,
+        "issuer_id": "1318605",
+        "listing_id": "US:Nasdaq:TSLA",
+        "mic": "NASDAQ",
+        "symbol": "TSLA"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:Nasdaq:TSLA",
+      "exchange": "Nasdaq",
+      "id": "TSLA",
+      "issuer_id": "SEC:CIK0001318605",
+      "listing_id": "US:Nasdaq:TSLA",
+      "listing_type": "COMMON",
+      "market": "Nasdaq",
+      "mic": "NASDAQ",
+      "name": "Tesla, Inc.",
+      "name_en": "Tesla, Inc.",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:Nasdaq:TSLA&symbol=TSLA",
+        "market": "/market/?entity=US:Nasdaq:TSLA&symbol=TSLA",
+        "research": "/wie/?entity=US:Nasdaq:TSLA"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "TSLA",
+      "tradingview": "NASDAQ:TSLA",
+      "wie_symbols": [
+        "TSLA"
+      ]
+    },
+    {
+      "aliases": [
+        "net"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "NYSE",
+        "isin": null,
+        "issuer_id": "SEC:CIK0001477333",
+        "listing_id": "US:NYSE:NET",
+        "mic": "XNYS",
+        "symbol": "NET"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:NYSE:NET",
+      "exchange": "NYSE",
+      "id": "NET",
+      "issuer_id": "SEC:CIK0001477333",
+      "listing_id": "US:NYSE:NET",
+      "listing_type": "COMMON",
+      "market": "NYSE",
+      "mic": "XNYS",
+      "name": "Cloudflare, Inc.",
+      "name_en": "Cloudflare, Inc.",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:NYSE:NET&symbol=NET",
+        "market": "/market/?entity=US:NYSE:NET&symbol=NET",
+        "research": "/wie/?entity=US:NYSE:NET"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-otherlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/otherlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "NET",
+      "tradingview": "NYSE:NET",
+      "wie_record_ids": [
+        "prediction-P-000037",
+        "source-P-000037"
+      ],
+      "wie_symbols": [
+        "NET"
+      ]
+    },
+    {
+      "aliases": [
+        "amd"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "Nasdaq",
+        "isin": null,
+        "issuer_id": "2488",
+        "listing_id": "US:Nasdaq:AMD",
+        "mic": "NASDAQ",
+        "symbol": "AMD"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:Nasdaq:AMD",
+      "exchange": "Nasdaq",
+      "id": "AMD",
+      "issuer_id": "SEC:CIK0000002488",
+      "listing_id": "US:Nasdaq:AMD",
+      "listing_type": "COMMON",
+      "market": "Nasdaq",
+      "mic": "NASDAQ",
+      "name": "Advanced Micro Devices, Inc.",
+      "name_en": "ADVANCED MICRO DEVICES INC",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:Nasdaq:AMD&symbol=AMD",
+        "market": "/market/?entity=US:Nasdaq:AMD&symbol=AMD",
+        "research": "/wie/?entity=US:Nasdaq:AMD"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "AMD",
+      "tradingview": "NASDAQ:AMD",
+      "wie_symbols": [
+        "AMD"
+      ]
+    },
+    {
+      "aliases": [
+        "avgo"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "Nasdaq",
+        "isin": null,
+        "issuer_id": "1730168",
+        "listing_id": "US:Nasdaq:AVGO",
+        "mic": "NASDAQ",
+        "symbol": "AVGO"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:Nasdaq:AVGO",
+      "exchange": "Nasdaq",
+      "id": "AVGO",
+      "issuer_id": "SEC:CIK0001730168",
+      "listing_id": "US:Nasdaq:AVGO",
+      "listing_type": "COMMON",
+      "market": "Nasdaq",
+      "mic": "NASDAQ",
+      "name": "Broadcom Inc.",
+      "name_en": "Broadcom Inc.",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:Nasdaq:AVGO&symbol=AVGO",
+        "market": "/market/?entity=US:Nasdaq:AVGO&symbol=AVGO",
+        "research": "/wie/?entity=US:Nasdaq:AVGO"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "AVGO",
+      "tradingview": "NASDAQ:AVGO",
+      "wie_symbols": [
+        "AVGO"
+      ]
+    },
+    {
+      "aliases": [
+        "intc"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "Nasdaq",
+        "isin": null,
+        "issuer_id": "50863",
+        "listing_id": "US:Nasdaq:INTC",
+        "mic": "NASDAQ",
+        "symbol": "INTC"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:Nasdaq:INTC",
+      "exchange": "Nasdaq",
+      "id": "INTC",
+      "issuer_id": "SEC:CIK0000050863",
+      "listing_id": "US:Nasdaq:INTC",
+      "listing_type": "COMMON",
+      "market": "Nasdaq",
+      "mic": "NASDAQ",
+      "name": "Intel Corporation",
+      "name_en": "INTEL CORP",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:Nasdaq:INTC&symbol=INTC",
+        "market": "/market/?entity=US:Nasdaq:INTC&symbol=INTC",
+        "research": "/wie/?entity=US:Nasdaq:INTC"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "INTC",
+      "tradingview": "NASDAQ:INTC",
+      "wie_symbols": [
+        "INTC"
+      ]
+    },
+    {
+      "aliases": [
+        "mu"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "Nasdaq",
+        "isin": null,
+        "issuer_id": "723125",
+        "listing_id": "US:Nasdaq:MU",
+        "mic": "NASDAQ",
+        "symbol": "MU"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:Nasdaq:MU",
+      "exchange": "Nasdaq",
+      "id": "MU",
+      "issuer_id": "SEC:CIK0000723125",
+      "listing_id": "US:Nasdaq:MU",
+      "listing_type": "COMMON",
+      "market": "Nasdaq",
+      "mic": "NASDAQ",
+      "name": "Micron Technology, Inc.",
+      "name_en": "MICRON TECHNOLOGY INC",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:Nasdaq:MU&symbol=MU",
+        "market": "/market/?entity=US:Nasdaq:MU&symbol=MU",
+        "research": "/wie/?entity=US:Nasdaq:MU"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "MU",
+      "tradingview": "NASDAQ:MU",
+      "wie_symbols": [
+        "MU"
+      ]
+    },
+    {
+      "aliases": [
+        "qcom"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "Nasdaq",
+        "isin": null,
+        "issuer_id": "804328",
+        "listing_id": "US:Nasdaq:QCOM",
+        "mic": "NASDAQ",
+        "symbol": "QCOM"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:Nasdaq:QCOM",
+      "exchange": "Nasdaq",
+      "id": "QCOM",
+      "issuer_id": "SEC:CIK0000804328",
+      "listing_id": "US:Nasdaq:QCOM",
+      "listing_type": "COMMON",
+      "market": "Nasdaq",
+      "mic": "NASDAQ",
+      "name": "QUALCOMM Incorporated",
+      "name_en": "QUALCOMM INC/DE",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:Nasdaq:QCOM&symbol=QCOM",
+        "market": "/market/?entity=US:Nasdaq:QCOM&symbol=QCOM",
+        "research": "/wie/?entity=US:Nasdaq:QCOM"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "QCOM",
+      "tradingview": "NASDAQ:QCOM",
+      "wie_symbols": [
+        "QCOM"
+      ]
+    },
+    {
+      "aliases": [
+        "000660"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "KRX",
+        "isin": null,
+        "issuer_id": "KR:DART:00164779",
+        "listing_id": "KR:KRX:000660",
+        "mic": "XKRX",
+        "symbol": "000660"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "KRW",
+      "entity_id": "KR:KRX:000660",
+      "exchange": "KRX",
+      "id": "SKHYNIX",
+      "issuer_id": "KR:DART:00164779",
+      "listing_id": "KR:KRX:000660",
+      "listing_type": "COMMON",
+      "market": "KRX",
+      "mic": "XKRX",
+      "name": "SK hynix Inc.",
+      "name_en": "SK hynix Inc.",
+      "name_ko": "SK하이닉스",
+      "region": "KR",
+      "routes": {
+        "detail": "/market/?entity=KR:KRX:000660&symbol=SKHYNIX",
+        "market": "/market/?entity=KR:KRX:000660&symbol=SKHYNIX",
+        "research": "/wie/?entity=KR:KRX:000660"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "krx-market-reference",
+          "url": "https://global.krx.co.kr/contents/GLB/02/0201/0201010100/GLB0201010100.jsp"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "dart-corp-code",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "000660",
+      "tradingview": "KRX:000660",
+      "wie_symbols": [
+        "000660"
+      ]
+    },
+    {
+      "aliases": [
+        "005380"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "KRX",
+        "isin": null,
+        "issuer_id": "KR:DART:00164742",
+        "listing_id": "KR:KRX:005380",
+        "mic": "XKRX",
+        "symbol": "005380"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "KRW",
+      "entity_id": "KR:KRX:005380",
+      "exchange": "KRX",
+      "id": "HYUNDAI",
+      "issuer_id": "KR:DART:00164742",
+      "listing_id": "KR:KRX:005380",
+      "listing_type": "COMMON",
+      "market": "KRX",
+      "mic": "XKRX",
+      "name": "Hyundai Motor Company",
+      "name_en": "Hyundai Motor Company",
+      "name_ko": "현대자동차",
+      "region": "KR",
+      "routes": {
+        "detail": "/market/?entity=KR:KRX:005380&symbol=HYUNDAI",
+        "market": "/market/?entity=KR:KRX:005380&symbol=HYUNDAI",
+        "research": "/wie/?entity=KR:KRX:005380"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "krx-market-reference",
+          "url": "https://global.krx.co.kr/contents/GLB/02/0201/0201010100/GLB0201010100.jsp"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "dart-corp-code",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "005380",
+      "tradingview": "KRX:005380",
+      "wie_symbols": [
+        "005380"
+      ]
+    },
+    {
+      "aliases": [
+        "005935"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "equity",
+      "canonical_identity": {
+        "exchange": "KRX",
+        "isin": null,
+        "issuer_id": "KR:DART:00126380",
+        "listing_id": "KR:KRX:005935",
+        "mic": "XKRX",
+        "symbol": "005935"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "KRW",
+      "entity_id": "KR:KRX:005935",
+      "exchange": "KRX",
+      "id": "SAMSUNG_PREF",
+      "issuer_id": "KR:DART:00126380",
+      "listing_id": "KR:KRX:005935",
+      "listing_type": "COMMON",
+      "market": "KRX",
+      "mic": "XKRX",
+      "name": "삼성전자우",
+      "name_en": "Samsung Electronics Pref.",
+      "name_ko": "삼성전자우",
+      "region": "KR",
+      "routes": {
+        "detail": "/market/?entity=KR:KRX:005935&symbol=SAMSUNG_PREF",
+        "market": "/market/?entity=KR:KRX:005935&symbol=SAMSUNG_PREF",
+        "research": "/wie/?entity=KR:KRX:005935"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "krx-market-reference",
+          "url": "https://global.krx.co.kr/contents/GLB/02/0201/0201010100/GLB0201010100.jsp"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "dart-corp-code",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "005935",
+      "tradingview": "KRX:005935",
+      "wie_symbols": [
+        "005935"
+      ]
+    },
+    {
+      "aliases": [
+        "069500"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "etf",
+      "canonical_identity": {
+        "exchange": "KRX",
+        "isin": null,
+        "issuer_id": "KR:ISSUER:KODEX",
+        "listing_id": "KR:KRX:069500",
+        "mic": "XKRX",
+        "symbol": "069500"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "KRW",
+      "entity_id": "KR:KRX:069500",
+      "exchange": "KRX",
+      "id": "KODEX200",
+      "issuer_id": "KR:ISSUER:KODEX",
+      "listing_id": "KR:KRX:069500",
+      "listing_type": "ETF",
+      "market": "KRX",
+      "mic": "XKRX",
+      "name": "KODEX 200 ETF",
+      "name_en": "KODEX 200 ETF",
+      "name_ko": "KODEX 200",
+      "region": "KR",
+      "routes": {
+        "detail": "/market/?entity=KR:KRX:069500&symbol=KODEX200",
+        "market": "/market/?entity=KR:KRX:069500&symbol=KODEX200",
+        "research": "/wie/?entity=KR:KRX:069500"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "krx-market-reference",
+          "url": "https://global.krx.co.kr/contents/GLB/02/0201/0201010100/GLB0201010100.jsp"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "dart-corp-code",
+          "url": "https://opendart.fss.or.kr/api/corpCode.xml"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "069500",
+      "tradingview": "KRX:069500",
+      "wie_symbols": [
+        "069500"
+      ]
+    },
+    {
+      "aliases": [
+        "qqq"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "etf",
+      "canonical_identity": {
+        "exchange": "Nasdaq",
+        "isin": null,
+        "issuer_id": "US:ISSUER:INVESCO",
+        "listing_id": "US:Nasdaq:QQQ",
+        "mic": "NASDAQ",
+        "symbol": "QQQ"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:Nasdaq:QQQ",
+      "exchange": "Nasdaq",
+      "id": "QQQ",
+      "issuer_id": "US:ISSUER:INVESCO",
+      "listing_id": "US:Nasdaq:QQQ",
+      "listing_type": "ETF",
+      "market": "Nasdaq",
+      "mic": "NASDAQ",
+      "name": "Invesco QQQ Trust",
+      "name_en": "Invesco QQQ Trust",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:Nasdaq:QQQ&symbol=QQQ",
+        "market": "/market/?entity=US:Nasdaq:QQQ&symbol=QQQ",
+        "research": "/wie/?entity=US:Nasdaq:QQQ"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-nasdaqlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "QQQ",
+      "tradingview": "NASDAQ:QQQ",
+      "wie_symbols": [
+        "QQQ"
+      ]
+    },
+    {
+      "aliases": [
+        "spy"
+      ],
+      "as_of": "2026-09-20T12:11:04Z",
+      "asset_class": "etf",
+      "canonical_identity": {
+        "exchange": "NYSE Arca",
+        "isin": null,
+        "issuer_id": "US:ISSUER:SPDR",
+        "listing_id": "US:NYSE Arca:SPY",
+        "mic": "NYSEARCA",
+        "symbol": "SPY"
+      },
+      "catalogue_schema": "migaryos.instrument-catalogue/1",
+      "currency": "USD",
+      "entity_id": "US:NYSE Arca:SPY",
+      "exchange": "NYSE Arca",
+      "id": "SPY",
+      "issuer_id": "US:ISSUER:SPDR",
+      "listing_id": "US:NYSE Arca:SPY",
+      "listing_type": "ETF",
+      "market": "NYSE Arca",
+      "mic": "NYSEARCA",
+      "name": "SPDR S&P 500 ETF Trust",
+      "name_en": "SPDR S&P 500 ETF Trust",
+      "name_ko": null,
+      "region": "US",
+      "routes": {
+        "detail": "/market/?entity=US:NYSE Arca:SPY&symbol=SPY",
+        "market": "/market/?entity=US:NYSE Arca:SPY&symbol=SPY",
+        "research": "/wie/?entity=US:NYSE Arca:SPY"
+      },
+      "source_refs": [
+        {
+          "kind": "official_public",
+          "source_id": "sec-company-tickers-exchange",
+          "url": "https://www.sec.gov/files/company_tickers_exchange.json"
+        },
+        {
+          "kind": "official_public",
+          "source_id": "nasdaq-trader-otherlisted",
+          "url": "https://www.nasdaqtrader.com/dynamic/symdir/otherlisted.txt"
+        }
+      ],
+      "status": "ACTIVE",
+      "symbol": "SPY",
+      "tradingview": "NYSEARCA:SPY",
+      "wie_symbols": [
+        "SPY"
+      ]
     }
   ],
   "note": "Explicit navigation catalogue. Canonical identity and provider symbols are separate. WIE coverage requires the matching evidence manifest.",

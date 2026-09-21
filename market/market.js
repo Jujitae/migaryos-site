@@ -1,11 +1,12 @@
 // Market Intelligence workspace — observation and exploration only.
 //
-// TradingView appears through its official embed widgets, created only when
-// the visitor asks for them; a personal TradingView subscription is not a
-// data API and nothing here pretends otherwise. WIE coverage badges and the
+// TradingView appears through its official embed widget using the selected
+// canonical listing; a personal TradingView subscription is not a data API
+// and nothing here pretends otherwise. WIE coverage badges and the
 // forecast lane come from the same public projection the universe uses, via
 // the shared core. New watchlist changes belong to the authenticated workspace.
 import {recordsFromSnapshot, presentRecords, visibleAsOf, coverageFor, effectiveStatus, STATUS_LABELS, COVERAGE_LABELS, OUTCOME_LABELS} from '/wie/assets/world_core.js';
+import {syntheticFixtureEnabled, localChartEnabled, syntheticFixtureForInstrument, mountLightweightChart, marketProviderRoute} from './market_chart.js';
 
 export const WATCHLIST_KEY = 'migaryos.watchlist.v1';
 export const WIDGETS = Object.freeze({
@@ -107,7 +108,7 @@ export function coverageRows(registry, snapshot, {rights = null, firstCoverage =
   const state = snapshotState(snapshot);
   const manifestIds = new Set(firstCoverage?.entries?.flatMap(e => e.records || []) || []);
   return (registry.instruments || []).map(item => {
-    const target = {entity_id: item.entity_id, symbols: [item.id, ...(item.wie_symbols || [])]};
+    const target = {entity_id: item.entity_id, issuer_id: item.issuer_id, ids: item.wie_record_ids || [], symbols: [item.id, item.symbol, ...(item.wie_symbols || [])]};
     // Without a VERIFIED snapshot there is no coverage judgement at all: the
     // state is "unavailable", never NOT_COVERED (which is a verdict on data).
     const coverage = state === 'VERIFIED' || state === 'STALE' ? coverageFor(target, records, asOf, {manifest: firstCoverage})
@@ -115,6 +116,9 @@ export function coverageRows(registry, snapshot, {rights = null, firstCoverage =
     const mine = records.filter(r => coverage.records.includes(r.id));
     const macro = mine.find(r => r.type === 'macro');
     return {id: item.id, entity_id: item.entity_id || null, name: item.name, asset_class: item.asset_class, region: item.region, tradingview: item.tradingview,
+      issuer_id:item.issuer_id||null,listing_id:item.listing_id||null,symbol:item.symbol||item.id,exchange:item.exchange||null,mic:item.mic||null,
+      market:item.market||null,currency:item.currency||null,listing_type:item.listing_type||null,status:item.status||'UNKNOWN',
+      source_refs:item.source_refs||[],routes:item.routes||null,
       coverage, coverage_label: COVERAGE_LABELS[coverage.status] || (coverage.status === 'UNAVAILABLE' ? '공개 기록 없음' : coverage.status), market_data: coverage.market_data,
       in_first_coverage: coverage.coverage_records?.some(id => manifestIds.has(id)) || false,
       latest_observation: macro && !macro.restricted ? {value: macro.value, units: macro.units, data_date: macro.data_date, source: (macro.source_refs[0] || {}).url || null, attributions:macro.rights?.attributions||[]} : null,
@@ -201,6 +205,13 @@ export function boot(window) {
   const staticOnly=document?.body?.dataset.worldDelivery==='STATIC_READ_ONLY';
   const registry = window.MARKET_REGISTRY;
   if (!registry || !document) return;
+  const remoteInstruments = new Map();
+  const activeRegistry = () => remoteInstruments.size
+    ? {...registry, instruments: [...registry.instruments, ...remoteInstruments.values()]}
+    : registry;
+  const validRemoteInstrument = item => item && item.catalogue_schema === 'migaryos.instrument-catalogue/1' &&
+    typeof item.entity_id === 'string' && typeof item.issuer_id === 'string' &&
+    typeof item.listing_id === 'string' && typeof item.id === 'string' && typeof item.name === 'string';
   const rights = window.WIE_SOURCE_RIGHTS && window.WIE_SOURCE_RIGHTS.schema === 'migaryos.source-rights/1' ? window.WIE_SOURCE_RIGHTS : null;
   const $ = id => document.getElementById(id);
   const el = (tag, text, cls) => { const n = document.createElement(tag); if (text !== undefined) n.textContent = text; if (cls) n.className = cls; return n; };
@@ -221,8 +232,17 @@ export function boot(window) {
   let symbolChosen=!!requested;
   let selected = resolveInstrument(requested || 'SPX', registry);
   let unknownSymbol = requested && !selected ? requested : null;
-  if (!selected) selected = registry.instruments[0];
+  if (!selected&&!requested) selected = registry.instruments[0];
   const status = $('market-status');
+  const fixtureMode = syntheticFixtureEnabled(window, params);
+  const localChartMode = localChartEnabled(window, params) && !fixtureMode;
+  const localChartURL = '/market/local_chart.json';
+  let localChartBundle = null;
+  let localChartError = null;
+  let localChartPromise = null;
+  let chartController = null;
+  let chartRequest = 0;
+  const disposeChart = () => { chartRequest += 1; if (chartController) { chartController.destroy(); chartController = null; } };
   const say = text => { if (status) status.textContent = text; };
   function applyPersona(){
     const state=workspace.state;
@@ -240,7 +260,7 @@ export function boot(window) {
     for(const [name,id] of [['trader','market-observation'],['research','market-evidence'],['risk','market-risk']]){
       if($(id))$(id).hidden=activePersona!==name;
       const nav=$('market-view-'+name);if(nav){nav.setAttribute('aria-current',activePersona===name?'page':'false');
-        const target=new URLSearchParams(params);target.set('workspace',name);target.set('symbol',selected.id);if(selected.entity_id)target.set('entity',selected.entity_id);nav.href='/market/?'+target;}
+        const target=new URLSearchParams(params);target.set('workspace',name);if(selected){target.set('symbol',selected.id);if(selected.entity_id)target.set('entity',selected.entity_id);}else{target.delete('entity');target.delete('symbol');}nav.href='/market/?'+target;}
     }
   }
   function freshnessText() {
@@ -252,19 +272,19 @@ export function boot(window) {
   }
 
   function renderCatalogue() {
-    const rows = coverageRows(registry, snapshot, {rights, firstCoverage});
+    const rows = coverageRows(activeRegistry(), snapshot, {rights, firstCoverage});
     const table = $('catalogue');
     if (!table) return;
     const body = el('tbody');
     for (const row of rows) {
       const tr = el('tr');
       const pick = el('button', row.name + ' (' + row.id + ')', 'link-button'); pick.setAttribute('type', 'button');
-      pick.addEventListener('click', () => choose(registry.instruments.find(i => row.entity_id?i.entity_id===row.entity_id:i.id===row.id)));
+      pick.addEventListener('click', () => choose(activeRegistry().instruments.find(i => row.entity_id?i.entity_id===row.entity_id:i.id===row.id)));
       const td1 = el('td'); td1.append(pick);
       const target=watchTarget(row,workspace.state.saved,registry);
       const wl = el('button', workspace.state.saved.includes(target) ? '관심목록에서 빼기' : '관심목록에 넣기', 'link-button'); wl.setAttribute('type', 'button');
       wl.disabled=staticOnly||workspace.busy||workspace.state.principal?.role==='viewer';
-      wl.addEventListener('click', () => workspace.toggleSaved(target));
+      wl.addEventListener('click', () => saveTarget(target));
       const td5 = el('td'); td5.append(wl);
       tr.append(td1, el('td', row.asset_class + ' · ' + row.region), el('td', row.market_data === 'available' ? '있음' : row.market_data === 'unknown' ? '확인 불가' : '없음'),
         el('td', row.coverage_label + ' (' + row.coverage.status + ')' + (row.in_first_coverage ? ' · 첫 커버리지 대상' : '') + (row.restricted ? ' · 권리 제한' : '')), td5);
@@ -283,16 +303,16 @@ export function boot(window) {
     box.replaceChildren(el('p', workspace.state.message, 'muted'));
     if(!staticOnly&&workspace.state.loginEnabled&&!workspace.state.principal){
       const login=el('button','Google로 로그인','button');login.type='button';login.disabled=workspace.busy;
-      login.addEventListener('click',()=>workspace.login());box.append(login);
+      login.addEventListener('click',()=>workspace.login('/market/?'+params.toString()));box.append(login);
       const policy=el('p',undefined,'muted'),privacy=el('a','개인정보 처리 안내'),terms=el('a','이용약관');
       privacy.href='/wie/privacy/';terms.href='/wie/terms/';policy.append(privacy,el('span',' · '),terms);box.append(policy);
     }
     if(workspace.state.principal)box.append(el('p',`${ids.length} / ${workspace.state.limits.watchlist_targets??'—'}개 · 목록 ${workspace.state.watchlists.length} / ${workspace.state.limits.watchlists??'—'}개`));
-    const rows = coverageRows(registry, snapshot, {rights, firstCoverage}).filter(r => ids.includes(watchTarget(r,ids,registry)));
+    const rows = coverageRows(activeRegistry(), snapshot, {rights, firstCoverage}).filter(r => ids.includes(watchTarget(r,ids,activeRegistry())));
     for (const row of rows) {
       const p = el('p');
       const b = el('button', row.name + ' · ' + row.coverage_label, 'link-button'); b.setAttribute('type', 'button');
-      b.addEventListener('click', () => choose(registry.instruments.find(i => row.entity_id?i.entity_id===row.entity_id:i.id===row.id)));
+      b.addEventListener('click', () => choose(activeRegistry().instruments.find(i => row.entity_id?i.entity_id===row.entity_id:i.id===row.id)));
       p.append(b); box.append(p);
     }
     const earlier=$('legacy-watchlist');
@@ -301,7 +321,13 @@ export function boot(window) {
   }
 
   function renderSelected() {
-    const rows = coverageRows(registry, snapshot, {rights, firstCoverage});
+    if(!selected||unknownSymbol){
+      disposeChart();
+      $('sel-name').textContent='대상을 확인할 수 없습니다.';$('sel-coverage').textContent='등록되지 않았거나 여러 대상과 겹치는 이름·코드입니다. 검색 후보에서 정확한 대상을 선택해 주세요.';
+      for(const id of ['widgets','forecast-lane','signals','chart-metadata','market-performance','market-seasonality','risk-observations'])$(id)?.replaceChildren();
+      if($('sel-universe'))$('sel-universe').href='/wie/';renderPersona();say('선택 대상을 확인할 수 없어 다른 대상의 자료를 표시하지 않습니다.');return;
+    }
+    const rows = coverageRows(activeRegistry(), snapshot, {rights, firstCoverage});
     const row = rows.find(r => selected.entity_id?r.entity_id===selected.entity_id:r.id===selected.id);
     $('sel-name').textContent = selected.name + ' (' + selected.id + ')';
     renderPersona();renderMetadata(row);renderPriceStatistics(row);renderRisk(rows);
@@ -311,13 +337,57 @@ export function boot(window) {
       : 'WIE 판단 상태: ' + row.coverage_label + ' (' + row.coverage.status + ')' + (row.in_first_coverage ? ' · 첫 커버리지 대상' : ' · 첫 커버리지 대상 아님')
         + ' · 시장 자료 ' + (row.market_data === 'available' ? '있음' : '없음') + ' · 근거 ' + evidenceText + ' · 결과 감사 ' + row.coverage.outcome_audit + ' · ' + freshnessText();
     const widgets = $('widgets');
+    disposeChart();
     widgets.replaceChildren();
-    if (selected.tradingview) {
-      widgets.append(el('p', 'TradingView 공식 위젯은 버튼을 눌러야 불러옵니다. 그 전에는 외부 요청이 없습니다. 위젯 자료의 권리는 TradingView와 각 거래소에 있습니다.', 'muted'));
+    const providerRoute = marketProviderRoute(selected);
+    if (fixtureMode) {
+      const host = el('div', undefined, 'market-candle-chart-host');
+      widgets.append(host);
+      chartController = mountLightweightChart({window, document, host, input: syntheticFixtureForInstrument(selected)});
+    } else if (localChartMode && ['NO_ROUTE', 'PUBLIC_GAP'].includes(providerRoute.status)) {
+      const host = el('div', undefined, 'market-candle-chart-host');
+      widgets.append(host);
+      const request = chartRequest;
+      if (!localChartBundle && !localChartError) {
+        host.append(el('p', '실제 로컬 OHLC 자료를 확인하는 중입니다…', 'muted'));
+        ensureLocalChartBundle().then(() => { if (request === chartRequest) renderSelected(); }).catch(() => { if (request === chartRequest) renderSelected(); });
+      } else {
+        const input = localChartBundle?.charts?.[selected.id];
+        if (input) chartController = mountLightweightChart({window, document, host, input});
+        else {
+          host.append(el('p', 'NO_DATA · 이 대상의 검증된 로컬 OHLC 기록이 없어 이전 종목의 캔들을 표시하지 않습니다.', 'muted'));
+          if (localChartBundle?.missing?.includes(selected.id)) host.append(el('p', 'SOURCE_FAILURE · 원천 수집 실패를 다른 자산이나 합성 가격으로 대체하지 않습니다.', 'muted'));
+        }
+      }
+    }
+    if (providerRoute.provider === 'data.go.kr') {
+      const host = el('div', undefined, 'market-candle-chart-host');
+      widgets.append(host);
+      const request = chartRequest;
+      host.append(el('p', '한국 시장 EOD 자료를 확인하는 중입니다…', 'muted'));
+      fetchMarketChart(selected).then(result => {
+        if (request !== chartRequest) return;
+        host.replaceChildren();
+        if (result.chart) chartController = mountLightweightChart({window, document, host, input: result.chart});
+        else {
+          host.append(el('p', result.status === 'KR_DATA_RIGHTS_RESTRICTED' ? 'KR_DATA_RIGHTS_RESTRICTED · 공개 표시 권리가 확인될 때까지 한국 원천 수치를 표시하지 않습니다.' : result.status + ' · 한국 시장 자료를 확인할 수 없습니다.', 'notice'));
+          const source = el('a', '금융위원회 공공데이터포털 원자료 조건 확인'); source.href = 'https://www.data.go.kr/data/15094808/openapi.do'; source.target = '_blank'; source.rel = 'noopener noreferrer'; host.append(source);
+        }
+      }).catch(() => { if (request === chartRequest) { host.replaceChildren(el('p', 'KR_PROVIDER_UNAVAILABLE · 한국 시장 자료 제공자에 연결하지 못했습니다.', 'notice')); } });
+    } else if (providerRoute.status === 'PUBLIC_GAP') {
+      widgets.append(el('p', 'SPX 공개 차트는 현재 별도 제공 경로를 확인하지 못했습니다. SPY·선물·CFD를 SPX로 대체하지 않습니다.', 'notice'));
+    } else if (selected.tradingview && providerRoute.status === 'ROUTED') {
+      widgets.append(el('p', '공식 TradingView 차트를 선택 종목의 거래소·심볼로 불러옵니다. 차트 내부의 실시간·지연 표시는 TradingView와 거래소 기준입니다.', 'muted'));
+      const chartHost = el('div', undefined, 'widget-host widget-host-advanced');
+      const chartLoader = createWidgetLoader(document, chartHost, {widget: 'advanced-chart', symbol: providerRoute.provider_symbol, locale: 'kr'});
+      chartLoader.load();
+      widgets.append(chartHost);
+      widgets.append(el('p', '추가 개요·테크니컬즈·뉴스는 아래 버튼을 눌러 선택적으로 불러옵니다.', 'muted'));
       for (const [widget, label] of [['advanced-chart', '차트 불러오기'], ['symbol-info', '개요·주요 통계 불러오기'], ['technical-analysis', '테크니컬즈 불러오기'], ['timeline', '뉴스 타임라인 불러오기']]) {
-        const host = el('div', undefined, 'widget-host');
+        if (widget === 'advanced-chart') continue;
+        const host = el('div', undefined, 'widget-host widget-host-secondary');
         const button = el('button', label); button.setAttribute('type', 'button');
-        const loader = createWidgetLoader(document, host, {widget, symbol: selected.tradingview, locale: 'kr'});
+        const loader = createWidgetLoader(document, host, {widget, symbol: providerRoute.provider_symbol, locale: 'kr'});
         button.addEventListener('click', () => { if (loader.load()) { button.disabled = true; button.textContent = label.replace('불러오기', '불러옴'); } });
         widgets.append(button, host);
       }
@@ -326,7 +396,7 @@ export function boot(window) {
     }
     const lane = $('forecast-lane');
     lane.replaceChildren();
-    const entries = snapshot ? forecastLane(selected.entity_id||selected.id, registry, snapshot, null, {rights}) : [];
+    const entries = snapshot ? forecastLane(selected.entity_id||selected.id, activeRegistry(), snapshot, null, {rights}) : [];
     if (!entries.length) lane.append(el('p', '이 대상에 발행된 WIE 예측이 없습니다. 미발행은 부정 판단이 아닙니다.', 'muted'));
     for (const e of entries) {
       const d = el('details');
@@ -336,8 +406,7 @@ export function boot(window) {
       for (const [k, v] of [['발행 시각', e.issued_at], ['기한', e.expires_at], ['결과', e.outcome_label || '아직 기록 없음'], ['결과 관측 시각', e.observed_at || '—']]) { dl.append(el('dt', k), el('dd', v || '—')); }
       d.append(dl);
       const a = el('a', '우주 화면에서 이 기록 보기'); a.href = e.locator.route + '#focus=' + e.locator.focus; d.append(a);
-      const scenario = el('a', '비공개 조건부 시나리오 확인');
-      scenario.href = '/founder/?scenario_focus=' + encodeURIComponent(e.locator.focus) + '#private-scenarios'; d.append(scenario);
+
       if (e.source) { const s = el('a', '근거 출처'); s.href = e.source; s.target = '_blank'; s.rel = 'noopener noreferrer'; d.append(s); }
       for(const credit of e.attributions)d.append(el('small',credit));
       lane.append(d);
@@ -354,7 +423,7 @@ export function boot(window) {
       for(const credit of a.attributions)signals.append(el('small',credit));
     }
     const universe = $('sel-universe');
-    if (universe) universe.href = '/loop.html' + (row.coverage.records.length ? '#focus=' + encodeURIComponent(row.coverage.records[0]) : '');
+    if (universe) universe.href = '/wie/?entity='+encodeURIComponent(selected.entity_id);
     try { params.set('symbol',selected.id);if(selected.entity_id)params.set('entity',selected.entity_id);else params.delete('entity');window.history.replaceState(null, '', '?'+params.toString()+(window.location.hash||'')); } catch { /* ignore */ }
     if (unknownSymbol) say('카탈로그에 없는 대상 "' + unknownSymbol.slice(0, 40) + '" 입니다. 종목이 없는 국가·사건·거시 주제는 우주 화면과 거시 관측에서 봅니다. 대신 ' + selected.name + '을(를) 표시합니다.');
     else if (!snapshot || snapshotState(snapshot) === 'BLOCK') say('선택: ' + selected.name + ' · ' + freshnessText());
@@ -365,8 +434,12 @@ export function boot(window) {
   function renderMetadata(row){
     const box=$('chart-metadata');if(!box)return;box.replaceChildren();
     box.append(el('p','공통 대상 ID · '+known(row.entity_id)));
-    const widget=el('details');widget.append(el('summary','TradingView 차트 · 표시 설정과 원자료 기준'));
-    fields(widget,[['출처','TradingView 공식 embed 위젯'],['위젯 요청 심볼',selected.tradingview],['데이터 거래소','UNKNOWN'],
+    fields(box,[['Issuer ID',row.issuer_id],['Listing ID',row.listing_id],['거래소 · MIC',row.exchange&&row.mic?row.exchange+' · '+row.mic:row.exchange||row.mic],['심볼 · 통화',row.symbol&&row.currency?row.symbol+' · '+row.currency:row.symbol||row.currency],['상장 상태',row.status]]);
+    if(row.routes){const links=el('p');for(const [label,key] of [['Market','market'],['Research / WIE','research']]){const a=el('a',label);a.href=row.routes[key]||'#';a.className='link-button';links.append(a,el('span',' · '));}box.append(links);}
+    if(selected?.id==='NET'){const a=el('a','Cloudflare issuer filing (SEC)');a.href='https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1477333';a.target='_blank';a.rel='noopener noreferrer';box.append(a);}
+    const route = marketProviderRoute(selected);
+    const widget=el('details');widget.append(el('summary', route.provider === 'data.go.kr' ? '한국 EOD 차트 · 원자료 기준' : 'TradingView 차트 · 표시 설정과 원자료 기준'));
+    fields(widget,[['차트 경로',route.provider || 'UNKNOWN'],['출처',route.provider === 'tradingview-embed' ? 'TradingView 공식 embed 위젯' : route.provider || 'UNKNOWN'],['위젯 요청 심볼',route.provider_symbol || selected.tradingview],['데이터 거래소',selected.exchange || 'UNKNOWN'],
       ['차트 표시 시간대','Asia/Seoul · 표시 설정'],['원자료 시간대','UNKNOWN'],['거래 세션','UNKNOWN'],['가격 조정 방식','UNKNOWN'],['자료 시각·지연','UNKNOWN']]);box.append(widget);
     for(const analysis of row.analyses){const detail=el('details');detail.open=true;detail.append(el('summary','WIE 가격 관측 · '+analysis.timeframe));
       const m=analysis.metadata;fields(detail,[['자료 출처',m.source],['제공자',m.provider],['제공자 심볼',m.provider_symbol],['거래소',m.exchange],
@@ -415,6 +488,30 @@ export function boot(window) {
     return data;
   }
 
+  async function fetchMarketChart(instrument) {
+    const query = new URLSearchParams({code: instrument.symbol, instrument_id: instrument.id,
+      canonical_id: instrument.entity_id || instrument.id, asset_class: instrument.asset_class === 'etf' ? 'etf' : 'equity', name: instrument.name, days: '180'});
+    const res = await window.fetch('/api/market/chart?' + query.toString(), {cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout ? AbortSignal.timeout(15000) : undefined});
+    let data = null; try { data = await res.json(); } catch { /* fixed status below */ }
+    if (!res.ok || data?.status !== 'OK' || !data.chart) return {status: data?.status || 'KR_PROVIDER_UNAVAILABLE', chart: null};
+    return {status: 'OK', chart: data.chart};
+  }
+
+  async function fetchLocalChartBundle() {
+    const res = await window.fetch(localChartURL + '?refresh=' + Math.floor(Date.now() / 60000), {cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout ? AbortSignal.timeout(15000) : undefined});
+    if (!res.ok) throw new Error('local chart transport');
+    const data = await res.json();
+    if (!data || data.schema !== 'migaryos.market-chart-bundle/1' || !data.charts || typeof data.charts !== 'object') throw new Error('local chart schema');
+    return data;
+  }
+
+  function ensureLocalChartBundle() {
+    if (!localChartPromise) {
+      localChartPromise = fetchLocalChartBundle().then(value => { localChartBundle = value; return value; }).catch(error => { localChartError = error; throw error; });
+    }
+    return localChartPromise;
+  }
+
   async function load() {
     say('공개 WIE 기록을 확인하는 중… (loading)');
     try { snapshot = await fetchSnapshot(PRIMARY); }
@@ -427,21 +524,31 @@ export function boot(window) {
         if (value?.schema === 'migaryos.first-coverage-manifest/1' && value.as_of === snapshot.observed_at) firstCoverage = value;
       } catch { /* absent matching manifest means no current coverage authority */ }
     }
+    if (localChartMode && !localChartBundle && !localChartError) ensureLocalChartBundle().catch(() => {});
     renderCatalogue(); renderWatchlist(); renderSelected();
   }
   const search = $('symbol-search');
-  function choose(item){if(!item)return;unknownSymbol=null;symbolChosen=true;selected=item;renderSelected();$('sel-name')?.focus();}
+  function saveTarget(target){if(!workspace.state.principal){const item=resolveInstrument(target,activeRegistry());if(item)window.location.href='/wie/?entity='+encodeURIComponent(item.entity_id)+'&login=save';else say('정확한 대상을 선택한 뒤 로그인해 주세요.');return false;}return workspace.toggleSaved(target);}
+  function choose(item){
+    if(!item)return;
+    const exact=resolveInstrument(item.entity_id||item.id,registry) || (validRemoteInstrument(item) ? item : null);
+    if(!exact)return;
+    if(!registry.instruments.some(row=>row.entity_id===exact.entity_id))remoteInstruments.set(exact.entity_id,exact);
+    symbolChosen=true;selected=exact;unknownSymbol=null;renderSelected();$('sel-name')?.focus();
+  }
   if(window.WIESearch&&$('symbol-candidates')?.dataset.autocomplete==='true'){
     const items=window.WIESearch.catalogueItems(registry);
-    searchBox=window.WIESearch.mount({document,input:$('symbol-input'),host:$('symbol-candidates'),localItems:()=>items,
-      onSelect:item=>choose(item.source),onWatch:staticOnly?null:item=>workspace.toggleSaved(watchTarget(item.source,workspace.state.saved,registry)),
-      saved:item=>workspace.state.saved.includes(watchTarget(item.source,workspace.state.saved,registry)),
+    searchBox=window.WIESearch.mount({document,input:$('symbol-input'),host:$('symbol-candidates'),
+      loadItems:window.WIESearch.catalogueSearchLoader(window.fetch.bind(window)),
+      localItems:()=>[...items,...window.WIESearch.recordItems(snapshot?presentRecords(recordsFromSnapshot(snapshot,{rights}),{paid:false}):[],{stale:snapshot?.freshness?.state==='STALE'})],
+      onSelect:item=>item.kind==='record'?window.location.href='/wie/?focus='+encodeURIComponent(item.id):choose(item.source),onWatch:staticOnly?null:item=>{if(!workspace.state.principal){window.location.href='/wie/?'+(item.kind==='record'?'focus='+encodeURIComponent(item.id):'entity='+encodeURIComponent(item.canonical))+'&login=save';return false;}return workspace.toggleSaved(item.kind==='record'?item.target:watchTarget(item.source,workspace.state.saved,activeRegistry()));},
+      saved:item=>workspace.state.saved.includes(item.kind==='record'?item.target:watchTarget(item.source,workspace.state.saved,activeRegistry())),
       watchState:()=>({busy:workspace.busy,readOnly:workspace.state.principal?.role==='viewer',authenticated:!!workspace.state.principal})});
   }
-  if (search) search.addEventListener('submit', event => { event.preventDefault();if(searchBox?.suppressSubmit())return;const found = resolveInstrument($('symbol-input').value, registry); if(found){searchBox?.close();choose(found);}else say('일치하는 대상이 없거나 여러 거래소에 있습니다. 검색 후보에서 이름·코드·거래소를 확인해 선택하세요.'); });
+  if (search) search.addEventListener('submit', event => { event.preventDefault();if(searchBox?.suppressSubmit())return;const found = resolveInstrument($('symbol-input').value, activeRegistry()); if(found){searchBox?.close();choose(found);}else say('일치하는 대상이 없거나 여러 거래소에 있습니다. 검색 후보에서 이름·코드·거래소를 확인해 선택하세요.'); });
   $('market-workspace-refresh')?.addEventListener('click',()=>workspace.refresh());
   const ready=Promise.all([workspace.refresh(),load()]);
-  const destroy=()=>{searchBox?.destroy();workspace.destroy();$('watchlist')?.replaceChildren();$('catalogue')?.replaceChildren();};
+  const destroy=()=>{disposeChart();searchBox?.destroy();workspace.destroy();$('watchlist')?.replaceChildren();$('catalogue')?.replaceChildren();};
   window.addEventListener?.('pagehide',destroy);
   window.addEventListener?.('pageshow',event=>{if(event.persisted)window.location.reload();});
   return {workspace,ready,destroy};

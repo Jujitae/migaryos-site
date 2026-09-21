@@ -64,7 +64,7 @@ export function createWorldChat({universe, document, endpoint = null, fetchImpl 
   function workspaceLinks(record) {
     const r = projection().byId.get(record && record.id);
     const box = el('p', undefined, 'story-limit wc-routes');
-    const lens = el('a', 'WIE Lens · 근거와 판단 상세');lens.href='/explore/#focus='+encodeURIComponent(record.id);box.append(lens);
+    const lens = el('a', 'WIE Lens · 근거와 판단 상세');lens.href='/wie/?focus='+encodeURIComponent(record.id);box.append(lens);
     if (r && r.symbol) {
       const a = el('a', 'Market 보기 · ' + r.symbol); a.href = '/market/?symbol=' + encodeURIComponent(r.symbol)+(r.entity_id?'&entity='+encodeURIComponent(r.entity_id):''); box.append(a);
       const q = el('a', 'Quant 연구 보기'); q.href = '/quant/?focus=' + encodeURIComponent(r.id)+'#research'; box.append(q);
@@ -226,8 +226,8 @@ if (typeof window !== 'undefined' && window.WIEUniverse && window.document) {
     box=search.mount({document:window.document,input,host,
       localItems:()=>search.recordItems(presentRecords(recordsFromSnapshot(window.WIEUniverse.snapshot(),{rights}),{paid:false}),
         {stale:window.WIEUniverse.snapshot()?.freshness?.state==='STALE'||Date.now()-Date.parse(window.WIEUniverse.snapshot()?.observed_at)>Number(window.WIEUniverse.snapshot()?.freshness?.stale_after_seconds||7200)*1000}),loadItems:search.registryLoader(window.fetch.bind(window)),
-      onSelect:item=>{if(item.kind==='record')window.WIEUniverse.focusStory(item.id);else window.location.href='/market/?entity='+encodeURIComponent(item.canonical)+'&symbol='+encodeURIComponent(item.id);},
-      onWatch:staticOnly||!workspace?null:item=>workspace.toggleSaved(item.target),saved:item=>!!workspace?.state.saved.includes(item.target),
+      onSelect:item=>{if(item.kind==='record')window.WIEUniverse.focusStory(item.id);else window.location.href='/wie/?entity='+encodeURIComponent(item.canonical);},
+      onWatch:staticOnly||!workspace?null:item=>{if(!workspace.state.principal){window.location.href='/wie/?'+(item.kind==='record'?'focus='+encodeURIComponent(item.id):'entity='+encodeURIComponent(item.canonical))+'&login=save';return false;}return workspace.toggleSaved(item.target);},saved:item=>!!workspace?.state.saved.includes(item.target),
       watchState:()=>({busy:workspace?.busy,readOnly:workspace?.state.principal?.role==='viewer',message:workspace?.state.message})});
     window.document.getElementById('universe-search-form').addEventListener('submit',event=>{event.preventDefault();if(!box.suppressSubmit())input.focus();});
     workspace?.refresh();window.addEventListener('pagehide',()=>{box.destroy();workspace?.destroy();});

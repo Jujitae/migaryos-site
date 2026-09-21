@@ -83,9 +83,19 @@
       cached=items;return items;
     };
   }
+  function catalogueSearchLoader(fetchImpl){
+    return async({query,signal}={})=>{
+      const q=clean(query);if(!q)return [];
+      const response=await fetchImpl('/api/world/catalogue?q='+encodeURIComponent(q)+'&limit=12',{credentials:'same-origin',cache:'no-store',signal});
+      if(!response.ok)throw new Error(response.status===401||response.status===403?'SEARCH_AUTH_REQUIRED':'CATALOGUE_UNAVAILABLE');
+      const data=await response.json();
+      if(!data||data.schema!=='migaryos.instrument-catalogue-search/1'||!Array.isArray(data.items))throw new Error('INVALID_CATALOGUE');
+      return catalogueItems({schema:'migaryos.universe-registry/1',instruments:data.items});
+    };
+  }
   let serial=0;
   function mount({document:d,input,host,localItems=()=>[],loadItems=null,onSelect,onWatch=null,
-    saved=()=>false,watchState=()=>({}),setTimer=setTimeout,clearTimer=clearTimeout,now=()=>Date.now(),debounce=120}={}){
+    saved=()=>false,watchState=()=>({}),setTimer=setTimeout,clearTimer=clearTimeout,now=()=>Date.now(),debounce=300}={}){
     if(!input||!host)return null;
     const id='wie-search-'+(++serial),el=(tag,text,cls)=>{const node=d.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;};
     const wrap=el('div',undefined,'search-popup'),grid=el('div',undefined,'search-grid'),status=el('p','','search-feedback');
@@ -120,7 +130,7 @@
         const row=el('div',undefined,'search-result'),pickCell=el('div'),watchCell=el('div'),pick=el('button',undefined,'search-pick');
         row.setAttribute('role','row');row.setAttribute('aria-rowindex',String(i+1));
         for(const [c,cell] of [pickCell,watchCell].entries()){cell.id=id+'-'+i+'-'+c;cell.setAttribute('role','gridcell');cell.setAttribute('aria-colindex',String(c+1));}
-        pick.type='button';pick.tabIndex=-1;
+        pick.type='button';pick.tabIndex=-1;pick.disabled=composing;
         const name=el('strong'),meta=el('span',undefined,'search-meta');highlight(d,name,item.name,input.value);
         const symbol=el('span');highlight(d,symbol,item.code,input.value);
         meta.append(symbol,el('span',item.exchange+' · '+item.type));
@@ -129,7 +139,7 @@
         pick.addEventListener('click',()=>select(item));pickCell.append(pick);
         const watched=saved(item),state=watchState(item)||{},watch=el('button',watched?'관심 해제':'+ 관심','search-watch');
         watch.type='button';watch.tabIndex=-1;watch.setAttribute('aria-label',item.name+' · '+item.exchange+' '+(watched?'관심 해제':'관심 추가'));
-        watch.setAttribute('aria-pressed',String(watched));watch.disabled=watching!==null||state.busy||state.readOnly||!onWatch;
+        watch.setAttribute('aria-pressed',String(watched));watch.disabled=composing||watching!==null||state.busy||state.readOnly||!onWatch;
         if(state.readOnly)watch.title='읽기 전용 권한입니다.';
         if(!onWatch)watch.title='이 화면에서는 관심목록을 변경할 수 없습니다.';
         watch.addEventListener('click',()=>watchItem(item));watchCell.append(watch);row.append(pickCell,watchCell);grid.append(row);cells.push([pickCell,watchCell]);
@@ -139,9 +149,9 @@
         items.length?items.length+'개 후보 · 등록 여부와 현재 분석 지원 범위는 다릅니다.':clean(input.value)?'일치하는 등록 대상이나 허용된 기록이 없습니다. 이름이나 코드를 바꿔보세요.':'이름·코드·등록 별칭을 입력하세요.';
       retry.hidden=!failed;highlightActive();
     }
-    function select(item){closePopup();onSelect?.(item);}
+    function select(item){if(composing)return;closePopup();onSelect?.(item);}
     async function watchItem(item){
-      if(watching!==null||!onWatch)return;
+      if(composing||watching!==null||!onWatch)return;
       const state=watchState(item)||{};if(state.busy||state.readOnly)return;
       watching=item.key;draw();
       try{const ok=await onWatch(item);if(destroyed)return;watching=null;draw();status.textContent=ok?(saved(item)?'관심목록에 저장했습니다.':'관심목록에서 해제했습니다.'):
@@ -149,7 +159,7 @@
       catch{if(!destroyed){watching=null;draw();status.textContent='저장하지 못했습니다. 관심 상태는 변경하지 않았습니다.';returnFocus();}}
     }
     function refresh(){
-      if(destroyed||composing)return;invalidate();active=-1;column=0;failed=false;show();
+      if(destroyed)return;invalidate();active=-1;column=0;failed=false;show();
       const ticket=version;pending=!!loadItems;draw();
       if(!loadItems||!clean(input.value)){pending=false;draw();return;}
       timer=setTimer(async()=>{
@@ -160,7 +170,7 @@
       },debounce);
     }
     listen(input,'input',refresh);listen(input,'focus',()=>{if(!composing&&!suppressFocus)refresh();});
-    listen(input,'compositionstart',()=>{composing=true;invalidate();});
+    listen(input,'compositionstart',()=>{composing=true;invalidate();active=-1;column=0;draw();});
     listen(input,'compositionend',()=>{composing=false;compositionUntil=now()+180;refresh();});
     function key(event){
       if(event.isComposing||event.keyCode===229||composing)return;
@@ -185,6 +195,6 @@
       get state(){return {open:!wrap.hidden,pending,failed,active,column,version};},
       destroy(){destroyed=true;invalidate();for(const [node,event,fn] of listeners)node.removeEventListener?.(event,fn);wrap.remove?.();}};
   }
-  const api={catalogueItems,recordItems,rankItems,highlight,registryLoader,mount};
+  const api={catalogueItems,recordItems,rankItems,highlight,registryLoader,catalogueSearchLoader,mount};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;root.WIESearch=api;
 })(typeof globalThis!=='undefined'?globalThis:this);

@@ -698,8 +698,8 @@ export const COVERAGE_LABELS = Object.freeze({ACTIVE: '활성 판단', WATCH: '�
 function targetMatches(target, r) {
   if (target.entity_id && target.entity_id === r.entity_id) return true;
   const symbols = new Set((target.symbols || []).map(s => String(s).toUpperCase()));
-  const ids = new Set(target.ids || []);
-  if (ids.has(r.id) || ids.has(r.record_id)) return true;
+  const ids = new Set([...(target.ids || []), target.issuer_id].filter(Boolean));
+  if (ids.has(r.id) || ids.has(r.record_id) || (r.entity_id && ids.has(r.entity_id)) || ids.has(entityForRecord(r))) return true;
   if (r.symbol && symbols.has(String(r.symbol).toUpperCase())) return true;
   if (r.record_id && symbols.has(String(r.record_id).toUpperCase())) return true;
   return (r.source_refs || []).some(s => s && s.provider_symbol && symbols.has(String(s.provider_symbol).toUpperCase()));

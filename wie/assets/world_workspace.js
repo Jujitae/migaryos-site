@@ -88,10 +88,10 @@
       }finally{busy=false;notify();}
     }
     return {get state(){return state;},get busy(){return busy;},refresh,
-      async login(){
+      async login(returnTo){
         if(staticOnly||busy||destroyed||!state.loginEnabled)return false;
         busy=true;notify();
-        try{const value=await request('identity/start','POST',{}),url=new URL(value.authorization_url);
+        try{const value=await request('identity/start','POST',returnTo?{return_to:returnTo}:{}),url=new URL(value.authorization_url);
           if(value.status!=='GOOGLE_LOGIN'||url.origin!=='https://accounts.google.com'||url.pathname!=='/o/oauth2/v2/auth'||url.username||url.password||url.hash)
             throw new Error('IDENTITY_DISABLED');
           navigate(url.href);return true;
@@ -107,6 +107,7 @@
       addInterest(question){return mutate(()=>request('saved-queries','POST',{question}));},
       removeInterest(id){return mutate(()=>request('saved-queries/'+encodeURIComponent(id),'DELETE'));},
       addNote(text){return mutate(()=>request('notes','POST',{text}));},
+      updateNote(id,text){return mutate(()=>request('notes/'+encodeURIComponent(id),'POST',{text}));},
       removeNote(id){return mutate(()=>request('notes/'+encodeURIComponent(id),'DELETE'));},
       setPreferences(value){return mutate(()=>request('preferences','POST',value));},
       saveConversation(question,answer){return mutate(()=>request('conversations','POST',{question,answer}));},
