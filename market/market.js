@@ -33,6 +33,15 @@ export function resolveInstrument(query, registry) {
   return matches.length === 1 ? matches[0] : null;
 }
 
+export function preserveMarketContext(href, {entity = null, symbol = null} = {}) {
+  const target = new URL(href, 'https://migaryos.com/');
+  for (const [key, value] of [['entity', entity], ['symbol', symbol]]) {
+    if (typeof value === 'string' && value) target.searchParams.set(key, value);
+    else target.searchParams.delete(key);
+  }
+  return target.pathname + (target.search ? target.search : '') + target.hash;
+}
+
 // New saved targets use canonical identity. Old symbol targets are readable only
 // when they identify one catalogue entry; a ticker alone must never pick a listing.
 export function watchTarget(item, saved, registry) {
@@ -262,6 +271,10 @@ export function boot(window) {
       if($(id))$(id).hidden=activePersona!==name;
       const nav=$('market-view-'+name);if(nav){nav.setAttribute('aria-current',activePersona===name?'page':'false');
         const target=new URLSearchParams(params);target.set('workspace',name);if(selected){target.set('symbol',selected.id);if(selected.entity_id)target.set('entity',selected.entity_id);}else{target.delete('entity');target.delete('symbol');}nav.href='/market/?'+target;}
+    }
+    const context = {entity: selected?.entity_id || null, symbol: selected?.id || null};
+    for (const link of document.querySelectorAll('a[data-preserve-context]')) {
+      link.href = preserveMarketContext(link.getAttribute('href'), context);
     }
   }
   function freshnessText() {
