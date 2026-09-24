@@ -292,15 +292,15 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-09-24T02:57:17.144562Z",
+  "generated_at": "2026-09-24T03:02:19.787213Z",
   "integrity": {
     "ledger_sha256": "83b65a1f53b2b1388ff4bf8238eb4b022c5d3bae53c7fda961434e6b55930b9e",
     "reasons": [],
-    "snapshot_sha256": "23fa9f3fbff892d92cff626b3b34a376de876c920769ae6f8c4b08f694e6d5de",
+    "snapshot_sha256": "d5de6ae1df04d743cea452d8abbf5643a32da4d71ed8ba41171d128791ca20d5",
     "status": "VERIFIED"
   },
   "learning": {
-    "as_of": "2026-09-24T02:01:12.252598Z",
+    "as_of": "2026-09-24T03:00:50.203828Z",
     "evaluation": {
       "baseline_brier_score": null,
       "brier_score": null,
@@ -314,12 +314,12 @@
     "fit_status": "INSUFFICIENT_DATA",
     "missing_diary_dates": [],
     "mode": "ADVISORY_SHADOW",
-    "sha256": "7fa3f820955e0a6f45436738959e0d220dfbfae866eeae360a4ec9128c3783fb",
+    "sha256": "7ccdcd19e69a0079fad8d5c32f5ada568d61badca92ccc84c490d671df532db6",
     "shadow_forecast_count": 46,
     "training_count": 3
   },
   "market_context": {
-    "observed_at": "2026-09-23T21:01:11.380136Z",
+    "observed_at": "2026-09-24T03:01:21.439615Z",
     "series": [
       {
         "change_30d": null,
@@ -327,11 +327,11 @@
         "data_date": null,
         "id": "DGS10",
         "label": "DGS10",
-        "raw_sha256": "812fd38016c7d866843e74a82c32ba58267ece7ef18289316b0c38857f01f23d",
+        "raw_sha256": "3cbd1c5481379716983cb93b76617899983ae2d245881832b29326f875b59eec",
         "source": {
           "kind": "official_public",
           "observed_at": null,
-          "sha256": "812fd38016c7d866843e74a82c32ba58267ece7ef18289316b0c38857f01f23d",
+          "sha256": "3cbd1c5481379716983cb93b76617899983ae2d245881832b29326f875b59eec",
           "url": "https://fred.stlouisfed.org/series/DGS10"
         },
         "source_url": "https://fred.stlouisfed.org/series/DGS10",
@@ -345,11 +345,11 @@
         "data_date": null,
         "id": "DGS2",
         "label": "DGS2",
-        "raw_sha256": "6ba4b5b8b8deca2cee2a3777a072df251cf48e744577e79b959130bf1b0a80fb",
+        "raw_sha256": "188766ac8f458f016d6f311f4dc91aefa36ba7723fcfb125c1d5e92decc96e91",
         "source": {
           "kind": "official_public",
           "observed_at": null,
-          "sha256": "6ba4b5b8b8deca2cee2a3777a072df251cf48e744577e79b959130bf1b0a80fb",
+          "sha256": "188766ac8f458f016d6f311f4dc91aefa36ba7723fcfb125c1d5e92decc96e91",
           "url": "https://fred.stlouisfed.org/series/DGS2"
         },
         "source_url": "https://fred.stlouisfed.org/series/DGS2",
@@ -397,9 +397,9 @@
     "status": "OBSERVATIONS_ONLY",
     "target_probability": null
   },
-  "observed_at": "2026-09-24T02:03:13.865228Z",
+  "observed_at": "2026-09-24T03:02:12.733794Z",
   "operation": {
-    "finished_at": "2026-09-24T02:45:50.330076Z",
+    "finished_at": "2026-09-24T03:02:12.896419Z",
     "jobs": {
       "anchor": {
         "exit_code": 0,
@@ -410,16 +410,16 @@
       },
       "autonomy": {
         "exit_code": 0,
-        "finished_at": "2026-09-24T02:03:14.057857Z",
-        "next_due_at": "2026-09-24T03:00:00Z",
-        "started_at": "2026-09-24T02:01:12.013409Z",
+        "finished_at": "2026-09-24T03:02:12.894420Z",
+        "next_due_at": "2026-09-24T04:00:00Z",
+        "started_at": "2026-09-24T03:00:49.985174Z",
         "status": "SOURCE_GAPS"
       },
       "collector": {
         "exit_code": 7,
-        "finished_at": "2026-09-24T02:45:48.960222Z",
-        "next_due_at": "2026-09-24T03:00:00Z",
-        "started_at": "2026-09-24T02:45:48.348300Z",
+        "finished_at": "2026-09-24T03:00:48.748939Z",
+        "next_due_at": "2026-09-24T03:15:00Z",
+        "started_at": "2026-09-24T03:00:48.139072Z",
         "status": "SOURCE_GAPS"
       },
       "gate": {
@@ -432,9 +432,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-09-24T02:45:47.422820Z",
+    "started_at": "2026-09-24T03:00:47.334013Z",
     "status": "SOURCE_GAPS",
-    "updated_at": "2026-09-24T02:45:50.330076Z"
+    "updated_at": "2026-09-24T03:02:12.896419Z"
   },
   "predictions": [
     {
@@ -1293,7 +1293,7 @@
   },
   "run": {
     "error_code": null,
-    "finished_at": "2026-09-24T02:03:13.865228Z",
+    "finished_at": "2026-09-24T03:02:12.733794Z",
     "phases": {
       "chart": {
         "status": "RECORDED"
@@ -1308,13 +1308,13 @@
         "status": "RECORDED"
       }
     },
-    "started_at": "2026-09-24T02:01:12.252598Z",
+    "started_at": "2026-09-24T03:00:50.203828Z",
     "status": "COMPLETE_WITH_SOURCE_GAPS"
   },
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-09-24T02:57:17.144562Z",
+      "observed_at": "2026-09-24T03:02:19.787213Z",
       "sha256": "08b8c92c32e9b342ed054bda02994932d79575353d89008ddc9470ab19c36d60"
     },
     "canonical_chart": "BLOCK",
