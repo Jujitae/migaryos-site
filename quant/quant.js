@@ -185,7 +185,7 @@ function boot() {
     if (state.pairTarget && sourceOf(state.pairTarget).entity_id) params.set('pair_entity', sourceOf(state.pairTarget).entity_id);
     if (state.pairTarget && sourceOf(state.pairTarget).symbol) params.set('pair_symbol', sourceOf(state.pairTarget).symbol);
     params.set('family', state.family); params.set('period', state.period);
-    window.history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
+    window.history.replaceState(null, '', `${window.location.pathname}?${params.toString()}${window.location.hash}`);
     document.querySelectorAll('a[data-preserve-context]').forEach(link => {
       const href = new URL(link.getAttribute('href'), window.location.origin);
       for (const key of ['entity', 'symbol', 'pair_entity', 'pair_symbol']) { if (params.get(key)) href.searchParams.set(key, params.get(key)); else href.searchParams.delete(key); }
