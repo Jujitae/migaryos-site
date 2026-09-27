@@ -444,7 +444,7 @@
       for(const note of legacy.state.notes)append('legacy-workspace',el('p',note.text));
       if(!legacy.state.interests.length&&!legacy.state.saved.length&&!legacy.state.notes.length)append('legacy-workspace',empty(legacy.error||'이 브라우저의 이전 저장 자료가 없습니다.'));
     }
-    if(isAtlas){atlas=atlasModule.create({document:d,location,history,eventTarget,workspace,loadCatalogue,getView:()=>view,focusRecord:focus,renderEvidence:q=>{query=q;renderCards();renderRecords();renderMap();},now,staticOnly});query=atlas.route.q;}
+    if(isAtlas){atlas=atlasModule.create({document:d,location,history,eventTarget,workspace,loadCatalogue,getView:()=>view,getEvidenceState:()=>evidenceState,focusRecord:focus,renderEvidence:q=>{query=q;renderCards();renderRecords();renderMap();},now,staticOnly});query=atlas.route.q;}
     renderWorkspace();return {load,focus,get atlas(){return atlas;},get view(){return view;},get workspace(){return workspace;},get search(){return searchBox;},destroy(){destroyed=true;clearTimer(reloadTimer);requestController?.abort();visibilityTarget.removeEventListener?.('visibilitychange',visibilityChanged);questionDraft={id:null,text:''};noteDraft=null;atlas?.destroy();searchBox?.destroy();clearTimer(expiryTimer);workspace?.destroy();loadId++;chatId++;clearEvidence();}};
   }
   function validateResearch(request){return !!(request&&request.schema==='wie.quant-request/1'&&['stat-arb','vol-surface','factor-decomp','insider-cluster'].includes(request.family)&&request.dataset?.schema==='wie.quant-dataset/1'&&Array.isArray(request.dataset.rows)&&request.dataset.metadata&&request.config&&request.as_of!==undefined);}

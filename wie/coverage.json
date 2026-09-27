@@ -1,15 +1,15 @@
 {
-  "as_of": "2026-09-23T01:01:52.652014Z",
+  "as_of": "2026-09-27T13:02:28.423909Z",
   "counts": {
     "by_state": {
       "ACTIVE": 0,
-      "AWAITING_OUTCOME": 10,
+      "AWAITING_OUTCOME": 11,
       "NOT_COVERED": 0,
       "UNVERIFIABLE": 0,
       "WATCH": 4
     },
-    "companies": 10,
-    "entries": 14,
+    "companies": 11,
+    "entries": 15,
     "macro": 4
   },
   "entries": [
@@ -25,7 +25,7 @@
         "stale_after_data_days": 7
       },
       "freshness_state": "UNKNOWN",
-      "latest_record_as_of": "2026-09-23T01:01:09.427735Z",
+      "latest_record_as_of": "2026-09-27T11:02:02.579089Z",
       "name": "DGS10",
       "product_default_horizon": "next scheduled release or earnings event, at most 1 quarter (92 days)",
       "record_count": 1,
@@ -50,7 +50,7 @@
         {
           "kind": "official_public",
           "observed_at": null,
-          "sha256": "bcce53bfcf26c2f7a8a5a755c51149da66e12fd4d5b71cd233446c7cccad56fb",
+          "sha256": "fa63fae10f5d18fed0cc579efabbd28c44c92c38597e224b97a2ed6f65e2ce1d",
           "url": "https://fred.stlouisfed.org/series/DGS10"
         }
       ],
@@ -71,7 +71,7 @@
         "stale_after_data_days": 7
       },
       "freshness_state": "UNKNOWN",
-      "latest_record_as_of": "2026-09-23T01:01:09.427735Z",
+      "latest_record_as_of": "2026-09-27T11:02:02.579089Z",
       "name": "DGS2",
       "product_default_horizon": "next scheduled release or earnings event, at most 1 quarter (92 days)",
       "record_count": 1,
@@ -96,7 +96,7 @@
         {
           "kind": "official_public",
           "observed_at": null,
-          "sha256": "bef168641ab31762c44bf3a7bf1bae5606a288d79b8f9c9e4def8e6cb16971c8",
+          "sha256": "9400472b73a94aa7f802629b3b669a98e4253faaf83632077079a7e1953d041f",
           "url": "https://fred.stlouisfed.org/series/DGS2"
         }
       ],
@@ -117,7 +117,7 @@
         "stale_after_data_days": 62
       },
       "freshness_state": "UNKNOWN",
-      "latest_record_as_of": "2026-09-23T01:01:09.427735Z",
+      "latest_record_as_of": "2026-09-27T11:02:02.579089Z",
       "name": "M2SL",
       "product_default_horizon": "next scheduled release or earnings event, at most 1 quarter (92 days)",
       "record_count": 1,
@@ -163,7 +163,7 @@
         "stale_after_data_days": 14
       },
       "freshness_state": "UNKNOWN",
-      "latest_record_as_of": "2026-09-23T01:01:09.427735Z",
+      "latest_record_as_of": "2026-09-27T11:02:02.579089Z",
       "name": "WALCL",
       "product_default_horizon": "next scheduled release or earnings event, at most 1 quarter (92 days)",
       "record_count": 1,
@@ -188,7 +188,7 @@
         {
           "kind": "official_public",
           "observed_at": null,
-          "sha256": "4531ab61762ce0b76aad39c6bdfeb9045a4a1a2828e585a7c00647c54e80b0b2",
+          "sha256": "9115445d97d1587f7ace054d740461c10ef4a5585c8dfa1944ad6afeed35aa1b",
           "url": "https://fred.stlouisfed.org/series/WALCL"
         }
       ],
@@ -391,6 +391,73 @@
           "publication_date": "2026-08-06",
           "sha256": "04cc636210456fc5163996c546c38dd049e53b5f9ce59b8f824f1725b06afe11",
           "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001477333.json"
+        }
+      ],
+      "sources": [
+        "data.sec.gov"
+      ],
+      "supported_horizon": "next scheduled release or earnings event, at most 1 quarter (92 days)"
+    },
+    {
+      "class": "equity",
+      "coverage_state": "AWAITING_OUTCOME",
+      "entity_id": "SEC:CIK0001486957",
+      "forecast_forms": [
+        "event"
+      ],
+      "forecast_outcome_contract": "sealed registered XBRL threshold; next measured companyfacts outcome; unresolved is not scored",
+      "forecasts": 1,
+      "freshness_policy": {
+        "cadence": "per source update",
+        "stale_after_data_days": null
+      },
+      "freshness_state": "UNKNOWN",
+      "latest_record_as_of": "2026-09-25T00:02:38.298736Z",
+      "name": "BWX TECHNOLOGIES, INC.",
+      "product_default_horizon": "next scheduled release or earnings event, at most 1 quarter (92 days)",
+      "record_count": 2,
+      "records": [
+        "prediction-P-000055",
+        "source-P-000055"
+      ],
+      "region": "US",
+      "registered_horizons": [
+        {
+          "days": 201.99816783870372,
+          "record": "prediction-P-000055",
+          "within_default": false
+        }
+      ],
+      "resolved_outcomes": 0,
+      "rights": {
+        "derived_output": "ALLOW",
+        "embeddings": "ALLOW",
+        "export": "DENY",
+        "internal_storage": "ALLOW",
+        "llm_context": "ALLOW",
+        "paid_display": "ALLOW",
+        "public_display": "ALLOW",
+        "redistribution": "DENY"
+      },
+      "rights_status": "ALLOWED",
+      "source_refs": [
+        {
+          "attribution": "Source: U.S. Securities and Exchange Commission (SEC EDGAR)",
+          "data_date": "2026-03-31",
+          "kind": "official_public",
+          "observed_at": "2026-09-25T00:02:12.346439Z",
+          "publication_date": "2026-05-04",
+          "sha256": "0ee0a5c6c766192bdbba34d75126a2ad834c73767f2c233fca969a7d8c5698d5",
+          "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001486957.json"
+        },
+        {
+          "attribution": "Source: U.S. Securities and Exchange Commission (SEC EDGAR)",
+          "data_date": "2026-03-31",
+          "kind": "official_public",
+          "observed_at": "2026-09-25T00:02:12.346439Z",
+          "publication_date": "2026-05-04",
+          "sha256": "0ee0a5c6c766192bdbba34d75126a2ad834c73767f2c233fca969a7d8c5698d5",
+          "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001486957.json"
         }
       ],
       "sources": [
@@ -873,7 +940,7 @@
     "note": "D4 source-bound first coverage; catalogue presence grants no coverage"
   },
   "projection_status": "VERIFIED",
-  "published_at": "2026-09-23T01:43:15.413075Z",
+  "published_at": "2026-09-27T13:55:48.765692Z",
   "schema": "migaryos.first-coverage-manifest/1",
-  "snapshot_sha256": "49c9a898c1f3881a1a69ba2ff558a91919fa2427075ed15670db694b540d4964"
+  "snapshot_sha256": "365ba1ea37d20b3426b379a320885239f26311ba7a853890d2e663168088a9f7"
 }

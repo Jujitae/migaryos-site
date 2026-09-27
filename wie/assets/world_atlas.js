@@ -15,7 +15,7 @@
     const lookup=new Map();for(const target of items||[])for(const key of new Set([target.id,...target.codes].map(x=>String(x).toLowerCase())))lookup.set(key,(lookup.get(key)||0)+1);
     return view.records.filter(r=>r.entity_id===item.canonical||(!r.entity_id&&typeof r.symbol==='string'&&item.codes.some(code=>code.toLowerCase()===r.symbol.toLowerCase())&&lookup.get(r.symbol.toLowerCase())===1));
   }
-  function create({document:d,location,history=root.history,eventTarget=root,workspace,loadCatalogue,getView,focusRecord,renderEvidence,now=Date.now,staticOnly=false}){
+  function create({document:d,location,history=root.history,eventTarget=root,workspace,loadCatalogue,getView,getEvidenceState=()=> 'unavailable',focusRecord,renderEvidence,now=Date.now,staticOnly=false}){
     const $=id=>d.getElementById(id),el=(tag,value,cls)=>{const n=d.createElement(tag);if(value!==undefined)n.textContent=String(value);if(cls)n.className=cls;return n;};
     const button=(label,fn,cls)=>{const b=el('button',label,cls);b.type='button';b.addEventListener('click',fn);return b;};
     const svg=id=>{const n=d.createElementNS('http://www.w3.org/2000/svg','svg'),u=d.createElementNS('http://www.w3.org/2000/svg','use');u.setAttribute('href','#i-'+id);n.setAttribute('aria-hidden','true');n.append(u);return n;};
@@ -46,7 +46,9 @@
       if(page==='record'){
         const row=getView()?.byId.get(route.focus);
         if(row&&!restoring){restoring=true;focusRecord(row.id,false);restoring=false;}
-        if(!row){$('lens-content').replaceChildren(el('h1','이 기록은 현재 표시할 수 없습니다.'),el('p','표시 기한이 지났거나 현재 공개 범위에서 확인되지 않습니다. 원문 내용을 대신 추정하지 않습니다.','empty'),button('기록 다시 확인',()=>root.WIEWorld?.load()));$('decision-content').replaceChildren();}
+        if(!row){const loading=getEvidenceState()==='loading';$('lens-content').replaceChildren(...(loading?
+          [el('h1','공개 기록을 불러오는 중입니다.'),el('p','기록의 근거와 현재 상태를 확인하고 있습니다.','empty')]:
+          [el('h1','이 기록은 현재 표시할 수 없습니다.'),el('p','표시 기한이 지났거나 현재 공개 범위에서 확인되지 않습니다. 원문 내용을 대신 추정하지 않습니다.','empty'),button('기록 다시 확인',()=>root.WIEWorld?.load())]));$('decision-content').replaceChildren();}
       }
       updateAccount();
     }
