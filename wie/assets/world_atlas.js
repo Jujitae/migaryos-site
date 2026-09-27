@@ -61,8 +61,8 @@
       if(items===null){host.append(el('p',failed?'대상 목록을 불러오지 못했습니다.':'대상 목록을 불러오는 중입니다.','empty'));if(failed)host.append(button('대상 목록 다시 확인',refreshCatalogue));return;}
       const choices=['전체',...new Set(items.map(x=>x.type))];for(const name of choices){const b=button(name,()=>{filter=name;showAll=false;renderCatalogue();});b.setAttribute('aria-pressed',String(name===filter));filters.append(b);}
       let chosen=route.q?root.WIESearch.rankItems(items,route.q,{limit:50}):items;chosen=chosen.filter(x=>filter==='전체'||x.type===filter);
-      $('catalogue-caption').textContent=route.q?'등록 대상 '+chosen.length+'개 · 공개 기록은 아래에서 확인하세요.':'등록 대상 '+items.length+'개 · 관측 범위는 대상마다 다릅니다.';
-      for(const item of (showAll||route.q?chosen:chosen.slice(0,8)))host.append(row(item));if(!showAll&&!route.q&&chosen.length>8)host.append(button('등록 대상 '+chosen.length+'개 모두 보기',()=>{showAll=true;renderCatalogue();},'catalogue-more'));if(!chosen.length)host.append(el('p','일치하는 등록 대상이 없습니다. 다른 이름이나 코드를 입력해 보세요.','empty'));
+      $('catalogue-caption').textContent=route.q?'대표 대상 중 '+chosen.length+'개 · 더 넓은 카탈로그는 상단 검색에서 찾으세요.':'이 화면의 대표 대상 '+items.length+'개 · 더 많은 이름과 종목은 상단 검색에서 찾으세요. 대상마다 관측 범위가 다릅니다.';
+      for(const item of (showAll||route.q?chosen:chosen.slice(0,8)))host.append(row(item));if(!showAll&&!route.q&&chosen.length>8)host.append(button('대표 대상 '+chosen.length+'개 모두 보기',()=>{showAll=true;renderCatalogue();},'catalogue-more'));if(!chosen.length)host.append(el('p','이 화면의 대표 대상에는 없습니다. 상단 검색에서 이름이나 종목 코드를 찾아보세요.','empty'));
       host.append(el('p','등록 여부는 실시간 관측이나 예측 제공을 뜻하지 않습니다.','catalogue-summary'));
     }
     function renderEntity(){const host=$('atlas-entity-content');host.replaceChildren();const item=resolveEntity(items,route.entity);
