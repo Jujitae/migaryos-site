@@ -145,9 +145,13 @@ export function forecastLane(query, registry, snapshot, asOf, {rights = null} = 
   const records = visibleAsOf(presentRecords(recordsFromSnapshot(snapshot, {rights}), {paid: false}), asOf || snapshot?.observed_at);
   const byId = new Map(records.map(r => [r.id, r]));
   const symbols = new Set([item.id, ...(item.wie_symbols || [])].map(s => s.toUpperCase()));
+  const issuerRecords = new Set(item.wie_record_ids || []);
   const boundary = Date.parse(asOf || (snapshot && snapshot.observed_at) || '');
   return records.filter(r => (r.type === 'prediction' || r.type === 'chart_forecast')
-      && (item.entity_id && r.entity_id === item.entity_id || r.symbol && symbols.has(String(r.symbol).toUpperCase()) || (r.source_refs || []).some(s => s.provider_symbol && symbols.has(String(s.provider_symbol).toUpperCase())))
+      && (item.entity_id && r.entity_id === item.entity_id ||
+        item.issuer_id && r.entity_id === item.issuer_id && issuerRecords.has(r.id) ||
+        r.symbol && symbols.has(String(r.symbol).toUpperCase()) ||
+        (r.source_refs || []).some(s => s.provider_symbol && symbols.has(String(s.provider_symbol).toUpperCase())))
       && Number.isFinite(Date.parse(r.as_of)) && Date.parse(r.as_of) <= boundary)
     .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
     .map(r => {
@@ -155,7 +159,8 @@ export function forecastLane(query, registry, snapshot, asOf, {rights = null} = 
       const o = link ? byId.get(link.to) : null;
       const visibleOutcome = o && Number.isFinite(Date.parse(o.observed_at)) && Date.parse(o.observed_at) <= boundary ? o : null;
       const status = effectiveStatus(r, asOf || snapshot.observed_at, byId);
-      return {id: r.id, title: r.title, statement: r.summary, issued_at: r.created_at, expires_at: r.valid_until,
+      return {id: r.id, title: r.title, scope: item.issuer_id && r.entity_id === item.issuer_id ? 'ISSUER' : 'LISTING',
+        statement: r.summary, issued_at: r.created_at, expires_at: r.valid_until,
         outcome: visibleOutcome ? visibleOutcome.outcome : null, outcome_label: visibleOutcome ? (OUTCOME_LABELS[visibleOutcome.outcome] || visibleOutcome.outcome) : null,
         observed_at: visibleOutcome ? visibleOutcome.observed_at : null, status, status_label: STATUS_LABELS[status] || status,
         probability_label: typeof r.probability === 'number' ? (r.probability * 100).toFixed(1) + '% (등록값)' : '미설정',
@@ -423,7 +428,7 @@ export function boot(window) {
     if (!entries.length) lane.append(el('p', '이 대상에 발행된 WIE 예측이 없습니다. 미발행은 부정 판단이 아닙니다.', 'muted'));
     for (const e of entries) {
       const d = el('details');
-      d.append(el('summary', e.title + ' · ' + e.status_label + ' · ' + e.probability_label));
+      d.append(el('summary', (e.scope === 'ISSUER' ? '회사 단위 · ' : '') + e.title + ' · ' + e.status_label + ' · ' + e.probability_label));
       d.append(el('p', e.statement));
       const dl = el('dl');
       for (const [k, v] of [['발행 시각', e.issued_at], ['기한', e.expires_at], ['결과', e.outcome_label || '아직 기록 없음'], ['결과 관측 시각', e.observed_at || '—']]) { dl.append(el('dt', k), el('dd', v || '—')); }
