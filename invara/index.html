@@ -2,12 +2,12 @@
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>INVARA 0.1.3 — MIGARYOS</title>
+<title>INVARA 0.3.0 — MIGARYOS</title>
 <meta name="description" content="You don&#x27;t need to read the code to accept an agent&#x27;s work blindly. Seal the acceptance conditions before the work. Judge them afterwards.">
 <meta name="color-scheme" content="dark">
 <link rel="icon" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221000%22%20height%3D%221000%22%20viewBox%3D%220%200%20100%20100%22%3E%0A%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%23111214%22%2F%3E%0A%3Crect%20x%3D%2219.000%22%20y%3D%2221.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%28-22%2044.000%2037.000%29%22%2F%3E%0A%3Crect%20x%3D%2231.000%22%20y%3D%2247.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%2822%2056.000%2063.000%29%22%2F%3E%0A%3C%2Fsvg%3E">
 <link rel="canonical" href="https://migaryos.com/invara/">
-<meta property="og:title" content="INVARA 0.1.3 — MIGARYOS">
+<meta property="og:title" content="INVARA 0.3.0 — MIGARYOS">
 <meta property="og:description" content="You don&#x27;t need to read the code to accept an agent&#x27;s work blindly. Seal the acceptance conditions before the work. Judge them afterwards.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://migaryos.com/invara/">
@@ -100,7 +100,7 @@ h1{font-size:clamp(1.7rem,5.2vw,3.1rem);line-height:1.22;margin:0 0 1.1rem;lette
 h2{font:600 .7rem/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:4.5rem 0 1.1rem;
   display:flex;align-items:center;gap:.8rem}
 h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
-#install-heading,#pro-heading{scroll-margin-top:4.5rem}
+#install-heading,#pro-heading,#free,#sample{scroll-margin-top:4.5rem}
 
 /* ---- hero ---------------------------------------------------------- */
 .hero{position:relative;z-index:2;min-height:min(92vh,780px);display:flex;flex-direction:column;justify-content:center;
@@ -336,7 +336,7 @@ a{color:inherit}
   <span class="sp"></span>
   <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>13</b><em class="tel"> · 실측 2026-09-28</em></span>
   <span class="sp"></span>
-  <span class="stat opt" aria-hidden="true"><u>원장</u><b>404,865</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>5,597</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>57</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
+  <span class="stat opt" aria-hidden="true"><u>원장</u><b>404,960</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>5,597</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>57</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
 </div>
 <header class="wrap hero">
   <span class="rdg tl" aria-hidden="true"></span><span class="rdg tr" aria-hidden="true"></span>
@@ -345,10 +345,10 @@ a{color:inherit}
   <p class="lede">You don&#x27;t need to read the code to accept an agent&#x27;s work blindly. Seal the acceptance conditions before the work. Judge them afterwards.</p>
   <p><a class="cta" href="#install-heading">Start Free · install</a>
 <a class="ghost" href="#pro-heading">What Pro adds</a>
-<span class="hint">Public 0.1.3 · no email required</span></p>
+<span class="hint">INVARA 0.3.0 · no email required</span></p>
 </header>
 <main class="wrap">
-<section aria-labelledby="install-heading">
+<section id="free" aria-labelledby="install-heading">
 <h2 id="install-heading">Start now</h2>
 <div class="deck">
   <section class="card ev">
@@ -376,13 +376,13 @@ pip install invara">Copy Codex / shell commands</button></p>
 <h2 id="flow-heading">One simple acceptance check</h2>
 <ol class="trust"><li><b>1.</b><span>Before work: define what must stay true</span></li><li><b>2.</b><span>Seal the acceptance conditions</span></li><li><b>3.</b><span>Let the coding agent work</span></li><li><b>4.</b><span>Judge the observable evidence</span></li><li><b>5.</b><span>Receive the exact verdict</span></li></ol>
 <p class="lede">Exact verdict: <b>PASS</b> · <b>BLOCK</b> · <b>UNVERIFIABLE</b> · <b>HUMAN_REVIEW</b></p>
-<p class="note">You asked an agent to optimize a parser without changing its tests. The agent edits the protected test file. INVARA returns BLOCK.</p>
+<p class="note" id="sample">You asked an agent to optimize a parser without changing its tests. The agent edits the protected test file. INVARA returns BLOCK.</p>
 </section>
 
 <section class="offer invara-plans" aria-labelledby="pro-heading">
   <span class="free">Free first · Pro optional</span>
   <h2 id="pro-heading">Know what you get before you upgrade.</h2>
-  <p class="sub">Free: install the public 0.1.3 tool through Claude Code or a shell-capable agent, seal your acceptance conditions, and receive an exact verdict.</p>
+  <p class="sub">Free: install the current public tool through Claude Code or a shell-capable agent, seal your acceptance conditions, and receive an exact verdict.</p>
   <p class="sub">Pro adds Codex work-scope checks and continuing local records for one customer&#x27;s Windows installation.</p>
   <p class="price">USD 14.99 / month</p>
   <p class="terms">Renews until cancelled. Tax may apply; Codex and API costs are separate. The Pro page explains the agent-assisted Paddle subscription and installation requirements.</p>
@@ -391,7 +391,7 @@ pip install invara">Copy Codex / shell commands</button></p>
 
 <section aria-labelledby="trust-heading">
 <h2 id="trust-heading">Evidence you can inspect</h2>
-<ul class="trust"><li>Public INVARA 0.1.3 · wheel SHA256 d8507d777ec01134cdd111441961e945e42b7889790721586e633e6791432d8a</li><li>Zero runtime dependencies and no model in the verdict path</li><li>Verdicts use observable file bytes and command exit codes</li><li>Append-only hash-chain verdict history with replay</li><li>Six MCP tools · public Windows and independent Linux fresh-install verification</li></ul>
+<ul class="trust"><li>Historical 0.1.3 release proof · wheel SHA256 d8507d777ec01134cdd111441961e945e42b7889790721586e633e6791432d8a</li><li>Zero runtime dependencies and no model in the verdict path</li><li>Verdicts use observable file bytes and command exit codes</li><li>Append-only hash-chain verdict history with replay</li><li>Six MCP tools · public Windows and independent Linux fresh-install verification</li></ul>
 <p class="terms">INVARA verifies declared constraints against observable evidence. It does not prove general software correctness, find bugs, perform a security audit, prevent hallucinations, or autonomously authorize work.</p>
 <p><a class="ghost github_or_docs_click" id="github_or_docs_click" href="https://github.com/Jujitae/invara">Read the public README and docs</a></p>
 </section>
