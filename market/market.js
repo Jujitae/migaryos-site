@@ -396,6 +396,9 @@ export function boot(window) {
       }).catch(() => { if (request === chartRequest) { host.replaceChildren(el('p', 'KR_PROVIDER_UNAVAILABLE · 한국 시장 자료 제공자에 연결하지 못했습니다.', 'notice')); } });
     } else if (providerRoute.status === 'PUBLIC_GAP') {
       widgets.append(el('p', 'SPX 공개 차트는 현재 별도 제공 경로를 확인하지 못했습니다. SPY·선물·CFD를 SPX로 대체하지 않습니다.', 'notice'));
+      const source = el('a', 'S&P Dow Jones Indices에서 S&P 500 공식 자료 확인');
+      source.href = 'https://www.spglobal.com/spdji/en/indices/equity/sp-500/';
+      source.target = '_blank'; source.rel = 'noopener noreferrer'; widgets.append(source);
     } else if (selected.tradingview && providerRoute.status === 'ROUTED') {
       widgets.append(el('p', '공식 TradingView 차트를 선택 종목의 거래소·심볼로 불러옵니다. 차트 내부의 실시간·지연 표시는 TradingView와 거래소 기준입니다.', 'muted'));
       const chartHost = el('div', undefined, 'widget-host widget-host-advanced');

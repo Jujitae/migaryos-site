@@ -218,7 +218,7 @@
         const next=el('section',undefined,'rail-section');next.append(el('h3','다음 확인'),
           el('p',nextQuestion),
           ...(founder?[link('조건부 시나리오 · 비공개','/founder/?scenario_focus='+encodeURIComponent(r.id)+'#private-scenarios')]:[]),
-          link('학습·실험 비교','/quant/?focus='+encodeURIComponent(r.id)+'#adaptive-audit'));rail.append(summary,next);}
+          link('Quant 연구 요청 만들기','/quant/?focus='+encodeURIComponent(r.id)+'#research'));rail.append(summary,next);}
       parent.append(el('h2',r.title,'lens-title'),el('span',TYPES[r.type]||r.type,'badge'),el('span',r.synthetic||view.model.synthetic?'합성 자료 · 실세계 증거 아님':r.status||'상태 미확인','badge hypothesis'));
       if(r.type==='claim'||r.type==='event')parent.append(el('p','이 주장이 관측됐다는 기록이며, 내용이 참이라는 확인은 아닙니다.','muted'));
       parent.append(el('p',r.summary||r.content||'현재 기록에 별도 요약이 없습니다.','lens-summary'));
@@ -338,7 +338,7 @@
           ['학습 자료 기준',time(model.training?.cutoff)],['스냅샷 ID',model.training?.snapshot_id],['생성 시각',time(model.created_at)]]);parent.append(section);
       }
       for(const state of arr(projection.states))fieldList(parent,[['상태 ID',state.state_id],['상태 자료 시각',time(state.as_of)],['물리적 발생률','관측 과정과 분리해 식별하지 못함']]);
-      parent.append(link('Quant에서 학습 비교 보기','/quant/#adaptive-audit'));parent.setAttribute('tabindex','-1');parent.focus();
+      parent.append(link('학습 기록으로 돌아가기','/founder/#adaptive-learning'));parent.setAttribute('tabindex','-1');parent.focus();
     }
     function renderFounder(){if(!founder||!view)return;
       clearTimer(adaptiveTimer);const expiry=renderAdaptive(d,$('adaptive-content'),view.payload.adaptive,{now,onInspect:showAdaptiveLens});
