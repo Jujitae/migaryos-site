@@ -93,6 +93,7 @@ h1{font-size:clamp(1.7rem,5.2vw,3.1rem);line-height:1.22;margin:0 0 1.1rem;lette
 h2{font:600 .7rem/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:4.5rem 0 1.1rem;
   display:flex;align-items:center;gap:.8rem}
 h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
+#install-heading{scroll-margin-top:4.5rem}
 
 /* ---- hero ---------------------------------------------------------- */
 .hero{position:relative;z-index:2;min-height:min(92vh,780px);display:flex;flex-direction:column;justify-content:center;
@@ -298,7 +299,7 @@ code{font:.85em var(--mono);color:var(--ev)}
 footer{position:relative;z-index:2;margin-top:5rem;padding-top:1.4rem;border-top:1px solid var(--line);
   color:var(--faint);font-size:.79rem;max-width:60rem;margin-inline:auto}
 a{color:inherit}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head><body>
 <main class="wrap">
