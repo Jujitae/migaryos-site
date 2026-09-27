@@ -155,6 +155,17 @@ function boot() {
   const byId = id => document.getElementById(id);
   const state = {family: 'factor-decomp', period: '1Y', mode: 'public', target: null, pairTarget: null, config: {}, request: null, result: null};
   const searchInput = byId('quant-target-input');
+  const focusId = clean(new URLSearchParams(window.location.search).get('focus'));
+  if (focusId && focusId.length <= 128) {
+    const note = byId('quant-focus-note');
+    if (note) {
+      const back = document.createElement('a');
+      back.href = '/wie/?focus=' + encodeURIComponent(focusId);
+      back.textContent = 'WIE 원래 기록 보기';
+      note.append(document.createTextNode(`WIE 기록 ${focusId}에서 왔습니다. 이 기록의 문장은 수치 연구 자료로 자동 변환되지 않습니다. 연구할 대상을 다시 선택하세요. `), back);
+      note.hidden = false;
+    }
+  }
 
   function urlContext() {
     const params = new URLSearchParams(window.location.search);
