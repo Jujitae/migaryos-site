@@ -13,7 +13,10 @@
   function resolveEntity(items,canonical){const matches=(items||[]).filter(x=>x.canonical===canonical);return matches.length===1&&matches[0].canonicalMatchCount===1?matches[0]:null;}
   function entityRecords(view,item,items){if(!view||!item||resolveEntity(items,item.canonical)!==item)return [];
     const lookup=new Map();for(const target of items||[])for(const key of new Set([target.id,...target.codes].map(x=>String(x).toLowerCase())))lookup.set(key,(lookup.get(key)||0)+1);
-    return view.records.filter(r=>r.entity_id===item.canonical||(!r.entity_id&&typeof r.symbol==='string'&&item.codes.some(code=>code.toLowerCase()===r.symbol.toLowerCase())&&lookup.get(r.symbol.toLowerCase())===1));
+    const issuer=item.source?.issuer_id,linked=new Set(Array.isArray(item.source?.wie_record_ids)?item.source.wie_record_ids:[]);
+    return view.records.filter(r=>r.entity_id===item.canonical||
+      (issuer&&r.entity_id===issuer&&linked.has(r.id))||
+      (!r.entity_id&&typeof r.symbol==='string'&&item.codes.some(code=>code.toLowerCase()===r.symbol.toLowerCase())&&lookup.get(r.symbol.toLowerCase())===1));
   }
   function create({document:d,location,history=root.history,eventTarget=root,workspace,loadCatalogue,getView,getEvidenceState=()=> 'unavailable',focusRecord,renderEvidence,now=Date.now,staticOnly=false}){
     const $=id=>d.getElementById(id),el=(tag,value,cls)=>{const n=d.createElement(tag);if(value!==undefined)n.textContent=String(value);if(cls)n.className=cls;return n;};
@@ -73,7 +76,7 @@
       actions.append(save,link('Market에서 보기','/market/?entity='+encodeURIComponent(item.canonical)+'&symbol='+encodeURIComponent(item.id)));heading.append(identity,actions);host.append(heading);
       const grid=el('div',undefined,'atlas-detail-grid'),main=el('div',undefined,'entity-reading'),aside=el('aside',undefined,'atlas-companion'),view=getView(),records=entityRecords(view,item,items);
       main.append(el('h2','연결된 공개 기록'),el('p',view?'현재 공개 범위에서 이 대상과 명시적으로 연결된 관측과 예측입니다.':'공개 기록을 현재 확인할 수 없습니다. 등록된 대상 정보와 관심목록은 계속 사용할 수 있습니다.'));
-      const evidence=el('div',undefined,'evidence-list');for(const r of records){const b=button('',()=>openRecord(r.id));b.append(el('strong',r.title),el('small',(r.type||'기록')+' · '+(r.status||'상태 미확인')));evidence.append(b);}main.append(evidence);
+      const evidence=el('div',undefined,'evidence-list');for(const r of records){const b=button('',()=>openRecord(r.id));const scope=r.entity_id===item.source?.issuer_id?'회사 단위 · ':'';b.append(el('strong',r.title),el('small',scope+(r.type||'기록')+' · '+(r.status||'상태 미확인')));evidence.append(b);}main.append(evidence);
       if(!records.length)main.append(el('p',view?'현재 표시 범위에 연결된 근거가 없습니다. 자료가 없다는 사실을 변화가 없다는 뜻으로 해석하지 마세요.':'표시 기한 또는 연결 상태를 확인한 뒤 기록을 다시 불러와 주세요.','empty'),button('공개 기록 다시 확인',()=>root.WIEWorld?.load()));
       aside.append(el('h2','이 대상의 범위'),el('p','등록 대상 · 탐색 가능'),el('p','관측·예측·결과는 연결된 기록이 있을 때만 표시합니다. 시세와 수익률을 추정하지 않습니다.'),el('h3','다음 확인'),link('관측·학습 현황','/wie/status/'),link('연결된 세계 탐색','/loop'),button('내 메모 남기기',()=>navigate({view:'notes'})));
       grid.append(main,aside);host.append(grid);
