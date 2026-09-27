@@ -2,13 +2,13 @@
 <html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MIGARYOS — 되돌릴 수 없어지기 전에, 결정을 검토 가능하게 만듭니다.</title>
-<meta name="description" content="제품은 셋입니다. 하나는 결정이 굳기 전에 그 결정 자체를 감사하고, 하나는 세상이 움직인 뒤에 증거와 반대증거를 구조로 남기고, 하나는 이미 쌓인 코드의 기초를 재어서 보여줍니다.">
+<title>MIGARYOS — AI의 ‘완료’를 확인하고, 세계의 변화를 근거로 읽습니다.</title>
+<meta name="description" content="코드를 맡겼다면 INVARA로 약속한 조건이 지켜졌는지 확인하세요. 기업과 사건이 궁금하다면 WIE에서 공개 기록과 출처를 따라가세요.">
 <meta name="color-scheme" content="dark">
 <link rel="icon" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221000%22%20height%3D%221000%22%20viewBox%3D%220%200%20100%20100%22%3E%0A%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%23111214%22%2F%3E%0A%3Crect%20x%3D%2219.000%22%20y%3D%2221.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%28-22%2044.000%2037.000%29%22%2F%3E%0A%3Crect%20x%3D%2231.000%22%20y%3D%2247.500%22%20width%3D%2250.000%22%20height%3D%2231.000%22%20rx%3D%2215.500%22%20ry%3D%2215.500%22%20fill%3D%22none%22%20stroke%3D%22%23F6F3ED%22%20stroke-width%3D%2210.500%22%20stroke-linejoin%3D%22round%22%20transform%3D%22rotate%2822%2056.000%2063.000%29%22%2F%3E%0A%3C%2Fsvg%3E">
 <link rel="canonical" href="https://migaryos.com/">
-<meta property="og:title" content="MIGARYOS — 되돌릴 수 없어지기 전에, 결정을 검토 가능하게 만듭니다.">
-<meta property="og:description" content="제품은 셋입니다. 하나는 결정이 굳기 전에 그 결정 자체를 감사하고, 하나는 세상이 움직인 뒤에 증거와 반대증거를 구조로 남기고, 하나는 이미 쌓인 코드의 기초를 재어서 보여줍니다.">
+<meta property="og:title" content="MIGARYOS — AI의 ‘완료’를 확인하고, 세계의 변화를 근거로 읽습니다.">
+<meta property="og:description" content="코드를 맡겼다면 INVARA로 약속한 조건이 지켜졌는지 확인하세요. 기업과 사건이 궁금하다면 WIE에서 공개 기록과 출처를 따라가세요.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://migaryos.com/">
 <style>
@@ -128,6 +128,45 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 .bar::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,
   rgba(38,45,66,.9) 0 1px,transparent 1px 10%)}
 
+/* Root is a product entrance. Keep both working paths above the operational
+   ledger, and show the input and result without loading two nested apps. */
+.root-hero{position:relative;z-index:2;padding-top:7rem;padding-bottom:1.5rem}
+.root-hero h1{max-width:52rem;font-size:clamp(2rem,4.2vw,3.7rem);line-height:1.18;margin:0 0 1rem}
+.root-hero>.lede{max-width:52rem;margin-bottom:2.5rem}
+.root-products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.root-product{display:flex;flex-direction:column;min-width:0;padding:1.65rem;
+  border:1px solid var(--line2);background:rgba(10,12,20,.94)}
+.root-product.invara{border-top:2px solid var(--gl)}
+.root-product.wie{border-top:2px solid var(--ev)}
+.root-product .audience{font-size:.75rem;color:var(--dim);margin:0 0 .35rem}
+.root-product h2{display:block;font-size:clamp(1.35rem,2vw,1.8rem);font-weight:650;
+  line-height:1.3;letter-spacing:-.025em;color:var(--ink);text-transform:none;margin:.15rem 0 .45rem}
+.root-product h2::after{display:none}
+.root-product .outcome{font-size:.94rem;color:var(--dim);margin:0 0 1.25rem}
+.root-example{border-top:1px solid var(--line2);padding-top:1rem;margin-top:auto}
+.root-example .example-label{font:.66rem/1.5 var(--mono);letter-spacing:.08em;
+  color:var(--dim);margin:0 0 .7rem}
+.root-example dl{display:grid;grid-template-columns:3.4rem minmax(0,1fr);
+  gap:.35rem .65rem;margin:0 0 1.25rem;font-size:.88rem}
+.root-example dt{color:var(--faint)}
+.root-example dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.root-example dd strong{color:var(--ev)}
+.root-product.invara .root-example dd strong{color:var(--gl)}
+.root-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.65rem 1rem;margin:0}
+.root-actions .cta{font-size:.86rem;padding:.7rem 1rem}
+.root-actions .next{font-size:.82rem;color:var(--dim);text-underline-offset:.2em}
+.root-secondary{margin-top:4.5rem}
+.root-secondary h2{margin-top:3rem}
+.root-scope{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem;
+  color:var(--dim);font-size:.88rem}
+.root-scope p{margin:.3rem 0}
+.root-scope b{color:var(--ink)}
+.root-links{display:flex;flex-wrap:wrap;gap:.5rem 1.3rem;margin:1.4rem 0 0;
+  font-size:.84rem;color:var(--dim)}
+.root-links a{text-underline-offset:.2em}
+@media(max-width:760px){.root-hero{padding-top:5.2rem}.root-products{grid-template-columns:1fr}
+  .root-product{padding:1.2rem}.root-scope{grid-template-columns:1fr}}
+
 /* ---- live strip ---------------------------------------------------- */
 .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:1px;background:var(--line);
   border:1px solid var(--line);margin:0}
@@ -206,7 +245,7 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 
 /* ---- trust ---------------------------------------------------------- */
 ul.trust{list-style:none;padding:0;margin:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
-ul.trust li{background:var(--bg2);padding:1.15rem 1.1rem;min-width:0;overflow-wrap:anywhere;word-break:break-word}
+ul.trust li{background:var(--bg2);padding:1.15rem 1.1rem}
 ul.trust b{display:block;font-size:.95rem;margin-bottom:.28rem}
 ul.trust span{color:var(--dim);font-size:.86rem}
 ol.fields{color:var(--dim);padding-left:1.2rem;margin:0;font-size:.9rem}
@@ -246,79 +285,63 @@ a{color:inherit}
 <rect width="100" height="100" fill="none"/>
 <rect x="19.000" y="21.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="currentColor" stroke-width="10.500" stroke-linejoin="round" transform="rotate(-22 44.000 37.000)"/>
 <rect x="31.000" y="47.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="currentColor" stroke-width="10.500" stroke-linejoin="round" transform="rotate(22 56.000 63.000)"/>
-</svg></span>MIGARYOS</a><a href="/invara/">INVARA</a><a href="/glitch/">GLITCH</a><a href="/wie/">WIE</a><a href="/loop.html" class="sec">LOOP</a><a href="/record/" class="sec">기록</a></nav>
+</svg></span>MIGARYOS</a><a href="/invara/">INVARA</a><a href="/wie/">WIE</a><a href="/glitch/">GLITCH</a><a href="/loop.html" class="sec">LOOP</a><a href="/record/" class="sec">기록</a></nav>
   <span class="sp"></span>
-  <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>4</b><em class="tel"> · 실측 2026-09-22</em></span>
+  <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>13</b><em class="tel"> · 실측 2026-09-27</em></span>
   <span class="sp"></span>
-  <span class="stat opt" aria-hidden="true"><u>원장</u><b>301,825</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>5,361</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>41</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
+  <span class="stat opt" aria-hidden="true"><u>원장</u><b>403,387</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>5,597</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>57</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
 </div>
-<header class="wrap hero">
-  <span class="rdg tl" aria-hidden="true"></span><span class="rdg tr" aria-hidden="true"></span>
-  <p class="kicker">MIGARYOS · Decision Intelligence</p>
-  <h1>되돌릴 수 없어지기 전에, 결정을 검토 가능하게 만듭니다.</h1>
-  <p class="lede">제품은 셋입니다. 하나는 결정이 굳기 전에 그 결정 자체를 감사하고, 하나는 세상이 움직인 뒤에 증거와 반대증거를 구조로 남기고, 하나는 이미 쌓인 코드의 기초를 재어서 보여줍니다.</p>
-  <div class="prob">
-    <b id="prob">62.0%</b>
-    <span>표본 케이스의 사전 봉인 확률 · 반대증거가 도착하면 움직입니다</span>
+<header class="wrap root-hero">
+  <h1>AI의 ‘완료’를 확인하고, 세계의 변화를 근거로 읽습니다.</h1>
+  <p class="lede">코드를 맡겼다면 INVARA로 약속한 조건이 지켜졌는지 확인하세요. 기업과 사건이 궁금하다면 WIE에서 공개 기록과 출처를 따라가세요.</p>
+  <div class="root-products" aria-label="지금 시작할 수 있는 제품">
+    <article class="root-product invara" id="invara">
+      <p class="audience">개발자와 AI 코딩 팀 · INVARA</p>
+      <h2>에이전트가 약속한 조건을 지켰나요?</h2>
+      <p class="outcome">작업 전에 정한 제약을 실제 변경과 대조해, 인수 가능한지 판정합니다.</p>
+      <div class="root-example">
+        <p class="example-label">동작 예시 · 가상 작업</p>
+        <dl><dt>입력</dt><dd>파서를 최적화하되 테스트 파일은 변경하지 말 것</dd>
+          <dt>관측</dt><dd>에이전트가 보호된 테스트 파일을 수정</dd>
+          <dt>결과</dt><dd><strong>BLOCK</strong> · 약속한 조건 위반</dd></dl>
+        <p class="root-actions"><a class="cta" href="/invara/#install-heading">INVARA 첫 검사 시작</a>
+          <a class="next" href="/invara/films/">작동 장면 보기</a></p>
+      </div>
+    </article>
+    <article class="root-product wie" id="wie">
+      <p class="audience">리서치와 판단 기록 · WIE</p>
+      <h2>무엇이 바뀌었고, 근거는 어디 있나요?</h2>
+      <p class="outcome">대상과 공개 기록을 찾고, 출처·예측·결과를 구분해 따라갑니다.</p>
+      <div class="root-example">
+        <p class="example-label">실제 공개 기록 · Cloudflare / NET</p>
+        <dl><dt>질문</dt><dd>다음 보고 분기 매출이 696,061,000달러 이상일까?</dd>
+          <dt>기록</dt><dd><strong>P-000037</strong> · SEC 원문과 봉인된 예측 연결</dd>
+          <dt>결과</dt><dd>현재 판정 상태는 기록 화면에서 확인</dd></dl>
+        <p class="root-actions"><a class="cta" href="/wie/?focus=prediction-P-000037">WIE 실제 기록 열기</a>
+          <a class="next" href="/wie/">다른 대상 직접 검색</a></p>
+      </div>
+    </article>
   </div>
-  <div class="bar"><i id="bar"></i></div>
-  <p class="lbl"><i class="pip ct" aria-hidden="true"></i>Sample evidence graph · 모형 · 반대증거 <b id="ctc">0</b></p>
-  <p><a class="cta" href="/glitch/">GLITCH 보기 — 결정 감사</a> <a class="cta ghost" href="/wie/">WIE 보기 — 증거 케이스</a></p>
 </header>
-<main class="wrap">
-<a class="proof" href="/case/">
-  <u>완성된 감사 실물</u>
-  <b>migaryos.com을 어디에 올릴 것인가</b>
-  <span>우리가 이번 주에 실제로 내린 결정입니다. 잘못 골랐으면 회사 메일이 끊겼습니다. 가상 사례가 아니라 실제 납품물 그대로입니다.</span>
-</a>
-
-<h2>먼저, 무료로</h2>
-<section class="offer">
-  <span class="free">무료 · 24시간</span>
-  <h3>Decision Snapshot</h3>
-  <p class="sub">결정 하나를 적어 보내주시면, 24시간 안에 1페이지로 돌려드립니다.</p>
-  <ul class="list"><li>당신의 결정을 정확한 한 문장으로 다시 씁니다</li><li>그 문장에서 무언가를 당연하게 두고 있는 자리를 짚고, 무엇을 전제했는지 묻습니다</li><li>지금 보이지 않는 사각지대 2개</li><li>이 결정을 가장 크게 뒤집을 테스트 1개</li></ul>
-  <p><a class="cta snap" href="mailto:hello@migaryos.com?subject=Decision%20Snapshot%20%EC%8B%A0%EC%B2%AD&amp;body=%EA%B2%B0%EC%A0%95%20%ED%95%9C%20%EB%AC%B8%EC%9E%A5%20%28%EC%A7%80%EA%B8%88%20%EA%B3%A0%EB%AF%BC%20%EC%A4%91%EC%9D%B8%20%EA%B2%83%EC%9D%84%20%ED%8E%B8%ED%95%98%EA%B2%8C%20%EC%A0%81%EC%96%B4%EC%A3%BC%EC%84%B8%EC%9A%94%29%3A%0A%0A%0A%EA%B8%B0%ED%95%9C%20%28%EC%9E%88%EC%9C%BC%EB%A9%B4%29%3A%0A%0A%EC%9D%B4%20%EA%B2%B0%EC%A0%95%EC%9D%98%20%EB%8B%B4%EB%8B%B9%EC%9E%90%20%28%EC%9E%88%EC%9C%BC%EB%A9%B4%29%3A%0A%0A%E2%80%94%2024%EC%8B%9C%EA%B0%84%20%EC%95%88%EC%97%90%201%ED%8E%98%EC%9D%B4%EC%A7%80%EB%A1%9C%20%ED%9A%8C%EC%8B%A0%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%20%EA%B2%B0%EC%A0%9C%20%EC%A0%95%EB%B3%B4%EB%8A%94%20%ED%95%84%EC%9A%94%20%EC%97%86%EC%8A%B5%EB%8B%88%EB%8B%A4.">결정 하나 보내기 — 무료</a></p>
-  <p class="nocatch">결제 정보 필요 없음 · 통화 요구 없음 · 거절해도 후속 연락 없음</p>
-  <p class="terms" style="margin:1rem 0 0">결정을 글로 받아 적어보면 대부분 그 자리에서 가정 하나가 드러납니다. 그게 유용하면 그때 유료를 얘기하면 되고, 아니면 안 하셔도 됩니다.</p>
-</section>
-
-<h2>두 제품</h2>
-<div class="deck">
-  <section class="card">
-    <p class="tag">GLITCH · 판매 중단</p>
-    <h3>GLITCH Decision Audit</h3>
-    <p class="sub">비싼 결정을 비싸지기 전에 검토 가능하게 만듭니다.</p>
-    <p class="price">판매 중단<small>제공 방식 재설계 중 · 접수 없음</small></p>
-    <p class="terms">₩1,500,000 · 5영업일 맞춤 감사는 지금 시장이 사는 형태가 아니었습니다. 접촉 50곳 · 도달 46곳 · 회신 0건이 그 방향을 가리켰습니다.</p>
-    <p><a class="cta" href="/glitch/">무엇을 만들었는지 보기</a></p>
-  </section>
-  <section class="card ev">
-    <p class="tag">WIE · Founding Pilot</p>
-    <h3>WIE Evidence Case — Founding Pilot</h3>
-    <p class="sub">중요한 판단을 &#x27;느낌&#x27;이 아니라, 나중에 검증 가능한 Evidence Case로 바꿉니다.</p>
-    <p class="price">₩330,000<small>Founding 10건 한정</small></p>
-    <p class="terms">48시간 (완전한 intake 접수 후) · 비동기 리포트 + 1회 수정</p>
-    <p><a class="cta ghost" href="/wie/">Evidence Case 자세히 보기</a></p>
-  </section>
-</div>
-
-<h2>지금 이 순간의 원장</h2>
-<div class="strip"><div class="cell"><u>관측 원장</u><b>301,825</b><i>mentions</i></div><div class="cell"><u>추적 엔티티</u><b>5,361</b><i>entities</i></div><div class="cell"><u>해시체인</u><b>OK</b><i>verified</i></div><div class="cell"><u>봉인된 예측</u><b>41</b><i>sealed</i></div><div class="cell w"><u>닫힌 루프</u><b>4</b><i>closed</i></div></div>
-<p class="note">닫힌 루프 4건. 반올림하지도, 다르게 부르지도 않은 숫자입니다. 봉인한 예측을 결과로 채점해 끝까지 간 사례가 그만큼이고, 예측이 틀려도 루프는 닫힙니다 — 닫히는 조건은 맞히는 것이 아니라 판정되는 것입니다. 봉인된 예측 41건 중 34건이 아직 열려 있고, 가장 가까운 기한은 2026-09-21입니다.
-<br><span style="color:var(--faint)">실측 2026-09-22 14:01 KST · 이 표의 숫자는 빌드 시점에 원장에서 직접 읽은 값입니다. 손으로 적은 칸도, 추정으로 채운 칸도 없습니다.</span></p>
-
-<h2>제품이 되는 루프</h2>
-<div class="rail"><div class="step"><u>EVIDENCE</u><b>증거</b><i>주장을 지지하는 것</i></div><div class="step"><u>COUNTER</u><b>반대증거</b><i>의도적으로 수집한다</i></div><div class="step"><u>PROBABILITY</u><b>확률 갱신</b><i>움직인 이유를 남긴다</i></div><div class="step"><u>DECISION</u><b>판단 변경</b><i>무엇이 바뀌었는가</i></div><div class="step"><u>OUTCOME</u><b>결과 감사</b><i>봉인한 기준으로 채점</i></div></div>
-
-<h2>무엇을 보장하는가</h2>
-<ul class="trust"><li><b>증거와 반대증거</b><span>지지하는 근거만 모으지 않습니다. 반대증거를 의도적으로 수집해 같은 무게로 기록합니다.</span></li><li><b>명시적 무효화 조건</b><span>무엇이 나오면 이 판단을 폐기할지 사전에 적습니다. 사후에 고칠 수 없습니다.</span></li><li><b>사람이 통과시키는 확률·판단 변경</b><span>확률과 결정 상태 변경은 사람이 게이트를 통과시킵니다. 자동으로 움직이지 않습니다.</span></li><li><b>결과 감사</b><span>결과 기한이 오면 사전에 봉인한 기준으로 채점하고, 틀린 기록도 그대로 남깁니다.</span></li><li><b>자동매매 없음</b><span>주문을 내지 않습니다. 거래소·브로커 계정에 연결되지 않습니다.</span></li></ul>
+<main class="wrap root-secondary">
+  <h2>어디까지 확인할 수 있나요?</h2>
+  <div class="root-scope">
+    <p><b>INVARA</b><br>선언한 조건과 관측 가능한 변경을 검증합니다. 일반적인 코드 정확성이나 보안 전체를 보증하지 않습니다.</p>
+    <p><b>WIE</b><br>공개 가능한 기록과 출처를 보여줍니다. 카탈로그에 이름이 있어도 모든 대상에 차트나 예측이 있는 것은 아닙니다.</p>
+  </div>
+  <div class="root-links"><a href="/record/">공개 기록 더 보기</a>
+    <a href="/wie/status/">WIE 관측 현황</a><a href="/loop.html">작동 구조</a>
+    <a href="/glitch/">GLITCH · 판매 중단</a></div>
+  <h2>빌드 시점의 원장</h2>
+<div class="strip"><div class="cell"><u>관측 원장</u><b>403,387</b><i>mentions</i></div><div class="cell"><u>추적 엔티티</u><b>5,597</b><i>entities</i></div><div class="cell"><u>해시체인</u><b>OK</b><i>verified</i></div><div class="cell"><u>봉인된 예측</u><b>57</b><i>sealed</i></div><div class="cell w"><u>닫힌 루프</u><b>13</b><i>closed</i></div></div>
+<p class="note">닫힌 루프 13건. 반올림하지도, 다르게 부르지도 않은 숫자입니다. 봉인한 예측을 결과로 채점해 끝까지 간 사례가 그만큼이고, 예측이 틀려도 루프는 닫힙니다 — 닫히는 조건은 맞히는 것이 아니라 판정되는 것입니다. 봉인된 예측 57건 중 34건이 아직 열려 있고, 미판정 항목의 가장 이른 등록 기한은 2026-09-21입니다.
+<br><span style="color:var(--faint)">실측 2026-09-27 22:46 KST · 이 표의 숫자는 빌드 시점에 원장에서 직접 읽은 값입니다. 손으로 적은 칸도, 추정으로 채운 칸도 없습니다.</span></p>
 </main>
 <footer class="wrap">
-<p><b style="color:var(--warn)">아직 공개된 적중률 수치는 없습니다.</b> 루프가 한 번도 닫히지
-않았기 때문이며, 있는 것처럼 쓰지 않습니다. 배경의 지도는 장식이 아니라 이 시스템이
+<p><b style="color:var(--warn)">아직 공개된 적중률 수치는 없습니다.</b> 닫힌 루프 수는
+판정이 끝난 사례의 수이지 적중률이나 성능 보증이 아닙니다. 배경의 지도는 이 시스템이
 다루는 객체와 그 사이의 실제 관계이며, 노드 이름은 전부 제품 자신의 구조입니다 —
-고객사 이름은 하나도 없습니다. 화면의 확률 표시는 그 모형을 읽습니다. 실적이 아닙니다.</p>
+고객사 이름은 하나도 없습니다. 표본 확률이 표시되는 경우 그 수치는 모형이며 실적이 아닙니다.</p>
 <p>WIE is a decision-evidence and audit tool, not an investment adviser, broker, or automated trading system. Outputs are analytical evidence structures, not buy/sell instructions.</p>
 <!-- Every route, at every width. The bar drops `.sec` chips below 640px to
      keep the closed-loop badge on screen; this is where they stay reachable,

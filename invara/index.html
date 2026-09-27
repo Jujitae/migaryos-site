@@ -128,6 +128,45 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 .bar::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,
   rgba(38,45,66,.9) 0 1px,transparent 1px 10%)}
 
+/* Root is a product entrance. Keep both working paths above the operational
+   ledger, and show the input and result without loading two nested apps. */
+.root-hero{position:relative;z-index:2;padding-top:7rem;padding-bottom:1.5rem}
+.root-hero h1{max-width:52rem;font-size:clamp(2rem,4.2vw,3.7rem);line-height:1.18;margin:0 0 1rem}
+.root-hero>.lede{max-width:52rem;margin-bottom:2.5rem}
+.root-products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.root-product{display:flex;flex-direction:column;min-width:0;padding:1.65rem;
+  border:1px solid var(--line2);background:rgba(10,12,20,.94)}
+.root-product.invara{border-top:2px solid var(--gl)}
+.root-product.wie{border-top:2px solid var(--ev)}
+.root-product .audience{font-size:.75rem;color:var(--dim);margin:0 0 .35rem}
+.root-product h2{display:block;font-size:clamp(1.35rem,2vw,1.8rem);font-weight:650;
+  line-height:1.3;letter-spacing:-.025em;color:var(--ink);text-transform:none;margin:.15rem 0 .45rem}
+.root-product h2::after{display:none}
+.root-product .outcome{font-size:.94rem;color:var(--dim);margin:0 0 1.25rem}
+.root-example{border-top:1px solid var(--line2);padding-top:1rem;margin-top:auto}
+.root-example .example-label{font:.66rem/1.5 var(--mono);letter-spacing:.08em;
+  color:var(--dim);margin:0 0 .7rem}
+.root-example dl{display:grid;grid-template-columns:3.4rem minmax(0,1fr);
+  gap:.35rem .65rem;margin:0 0 1.25rem;font-size:.88rem}
+.root-example dt{color:var(--faint)}
+.root-example dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.root-example dd strong{color:var(--ev)}
+.root-product.invara .root-example dd strong{color:var(--gl)}
+.root-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.65rem 1rem;margin:0}
+.root-actions .cta{font-size:.86rem;padding:.7rem 1rem}
+.root-actions .next{font-size:.82rem;color:var(--dim);text-underline-offset:.2em}
+.root-secondary{margin-top:4.5rem}
+.root-secondary h2{margin-top:3rem}
+.root-scope{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem;
+  color:var(--dim);font-size:.88rem}
+.root-scope p{margin:.3rem 0}
+.root-scope b{color:var(--ink)}
+.root-links{display:flex;flex-wrap:wrap;gap:.5rem 1.3rem;margin:1.4rem 0 0;
+  font-size:.84rem;color:var(--dim)}
+.root-links a{text-underline-offset:.2em}
+@media(max-width:760px){.root-hero{padding-top:5.2rem}.root-products{grid-template-columns:1fr}
+  .root-product{padding:1.2rem}.root-scope{grid-template-columns:1fr}}
+
 /* ---- live strip ---------------------------------------------------- */
 .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:1px;background:var(--line);
   border:1px solid var(--line);margin:0}
@@ -206,7 +245,7 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 
 /* ---- trust ---------------------------------------------------------- */
 ul.trust{list-style:none;padding:0;margin:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
-ul.trust li{background:var(--bg2);padding:1.15rem 1.1rem;min-width:0;overflow-wrap:anywhere;word-break:break-word}
+ul.trust li{background:var(--bg2);padding:1.15rem 1.1rem}
 ul.trust b{display:block;font-size:.95rem;margin-bottom:.28rem}
 ul.trust span{color:var(--dim);font-size:.86rem}
 ol.fields{color:var(--dim);padding-left:1.2rem;margin:0;font-size:.9rem}
@@ -246,11 +285,11 @@ a{color:inherit}
 <rect width="100" height="100" fill="none"/>
 <rect x="19.000" y="21.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="currentColor" stroke-width="10.500" stroke-linejoin="round" transform="rotate(-22 44.000 37.000)"/>
 <rect x="31.000" y="47.500" width="50.000" height="31.000" rx="15.500" ry="15.500" fill="none" stroke="currentColor" stroke-width="10.500" stroke-linejoin="round" transform="rotate(22 56.000 63.000)"/>
-</svg></span>MIGARYOS</a><a href="/invara/" class="on">INVARA</a><a href="/glitch/">GLITCH</a><a href="/wie/">WIE</a><a href="/loop.html" class="sec">LOOP</a><a href="/record/" class="sec">기록</a></nav>
+</svg></span>MIGARYOS</a><a href="/invara/" class="on">INVARA</a><a href="/wie/">WIE</a><a href="/glitch/">GLITCH</a><a href="/loop.html" class="sec">LOOP</a><a href="/record/" class="sec">기록</a></nav>
   <span class="sp"></span>
-  <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>4</b><em class="tel"> · 실측 2026-09-22</em></span>
+  <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>13</b><em class="tel"> · 실측 2026-09-27</em></span>
   <span class="sp"></span>
-  <span class="stat opt" aria-hidden="true"><u>원장</u><b>301,825</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>5,361</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>41</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
+  <span class="stat opt" aria-hidden="true"><u>원장</u><b>403,387</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>5,597</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>57</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
 </div>
 <header class="wrap hero">
   <span class="rdg tl" aria-hidden="true"></span><span class="rdg tr" aria-hidden="true"></span>
@@ -258,7 +297,6 @@ a{color:inherit}
   <h1>Your coding agent says &quot;done.&quot; INVARA checks whether it actually kept the promises you gave it.</h1>
   <p class="lede">You don&#x27;t need to read the code to accept an agent&#x27;s work blindly. Seal the acceptance conditions before the work. Judge them afterwards.</p>
   <p><a class="cta github_or_docs_click" id="github_or_docs_click" href="https://github.com/Jujitae/invara">View quickstart on GitHub</a>
-<a class="cta ghost" href="/invara/films/">Watch WHO CHECKED? films</a>
 <span class="hint">Public 0.1.3 · start now · no email required</span></p>
 </header>
 <main class="wrap">
@@ -309,10 +347,10 @@ pip install invara">Copy Codex / shell commands</button></p>
 </section>
 </main>
 <footer class="wrap">
-<p><b style="color:var(--warn)">아직 공개된 적중률 수치는 없습니다.</b> 루프가 한 번도 닫히지
-않았기 때문이며, 있는 것처럼 쓰지 않습니다. 배경의 지도는 장식이 아니라 이 시스템이
+<p><b style="color:var(--warn)">아직 공개된 적중률 수치는 없습니다.</b> 닫힌 루프 수는
+판정이 끝난 사례의 수이지 적중률이나 성능 보증이 아닙니다. 배경의 지도는 이 시스템이
 다루는 객체와 그 사이의 실제 관계이며, 노드 이름은 전부 제품 자신의 구조입니다 —
-고객사 이름은 하나도 없습니다. 화면의 확률 표시는 그 모형을 읽습니다. 실적이 아닙니다.</p>
+고객사 이름은 하나도 없습니다. 표본 확률이 표시되는 경우 그 수치는 모형이며 실적이 아닙니다.</p>
 <p>WIE is a decision-evidence and audit tool, not an investment adviser, broker, or automated trading system. Outputs are analytical evidence structures, not buy/sell instructions.</p>
 <!-- Every route, at every width. The bar drops `.sec` chips below 640px to
      keep the closed-loop badge on screen; this is where they stay reachable,
