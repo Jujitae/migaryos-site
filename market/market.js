@@ -6,7 +6,7 @@
 // forecast lane come from the same public projection the universe uses, via
 // the shared core. New watchlist changes belong to the authenticated workspace.
 import {recordsFromSnapshot, presentRecords, visibleAsOf, coverageFor, effectiveStatus, STATUS_LABELS, COVERAGE_LABELS, OUTCOME_LABELS} from '/wie/assets/world_core.js';
-import {syntheticFixtureEnabled, localChartEnabled, syntheticFixtureForInstrument, mountLightweightChart, marketProviderRoute} from './market_chart.js';
+import {syntheticFixtureEnabled, localChartEnabled, syntheticFixtureForInstrument, mountLightweightChart, marketProviderRoute} from './market_chart.js?v=e3124a6ce412';
 
 export const WATCHLIST_KEY = 'migaryos.watchlist.v1';
 export const WIDGETS = Object.freeze({
