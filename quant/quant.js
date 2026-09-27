@@ -125,6 +125,20 @@ export function previewFor({request, family, instrument = null, dataMode = 'publ
   };
 }
 
+export function inputIdentityFor(request, instrument = null, pairInstrument = null) {
+  const metadata = request?.dataset?.metadata || {};
+  if (metadata.evidence_kind === 'SYNTHETIC') {
+    const symbols = list(metadata.symbols).map(clean).filter(Boolean);
+    return {
+      label: `${symbols.join(' + ') || '연습용 심볼'} · ${clean(metadata.exchange) || 'SIMULATED'}`,
+      note: '고정된 연습 데이터입니다. 화면에서 선택한 대상의 실제 자료는 포함하지 않습니다.',
+    };
+  }
+  const first = symbolOf(instrument) || '선택되지 않음';
+  const second = request?.family === 'stat-arb' ? ` · pair ${symbolOf(pairInstrument) || '두 번째 listing 필요'}` : '';
+  return {label: `${first}${second} · ${clean(metadata.exchange) || '—'}`, note: ''};
+}
+
 function pathValue(object, path) {
   return path.split('.').reduce((value, key) => value == null ? undefined : value[key], object);
 }
@@ -250,9 +264,9 @@ function boot() {
   function renderPreview() {
     state.request = getRequest();
     const preview = previewFor({request: state.request, family: state.family, instrument: state.target, dataMode: state.mode});
-    const source = state.request.dataset.metadata;
+    const identity = inputIdentityFor(state.request, state.target, state.pairTarget);
     const meta = familyMetadata(ui, state.family);
-    byId('quant-preview').innerHTML = `<div class="preview-status ${preview.availability.toLowerCase()}"><strong>${escapeHtml(preview.label)}</strong><span>${escapeHtml(preview.detail)}</span></div><dl class="preview-grid"><dt>Instrument / universe</dt><dd>${escapeHtml(selectedSymbol() || '선택되지 않음')}${state.family === 'stat-arb' ? ` · pair ${escapeHtml(symbolOf(state.pairTarget) || '두 번째 listing 필요')}` : ''} · ${escapeHtml(source.exchange || '—')}</dd><dt>Period</dt><dd>${escapeHtml(state.period)} · as_of ${escapeHtml(new Date(Number(state.request.as_of) * 1000).toISOString())}</dd><dt>Research type</dt><dd>${escapeHtml(meta?.name_ko || state.family)} · ${escapeHtml(state.family)}</dd><dt>Rows</dt><dd>${preview.rows} · missing ${preview.missing}</dd><dt>Data source</dt><dd>${escapeHtml(preview.source)}</dd><dt>Evidence</dt><dd>${escapeHtml(preview.evidence)}</dd><dt>Freshness / as-of</dt><dd>${escapeHtml(preview.freshness)}</dd><dt>Availability</dt><dd>${escapeHtml(preview.availability)}</dd><dt>Execution status</dt><dd>${escapeHtml(preview.execution)} · public compute 없음</dd></dl>`;
+    byId('quant-preview').innerHTML = `<div class="preview-status ${preview.availability.toLowerCase()}"><strong>${escapeHtml(preview.label)}</strong><span>${escapeHtml(preview.detail)}</span>${identity.note ? `<span>${escapeHtml(identity.note)}</span>` : ''}</div><dl class="preview-grid"><dt>Instrument / universe</dt><dd>${escapeHtml(identity.label)}</dd><dt>Period</dt><dd>${escapeHtml(state.period)} · as_of ${escapeHtml(new Date(Number(state.request.as_of) * 1000).toISOString())}</dd><dt>Research type</dt><dd>${escapeHtml(meta?.name_ko || state.family)} · ${escapeHtml(state.family)}</dd><dt>Rows</dt><dd>${preview.rows} · missing ${preview.missing}</dd><dt>Data source</dt><dd>${escapeHtml(preview.source)}</dd><dt>Evidence</dt><dd>${escapeHtml(preview.evidence)}</dd><dt>Freshness / as-of</dt><dd>${escapeHtml(preview.freshness)}</dd><dt>Availability</dt><dd>${escapeHtml(preview.availability)}</dd><dt>Execution status</dt><dd>${escapeHtml(preview.execution)} · public compute 없음</dd></dl>`;
     byId('quant-family-limitation').textContent = meta?.limitation || '';
     byId('quant-request-json').value = JSON.stringify(state.request, null, 2);
     byId('quant-run-command').textContent = `python -m wie.quant_research research --input REQUEST.json`;
@@ -311,6 +325,6 @@ function boot() {
 }
 
 if (typeof window !== 'undefined') {
-  window.MIGARYOSQuant = {buildRequest, previewFor, familyMetadata, DATA_KINDS};
+  window.MIGARYOSQuant = {buildRequest, previewFor, inputIdentityFor, familyMetadata, DATA_KINDS};
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 }
