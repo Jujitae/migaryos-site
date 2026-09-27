@@ -256,6 +256,17 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 .offer h3{margin:0 0 .4rem;font-size:1.45rem;letter-spacing:-.02em}
 .offer .sub{color:var(--dim);font-size:.98rem;margin:0 0 1.3rem}
 .offer .nocatch{font:.72rem/1.6 var(--mono);color:var(--faint);letter-spacing:.03em;margin:1rem 0 0}
+.invara-plans{background:linear-gradient(145deg,#101b27,#080d16);box-shadow:0 18px 48px rgba(0,0,0,.36)}
+.invara-plans h2{font:700 clamp(1.3rem,2.5vw,1.8rem)/1.25 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  letter-spacing:-.025em;text-transform:none;color:var(--ink);margin:0 0 1.25rem}
+.invara-plans h2::after{display:none}
+.invara-plans .sub{color:#c6d2e2;font-size:1rem;line-height:1.65;margin:0 0 1.1rem}
+.invara-plans .terms{color:#b8c4d4;font-size:.9rem;line-height:1.6}
+.invara-plans .price{color:#fff;font-size:clamp(1.35rem,3vw,1.75rem)}
+.invara-plans::before{background:linear-gradient(90deg,transparent,var(--ev),#b3fff0,transparent);
+  background-size:200% 100%;animation:invara-plan-trace 6s linear infinite}
+@keyframes invara-plan-trace{to{background-position:-200% 0}}
+@media(prefers-reduced-motion:reduce){.invara-plans::before{animation:none}}
 .gtee{border-left:2px solid var(--warn);padding:.2rem 0 .2rem .9rem;margin:1.4rem 0 0;
   font-size:.84rem;color:var(--dim)}
 .gtee b{color:var(--warn);display:block;font:600 .58rem/1 var(--mono);letter-spacing:.16em;
@@ -321,7 +332,7 @@ a{color:inherit}
   <span class="sp"></span>
   <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>13</b><em class="tel"> · 실측 2026-09-28</em></span>
   <span class="sp"></span>
-  <span class="stat opt" aria-hidden="true"><u>원장</u><b>404,101</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>5,597</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>57</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
+  <span class="stat opt" aria-hidden="true"><u>원장</u><b>404,156</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>5,597</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>57</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
 </div>
 <header class="wrap hero">
   <span class="rdg tl" aria-hidden="true"></span><span class="rdg tr" aria-hidden="true"></span>
