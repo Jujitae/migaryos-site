@@ -35,7 +35,20 @@ function newSession() {
   return 's' + Math.random().toString(36).slice(2, 12) + Date.now().toString(36);
 }
 
-export function createWorldChat({universe, document, endpoint = null, fetchImpl = null, session = newSession(), rights = null, firstCoverage = null} = {}) {
+export function linkedMarketListings(record, items) {
+  if (!record?.id || !record?.entity_id || !Array.isArray(items)) return [];
+  const seen = new Set();
+  return items.filter(item => {
+    const row = item?.source;
+    if (row?.asset_class !== 'equity' || row.issuer_id !== record.entity_id ||
+        !Array.isArray(row.wie_record_ids) || !row.wie_record_ids.includes(record.id) ||
+        item.canonical !== row.entity_id || !item.code || seen.has(item.canonical)) return false;
+    seen.add(item.canonical);
+    return true;
+  });
+}
+
+export function createWorldChat({universe, document, endpoint = null, fetchImpl = null, session = newSession(), rights = null, firstCoverage = null, loadMarketItems = null} = {}) {
   const el = (tag, text, cls) => { const n = document.createElement(tag); if (text !== undefined) n.textContent = text; if (cls) n.className = cls; return n; };
   let cache = {key: null, records: [], byId: new Map()};
   let view = null;
@@ -65,12 +78,27 @@ export function createWorldChat({universe, document, endpoint = null, fetchImpl 
     const r = projection().byId.get(record && record.id);
     const box = el('p', undefined, 'story-limit wc-routes');
     const lens = el('a', 'WIE Lens · 근거와 판단 상세');lens.href='/wie/?focus='+encodeURIComponent(record.id);box.append(lens);
+    function fallback() {
+      box.append(el('span', '이 기록에 연결된 공개 상장 종목을 확인할 수 없습니다. WIE 기록과 거시 관측을 볼 수 있습니다. '));
+      const a = el('a', '거시 관측 기록'); a.href = '/record/#market-context'; box.append(a);
+    }
     if (r && r.symbol) {
       const a = el('a', 'Market 보기 · ' + r.symbol); a.href = '/market/?symbol=' + encodeURIComponent(r.symbol)+(r.entity_id?'&entity='+encodeURIComponent(r.entity_id):''); box.append(a);
       const q = el('a', 'Quant 연구 보기'); q.href = '/quant/?focus=' + encodeURIComponent(r.id)+'#research'; box.append(q);
+    } else if (r?.entity_id && typeof loadMarketItems === 'function') {
+      const loading = el('span', '연결된 상장 종목을 확인하는 중입니다. '); box.append(loading);
+      Promise.resolve().then(() => loadMarketItems()).then(items => {
+        loading.textContent = '';
+        const listings = linkedMarketListings(r, items);
+        if (!listings.length) { fallback(); return; }
+        for (const item of listings) {
+          const query = 'entity=' + encodeURIComponent(item.canonical) + '&symbol=' + encodeURIComponent(item.code);
+          const a = el('a', 'Market 보기 · ' + item.code + ' (회사 단위 기록)'); a.href = '/market/?' + query; box.append(a);
+          const q = el('a', 'Quant 연구 보기 · ' + item.code); q.href = '/quant/?' + query + '#research'; box.append(q);
+        }
+      }).catch(() => { loading.textContent = ''; fallback(); });
     } else {
-      box.append(el('span', '이 기록에는 시장 화면이 없습니다. WIE 기록과 거시 관측으로 대신 봅니다. '));
-      const a = el('a', '거시 관측 기록'); a.href = '/record/#market-context'; box.append(a);
+      fallback();
     }
     return box;
   }
@@ -211,11 +239,13 @@ export function createWorldChat({universe, document, endpoint = null, fetchImpl 
 }
 
 if (typeof window !== 'undefined' && window.WIEUniverse && window.document) {
+  const loadMarketItems = window.WIESearch?.registryLoader && typeof window.fetch === 'function'
+    ? window.WIESearch.registryLoader(window.fetch.bind(window)) : null;
   const chat = createWorldChat({universe: window.WIEUniverse, document: window.document,
     firstCoverage: window.FIRST_COVERAGE || null,
     rights: window.WIE_SOURCE_RIGHTS && window.WIE_SOURCE_RIGHTS.schema === 'migaryos.source-rights/1' ? window.WIE_SOURCE_RIGHTS : null,
     endpoint: typeof window.WIE_WORLD_CHAT_ENDPOINT === 'string' && /^https:\/\//.test(window.WIE_WORLD_CHAT_ENDPOINT) ? window.WIE_WORLD_CHAT_ENDPOINT : null,
-    fetchImpl: typeof window.fetch === 'function' ? window.fetch.bind(window) : null});
+    fetchImpl: typeof window.fetch === 'function' ? window.fetch.bind(window) : null, loadMarketItems});
   window.WIEUniverse.onStory((rows, record) => chat.mount(rows, record));
   window.WIEWorldChat = chat;
   const search=window.WIESearch,host=window.document.getElementById('universe-search-candidates'),input=window.document.getElementById('universe-search');
