@@ -106,6 +106,7 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 @media(max-width:900px){.hero::before{inset:0 0 0 -50vw;background:rgba(5,6,10,.78)}}
 .hero>*{position:relative}
 .hero .lede{max-width:34rem}
+@media(max-width:760px){.wrap.hero{min-height:0;padding:5.2rem 1.15rem 2rem}}
 .rdg{position:absolute;width:14px;height:14px;border:1px solid var(--line2);opacity:.9}
 .rdg.tl{top:2.4rem;left:-.2rem;border-right:0;border-bottom:0}
 .rdg.tr{top:2.4rem;right:-.2rem;border-left:0;border-bottom:0}
@@ -248,10 +249,13 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 .proof span{color:var(--dim);font-size:.87rem}
 
 /* ---- trust ---------------------------------------------------------- */
-ul.trust{list-style:none;padding:0;margin:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
-ul.trust li{background:var(--bg2);padding:1.15rem 1.1rem}
+ul.trust{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:minmax(0,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+ul.trust li{min-width:0;overflow-wrap:anywhere;background:var(--bg2);padding:1.15rem 1.1rem}
 ul.trust b{display:block;font-size:.95rem;margin-bottom:.28rem}
 ul.trust span{color:var(--dim);font-size:.86rem}
+ol.trust{list-style:none;padding:0;margin:0 0 1.4rem;display:grid;gap:.5rem}
+ol.trust li{display:flex;gap:.6rem;align-items:baseline}
+ol.trust b{color:var(--ev);font-family:var(--mono)}
 ol.fields{color:var(--dim);padding-left:1.2rem;margin:0;font-size:.9rem}
 ol.fields li{margin:.35rem 0}
 
