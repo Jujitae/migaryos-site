@@ -304,15 +304,28 @@ function boot() {
     } catch { byId('quant-target-status').textContent = '카탈로그를 다시 확인하지 못했습니다. 검색으로 대상을 선택해 주세요.'; }
   }
 
-  function renderResult(result) {
+  function renderResult(result, origin = 'import') {
     const host = byId('quant-result'); state.result = result;
-    if (!result) { host.innerHTML = '<p class="muted">아직 공개 결과 artifact가 없습니다. 로컬 결과 JSON을 Advanced에서 불러오면 이곳에 실제 필드만 표시합니다.</p>'; return; }
+    const originNote = origin === 'demo'
+      ? '고정 합성 예제 · 기존 로컬 엔진에서 계산한 결과입니다. 실제 종목 데이터·전략 검증·현재 선택한 대상의 결과가 아닙니다.'
+      : '가져온 결과 파일의 내용만 표시합니다. 원본 입력, 제공자, 현재 선택한 대상과의 일치 여부는 이 페이지에서 검증하지 않았습니다.';
+    const originLabel = byId('quant-result-origin');
+    originLabel.textContent = originNote;
+    originLabel.classList.toggle('imported', origin !== 'demo');
+    if (!result) { host.innerHTML = '<p class="muted">표시할 결과가 없습니다. 로컬 결과 JSON을 Advanced에서 불러올 수 있습니다.</p>'; return; }
     if (result.schema !== 'wie.quant-result/1') { host.innerHTML = '<p class="notice">wie.quant-result/1이 아닌 파일은 결과로 표시하지 않습니다.</p>'; return; }
-    const metricNames = {net_mean: 'OOS net mean', sharpe: 'Sharpe', max_drawdown: 'Max drawdown', trade_count: 'Trade count'};
-    const metrics = Object.entries(metricNames).map(([key, label]) => [label, pathValue(result, `backtest.metrics.${key}`)]).filter(([, value]) => value !== undefined && value !== null);
+    const metricNames = {compounded_return: 'OOS 누적 수익률', sharpe: 'Sharpe', max_drawdown: '최대 낙폭', trade_count: '거래 수'};
+    const metrics = Object.entries(metricNames).map(([key, label]) => [key, label, pathValue(result, `backtest.metrics.${key}`)]).filter(([, , value]) => value !== undefined && value !== null);
     const sample = pathValue(result, 'diagnostics.sample.visible_rows');
     const comparison = result.comparison || result.baseline;
-    host.innerHTML = `<div class="result-status"><strong>${escapeHtml(result.computation_status || 'UNKNOWN')}</strong><span>${escapeHtml(result.validation_status || 'UNVALIDATED')} · orders ${escapeHtml(result.orders || 'OFF')}</span></div><dl class="preview-grid"><dt>Research type</dt><dd>${escapeHtml(result.family)}</dd><dt>Target / period</dt><dd>${escapeHtml(rawSource().entity_id || result.provenance?.symbols?.join(', ') || 'request provenance')}</dd><dt>Run status</dt><dd>${escapeHtml(result.computation_status || '—')}</dd><dt>Sample size</dt><dd>${escapeHtml(sample ?? '—')}</dd><dt>Evidence</dt><dd>${escapeHtml(result.provenance?.evidence_kind || '—')}</dd><dt>Generated at</dt><dd>${escapeHtml(result.generated_at || 'result schema에 없음')}</dd></dl><div class="metric-grid">${metrics.length ? metrics.map(([label, value]) => `<div><span>${escapeHtml(label)}</span><strong>${escapeHtml(typeof value === 'number' ? value.toPrecision(6) : value)}</strong></div>`).join('') : '<p class="muted">표시할 실제 metric이 없습니다.</p>'}</div><p class="muted">${comparison ? '비교 artifact가 포함되어 있습니다.' : '비교 가능한 baseline/previous run artifact가 없습니다.'}</p><details><summary>제한과 blockers</summary><p>${escapeHtml(list(result.blockers).join(' · ') || '—')}</p></details>`;
+    const symbols = list(result.provenance?.symbols).filter(value => typeof value === 'string').join(' + ') || '입력에 표기된 대상 없음';
+    const inputHash = /^[a-f0-9]{64}$/.test(result.input_sha256 || '') ? result.input_sha256 : '입력 해시 없음';
+    const formatMetric = (key, value) => {
+      if (typeof value !== 'number' || !Number.isFinite(value)) return String(value);
+      if (key === 'compounded_return' || key === 'max_drawdown') return `${(value * 100).toFixed(2)}%`;
+      return key === 'trade_count' ? String(value) : value.toFixed(2);
+    };
+    host.innerHTML = `<div class="result-status"><strong>${escapeHtml(result.computation_status || 'UNKNOWN')}</strong><span>${escapeHtml(result.validation_status || 'UNVALIDATED')} · orders ${escapeHtml(result.orders || 'OFF')}</span></div><dl class="preview-grid"><dt>Research type</dt><dd>${escapeHtml(result.family)}</dd><dt>입력에 표기된 대상</dt><dd>${escapeHtml(symbols)}</dd><dt>Sample size</dt><dd>${escapeHtml(sample ?? '—')}</dd><dt>Evidence</dt><dd>${escapeHtml(result.provenance?.evidence_kind || '—')}</dd><dt>입력 기준 시각</dt><dd>${escapeHtml(Number.isFinite(result.as_of) ? new Date(result.as_of * 1000).toISOString() : '—')}</dd><dt>입력 SHA-256</dt><dd class="result-hash">${escapeHtml(inputHash)}</dd></dl><div class="metric-grid">${metrics.length ? metrics.map(([key, label, value]) => `<div><span>${escapeHtml(label)}</span><strong>${escapeHtml(formatMetric(key, value))}</strong></div>`).join('') : '<p class="muted">표시할 계산 수치가 없습니다.</p>'}</div><p class="muted">${comparison ? '비교 artifact가 포함되어 있습니다.' : '비교 가능한 baseline/previous run artifact가 없습니다.'}</p><details><summary>제한과 blockers</summary><p>${escapeHtml(list(result.blockers).join(' · ') || '—')}</p></details>`;
   }
 
   function wireActions() {
@@ -326,6 +339,7 @@ function boot() {
   }
 
   renderFamilies(); renderPeriods(); renderParameters(); renderModes(); showTarget(); showPairTarget(); wireActions(); renderPreview();
+  renderResult(window.QUANT_DEMO_RESULT || null, 'demo');
   if (window.WIESearch && searchInput) {
     const host = byId('quant-search-host'); const loader = window.WIESearch.catalogueSearchLoader(window.fetch.bind(window));
     window.WIESearch.mount({document, input: searchInput, host, loadItems: loader, localItems: () => [], onSelect: chooseTarget});

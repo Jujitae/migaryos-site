@@ -132,9 +132,19 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 
 /* Root is a product entrance. Keep both working paths above the operational
    ledger, and show the input and result without loading two nested apps. */
-.root-hero{position:relative;z-index:2;padding-top:7rem;padding-bottom:1.5rem}
+.root-hero{position:relative;z-index:2;padding-top:5.5rem;padding-bottom:1.5rem}
 .root-hero h1{max-width:52rem;font-size:clamp(2rem,4.2vw,3.7rem);line-height:1.18;margin:0 0 1rem}
-.root-hero>.lede{max-width:52rem;margin-bottom:2.5rem}
+.root-hero>.lede{max-width:52rem;margin-bottom:1.35rem}
+.root-first-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:0 0 1.5rem}
+.root-first-actions a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.25rem .8rem;
+  padding:.8rem 1rem;border:1px solid var(--line2);background:rgba(10,12,20,.96);
+  text-decoration:none;color:var(--ink);transition:border-color .25s ease,transform .25s ease}
+.root-first-actions a:first-child{border-left:2px solid var(--gl)}
+.root-first-actions a:last-child{border-left:2px solid var(--ev)}
+.root-first-actions a:is(:hover,:focus-visible){border-color:var(--ev);transform:translateY(-2px)}
+.root-first-actions strong{font-size:.88rem}.root-first-actions span{grid-column:1/-1;
+  color:var(--dim);font-size:.79rem}.root-first-actions em{font:.74rem var(--mono);font-style:normal;
+  color:var(--ev);white-space:nowrap}
 .root-products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
 .root-product{display:flex;flex-direction:column;min-width:0;padding:1.65rem;
   border:1px solid var(--line2);background:rgba(10,12,20,.94);
@@ -173,7 +183,6 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 .root-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.65rem 1rem;margin:0}
 .root-actions .cta{font-size:.86rem;padding:.7rem 1rem}
 .root-actions .next{font-size:.82rem;color:var(--dim);text-underline-offset:.2em}
-.root-mobile-jump{display:none}
 .root-secondary{margin-top:4.5rem}
 .root-secondary h2{margin-top:3rem}
 .root-scope{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem;
@@ -184,15 +193,10 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
   font-size:.84rem;color:var(--dim)}
 .root-links a{text-underline-offset:.2em}
 @media(max-width:760px){.root-hero{padding-top:4.3rem}.root-hero>.lede{margin-bottom:1.2rem}
-  .root-mobile-jump{display:grid;gap:.55rem;margin:0 0 1.2rem}
-  .root-mobile-jump a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.15rem .6rem;
-    padding:.7rem .85rem;border:1px solid var(--line2);background:rgba(10,12,20,.96);
-    text-decoration:none;color:var(--ink)}
-  .root-mobile-jump a:first-child{border-left:2px solid var(--gl)}
-  .root-mobile-jump a:last-child{border-left:2px solid var(--ev)}
-  .root-mobile-jump strong{font-size:.82rem}.root-mobile-jump span{grid-column:1/-1;
-    color:var(--dim);font-size:.75rem}.root-mobile-jump em{font:.7rem var(--mono);font-style:normal;
-    color:var(--ev);white-space:nowrap}
+  .root-first-actions{grid-template-columns:1fr;gap:.55rem;margin-bottom:1.2rem}
+  .root-first-actions a{gap:.15rem .6rem;padding:.7rem .85rem}
+  .root-first-actions strong{font-size:.82rem}.root-first-actions span{font-size:.75rem}
+  .root-first-actions em{font-size:.7rem}
   .root-products{grid-template-columns:1fr}.root-product{padding:1.2rem}
   .root-scope{grid-template-columns:1fr}}
 
@@ -332,12 +336,12 @@ a{color:inherit}
   <span class="sp"></span>
   <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>13</b><em class="tel"> · 실측 2026-09-28</em></span>
   <span class="sp"></span>
-  <span class="stat opt" aria-hidden="true"><u>원장</u><b>404,216</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>5,597</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>57</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
+  <span class="stat opt" aria-hidden="true"><u>원장</u><b>404,865</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>5,597</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>57</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
 </div>
 <header class="wrap root-hero">
   <h1>AI의 ‘완료’를 확인하고, 세계의 변화를 근거로 읽습니다.</h1>
   <p class="lede">코드를 맡겼다면 INVARA로 약속한 조건이 지켜졌는지 확인하세요. 기업과 사건이 궁금하다면 WIE에서 공개 기록과 출처를 따라가세요.</p>
-  <nav class="root-mobile-jump" aria-label="두 제품 바로 시작">
+  <nav class="root-first-actions" aria-label="두 제품 바로 시작">
     <a href="/invara/#install-heading"><strong>INVARA · 코드 변경 검증</strong>
       <em>첫 검사 →</em><span>제약 입력 → 실제 변경 확인 → BLOCK 예시</span></a>
     <a href="/wie/?focus=prediction-P-000037"><strong>WIE · 공개 근거 추적</strong>
@@ -382,9 +386,9 @@ a{color:inherit}
     <a href="/wie/status/">WIE 관측 현황</a><a href="/loop.html">작동 구조</a>
     <a href="/glitch/">GLITCH · 판매 중단</a></div>
   <h2>빌드 시점의 원장</h2>
-<div class="strip"><div class="cell"><u>관측 원장</u><b>404,216</b><i>mentions</i></div><div class="cell"><u>추적 엔티티</u><b>5,597</b><i>entities</i></div><div class="cell"><u>해시체인</u><b>OK</b><i>verified</i></div><div class="cell"><u>봉인된 예측</u><b>57</b><i>sealed</i></div><div class="cell w"><u>닫힌 루프</u><b>13</b><i>closed</i></div></div>
+<div class="strip"><div class="cell"><u>관측 원장</u><b>404,865</b><i>mentions</i></div><div class="cell"><u>추적 엔티티</u><b>5,597</b><i>entities</i></div><div class="cell"><u>해시체인</u><b>OK</b><i>verified</i></div><div class="cell"><u>봉인된 예측</u><b>57</b><i>sealed</i></div><div class="cell w"><u>닫힌 루프</u><b>13</b><i>closed</i></div></div>
 <p class="note">닫힌 루프 13건. 반올림하지도, 다르게 부르지도 않은 숫자입니다. 봉인한 예측을 결과로 채점해 끝까지 간 사례가 그만큼이고, 예측이 틀려도 루프는 닫힙니다 — 닫히는 조건은 맞히는 것이 아니라 판정되는 것입니다. 봉인된 예측 57건 중 34건이 아직 열려 있고, 미판정 항목의 가장 이른 등록 기한은 2026-09-21입니다.
-<br><span style="color:var(--faint)">실측 2026-09-28 02:14 KST · 이 표의 숫자는 빌드 시점에 원장에서 직접 읽은 값입니다. 손으로 적은 칸도, 추정으로 채운 칸도 없습니다.</span></p>
+<br><span style="color:var(--faint)">실측 2026-09-28 06:09 KST · 이 표의 숫자는 빌드 시점에 원장에서 직접 읽은 값입니다. 손으로 적은 칸도, 추정으로 채운 칸도 없습니다.</span></p>
 </main>
 <script>
 (function(){

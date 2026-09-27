@@ -132,9 +132,19 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 
 /* Root is a product entrance. Keep both working paths above the operational
    ledger, and show the input and result without loading two nested apps. */
-.root-hero{position:relative;z-index:2;padding-top:7rem;padding-bottom:1.5rem}
+.root-hero{position:relative;z-index:2;padding-top:5.5rem;padding-bottom:1.5rem}
 .root-hero h1{max-width:52rem;font-size:clamp(2rem,4.2vw,3.7rem);line-height:1.18;margin:0 0 1rem}
-.root-hero>.lede{max-width:52rem;margin-bottom:2.5rem}
+.root-hero>.lede{max-width:52rem;margin-bottom:1.35rem}
+.root-first-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:0 0 1.5rem}
+.root-first-actions a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.25rem .8rem;
+  padding:.8rem 1rem;border:1px solid var(--line2);background:rgba(10,12,20,.96);
+  text-decoration:none;color:var(--ink);transition:border-color .25s ease,transform .25s ease}
+.root-first-actions a:first-child{border-left:2px solid var(--gl)}
+.root-first-actions a:last-child{border-left:2px solid var(--ev)}
+.root-first-actions a:is(:hover,:focus-visible){border-color:var(--ev);transform:translateY(-2px)}
+.root-first-actions strong{font-size:.88rem}.root-first-actions span{grid-column:1/-1;
+  color:var(--dim);font-size:.79rem}.root-first-actions em{font:.74rem var(--mono);font-style:normal;
+  color:var(--ev);white-space:nowrap}
 .root-products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
 .root-product{display:flex;flex-direction:column;min-width:0;padding:1.65rem;
   border:1px solid var(--line2);background:rgba(10,12,20,.94);
@@ -173,7 +183,6 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 .root-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.65rem 1rem;margin:0}
 .root-actions .cta{font-size:.86rem;padding:.7rem 1rem}
 .root-actions .next{font-size:.82rem;color:var(--dim);text-underline-offset:.2em}
-.root-mobile-jump{display:none}
 .root-secondary{margin-top:4.5rem}
 .root-secondary h2{margin-top:3rem}
 .root-scope{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem;
@@ -184,15 +193,10 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
   font-size:.84rem;color:var(--dim)}
 .root-links a{text-underline-offset:.2em}
 @media(max-width:760px){.root-hero{padding-top:4.3rem}.root-hero>.lede{margin-bottom:1.2rem}
-  .root-mobile-jump{display:grid;gap:.55rem;margin:0 0 1.2rem}
-  .root-mobile-jump a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.15rem .6rem;
-    padding:.7rem .85rem;border:1px solid var(--line2);background:rgba(10,12,20,.96);
-    text-decoration:none;color:var(--ink)}
-  .root-mobile-jump a:first-child{border-left:2px solid var(--gl)}
-  .root-mobile-jump a:last-child{border-left:2px solid var(--ev)}
-  .root-mobile-jump strong{font-size:.82rem}.root-mobile-jump span{grid-column:1/-1;
-    color:var(--dim);font-size:.75rem}.root-mobile-jump em{font:.7rem var(--mono);font-style:normal;
-    color:var(--ev);white-space:nowrap}
+  .root-first-actions{grid-template-columns:1fr;gap:.55rem;margin-bottom:1.2rem}
+  .root-first-actions a{gap:.15rem .6rem;padding:.7rem .85rem}
+  .root-first-actions strong{font-size:.82rem}.root-first-actions span{font-size:.75rem}
+  .root-first-actions em{font-size:.7rem}
   .root-products{grid-template-columns:1fr}.root-product{padding:1.2rem}
   .root-scope{grid-template-columns:1fr}}
 
@@ -332,7 +336,7 @@ a{color:inherit}
   <span class="sp"></span>
   <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>13</b><em class="tel"> · 실측 2026-09-28</em></span>
   <span class="sp"></span>
-  <span class="stat opt" aria-hidden="true"><u>원장</u><b>404,216</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>5,597</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>57</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
+  <span class="stat opt" aria-hidden="true"><u>원장</u><b>404,865</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>5,597</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>57</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
 </div>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "보낸 메일이 실제로 도착했는지 어떻게 확인합니까?", "acceptedAnswer": {"@type": "Answer", "text": "받은편지함만 보면 안 됩니다. 반송 통지는 상대 서버가 발신 주소를 그대로 되돌려주는 자동 답장이라 메일 서비스가 사칭으로 분류해 스팸함에 넣습니다. 그래서 도착하지 않은 편지가 도착한 것처럼 보입니다. 2026-08-19 실측에서 우리 도달 수는 49가 아니라 46이었고, 차이 3건 중 2건이 스팸함에 있었습니다."}}]}</script>
 <header class="wrap hero">
