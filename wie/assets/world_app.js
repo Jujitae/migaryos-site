@@ -174,6 +174,7 @@
     const workspace=founder?null:workspaceModule.createWorkspace({fetchImpl,now,setTimer,clearTimer,staticOnly,onChange:()=>renderWorkspace()});
     const session=root.crypto?.randomUUID?.() || 'guest-'+String(now())+'-'+Math.random().toString(36).slice(2);
     function status(message,cls=''){const n=$('world-status');if(n){n.textContent=message;n.className=cls;}}
+    function offerArchive(){if(founder||staticOnly)return;const n=$('world-status');if(n){const a=link('지난 공개 기록 열기','/wie/archive/');a.className='archive-link';n.append(a);}}
     function link(label,url){if(staticOnly&&url.startsWith('/founder/'))return el('span',label+' · 비공개 서버에서 제공','private-unavailable');const a=el('a',label);a.href=url;return a;}
     function fieldList(parent,entries){const dl=el('dl');for(const [label,value] of entries){dl.append(el('dt',label),el('dd',value||'미확인'));}parent.append(dl);}
     function section(parent,title,values,missing){const box=el('section',undefined,'lens-section');box.append(el('h3',title));const data=arr(values).map(text).filter(Boolean);if(data.length){const ul=el('ul');for(const item of data)ul.append(el('li',item));box.append(ul);}else box.append(empty(missing));parent.append(box);return box;}
@@ -359,7 +360,7 @@
       // This guard remains live during a pre-expiry request. Starting a fetch
       // never extends the authority of the currently rendered evidence.
       expiryTimer=setTimer(()=>{if(evidenceDeadline!==deadline)return;clearEvidence(isAtlas,'expired');
-        status('표시 유효 기한이 지나 내용을 닫았습니다. 새로고침으로 다시 확인하세요.','warning');
+        status('표시 유효 기한이 지나 내용을 닫았습니다. 새로고침으로 다시 확인하세요.','warning');offerArchive();
       },Math.min(Math.max(1,deadline-now()),2147483647));
       if(isAtlas&&!destroyed&&d.visibilityState!=='hidden'&&['OK','MODEL_UNAVAILABLE'].includes(payload.status)){
         const delay=deadline-now()-2000;
@@ -403,7 +404,7 @@
         if(ticket!==loadId||destroyed)return false;
         if(isAtlas&&controller.signal.aborted&&d.visibilityState==='hidden')return false;
         clearEvidence(isAtlas,error.message==='EXPIRED'?'expired':'unavailable');clearTimer(reloadTimer);reloadTimer=null;
-        status(error.message==='EXPIRED'?'표시 유효 기한이 지난 응답입니다. 새로고침으로 다시 확인하세요.':'기록을 불러오지 못했습니다. 서버 연결을 확인하고 다시 시도하세요.','error');
+        status(error.message==='EXPIRED'?'표시 유효 기한이 지난 응답입니다. 새로고침으로 다시 확인하세요.':'기록을 불러오지 못했습니다. 서버 연결을 확인하고 다시 시도하세요.','error');offerArchive();
         append('world-map',empty('자료를 확인할 수 없습니다. 이전 자료로 현재 상태를 대신하지 않습니다.'));if(founder)$('founder-gate').hidden=false;return false;
       }finally{
         clearTimer(timeout);if(requestController===controller)requestController=null;evidenceBusy=false;
