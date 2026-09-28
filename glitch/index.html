@@ -125,8 +125,9 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 .prob span{display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);
   line-height:1.7;padding-bottom:.35rem;max-width:22rem}
 .bar{position:relative;height:2px;background:var(--line);max-width:34rem;margin:0 0 2.4rem;overflow:visible}
-.bar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--ct),var(--ev));width:62%;
-  box-shadow:0 0 16px rgba(34,224,200,.7);transition:width .18s linear}
+.bar i{position:absolute;inset:0;background:linear-gradient(90deg,var(--ct),var(--ev));
+  transform:scaleX(.62);transform-origin:left;box-shadow:0 0 16px rgba(34,224,200,.7);
+  transition:transform .18s linear}
 .bar::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,
   rgba(38,45,66,.9) 0 1px,transparent 1px 10%)}
 
@@ -336,7 +337,7 @@ a{color:inherit}
   <span class="sp"></span>
   <span class="loop"><i class="pip w" aria-hidden="true"></i>닫힌 루프 <b>13</b><em class="tel"> · 실측 2026-09-28</em></span>
   <span class="sp"></span>
-  <span class="stat opt" aria-hidden="true"><u>원장</u><b>405,041</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>5,597</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>57</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
+  <span class="stat opt" aria-hidden="true"><u>원장</u><b>405,304</b></span><span class="stat opt" aria-hidden="true"><u>엔티티</u><b>5,599</b></span><span class="stat opt" aria-hidden="true"><u>봉인</u><b>58</b></span><span class="stat tel" aria-hidden="true"><u>체인</u><b>OK</b></span>
 </div>
 <header class="wrap hero">
   <span class="rdg tl" aria-hidden="true"></span><span class="rdg tr" aria-hidden="true"></span>
@@ -934,7 +935,7 @@ function readout(){
   var target=SEEDP-L.length*4.2+Math.sin(t*.006)*2.0;
   val+=(target-val)*.045;
   probEl.textContent=val.toFixed(1)+'%';
-  if(barEl)barEl.style.width=val.toFixed(1)+'%';
+  if(barEl)barEl.style.transform='scaleX('+(val/100).toFixed(3)+')';
   if(ctEl&&t%6===0)ctEl.textContent=L.length;
 }
 function loop(){ if(run){step();draw();readout();} requestAnimationFrame(loop); }

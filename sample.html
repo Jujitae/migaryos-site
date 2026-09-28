@@ -118,8 +118,9 @@ h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--li
 .prob span{display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);
   line-height:1.7;padding-bottom:.35rem;max-width:22rem}
 .bar{position:relative;height:2px;background:var(--line);max-width:34rem;margin:0 0 2.4rem;overflow:visible}
-.bar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--ct),var(--ev));width:62%;
-  box-shadow:0 0 16px rgba(34,224,200,.7);transition:width .18s linear}
+.bar i{position:absolute;inset:0;background:linear-gradient(90deg,var(--ct),var(--ev));
+  transform:scaleX(.62);transform-origin:left;box-shadow:0 0 16px rgba(34,224,200,.7);
+  transition:transform .18s linear}
 .bar::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,
   rgba(38,45,66,.9) 0 1px,transparent 1px 10%)}
 
