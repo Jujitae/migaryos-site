@@ -87,7 +87,7 @@
     function openEntity(item){navigate({view:'home',entity:item.canonical,q:route.q||$('world-search').value.trim()});}
     function openRecord(id){if(restoring)return;route={view:'home',entity:'',focus:id,q:route.q||$('world-search').value.trim()};history?.pushState?.({wie:true},'',routeURL(route));render();}
     function updateAccount(){if(disposed)return;const state=workspace.state,member=!!state.principal;
-      $('atlas-account-state').textContent=member?'내 작업공간':staticOnly?'공개 기록 열람':'공개 탐색';$('atlas-account').textContent=member?'계정 설정':'로그인';
+      $('atlas-account-state').textContent=member?'내 작업공간':staticOnly?'공개 기록 열람':'공개 탐색';$('atlas-account').textContent=member?'계정 설정':'로그인';$('atlas-account').hidden=staticOnly;
       $('login-availability').textContent=state.loginEnabled?'Google 계정으로 본인의 작업공간을 구분합니다.':state.status==='LOADING'?'로그인 연결을 확인하고 있습니다.':'현재 로그인 연결을 사용할 수 없습니다. 공개 탐색은 계속 이용할 수 있습니다.';
       $('atlas-google-login').disabled=staticOnly||workspace.busy||!state.loginEnabled;
       if(viewName()==='home'&&items)renderCatalogue();if(viewName()==='entity'&&items)renderEntity();
