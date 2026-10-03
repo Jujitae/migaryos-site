@@ -452,11 +452,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-10-03T23:27:17.827326Z",
+  "generated_at": "2026-10-03T23:32:20.867716Z",
   "integrity": {
     "ledger_sha256": "6a35f0a0e6f80b32a710af38b2eee3b2004d43b74c3fee55fb71823e483ac68f",
     "reasons": [],
-    "snapshot_sha256": "41d15dff2756ac119dcd8dc471e894a5d4bf0eb05021ba059a35818f15681656",
+    "snapshot_sha256": "c8071925cb7a8ee1164190248eca1584b2d5c209af0a5092d76dc3294acabaf0",
     "status": "VERIFIED"
   },
   "learning": {
@@ -559,14 +559,14 @@
   },
   "observed_at": "2026-10-03T23:06:25.932833Z",
   "operation": {
-    "finished_at": "2026-10-03T23:15:52.271170Z",
+    "finished_at": "2026-10-03T23:31:15.021899Z",
     "jobs": {
       "anchor": {
-        "exit_code": 1,
-        "finished_at": "2026-10-03T23:01:14.206680Z",
-        "next_due_at": "2026-10-03T23:16:14.206680Z",
-        "started_at": "2026-10-03T23:00:49.728008Z",
-        "status": "FAILED"
+        "exit_code": 0,
+        "finished_at": "2026-10-03T23:31:14.001157Z",
+        "next_due_at": "2026-10-04T02:00:00Z",
+        "started_at": "2026-10-03T23:30:49.366624Z",
+        "status": "SUCCESS"
       },
       "autonomy": {
         "exit_code": 0,
@@ -577,9 +577,9 @@
       },
       "collector": {
         "exit_code": 7,
-        "finished_at": "2026-10-03T23:15:49.904351Z",
-        "next_due_at": "2026-10-03T23:30:00Z",
-        "started_at": "2026-10-03T23:15:48.801298Z",
+        "finished_at": "2026-10-03T23:30:48.910209Z",
+        "next_due_at": "2026-10-03T23:45:00Z",
+        "started_at": "2026-10-03T23:30:48.185028Z",
         "status": "SOURCE_GAPS"
       },
       "gate": {
@@ -592,9 +592,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-10-03T23:15:47.176956Z",
+    "started_at": "2026-10-03T23:30:47.057427Z",
     "status": "SOURCE_GAPS",
-    "updated_at": "2026-10-03T23:15:52.271170Z"
+    "updated_at": "2026-10-03T23:31:15.021899Z"
   },
   "predictions": [
     {
@@ -1861,7 +1861,7 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-10-03T23:27:17.827326Z",
+      "observed_at": "2026-10-03T23:32:20.867716Z",
       "sha256": "d4d5ee21f3208bbd738c4e23862ce399cdf28732f574182dc2a662a1bf48a6a3"
     },
     "canonical_chart": "BLOCK",
