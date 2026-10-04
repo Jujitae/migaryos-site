@@ -468,11 +468,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-10-04T22:42:37.725382Z",
+  "generated_at": "2026-10-04T22:52:32.362020Z",
   "integrity": {
     "ledger_sha256": "b69918d07124e30f844a768b4d00e198ea880c2638fd52f29d67010ba9905fa5",
     "reasons": [],
-    "snapshot_sha256": "4950e17028384e834aa52c804e8cd90e2064bc54304f04a0b1346f35e3b47a12",
+    "snapshot_sha256": "e0dbc77a57c0fdae7d65e5336ed3be35d7d7e08c7143bd56a46d23cd2e78648f",
     "status": "VERIFIED"
   },
   "learning": {
@@ -575,10 +575,42 @@
   },
   "observed_at": "2026-10-04T22:07:14.659853Z",
   "operation": {
-    "error_code": "OPERATING_STATE_UNVERIFIED",
-    "jobs": {},
+    "finished_at": "2026-10-04T22:46:15.523187Z",
+    "jobs": {
+      "anchor": {
+        "exit_code": 0,
+        "finished_at": "2026-10-04T20:01:11.759494Z",
+        "next_due_at": "2026-10-04T23:00:00Z",
+        "started_at": "2026-10-04T20:00:49.503958Z",
+        "status": "SUCCESS"
+      },
+      "autonomy": {
+        "exit_code": 0,
+        "finished_at": "2026-10-04T22:07:14.861990Z",
+        "next_due_at": "2026-10-04T23:00:00Z",
+        "started_at": "2026-10-04T22:00:49.928144Z",
+        "status": "SOURCE_GAPS"
+      },
+      "collector": {
+        "exit_code": 7,
+        "finished_at": "2026-10-04T22:46:13.126667Z",
+        "next_due_at": "2026-10-04T23:00:00Z",
+        "started_at": "2026-10-04T22:46:05.515895Z",
+        "status": "SOURCE_GAPS"
+      },
+      "gate": {
+        "exit_code": 2,
+        "finished_at": "2026-10-04T05:03:07.268411Z",
+        "next_due_at": "2026-10-05T05:00:00Z",
+        "started_at": "2026-10-04T05:00:58.792374Z",
+        "status": "NO_CANDIDATE"
+      }
+    },
     "schema": "wie.public-operation/1",
-    "status": "BLOCKED"
+    "stale": false,
+    "started_at": "2026-10-04T22:46:01.849604Z",
+    "status": "SOURCE_GAPS",
+    "updated_at": "2026-10-04T22:46:15.523187Z"
   },
   "predictions": [
     {
@@ -1861,7 +1893,7 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-10-04T22:42:37.725382Z",
+      "observed_at": "2026-10-04T22:52:32.362020Z",
       "sha256": "78041abb0c36793f7f056ef4b717a48945314faa4232354f0224677b23635a31"
     },
     "canonical_chart": "BLOCK",
