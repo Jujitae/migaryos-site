@@ -468,11 +468,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-10-05T02:27:17.299357Z",
+  "generated_at": "2026-10-05T02:32:20.533690Z",
   "integrity": {
     "ledger_sha256": "36acfc01a10565ab7c686e4df346d1613105ed271786ec140cf9c06841637a3a",
     "reasons": [],
-    "snapshot_sha256": "883fe18e94ba9777c94704a5a8b3fc569de2740a0b8930f4158f796e1daad45d",
+    "snapshot_sha256": "c3d46a6e169d12b6a308e3b249399ac4d31437a5ca6282fe9e01b29f07a8c3aa",
     "status": "VERIFIED"
   },
   "learning": {
@@ -575,7 +575,7 @@
   },
   "observed_at": "2026-10-05T02:04:43.797113Z",
   "operation": {
-    "finished_at": "2026-10-05T02:15:53.084156Z",
+    "finished_at": "2026-10-05T02:30:51.214060Z",
     "jobs": {
       "anchor": {
         "exit_code": 0,
@@ -593,9 +593,9 @@
       },
       "collector": {
         "exit_code": 0,
-        "finished_at": "2026-10-05T02:15:51.102541Z",
-        "next_due_at": "2026-10-05T02:30:00Z",
-        "started_at": "2026-10-05T02:15:49.622950Z",
+        "finished_at": "2026-10-05T02:30:49.749088Z",
+        "next_due_at": "2026-10-05T02:45:00Z",
+        "started_at": "2026-10-05T02:30:48.789377Z",
         "status": "SUCCESS"
       },
       "gate": {
@@ -608,9 +608,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-10-05T02:15:48.087789Z",
+    "started_at": "2026-10-05T02:30:47.524265Z",
     "status": "SOURCE_GAPS",
-    "updated_at": "2026-10-05T02:15:53.084156Z"
+    "updated_at": "2026-10-05T02:30:51.214060Z"
   },
   "predictions": [
     {
@@ -1909,7 +1909,7 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-10-05T02:27:17.299357Z",
+      "observed_at": "2026-10-05T02:32:20.533690Z",
       "sha256": "618caf22bf5c2dee7f47e174e6b35058bdd96d3a4a8b2429c614de2410db9fc0"
     },
     "canonical_chart": "BLOCK",
