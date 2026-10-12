@@ -580,11 +580,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-10-12T10:27:18.546420Z",
+  "generated_at": "2026-10-12T10:32:19.796819Z",
   "integrity": {
     "ledger_sha256": "795f49539ce1e51096ab395afad35a1ef4999718ef7dd103368abe82eab6c21d",
     "reasons": [],
-    "snapshot_sha256": "b637d1f38fcdc14859147dee95420da3af93783275efb5209456cfbfb1b93209",
+    "snapshot_sha256": "5185c41572eb801a23174a7b9a049b2682e2f2763151a01b1b15dec329b049ee",
     "status": "VERIFIED"
   },
   "learning": {
@@ -687,13 +687,13 @@
   },
   "observed_at": "2026-10-12T10:10:22.742885Z",
   "operation": {
-    "finished_at": "2026-10-12T10:15:51.525568Z",
+    "finished_at": "2026-10-12T10:31:19.859088Z",
     "jobs": {
       "anchor": {
         "exit_code": 1,
-        "finished_at": "2026-10-12T10:01:22.580107Z",
-        "next_due_at": "2026-10-12T10:16:22.580107Z",
-        "started_at": "2026-10-12T10:00:49.848366Z",
+        "finished_at": "2026-10-12T10:31:18.715024Z",
+        "next_due_at": "2026-10-12T10:46:18.715024Z",
+        "started_at": "2026-10-12T10:30:49.810142Z",
         "status": "FAILED"
       },
       "autonomy": {
@@ -705,9 +705,9 @@
       },
       "collector": {
         "exit_code": 0,
-        "finished_at": "2026-10-12T10:15:49.768603Z",
-        "next_due_at": "2026-10-12T10:30:00Z",
-        "started_at": "2026-10-12T10:15:48.618551Z",
+        "finished_at": "2026-10-12T10:30:49.242535Z",
+        "next_due_at": "2026-10-12T10:45:00Z",
+        "started_at": "2026-10-12T10:30:48.352514Z",
         "status": "SUCCESS"
       },
       "gate": {
@@ -720,9 +720,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-10-12T10:15:47.088244Z",
+    "started_at": "2026-10-12T10:30:47.093569Z",
     "status": "SOURCE_GAPS",
-    "updated_at": "2026-10-12T10:15:51.525568Z"
+    "updated_at": "2026-10-12T10:31:19.859088Z"
   },
   "predictions": [
     {
@@ -2149,7 +2149,7 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-10-12T10:27:18.546420Z",
+      "observed_at": "2026-10-12T10:32:19.796819Z",
       "sha256": "c086061fa9447cb2b73a8e587f178a3194ce79c5ff834ae137a825246f1e4290"
     },
     "canonical_chart": "BLOCK",
