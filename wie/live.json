@@ -9,7 +9,7 @@
   "counts": {
     "closed_loops": 26,
     "diaries": 37,
-    "mentions": 580116,
+    "mentions": 580262,
     "predictions": 87,
     "resolved": 52,
     "sealed": 85
@@ -612,11 +612,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-10-14T08:42:17.571606Z",
+  "generated_at": "2026-10-14T08:47:18.010477Z",
   "integrity": {
     "ledger_sha256": "3d20988b483efecaaa4cdb586b73bc92a8983c66d08ca09198f826700968cd2b",
     "reasons": [],
-    "snapshot_sha256": "94705f39b6ddf7d5ee9abcff2faaf5d0a1809498211aac44b887a742c44eb32f",
+    "snapshot_sha256": "18e50d68f0c2896e7d04d020f6296ff645b7e951892c38da511731faff654e73",
     "status": "VERIFIED"
   },
   "learning": {
@@ -719,7 +719,7 @@
   },
   "observed_at": "2026-10-14T08:12:46.376852Z",
   "operation": {
-    "finished_at": "2026-10-14T08:31:18.221522Z",
+    "finished_at": "2026-10-14T08:45:51.974301Z",
     "jobs": {
       "anchor": {
         "exit_code": 1,
@@ -737,9 +737,9 @@
       },
       "collector": {
         "exit_code": 0,
-        "finished_at": "2026-10-14T08:30:49.459231Z",
-        "next_due_at": "2026-10-14T08:45:00Z",
-        "started_at": "2026-10-14T08:30:48.345850Z",
+        "finished_at": "2026-10-14T08:45:49.803127Z",
+        "next_due_at": "2026-10-14T09:00:00Z",
+        "started_at": "2026-10-14T08:45:48.579876Z",
         "status": "SUCCESS"
       },
       "gate": {
@@ -752,9 +752,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-10-14T08:30:46.860359Z",
+    "started_at": "2026-10-14T08:45:46.864526Z",
     "status": "SOURCE_GAPS",
-    "updated_at": "2026-10-14T08:31:18.221522Z"
+    "updated_at": "2026-10-14T08:45:51.974301Z"
   },
   "predictions": [
     {
@@ -2213,8 +2213,8 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-10-14T08:42:17.571606Z",
-      "sha256": "14702a465844d0c3ef2ba4d5ff8668522df46d4b749877bf987511324a1dc936"
+      "observed_at": "2026-10-14T08:47:18.010477Z",
+      "sha256": "46ea6abf03879e71f3b643fe5e522f6dfcce773e79ad0ed4d57cbcc998d8398c"
     },
     "canonical_chart": "BLOCK",
     "chart": "BLOCK",
