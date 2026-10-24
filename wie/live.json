@@ -9,7 +9,7 @@
   "counts": {
     "closed_loops": 37,
     "diaries": 47,
-    "mentions": 728997,
+    "mentions": 729036,
     "predictions": 106,
     "resolved": 64,
     "sealed": 104
@@ -772,11 +772,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-10-24T08:27:17.681168Z",
+  "generated_at": "2026-10-24T08:32:20.265372Z",
   "integrity": {
     "ledger_sha256": "df27eae23fdd8b354aa1a876a0bc751f430ee7ec0a9aba3c74436bc310a8036f",
     "reasons": [],
-    "snapshot_sha256": "84e2bb87888e0344d46c54411575ac9183a59380ebba2d67212d0505382404f1",
+    "snapshot_sha256": "b8d52b569efe1bdcc4974a7b17dbcbd26a5172e58bf40f1328125c0df3394c05",
     "status": "VERIFIED"
   },
   "learning": {
@@ -879,13 +879,13 @@
   },
   "observed_at": "2026-10-24T08:26:06.182138Z",
   "operation": {
-    "finished_at": "2026-10-24T08:26:06.752113Z",
+    "finished_at": "2026-10-24T08:31:43.405201Z",
     "jobs": {
       "anchor": {
         "exit_code": 1,
-        "finished_at": "2026-10-24T08:01:08.763877Z",
-        "next_due_at": "2026-10-24T08:16:08.763877Z",
-        "started_at": "2026-10-24T08:00:49.639286Z",
+        "finished_at": "2026-10-24T08:31:42.052542Z",
+        "next_due_at": "2026-10-24T08:46:42.052542Z",
+        "started_at": "2026-10-24T08:30:51.718017Z",
         "status": "FAILED"
       },
       "autonomy": {
@@ -897,9 +897,9 @@
       },
       "collector": {
         "exit_code": 0,
-        "finished_at": "2026-10-24T08:00:49.057355Z",
-        "next_due_at": "2026-10-24T08:15:00Z",
-        "started_at": "2026-10-24T08:00:48.068791Z",
+        "finished_at": "2026-10-24T08:30:51.019474Z",
+        "next_due_at": "2026-10-24T08:45:00Z",
+        "started_at": "2026-10-24T08:30:49.671603Z",
         "status": "SUCCESS"
       },
       "gate": {
@@ -912,9 +912,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-10-24T08:00:46.674763Z",
+    "started_at": "2026-10-24T08:30:47.949855Z",
     "status": "SOURCE_GAPS",
-    "updated_at": "2026-10-24T08:26:06.752113Z"
+    "updated_at": "2026-10-24T08:31:43.405201Z"
   },
   "predictions": [
     {
@@ -2680,8 +2680,8 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-10-24T08:27:17.681168Z",
-      "sha256": "e33f7d502f481877c96634416d676681976846a710708d1dfde74e4573e806f2"
+      "observed_at": "2026-10-24T08:32:20.265372Z",
+      "sha256": "3d85dff529f79b3243cc5d03b2ce58497d40a07c1b6f6310afd2dfb2b2db44ee"
     },
     "canonical_chart": "BLOCK",
     "chart": "BLOCK",
