@@ -772,11 +772,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-10-24T13:27:18.109165Z",
+  "generated_at": "2026-10-24T13:32:21.734504Z",
   "integrity": {
     "ledger_sha256": "df27eae23fdd8b354aa1a876a0bc751f430ee7ec0a9aba3c74436bc310a8036f",
     "reasons": [],
-    "snapshot_sha256": "6e3587205c6a3657d402ffc8651856802c5090022af9aa01913cc646d49ad525",
+    "snapshot_sha256": "44f2ddf2bb6df9d1f4920cc9f02ddaadcd912943fa3fa4932be476b37d99e04b",
     "status": "VERIFIED"
   },
   "learning": {
@@ -879,42 +879,10 @@
   },
   "observed_at": "2026-10-24T13:26:21.635355Z",
   "operation": {
-    "finished_at": "2026-10-24T13:26:22.459912Z",
-    "jobs": {
-      "anchor": {
-        "exit_code": 1,
-        "finished_at": "2026-10-24T13:01:51.647784Z",
-        "next_due_at": "2026-10-24T13:16:51.647784Z",
-        "started_at": "2026-10-24T13:00:54.965869Z",
-        "status": "FAILED"
-      },
-      "autonomy": {
-        "exit_code": 0,
-        "finished_at": "2026-10-24T13:26:22.425093Z",
-        "next_due_at": "2026-10-24T14:00:00Z",
-        "started_at": "2026-10-24T13:01:52.998032Z",
-        "status": "SOURCE_GAPS"
-      },
-      "collector": {
-        "exit_code": 0,
-        "finished_at": "2026-10-24T13:00:54.383216Z",
-        "next_due_at": "2026-10-24T13:15:00Z",
-        "started_at": "2026-10-24T13:00:53.005185Z",
-        "status": "SUCCESS"
-      },
-      "gate": {
-        "exit_code": 2,
-        "finished_at": "2026-10-24T05:04:15.429445Z",
-        "next_due_at": "2026-10-25T05:00:00Z",
-        "started_at": "2026-10-24T05:00:53.213560Z",
-        "status": "NO_CANDIDATE"
-      }
-    },
+    "error_code": "OPERATING_STATE_UNVERIFIED",
+    "jobs": {},
     "schema": "wie.public-operation/1",
-    "stale": false,
-    "started_at": "2026-10-24T13:00:50.519508Z",
-    "status": "SOURCE_GAPS",
-    "updated_at": "2026-10-24T13:26:22.459912Z"
+    "status": "BLOCKED"
   },
   "predictions": [
     {
@@ -2680,7 +2648,7 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-10-24T13:27:18.109165Z",
+      "observed_at": "2026-10-24T13:32:21.734504Z",
       "sha256": "828d573a99b0b01341374303e79b584efa0e0c0d91102cf30d6bb1137777cc8b"
     },
     "canonical_chart": "BLOCK",
