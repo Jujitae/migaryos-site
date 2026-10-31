@@ -1,0 +1,49 @@
+// This is the app's editable ingredient catalog, not a clinical allergy reference.
+// Product labels and cross-contact still need to be checked separately.
+const A=(id,label,emoji,group,aliases=[])=>({id,label,emoji,group,aliases});
+export const ALLERGY_GROUPS=[['all','전체'],['staples','기본 식품'],['fruit','과일·채소'],['nuts','견과·씨앗'],['seafood','생선·해산물'],['meat','육류']];
+export const ALLERGY_OPTIONS=[
+ A('egg','달걀','🥚','staples',['계란','난류']),A('milk','우유','🥛','staples',['유제품','치즈','요거트']),A('soy','대두','🫘','staples',['콩','두유','두부']),A('wheat','밀','🌾','staples',['소맥','밀가루']),A('buckwheat','메밀','🌾','staples'),A('oat','귀리','🥣','staples',['오트밀']),
+ A('kiwi','키위','🥝','fruit',['골드키위','그린키위']),A('peach','복숭아','🍑','fruit',['천도복숭아']),A('apple','사과','🍎','fruit'),A('banana','바나나','🍌','fruit'),A('strawberry','딸기','🍓','fruit'),A('pineapple','파인애플','🍍','fruit'),A('mango','망고','🥭','fruit'),A('melon','멜론','🍈','fruit'),A('watermelon','수박','🍉','fruit'),A('orange','오렌지','🍊','fruit'),A('grape','포도','🍇','fruit'),A('cherry','체리','🍒','fruit'),A('pear','배','🍐','fruit'),A('avocado','아보카도','🥑','fruit'),A('tomato','토마토','🍅','fruit',['방울토마토']),A('lemon','레몬','🍋','fruit'),A('plum','자두','🟣','fruit'),A('apricot','살구','🍑','fruit'),A('persimmon','감','🟠','fruit',['홍시','단감']),A('celery','셀러리','🌿','fruit',['샐러리']),
+ A('peanut','땅콩','🥜','nuts',['땅콩버터']),A('tree_nut','견과류 전체','🌰','nuts',['나무견과','너트']),A('almond','아몬드','🌰','nuts'),A('walnut','호두','🌰','nuts'),A('cashew','캐슈너트','🌰','nuts',['캐슈넛']),A('pistachio','피스타치오','🌰','nuts'),A('hazelnut','헤이즐넛','🌰','nuts'),A('pine_nut','잣','🌲','nuts'),A('sesame','참깨','🌱','nuts',['참기름']),A('mustard','겨자','🌼','nuts',['머스터드']),
+ A('fish','생선 전체','🐟','seafood',['어류','멸치','액젓']),A('shellfish','갑각류·연체류','🦐','seafood',['해산물','조개','갑각류','새우','게','오징어']),A('crab','게','🦀','seafood'),A('shrimp','새우','🦐','seafood',['새우젓']),A('squid','오징어','🦑','seafood'),A('octopus','문어','🐙','seafood'),A('mackerel','고등어','🐟','seafood'),A('clam','바지락','🐚','seafood'),A('mussel','홍합','🐚','seafood'),A('oyster','굴','🦪','seafood'),A('scallop','가리비','🐚','seafood'),
+ A('pork','돼지고기','🥩','meat',['돈육']),A('beef','소고기','🥩','meat',['쇠고기','우육']),A('chicken','닭고기','🍗','meat',['닭가슴살'])
+];
+const ingredient=(name,emoji,unit,pack,price,category,allergens=[],contains=[])=>({name,emoji,unit,pack,price,category,allergens,contains});
+const fresh=(name,emoji,pack=200,price=2900,allergens=[])=>ingredient(name,emoji,'g',pack,price,'채소·과일',allergens);
+const nut=(name,id)=>ingredient(name,'🌰','g',150,4900,'곡물·양념',['tree_nut',id]);
+const seafood=(name,emoji,pack,price,allergens)=>ingredient(name,emoji,'g',pack,price,'생선·해산물',allergens);
+export const EXTRA_INGREDIENTS={
+ kiwi:ingredient('키위','🥝','개',4,4900,'채소·과일',['kiwi']),peach:ingredient('복숭아','🍑','개',3,6900,'채소·과일',['peach']),strawberry:fresh('딸기','🍓',500,6900,['strawberry']),pineapple:fresh('파인애플','🍍',500,4900,['pineapple']),mango:ingredient('망고','🥭','개',2,5900,'채소·과일',['mango']),melon:fresh('멜론','🍈',500,5900,['melon']),watermelon:fresh('수박','🍉',1000,6900,['watermelon']),orange:ingredient('오렌지','🍊','개',3,4900,'채소·과일',['orange']),grape:fresh('포도','🍇',500,5900,['grape']),cherry:fresh('체리','🍒',300,6900,['cherry']),pear:ingredient('배','🍐','개',3,6900,'채소·과일',['pear']),avocado:ingredient('아보카도','🥑','개',2,3900,'채소·과일',['avocado']),tomato:fresh('토마토','🍅',500,3900,['tomato']),lemon:ingredient('레몬','🍋','개',3,2900,'채소·과일',['lemon']),plum:fresh('자두','🟣',500,4900,['plum']),apricot:fresh('살구','🍑',300,4900,['apricot']),persimmon:ingredient('감','🟠','개',3,4900,'채소·과일',['persimmon']),
+ almond:nut('아몬드','almond'),walnut:nut('호두','walnut'),cashew:nut('캐슈너트','cashew'),pistachio:nut('피스타치오','pistachio'),hazelnut:nut('헤이즐넛','hazelnut'),pine_nut:nut('잣','pine_nut'),peanut_kernel:ingredient('땅콩','🥜','g',200,3900,'곡물·양념',['peanut']),sesame_seed:ingredient('참깨','🌱','g',100,2900,'곡물·양념',['sesame']),mustard:ingredient('겨자','🌼','g',100,2500,'곡물·양념',['mustard']),
+ crab:seafood('게','🦀',500,9900,['shellfish','crab']),squid:seafood('오징어','🦑',300,5900,['shellfish','squid']),octopus:seafood('문어','🐙',300,9900,['shellfish','octopus']),mackerel:seafood('고등어','🐟',300,4900,['fish','mackerel']),clam:seafood('바지락','🐚',500,4900,['shellfish','clam']),mussel:seafood('홍합','🐚',500,3900,['shellfish','mussel']),oyster:seafood('굴','🦪',200,5900,['shellfish','oyster']),scallop:seafood('가리비','🐚',500,7900,['shellfish','scallop']),salmon:seafood('연어','🐟',200,7900,['fish']),cod:seafood('대구','🐟',300,5900,['fish']),anchovy:seafood('멸치','🐟',150,3900,['fish']),fish_sauce:ingredient('액젓','🫙','ml',500,3900,'곡물·양념',['fish'],['anchovy']),salted_shrimp:ingredient('새우젓','🦐','g',150,3900,'곡물·양념',['shellfish','shrimp']),
+ cilantro:fresh('고수','🌿',50,1900),perilla:fresh('깻잎','🌿',30,1500),parsley:fresh('파슬리','🌿',30,1900),celery:fresh('셀러리','🌿',300,2900,['celery']),basil:fresh('바질','🌿',30,2500),mint:fresh('민트','🌿',30,2500),ginger:fresh('생강','🫚',100,1900),chives:fresh('부추','🌱',200,1900),crown_daisy:fresh('쑥갓','🌿',150,1900),minari:fresh('미나리','🌱',200,2900),eggplant:fresh('가지','🍆',300,2500),broccoli:fresh('브로콜리','🥦',300,2900),paprika:fresh('파프리카','🫑',200,1900),bellpepper:fresh('피망','🫑',200,1900),hotpepper:fresh('청양고추','🌶️',100,1900),radish:fresh('무','🥬',500,1500),bean_sprout:fresh('콩나물','🌱',300,1500,['soy']),mung_sprout:fresh('숙주','🌱',300,1500),lettuce:fresh('상추','🥬',150,1900),pumpkin:fresh('단호박','🎃',500,2900),corn:fresh('옥수수','🌽',300,2900),peas:fresh('완두콩','🫛',300,2900),lotus:fresh('연근','🪷',300,2900),burdock:fresh('우엉','🌱',200,2900),napa:fresh('배추','🥬',500,2500),shiitake:fresh('표고버섯','🍄',150,2900),enoki:fresh('팽이버섯','🍄',150,990),buttonmushroom:fresh('양송이버섯','🍄',150,2900),
+ wheat:ingredient('밀가루','🌾','g',1000,2900,'곡물·양념',['wheat']),buckwheat:ingredient('메밀가루','🌾','g',500,4900,'곡물·양념',['buckwheat']),soybean:ingredient('대두','🫘','g',500,3900,'곡물·양념',['soy']),soymilk:ingredient('두유','🥛','ml',1000,2900,'유제품·두부',['soy'],['soybean']),cheese:ingredient('치즈','🧀','g',200,3900,'유제품·두부',['milk'],['milk']),butter:ingredient('버터','🧈','g',200,4900,'유제품·두부',['milk'],['milk']),cream:ingredient('생크림','🥛','ml',200,2900,'유제품·두부',['milk'],['milk']),lamb:ingredient('양고기','🥩','g',300,7900,'육류·달걀'),duck:ingredient('오리고기','🦆','g',300,5900,'육류·달걀'),ham:ingredient('햄','🍖','g',200,2900,'육류·달걀',['pork'],['pork']),bacon:ingredient('베이컨','🥓','g',150,3900,'육류·달걀',['pork'],['pork']),sausage:ingredient('소시지','🌭','g',200,2900,'육류·달걀',['pork'],['pork']),offal:ingredient('내장','🥩','g',300,5900,'육류·달걀')
+};
+// These traces describe the representative ingredients used by this app.
+export const INGREDIENT_UPDATES={
+ apple:{allergens:['apple']},banana:{allergens:['banana']},oat:{allergens:['oat']},pork:{allergens:['pork']},beef:{allergens:['beef']},chicken:{allergens:['chicken']},shrimp:{allergens:['shellfish','shrimp']},
+ kimchi:{contains:['napa','garlic','chili','fish_sauce','salted_shrimp']},soy:{contains:['soybean','wheat']},tofu:{contains:['soybean']},softtofu:{contains:['soybean']},doenjang:{contains:['soybean','wheat']},gochujang:{contains:['chili','soybean','wheat']},bread:{contains:['wheat','milk','egg']},noodle:{contains:['wheat']},yogurt:{contains:['milk']},peanut:{contains:['peanut_kernel']},sesame:{contains:['sesame_seed']}
+};
+export const DISLIKE_GROUPS=[['all','전체'],['herbs','향채·양념'],['veg','채소·버섯'],['fruit','과일'],['meat','고기'],['seafood','생선·해산물'],['dairy','유제품·콩'],['nuts','견과·곡물']];
+const dislikeIds={
+ herbs:['cilantro','perilla','celery','parsley','basil','mint','crown_daisy','minari','ginger','garlic','greenonion','onion','chives','chili','hotpepper','fish_sauce','salted_shrimp','gochujang','doenjang'],
+ veg:['mushroom','shiitake','enoki','buttonmushroom','cucumber','eggplant','broccoli','paprika','bellpepper','carrot','zucchini','cabbage','spinach','radish','bean_sprout','mung_sprout','lettuce','pumpkin','potato','sweetpotato','corn','peas','lotus','burdock','napa','kimchi','seaweed'],
+ fruit:['kiwi','peach','apple','banana','strawberry','pineapple','mango','melon','watermelon','orange','grape','cherry','pear','avocado','tomato','lemon','plum','apricot','persimmon'],
+ meat:['beef','pork','chicken','lamb','duck','offal','ham','bacon','sausage','egg'],
+ seafood:['tuna','shrimp','crab','squid','octopus','mackerel','salmon','cod','anchovy','clam','mussel','oyster','scallop'],
+ dairy:['milk','yogurt','cheese','butter','cream','tofu','softtofu','soybean','soymilk'],
+ nuts:['peanut','almond','walnut','cashew','pistachio','hazelnut','pine_nut','sesame_seed','mustard','wheat','buckwheat','oat']
+};
+const overrides={mushroom:'버섯류 전체',milk:'우유·유제품 전체',tofu:'두부류 전체',beef:'소고기',pork:'돼지고기',chicken:'닭고기',peanut:'땅콩·땅콩버터',garlic:'마늘',shrimp:'새우',soybean:'대두·콩'};
+const aliases={cilantro:['코리앤더','코리앤다','향채'],perilla:['들깻잎'],egg:['계란','난류'],mushroom:['버섯','느타리버섯'],celery:['샐러리'],kiwi:['골드키위','그린키위'],peach:['천도복숭아'],tomato:['방울토마토'],chicken:['닭가슴살'],mint:['박하'],peanut:['땅콩버터'],basil:['바실'],crown_daisy:['크라운데이지']};
+export function createDislikeOptions(ingredients){
+ const options=Object.entries(dislikeIds).flatMap(([group,ids])=>ids.map(id=>({id,label:overrides[id]||ingredients[id].name,emoji:ingredients[id].emoji,group,aliases:aliases[id]||[],ingredients:[id]})));
+ options.unshift({id:'spicy',label:'매운 음식',emoji:'🌶️',group:'herbs',aliases:['매운맛','매운거'],ingredients:['chili','hotpepper','gochujang','kimchi']});
+ options.find(x=>x.id==='mushroom').ingredients=['mushroom','shiitake','enoki','buttonmushroom'];
+ options.find(x=>x.id==='milk').ingredients=['milk','yogurt','cheese','butter','cream'];
+ options.find(x=>x.id==='tofu').ingredients=['tofu','softtofu'];
+ options.find(x=>x.id==='peanut').ingredients=['peanut','peanut_kernel'];
+ return options;
+}
+export function optionMatches(option,query){const q=query.trim().toLocaleLowerCase('ko-KR').replace(/\s/g,'');return !q||[option.label,...(option.aliases||[])].some(s=>s.toLocaleLowerCase('ko-KR').replace(/\s/g,'').includes(q));}
