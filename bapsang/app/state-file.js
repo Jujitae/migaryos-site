@@ -27,5 +27,5 @@ export function validateState(input){
  for(const [key,items]of Object.entries(input.extraGroceries||{})){week(key);if(!plain(items))fail();extraGroceries[key]={};for(const [id,q]of Object.entries(items)){if(!Object.hasOwn(INGREDIENTS,id))fail();extraGroceries[key][id]=number(q,0,100000);}}
  return {version:1,prefs,pantry,weeks,checked,shopping:validateShopping(input.shopping),userRecipes:library.userRecipes,cookbooks:library.cookbooks,extraGroceries,saved:array(input.saved||[],recipeIds,recipeIds.size),week:week(input.week),accepted:Boolean(input.accepted),onboardingRevision:input.onboardingRevision===2?2:1};
 }
-export function createBackup(state){return JSON.stringify({format:'bapsang-backup',formatVersion:3,createdAt:new Date().toISOString(),state:validateState(state)},null,2);}
-export function parseBackup(text){if(typeof text!=='string'||text.length>5*1024*1024)fail();let file;try{file=JSON.parse(text);}catch{fail();}if(file?.format!=='bapsang-backup'||![1,2,3].includes(file.formatVersion))fail();return validateState(file.state);}
+export function createBackup(state){return JSON.stringify({format:'bapsang-backup',formatVersion:4,createdAt:new Date().toISOString(),state:validateState(state)},null,2);}
+export function parseBackup(text){if(typeof text!=='string'||text.length>5*1024*1024)fail();let file;try{file=JSON.parse(text);}catch{fail();}if(file?.format!=='bapsang-backup'||![1,2,3,4].includes(file.formatVersion))fail();return validateState(file.state);}

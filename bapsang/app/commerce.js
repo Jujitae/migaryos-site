@@ -29,10 +29,12 @@ export function validateOffer(o,{manual=false}={}){
  if(!text(o.name,180)||!o.name.trim()||!finite(o.packQuantity,.001,100000)||o.unit!==INGREDIENTS[o.ingredientId].unit)fail('상품명과 재료 단위에 맞는 포장 수량을 입력해주세요.');
  if(!finite(o.price)||!Number.isInteger(o.price)||!['general','member','coupon'].includes(o.priceKind))fail('상품 가격과 적용 조건을 확인해주세요.');
  if(!date(o.observedAt)||!['in-stock','out-of-stock','unknown'].includes(o.availability))fail('가격 확인 시각과 재고를 확인해주세요.');
+ if(!text(o.priceConditions||'',500))fail('가격 적용 조건을 확인해주세요.');
+ for(const k of ['minimumPacks','multiplePacks','maximumPacks'])if(o[k]!==undefined&&o[k]!==null&&(!finite(o[k],k==='maximumPacks'?0:1,100000)||!Number.isInteger(o[k])))fail('상품 구매 수량 제한을 확인해주세요.');
  if(!text(o.allergenText||'',2000)||!text(o.context||'',180)||!text(o.deliveryGroup||'',120)||!text(o.optionId||'',100)||!text(o.productId||'',100)||!text(o.packLabel||'',140)||!text(o.brand||'',100))fail('상품 정보의 길이를 확인해주세요.');
  const url=productUrl(o.url,o.storeId);if(ONLINE_STORES.has(o.storeId)&&!url)fail('온라인 상품은 구매 링크가 필요해요.');
  if(!ONLINE_STORES.has(o.storeId)&&!o.context?.trim())fail('매장명·지점을 입력해주세요.');
- return {id:o.id,storeId:o.storeId,ingredientId:o.ingredientId,name:o.name.trim(),brand:o.brand||'',packQuantity:o.packQuantity,unit:o.unit,packLabel:o.packLabel||'',price:o.price,priceKind:o.priceKind,url,observedAt:o.observedAt,availability:o.availability,allergenText:o.allergenText||'',context:o.context||'',deliveryGroup:o.deliveryGroup||'store-default',optionId:o.optionId||'',productId:o.productId||'',source:manual?'user-entered':o.source==='retailer-page'?'retailer-page':'user-entered',shippingRule:!manual&&plain(o.shippingRule)?validateRule(o.shippingRule):null};
+ return {minimumPacks:o.minimumPacks??1,multiplePacks:o.multiplePacks??1,maximumPacks:o.maximumPacks??null,priceConditions:o.priceConditions||'',id:o.id,storeId:o.storeId,ingredientId:o.ingredientId,name:o.name.trim(),brand:o.brand||'',packQuantity:o.packQuantity,unit:o.unit,packLabel:o.packLabel||'',price:o.price,priceKind:o.priceKind,url,observedAt:o.observedAt,availability:o.availability,allergenText:o.allergenText||'',context:o.context||'',deliveryGroup:o.deliveryGroup||'store-default',optionId:o.optionId||'',productId:o.productId||'',source:manual?'user-entered':o.source==='retailer-page'?'retailer-page':'user-entered',shippingRule:!manual&&plain(o.shippingRule)?validateRule(o.shippingRule):null};
 }
 export function validateRule(r){
  const out={};for(const k of ['fee','freeOver','minimum']){if(r[k]!==null&&r[k]!==undefined&&(!finite(r[k])||!Number.isInteger(r[k])))fail('배송비·최소 주문 금액을 확인해주세요.');out[k]=r[k]??null;}return out;
@@ -76,12 +78,14 @@ export function offerRisk(o,p,shopping){
  const needsReview=!!((p.allergies||[]).length||(p.dislikes||[]).length||['vegan','vegetarian','pescatarian','dairyfree','glutenfree'].includes(p.diet));
  return {blocked:[...new Set(blocked)],needsReview:needsReview&&shopping.reviews[o.id]!==reviewKey(o,p)};
 }
+export function priceConditionKey(o){return JSON.stringify([o.id,o.price,o.priceConditions||'',o.minimumPacks||1,o.multiplePacks||1]);}
 export function quote(o,need,p,shopping,now=Date.now()){
- const settings=shopping.settings[o.storeId]||{},risk=offerRisk(o,p,shopping),age=now-Date.parse(o.observedAt),packs=Math.max(0,Math.ceil((need-1e-7)/o.packQuantity));
+ const settings=shopping.settings[o.storeId]||{},risk=offerRisk(o,p,shopping),age=now-Date.parse(o.observedAt),packs=need>0?Math.ceil(Math.max(o.minimumPacks||1,Math.ceil((need-1e-7)/o.packQuantity))/(o.multiplePacks||1))*(o.multiplePacks||1):0;
  let reason='';if(o.availability!=='in-stock')reason=o.availability==='out-of-stock'?'품절':'재고 확인 필요';
+ else if(o.maximumPacks!==undefined&&o.maximumPacks!==null&&packs>o.maximumPacks)reason='필요 수량만큼 재고 없음';
  else if(age>6*3600000||age< -300000)reason='가격 다시 확인';
  else if(o.priceKind==='member'&&!settings.member)reason='멤버십 적용 확인 필요';
- else if(o.priceKind==='coupon'&&!settings.coupon)reason='쿠폰 적용 확인 필요';
+ else if(o.priceKind==='coupon'&&(o.source==='retailer-page'?shopping.reviews['price_'+o.id]!==priceConditionKey(o):!settings.coupon))reason=o.source==='retailer-page'?'상품 쿠폰 조건 확인 필요':'쿠폰 적용 확인 필요';
  else if(risk.blocked.length)reason='피할 재료: '+risk.blocked.join(', ');
  else if(risk.needsReview)reason='제품 성분 확인 필요';
  return {offer:o,packs,purchased:packs*o.packQuantity,leftover:Math.max(0,packs*o.packQuantity-need),cost:packs*o.price,need,eligible:!reason,reason,risk};
