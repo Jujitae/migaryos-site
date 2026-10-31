@@ -2,7 +2,7 @@
 
 공개 앱 주소: https://migaryos.com/bapsang/app/
 버전: 1.1.1
-원본 소스 커밋: `e27a71abd1c2b222b6c746be77f8139a01879a64`
+원본 소스 커밋: `2a4a8a9a9dc59997e0698e061faaba86bc727ea5`
 
 `app/`은 밥상 원본의 `dist/`와 `npm run build:site`가 생성하는 `artifacts/web-runtime.js`, `artifacts/web-index.html`로 구성됩니다. 공개 index에는 회사 도메인의 canonical URL을 추가합니다. 단일 웹 번들은 업데이트 후 오래된 개별 모듈 캐시가 섞이는 것을 방지합니다. 이후 기능 변경 시 같은 방식으로 갱신합니다.
 
