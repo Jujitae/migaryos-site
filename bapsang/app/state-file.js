@@ -1,3 +1,4 @@
+import {validateShopping} from './commerce.js';
 import {INGREDIENTS,RECIPES,STORES,MEALS,TOOLS,ALLERGENS,DISLIKE_OPTIONS} from './data.js';
 import {validateLibrary} from './recipe-library.js';
 const storeIds=new Set(STORES.map(s=>s.id)),dislikeIds=new Set(DISLIKE_OPTIONS.map(x=>x.id));
@@ -24,7 +25,7 @@ export function validateState(input){
  for(const [key,values]of Object.entries(input.checked||{})){week(key);if(!plain(values))fail();checked[key]={};for(const [id,v]of Object.entries(values)){if(!Object.hasOwn(INGREDIENTS,id)||typeof v!=='boolean')fail();checked[key][id]=v;}}
  const extraGroceries={};if(input.extraGroceries!==undefined&&!plain(input.extraGroceries))fail();
  for(const [key,items]of Object.entries(input.extraGroceries||{})){week(key);if(!plain(items))fail();extraGroceries[key]={};for(const [id,q]of Object.entries(items)){if(!Object.hasOwn(INGREDIENTS,id))fail();extraGroceries[key][id]=number(q,0,100000);}}
- return {version:1,prefs,pantry,weeks,checked,userRecipes:library.userRecipes,cookbooks:library.cookbooks,extraGroceries,saved:array(input.saved||[],recipeIds,recipeIds.size),week:week(input.week),accepted:Boolean(input.accepted),onboardingRevision:input.onboardingRevision===2?2:1};
+ return {version:1,prefs,pantry,weeks,checked,shopping:validateShopping(input.shopping),userRecipes:library.userRecipes,cookbooks:library.cookbooks,extraGroceries,saved:array(input.saved||[],recipeIds,recipeIds.size),week:week(input.week),accepted:Boolean(input.accepted),onboardingRevision:input.onboardingRevision===2?2:1};
 }
-export function createBackup(state){return JSON.stringify({format:'bapsang-backup',formatVersion:2,createdAt:new Date().toISOString(),state:validateState(state)},null,2);}
-export function parseBackup(text){if(typeof text!=='string'||text.length>5*1024*1024)fail();let file;try{file=JSON.parse(text);}catch{fail();}if(file?.format!=='bapsang-backup'||![1,2].includes(file.formatVersion))fail();return validateState(file.state);}
+export function createBackup(state){return JSON.stringify({format:'bapsang-backup',formatVersion:3,createdAt:new Date().toISOString(),state:validateState(state)},null,2);}
+export function parseBackup(text){if(typeof text!=='string'||text.length>5*1024*1024)fail();let file;try{file=JSON.parse(text);}catch{fail();}if(file?.format!=='bapsang-backup'||![1,2,3].includes(file.formatVersion))fail();return validateState(file.state);}

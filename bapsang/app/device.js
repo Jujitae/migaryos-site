@@ -1,3 +1,4 @@
+export function timeoutSignal(ms){if(typeof AbortSignal.timeout==='function')return AbortSignal.timeout(ms);const controller=new AbortController();setTimeout(()=>controller.abort(),ms);return controller.signal;}
 // The web version uses localStorage; installed apps provide a native bridge.
 const bridge=()=>globalThis.BapsangBridge;
 export const isNativeApp=()=>Boolean(bridge()?.native);
@@ -30,7 +31,7 @@ export async function exportText(name,text,type='text/plain;charset=utf-8'){
 export async function fetchRecipePage(url){
  try{
   if(isNativeApp())return await bridge().fetchRecipePage(url);
-  const response=await fetch(url,{credentials:'omit',referrerPolicy:'no-referrer',signal:AbortSignal.timeout(15000)});
+  const response=await fetch(url,{credentials:'omit',referrerPolicy:'no-referrer',signal:timeoutSignal(15000)});
   if(!response.ok)throw new Error('레시피 페이지를 읽지 못했어요.');
   const html=await response.text();if(html.length>2*1024*1024)throw new Error('페이지가 너무 커요. 레시피 내용을 붙여넣어주세요.');return html;
  }catch(e){throw new Error(e.message?.includes('너무 커')?e.message:'이 페이지는 직접 읽기를 허용하지 않거나 접근할 수 없어요. 레시피 내용을 복사해 붙여넣어주세요.');}

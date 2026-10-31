@@ -1,7 +1,11 @@
 # 밥상 웹 배포
 
 공개 앱 주소: https://migaryos.com/bapsang/app/
+버전: 1.1.0
+원본 소스 커밋: `235c31e7d672d95e26b70a1deea1fe0e7d617d02`
 
-`app/`은 밥상 원본 저장소의 `dist/`를 복사한 독립 실행 정적 배포입니다. 2026-10-31 원본 커밋: `acc0750b54e55af0a5a5ded9f226acb55da16e0d`. 배포본 index.html에는 회사 주소의 canonical 링크만 추가했습니다. 이후 밥상 기능 변경 시 같은 방식으로 갱신하고 하위 경로의 모듈·정책 파일과 기기 저장소를 확인합니다.
+`app/`은 밥상 원본의 `dist/`와 `npm run build:site`가 생성하는 `artifacts/web-runtime.js`, `artifacts/web-index.html`로 구성됩니다. 공개 index에는 회사 도메인의 canonical URL을 추가합니다. 단일 웹 번들은 업데이트 후 오래된 개별 모듈 캐시가 섞이는 것을 방지합니다. 이후 기능 변경 시 같은 방식으로 갱신합니다.
 
-회사 사이트 루트의 WIE 생성 페이지와 DNS·메일 설정은 수정하지 않습니다. 브라우저 저장소는 origin별로 나뉩니다. 이전 ChatGPT Sites 주소의 식단은 해당 주소의 앱 정보 → 데이터 백업 후 새 주소의 앱 정보 → 백업 가져오기로 옮길 수 있습니다. 설치형 Android 앱의 저장소에는 영향이 없습니다.
+공개 상품 가격 새로고침은 밥상 소유자가 운영하는 https://bapsang-kitchen.mettl.chatgpt.site/api/retail/kurly/<reviewed-sku> 읽기 전용 서비스에 요청합니다. 개인 식단·알레르기·보유 재료·유통사 로그인은 전송하지 않으며, 검토한 공개 SKU만 조회합니다. 구매자 장바구니 자동 쓰기 연동은 없습니다.
+
+회사 루트의 WIE 생성 페이지와 DNS·메일 설정은 수정하지 않습니다. 브라우저 저장소는 origin별입니다. 이전 ChatGPT Sites의 데이터는 해당 앱 정보의 백업 후 회사 주소의 백업 가져오기로 옮깁니다. 회사 주소 내의 기존 데이터와 설치형 앱의 기기 저장소는 기존 형식을 읽습니다.
