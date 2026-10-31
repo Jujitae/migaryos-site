@@ -2,7 +2,7 @@ import {INGREDIENTS,STORES,ALLERGY_OPTIONS,DISLIKE_OPTIONS} from './data.js';
 
 const ids=new Set(STORES.map(s=>s.id)),plain=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
 export const ONLINE_STORES=new Set(['coupang','kurly','ssg']);
-const domains={coupang:['coupang.com'],kurly:['kurly.com'],ssg:['ssg.com'],emart:['ssg.com','emart.com'],nobrand:['ssg.com','emart.com'],traders:['ssg.com','emart.com'],everyday:['ssg.com','emart.com'],ssgfood:['ssg.com','shinsegae.com'],homeplus:['homeplus.co.kr'],megafood:['homeplus.co.kr'],lotte:['lottemart.com','lotteon.com'],maxx:['lottemart.com','lotteon.com'],costco:['costco.co.kr'],gsfresh:['gsretail.com','gsshop.com'],orga:['orga.co.kr','pulmuone.com'],bmart:['baemin.com','baemin.co.kr'],cu:['bgfretail.com','pocketcu.co.kr'],gs25:['gsretail.com'],seven:['7-eleven.co.kr'],emart24:['emart24.co.kr'],market:[]};
+const domains={coupang:['coupang.com'],kurly:['kurly.com'],ssg:['ssg.com'],emart:['ssg.com','emart.com'],nobrand:['ssg.com','emart.com'],traders:['ssg.com','emart.com'],everyday:['ssg.com','emart.com'],ssgfood:['ssg.com','shinsegae.com'],homeplus:['homeplus.co.kr'],megafood:['homeplus.co.kr'],lotte:['lottemart.com','lotteon.com','lottemartzetta.com'],maxx:['lottemart.com','lotteon.com'],costco:['costco.co.kr'],gsfresh:['gsretail.com','gsshop.com'],orga:['orga.co.kr','pulmuone.com'],bmart:['baemin.com','baemin.co.kr'],cu:['bgfretail.com','pocketcu.co.kr'],gs25:['gsretail.com'],seven:['7-eleven.co.kr'],emart24:['emart24.co.kr'],market:[]};
 const fail=message=>{throw new Error(message);};
 const finite=(x,min=0,max=100000000)=>typeof x==='number'&&Number.isFinite(x)&&x>=min&&x<=max;
 const safeKey=x=>typeof x==='string'&&/^[a-zA-Z0-9_-]{1,140}$/.test(x)&&!['__proto__','constructor','prototype'].includes(x);
@@ -20,6 +20,7 @@ export function searchUrl(store,name){
  if(store==='coupang')return 'https://www.coupang.com/np/search?q='+q;
  if(store==='kurly')return 'https://www.kurly.com/search?sword='+q;
  if(store==='ssg')return 'https://www.ssg.com/search.ssg?query='+q;
+ if(store==='lotte')return 'https://lottemartzetta.com/products/search?q='+q;
  if(store==='costco')return 'https://www.costco.co.kr/search?text='+q;
  return 'https://search.naver.com/search.naver?query='+encodeURIComponent(storeName(store)+' '+name);
 }
@@ -95,7 +96,7 @@ export function candidatesFor(item,store,offers,p,shopping,now){
  const selected=shopping.selections[store+':'+item.id];return optionsFor(item,store,offers,p,shopping,now).filter(q=>q.eligible&&(!selected||q.offer.id===selected));
 }
 export function totals(lines,shopping){
- const groups=new Map();for(const line of lines){const o=line.offer,key=o.storeId+':'+o.deliveryGroup;let g=groups.get(key);if(!g){g={key,storeId:o.storeId,subtotal:0,lines:[],rule:shopping.settings[o.storeId]||o.shippingRule||{method:ONLINE_STORES.has(o.storeId)?'delivery':'pickup',fee:null,freeOver:null,minimum:null}};groups.set(key,g);}g.subtotal+=line.cost;g.lines.push(line);}
+ const groups=new Map();for(const line of lines){const o=line.offer,key=o.storeId+':'+o.deliveryGroup;let g=groups.get(key);if(!g){g={key,storeId:o.storeId,subtotal:0,lines:[],rule:shopping.settings[o.storeId]||o.shippingRule||{method:ONLINE_STORES.has(o.storeId)||o.source==='retailer-page'?'delivery':'pickup',fee:null,freeOver:null,minimum:null}};groups.set(key,g);}g.subtotal+=line.cost;g.lines.push(line);}
  let subtotal=0,shipping=0,shippingKnown=true,minimumMet=true;
  for(const g of groups.values()){
   const rule=g.rule;g.shipping=rule.method==='pickup'?0:rule.freeOver!==null&&rule.freeOver!==undefined&&g.subtotal>=rule.freeOver?0:rule.fee;
