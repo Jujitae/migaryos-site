@@ -9,7 +9,7 @@
   "counts": {
     "closed_loops": 46,
     "diaries": 59,
-    "mentions": 845585,
+    "mentions": 845586,
     "predictions": 117,
     "resolved": 80,
     "sealed": 115
@@ -964,11 +964,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-05T05:17:17.371242Z",
+  "generated_at": "2026-11-05T05:22:16.996861Z",
   "integrity": {
     "ledger_sha256": "3c137e1223d8488bd9c0f92902ede21233a6ee557616d5ef7c7a3fce2ba9fe46",
     "reasons": [],
-    "snapshot_sha256": "34e8ffd3ee66efc09c09373bc4eb9394c187138df6484735b473ad89419c5c14",
+    "snapshot_sha256": "7eda5577f857f0de432b3d69f10b5af191b694ad7af692122e8f9210b6cf192c",
     "status": "VERIFIED"
   },
   "learning": {
@@ -1071,7 +1071,7 @@
   },
   "observed_at": "2026-11-05T05:04:47.798464Z",
   "operation": {
-    "finished_at": null,
+    "finished_at": "2026-11-05T05:18:38.868369Z",
     "jobs": {
       "anchor": {
         "exit_code": 1,
@@ -1095,18 +1095,18 @@
         "status": "SUCCESS"
       },
       "gate": {
-        "exit_code": null,
-        "finished_at": null,
-        "next_due_at": null,
+        "exit_code": 0,
+        "finished_at": "2026-11-05T05:18:38.413428Z",
+        "next_due_at": "2026-11-06T05:00:00Z",
         "started_at": "2026-11-05T05:16:08.063712Z",
-        "status": "RUNNING"
+        "status": "SUCCESS"
       }
     },
     "schema": "wie.public-operation/1",
     "stale": false,
     "started_at": "2026-11-05T05:15:46.547601Z",
-    "status": "RUNNING",
-    "updated_at": "2026-11-05T05:16:08.688393Z"
+    "status": "SOURCE_GAPS",
+    "updated_at": "2026-11-05T05:18:38.868369Z"
   },
   "predictions": [
     {
@@ -3045,8 +3045,8 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-11-05T05:17:17.371242Z",
-      "sha256": "e4e8c2ca27204ffd3b097742fb7d871d6fff992183135c5754b199e99a6c19c9"
+      "observed_at": "2026-11-05T05:22:16.996861Z",
+      "sha256": "8b39b996c629523f3d2bb33054de69eeb91aff038ef585630a11351181f85ef2"
     },
     "canonical_chart": "BLOCK",
     "chart": "BLOCK",
