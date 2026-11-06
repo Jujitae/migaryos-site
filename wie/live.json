@@ -980,11 +980,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-06T01:12:32.409813Z",
+  "generated_at": "2026-11-06T01:17:19.621375Z",
   "integrity": {
     "ledger_sha256": "38638db8c91c4947423fd630517570261cd9950dc66534844aefe2622b4c3d16",
     "reasons": [],
-    "snapshot_sha256": "c593027c8713cd0d74582cc03b72814e8911bc42e678f015a62848c3c14a4eb8",
+    "snapshot_sha256": "82f37ab68883c7140e369c014fee9e499ae37e5c0483c73792b93fe98b60244a",
     "status": "VERIFIED"
   },
   "learning": {
@@ -1087,10 +1087,42 @@
   },
   "observed_at": "2026-11-06T01:08:04.777482Z",
   "operation": {
-    "error_code": "OPERATING_STATE_UNVERIFIED",
-    "jobs": {},
+    "finished_at": "2026-11-06T01:16:28.105562Z",
+    "jobs": {
+      "anchor": {
+        "exit_code": 1,
+        "finished_at": "2026-11-06T01:16:26.635747Z",
+        "next_due_at": "2026-11-06T01:31:26.635747Z",
+        "started_at": "2026-11-06T01:15:52.308692Z",
+        "status": "FAILED"
+      },
+      "autonomy": {
+        "exit_code": 2,
+        "finished_at": "2026-11-06T01:08:05.013396Z",
+        "next_due_at": "2026-11-06T01:23:05.013396Z",
+        "started_at": "2026-11-06T00:45:50.164830Z",
+        "status": "FAILED"
+      },
+      "collector": {
+        "exit_code": 0,
+        "finished_at": "2026-11-06T01:15:51.430184Z",
+        "next_due_at": "2026-11-06T01:30:00Z",
+        "started_at": "2026-11-06T01:15:50.238182Z",
+        "status": "SUCCESS"
+      },
+      "gate": {
+        "exit_code": 0,
+        "finished_at": "2026-11-05T05:18:38.413428Z",
+        "next_due_at": "2026-11-06T05:00:00Z",
+        "started_at": "2026-11-05T05:16:08.063712Z",
+        "status": "SUCCESS"
+      }
+    },
     "schema": "wie.public-operation/1",
-    "status": "BLOCKED"
+    "stale": false,
+    "started_at": "2026-11-06T01:15:48.389292Z",
+    "status": "SOURCE_GAPS",
+    "updated_at": "2026-11-06T01:16:28.105562Z"
   },
   "predictions": [
     {
@@ -3109,7 +3141,7 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-11-06T01:12:32.409813Z",
+      "observed_at": "2026-11-06T01:17:19.621375Z",
       "sha256": "a7af5e54f39e3009671a50d2300f28d04d716937aeeff87c2889f3dcfd5d8171"
     },
     "canonical_chart": "BLOCK",
