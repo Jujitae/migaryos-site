@@ -1028,11 +1028,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-08T23:27:18.390524Z",
+  "generated_at": "2026-11-08T23:32:19.638306Z",
   "integrity": {
     "ledger_sha256": "9f8231fa2fc8a5dea026a884348f0590f20c7a63cc0e6cb52d941b5c95ff4f84",
     "reasons": [],
-    "snapshot_sha256": "e4669c60f8ceeaa8d293a198bedd3b84550a29169767e923e426f0abe7b1308a",
+    "snapshot_sha256": "477daf361c3f1b29479bec9a6190ed9833487eb4ac729b55ae98ba3ac46e9206",
     "status": "VERIFIED"
   },
   "learning": {
@@ -1135,10 +1135,42 @@
   },
   "observed_at": "2026-11-08T23:26:23.944101Z",
   "operation": {
-    "error_code": "OPERATING_STATE_UNVERIFIED",
-    "jobs": {},
+    "finished_at": "2026-11-08T23:31:14.618397Z",
+    "jobs": {
+      "anchor": {
+        "exit_code": 1,
+        "finished_at": "2026-11-08T23:31:14.616390Z",
+        "next_due_at": "2026-11-08T23:46:14.616390Z",
+        "started_at": "2026-11-08T23:30:47.792479Z",
+        "status": "FAILED"
+      },
+      "autonomy": {
+        "exit_code": 0,
+        "finished_at": "2026-11-08T23:26:24.301028Z",
+        "next_due_at": "2026-11-09T00:00:00Z",
+        "started_at": "2026-11-08T23:01:02.770838Z",
+        "status": "SOURCE_GAPS"
+      },
+      "collector": {
+        "exit_code": 7,
+        "finished_at": "2026-11-08T23:30:47.790475Z",
+        "next_due_at": "2026-11-08T23:45:00Z",
+        "started_at": "2026-11-08T23:30:47.147175Z",
+        "status": "SOURCE_GAPS"
+      },
+      "gate": {
+        "exit_code": 2,
+        "finished_at": "2026-11-08T05:04:45.648744Z",
+        "next_due_at": "2026-11-09T05:00:00Z",
+        "started_at": "2026-11-08T05:00:48.179740Z",
+        "status": "NO_CANDIDATE"
+      }
+    },
     "schema": "wie.public-operation/1",
-    "status": "BLOCKED"
+    "stale": false,
+    "started_at": "2026-11-08T23:30:47.136154Z",
+    "status": "SOURCE_GAPS",
+    "updated_at": "2026-11-08T23:31:14.618397Z"
   },
   "predictions": [
     {
@@ -3320,7 +3352,7 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-11-08T23:27:18.390524Z",
+      "observed_at": "2026-11-08T23:32:19.638306Z",
       "sha256": "cf3d29b9117b98a2f9b48c05a27dac44a4fd48924fa1717dcbb952c704c7759b"
     },
     "canonical_chart": "BLOCK",
