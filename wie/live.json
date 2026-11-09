@@ -9,7 +9,7 @@
   "counts": {
     "closed_loops": 55,
     "diaries": 63,
-    "mentions": 888109,
+    "mentions": 888299,
     "predictions": 135,
     "resolved": 89,
     "sealed": 133
@@ -1028,11 +1028,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-09T14:32:17.466007Z",
+  "generated_at": "2026-11-09T14:42:17.929791Z",
   "integrity": {
     "ledger_sha256": "b459d975c0955cdbd67a9e9d6264643428f57864aaf1b60c67ddaf8dd0f727a9",
     "reasons": [],
-    "snapshot_sha256": "82dd81c15f5415dd942efc69116723477e58304eb0966c83e991fdfe19dcfacf",
+    "snapshot_sha256": "ef0b358269d4681318c4af8d61a5c711e59b74ad9066150fd7c3d26663dcbc85",
     "status": "VERIFIED"
   },
   "learning": {
@@ -1135,14 +1135,14 @@
   },
   "observed_at": "2026-11-09T14:27:19.446801Z",
   "operation": {
-    "finished_at": null,
+    "finished_at": "2026-11-09T14:37:51.564443Z",
     "jobs": {
       "anchor": {
-        "exit_code": null,
-        "finished_at": null,
-        "next_due_at": null,
+        "exit_code": 1,
+        "finished_at": "2026-11-09T14:37:51.515920Z",
+        "next_due_at": "2026-11-09T14:52:51.515920Z",
         "started_at": "2026-11-09T14:30:47.480834Z",
-        "status": "RUNNING"
+        "status": "FAILED"
       },
       "autonomy": {
         "exit_code": 0,
@@ -1169,8 +1169,8 @@
     "schema": "wie.public-operation/1",
     "stale": false,
     "started_at": "2026-11-09T14:30:46.969400Z",
-    "status": "RUNNING",
-    "updated_at": "2026-11-09T14:30:47.860503Z"
+    "status": "SOURCE_GAPS",
+    "updated_at": "2026-11-09T14:37:51.564443Z"
   },
   "predictions": [
     {
@@ -3400,8 +3400,8 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-11-09T14:32:17.466007Z",
-      "sha256": "edf7f0e6e2f32265b4f534fa42633e587e9aac8a2263ac21920383948742d11c"
+      "observed_at": "2026-11-09T14:42:17.929791Z",
+      "sha256": "919e1bd7eb5ed238b352e8d7697ff7e5cf934ac8f5d547359460d0fd036729e5"
     },
     "canonical_chart": "BLOCK",
     "chart": "BLOCK",
