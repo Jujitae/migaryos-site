@@ -15971,11 +15971,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-23T16:57:18.107859Z",
+  "generated_at": "2026-11-23T17:02:18.097797Z",
   "integrity": {
     "ledger_sha256": "89937fd34cf31beeaa5cbdb570c6d195ac42575fcb040c8a04a8bb9bcda982e5",
     "reasons": [],
-    "snapshot_sha256": "ae8eab3c10438e73db4f6e7038ca1027c6115517a3bc954d5497f200f27ac19f",
+    "snapshot_sha256": "43dafb94a883321780fb8ffc5999521cc6ef0d26d8a1fc20c1db67f6c824cc5f",
     "status": "VERIFIED"
   },
   "learning": {
@@ -16078,27 +16078,27 @@
   },
   "observed_at": "2026-11-23T16:14:32.751846Z",
   "operation": {
-    "finished_at": "2026-11-23T16:45:47.794603Z",
+    "finished_at": null,
     "jobs": {
       "anchor": {
-        "exit_code": 0,
-        "finished_at": "2026-11-23T14:31:23.434754Z",
-        "next_due_at": "2026-11-23T17:00:00Z",
-        "started_at": "2026-11-23T14:30:47.699539Z",
-        "status": "SUCCESS"
+        "exit_code": 1,
+        "finished_at": "2026-11-23T17:01:06.684771Z",
+        "next_due_at": "2026-11-23T17:16:06.684771Z",
+        "started_at": "2026-11-23T17:00:47.794104Z",
+        "status": "FAILED"
       },
       "autonomy": {
-        "exit_code": 0,
-        "finished_at": "2026-11-23T16:14:33.036914Z",
-        "next_due_at": "2026-11-23T17:00:00Z",
-        "started_at": "2026-11-23T16:00:47.882679Z",
-        "status": "SOURCE_GAPS"
+        "exit_code": null,
+        "finished_at": null,
+        "next_due_at": null,
+        "started_at": "2026-11-23T17:01:06.686774Z",
+        "status": "RUNNING"
       },
       "collector": {
         "exit_code": 7,
-        "finished_at": "2026-11-23T16:45:47.792603Z",
-        "next_due_at": "2026-11-23T17:00:00Z",
-        "started_at": "2026-11-23T16:45:47.181382Z",
+        "finished_at": "2026-11-23T17:00:47.792101Z",
+        "next_due_at": "2026-11-23T17:15:00Z",
+        "started_at": "2026-11-23T17:00:47.175250Z",
         "status": "SOURCE_GAPS"
       },
       "gate": {
@@ -16111,9 +16111,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-11-23T16:45:47.175368Z",
-    "status": "SOURCE_GAPS",
-    "updated_at": "2026-11-23T16:45:47.794603Z"
+    "started_at": "2026-11-23T17:00:47.169137Z",
+    "status": "RUNNING",
+    "updated_at": "2026-11-23T17:01:07.198844Z"
   },
   "predictions": [
     {
