@@ -15971,11 +15971,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-23T17:57:18.474511Z",
+  "generated_at": "2026-11-23T18:02:18.637260Z",
   "integrity": {
     "ledger_sha256": "89937fd34cf31beeaa5cbdb570c6d195ac42575fcb040c8a04a8bb9bcda982e5",
     "reasons": [],
-    "snapshot_sha256": "c3fc96ec1c35445ff7a45468489d3f97de3431eee8243ad080e06e2870c330c9",
+    "snapshot_sha256": "89aaaded5124cb70ebd12fced5df71638fbbb8a861f541f16bfb97ddf943086f",
     "status": "VERIFIED"
   },
   "learning": {
@@ -16078,7 +16078,7 @@
   },
   "observed_at": "2026-11-23T17:15:19.918901Z",
   "operation": {
-    "finished_at": "2026-11-23T17:45:47.681656Z",
+    "finished_at": null,
     "jobs": {
       "anchor": {
         "exit_code": 0,
@@ -16088,17 +16088,17 @@
         "status": "SUCCESS"
       },
       "autonomy": {
-        "exit_code": 0,
-        "finished_at": "2026-11-23T17:15:20.243612Z",
-        "next_due_at": "2026-11-23T18:00:00Z",
-        "started_at": "2026-11-23T17:01:06.686774Z",
-        "status": "SOURCE_GAPS"
+        "exit_code": null,
+        "finished_at": null,
+        "next_due_at": null,
+        "started_at": "2026-11-23T18:00:47.827244Z",
+        "status": "RUNNING"
       },
       "collector": {
         "exit_code": 0,
-        "finished_at": "2026-11-23T17:45:47.677911Z",
-        "next_due_at": "2026-11-23T18:00:00Z",
-        "started_at": "2026-11-23T17:45:47.184737Z",
+        "finished_at": "2026-11-23T18:00:47.825501Z",
+        "next_due_at": "2026-11-23T18:15:00Z",
+        "started_at": "2026-11-23T18:00:47.227973Z",
         "status": "SUCCESS"
       },
       "gate": {
@@ -16111,9 +16111,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-11-23T17:45:47.179689Z",
-    "status": "SOURCE_GAPS",
-    "updated_at": "2026-11-23T17:45:47.681656Z"
+    "started_at": "2026-11-23T18:00:47.223973Z",
+    "status": "RUNNING",
+    "updated_at": "2026-11-23T18:00:48.310738Z"
   },
   "predictions": [
     {
