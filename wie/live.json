@@ -14712,7 +14712,7 @@
   "counts": {
     "closed_loops": 70,
     "diaries": 77,
-    "mentions": 1088914,
+    "mentions": 1089033,
     "predictions": 152,
     "resolved": 105,
     "sealed": 150
@@ -15955,11 +15955,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-23T11:57:18.782185Z",
+  "generated_at": "2026-11-23T12:02:18.857311Z",
   "integrity": {
     "ledger_sha256": "89937fd34cf31beeaa5cbdb570c6d195ac42575fcb040c8a04a8bb9bcda982e5",
     "reasons": [],
-    "snapshot_sha256": "74c196a412906d3c315d19e974057bc5bada3c790909cff33693e15bcfe5a6a4",
+    "snapshot_sha256": "e4fab2e5a0f9ff61d5fe2eae5ac2da38bea5cbe0a3337c9a4456d07f07c142aa",
     "status": "VERIFIED"
   },
   "learning": {
@@ -15982,87 +15982,14 @@
     "training_count": 69
   },
   "market_context": {
-    "observed_at": "2026-11-23T05:30:38.852052Z",
-    "series": [
-      {
-        "change_30d": null,
-        "change_yoy_percent": null,
-        "data_date": null,
-        "id": "DGS10",
-        "label": "DGS10",
-        "raw_sha256": null,
-        "source": {
-          "kind": "official_public",
-          "observed_at": null,
-          "sha256": null,
-          "url": "https://fred.stlouisfed.org/series/DGS10"
-        },
-        "source_url": "https://fred.stlouisfed.org/series/DGS10",
-        "status": "RIGHTS_RESTRICTED",
-        "units": null,
-        "value": null
-      },
-      {
-        "change_30d": null,
-        "change_yoy_percent": null,
-        "data_date": null,
-        "id": "DGS2",
-        "label": "DGS2",
-        "raw_sha256": null,
-        "source": {
-          "kind": "official_public",
-          "observed_at": null,
-          "sha256": null,
-          "url": "https://fred.stlouisfed.org/series/DGS2"
-        },
-        "source_url": "https://fred.stlouisfed.org/series/DGS2",
-        "status": "RIGHTS_RESTRICTED",
-        "units": null,
-        "value": null
-      },
-      {
-        "change_30d": null,
-        "change_yoy_percent": null,
-        "data_date": null,
-        "id": "M2SL",
-        "label": "M2SL",
-        "raw_sha256": null,
-        "source": {
-          "kind": "official_public",
-          "observed_at": null,
-          "sha256": null,
-          "url": "https://fred.stlouisfed.org/series/M2SL"
-        },
-        "source_url": "https://fred.stlouisfed.org/series/M2SL",
-        "status": "RIGHTS_RESTRICTED",
-        "units": null,
-        "value": null
-      },
-      {
-        "change_30d": null,
-        "change_yoy_percent": null,
-        "data_date": null,
-        "id": "WALCL",
-        "label": "WALCL",
-        "raw_sha256": null,
-        "source": {
-          "kind": "official_public",
-          "observed_at": null,
-          "sha256": null,
-          "url": "https://fred.stlouisfed.org/series/WALCL"
-        },
-        "source_url": "https://fred.stlouisfed.org/series/WALCL",
-        "status": "RIGHTS_RESTRICTED",
-        "units": null,
-        "value": null
-      }
-    ],
+    "observed_at": "2026-11-23T12:02:08.122656Z",
+    "series": [],
     "status": "OBSERVATIONS_ONLY",
     "target_probability": null
   },
   "observed_at": "2026-11-23T11:24:43.437873Z",
   "operation": {
-    "finished_at": "2026-11-23T11:45:47.502623Z",
+    "finished_at": null,
     "jobs": {
       "anchor": {
         "exit_code": 0,
@@ -16072,17 +15999,17 @@
         "status": "SUCCESS"
       },
       "autonomy": {
-        "exit_code": 0,
-        "finished_at": "2026-11-23T11:24:43.753091Z",
-        "next_due_at": "2026-11-23T12:00:00Z",
-        "started_at": "2026-11-23T11:00:48.238626Z",
-        "status": "SOURCE_GAPS"
+        "exit_code": null,
+        "finished_at": null,
+        "next_due_at": null,
+        "started_at": "2026-11-23T12:00:47.616737Z",
+        "status": "RUNNING"
       },
       "collector": {
         "exit_code": 7,
-        "finished_at": "2026-11-23T11:45:47.499620Z",
-        "next_due_at": "2026-11-23T12:00:00Z",
-        "started_at": "2026-11-23T11:45:46.896334Z",
+        "finished_at": "2026-11-23T12:00:47.613231Z",
+        "next_due_at": "2026-11-23T12:15:00Z",
+        "started_at": "2026-11-23T12:00:47.003293Z",
         "status": "SOURCE_GAPS"
       },
       "gate": {
@@ -16095,9 +16022,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-11-23T11:45:46.890333Z",
-    "status": "SOURCE_GAPS",
-    "updated_at": "2026-11-23T11:45:47.502623Z"
+    "started_at": "2026-11-23T12:00:46.997254Z",
+    "status": "RUNNING",
+    "updated_at": "2026-11-23T12:00:48.341825Z"
   },
   "predictions": [
     {
@@ -18517,8 +18444,8 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-11-23T11:50:41Z",
-      "sha256": "f60d56d449fce9b848044b4a84b02b59bd0bd40ebda89b889d179bb0b5ffa74c"
+      "observed_at": "2026-11-23T12:00:15Z",
+      "sha256": "13cfa77fa40aba1b94b43746cfdd5ef686915fe0b938c5e8b4cc9aaaba50d3da"
     },
     "canonical_chart": "VERIFIED",
     "chart": "VERIFIED",
