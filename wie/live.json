@@ -16211,11 +16211,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-24T18:57:18.403890Z",
+  "generated_at": "2026-11-24T19:02:18.384125Z",
   "integrity": {
     "ledger_sha256": "ab98b44c4f31ce700eda3d5805bd5af5873fba697caa447094a87df1d0025e08",
     "reasons": [],
-    "snapshot_sha256": "94922fdefcbafb1bbd5aa4e6a67587db7e008b2a270096d7ae2e9222ea53b8a3",
+    "snapshot_sha256": "9817beb0f3595bae864ca86b629f5f13a107b33b2694bd3d2f8164b3258dfc6f",
     "status": "VERIFIED"
   },
   "learning": {
@@ -16318,7 +16318,7 @@
   },
   "observed_at": "2026-11-24T18:13:13.420814Z",
   "operation": {
-    "finished_at": "2026-11-24T18:45:47.493228Z",
+    "finished_at": null,
     "jobs": {
       "anchor": {
         "exit_code": 0,
@@ -16328,18 +16328,18 @@
         "status": "SUCCESS"
       },
       "autonomy": {
-        "exit_code": 0,
-        "finished_at": "2026-11-24T18:13:13.710139Z",
-        "next_due_at": "2026-11-24T19:00:00Z",
-        "started_at": "2026-11-24T18:00:47.550243Z",
-        "status": "SOURCE_GAPS"
+        "exit_code": null,
+        "finished_at": null,
+        "next_due_at": null,
+        "started_at": "2026-11-24T19:00:47.739655Z",
+        "status": "RUNNING"
       },
       "collector": {
-        "exit_code": 0,
-        "finished_at": "2026-11-24T18:45:47.490692Z",
-        "next_due_at": "2026-11-24T19:00:00Z",
-        "started_at": "2026-11-24T18:45:47.000315Z",
-        "status": "SUCCESS"
+        "exit_code": 7,
+        "finished_at": "2026-11-24T19:00:47.734144Z",
+        "next_due_at": "2026-11-24T19:15:00Z",
+        "started_at": "2026-11-24T19:00:47.113503Z",
+        "status": "SOURCE_GAPS"
       },
       "gate": {
         "exit_code": 0,
@@ -16351,9 +16351,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-11-24T18:45:46.996308Z",
-    "status": "SOURCE_GAPS",
-    "updated_at": "2026-11-24T18:45:47.493228Z"
+    "started_at": "2026-11-24T19:00:47.109493Z",
+    "status": "RUNNING",
+    "updated_at": "2026-11-24T19:00:48.347174Z"
   },
   "predictions": [
     {
