@@ -16195,11 +16195,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-24T10:57:18.370518Z",
+  "generated_at": "2026-11-24T11:02:18.628453Z",
   "integrity": {
     "ledger_sha256": "42147863485c4fd31982664d674af14eb29dcfdb59cea98c442999316e79ba5c",
     "reasons": [],
-    "snapshot_sha256": "7a8cd2573847251bf6c1ccf382ddd9241d41610e3c61ec9ed98cdf61ac37bda5",
+    "snapshot_sha256": "1af5da41102985161f18a957bbcdc9defe538645ba0a9868f6369ac0c05ab863",
     "status": "VERIFIED"
   },
   "learning": {
@@ -16302,28 +16302,28 @@
   },
   "observed_at": "2026-11-24T10:16:23.349062Z",
   "operation": {
-    "finished_at": "2026-11-24T10:45:47.319328Z",
+    "finished_at": null,
     "jobs": {
       "anchor": {
         "exit_code": 1,
-        "finished_at": "2026-11-24T10:30:47.902888Z",
-        "next_due_at": "2026-11-24T10:45:47.902888Z",
-        "started_at": "2026-11-24T10:30:47.314862Z",
+        "finished_at": "2026-11-24T11:00:47.869278Z",
+        "next_due_at": "2026-11-24T11:15:47.869278Z",
+        "started_at": "2026-11-24T11:00:47.379571Z",
         "status": "FAILED"
       },
       "autonomy": {
-        "exit_code": 0,
-        "finished_at": "2026-11-24T10:16:23.592829Z",
-        "next_due_at": "2026-11-24T11:00:00Z",
-        "started_at": "2026-11-24T10:00:47.689730Z",
-        "status": "SOURCE_GAPS"
+        "exit_code": null,
+        "finished_at": null,
+        "next_due_at": null,
+        "started_at": "2026-11-24T11:00:47.871788Z",
+        "status": "RUNNING"
       },
       "collector": {
-        "exit_code": 0,
-        "finished_at": "2026-11-24T10:45:47.317326Z",
-        "next_due_at": "2026-11-24T11:00:00Z",
-        "started_at": "2026-11-24T10:45:46.723131Z",
-        "status": "SUCCESS"
+        "exit_code": 7,
+        "finished_at": "2026-11-24T11:00:47.377568Z",
+        "next_due_at": "2026-11-24T11:15:00Z",
+        "started_at": "2026-11-24T11:00:46.781990Z",
+        "status": "SOURCE_GAPS"
       },
       "gate": {
         "exit_code": 0,
@@ -16335,9 +16335,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-11-24T10:45:46.719378Z",
-    "status": "SOURCE_GAPS",
-    "updated_at": "2026-11-24T10:45:47.319328Z"
+    "started_at": "2026-11-24T11:00:46.779477Z",
+    "status": "RUNNING",
+    "updated_at": "2026-11-24T11:00:48.355185Z"
   },
   "predictions": [
     {
