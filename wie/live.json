@@ -14936,7 +14936,7 @@
   "counts": {
     "closed_loops": 70,
     "diaries": 79,
-    "mentions": 1116504,
+    "mentions": 1116577,
     "predictions": 155,
     "resolved": 105,
     "sealed": 153
@@ -16211,11 +16211,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-24T20:32:18.449265Z",
+  "generated_at": "2026-11-24T20:47:18.472531Z",
   "integrity": {
     "ledger_sha256": "ab98b44c4f31ce700eda3d5805bd5af5873fba697caa447094a87df1d0025e08",
     "reasons": [],
-    "snapshot_sha256": "85b2c91b7533386e6d8bdb2be03415f33b03893a4b307e9562340bf8a7759ae6",
+    "snapshot_sha256": "0ff6826f2022db8e2a02f0807b5b13f88f6644d38f4cf7d2650a7e61336eb8f3",
     "status": "VERIFIED"
   },
   "learning": {
@@ -16318,7 +16318,7 @@
   },
   "observed_at": "2026-11-24T20:17:01.012145Z",
   "operation": {
-    "finished_at": "2026-11-24T20:30:47.658511Z",
+    "finished_at": "2026-11-24T20:45:47.667914Z",
     "jobs": {
       "anchor": {
         "exit_code": 0,
@@ -16335,11 +16335,11 @@
         "status": "SOURCE_GAPS"
       },
       "collector": {
-        "exit_code": 0,
-        "finished_at": "2026-11-24T20:30:47.656511Z",
-        "next_due_at": "2026-11-24T20:45:00Z",
-        "started_at": "2026-11-24T20:30:47.040087Z",
-        "status": "SUCCESS"
+        "exit_code": 7,
+        "finished_at": "2026-11-24T20:45:47.664912Z",
+        "next_due_at": "2026-11-24T21:00:00Z",
+        "started_at": "2026-11-24T20:45:46.958918Z",
+        "status": "SOURCE_GAPS"
       },
       "gate": {
         "exit_code": 0,
@@ -16351,9 +16351,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-11-24T20:30:47.035581Z",
+    "started_at": "2026-11-24T20:45:46.953918Z",
     "status": "SOURCE_GAPS",
-    "updated_at": "2026-11-24T20:30:47.658511Z"
+    "updated_at": "2026-11-24T20:45:47.667914Z"
   },
   "predictions": [
     {
@@ -18824,8 +18824,8 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-11-24T20:28:02Z",
-      "sha256": "dacc2edea1f6c4229e6b1b48390c93a9883d6fdf6125b548880e970ab6fb6a6b"
+      "observed_at": "2026-11-24T20:42:55Z",
+      "sha256": "a03646a8b9fd864dceb112ec2314dfd19434787ed8c9cdae0d6ca9a0f2a08999"
     },
     "canonical_chart": "VERIFIED",
     "chart": "VERIFIED",
