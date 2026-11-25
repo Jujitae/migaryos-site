@@ -16675,11 +16675,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-25T15:52:18.569039Z",
+  "generated_at": "2026-11-25T16:02:18.733708Z",
   "integrity": {
     "ledger_sha256": "b3ade9432d66597261d8a0c3782f5e22887a92d2bc1be91c1296076ceb4e7a46",
     "reasons": [],
-    "snapshot_sha256": "f8e39bcb158ddaec10afc8905c5ae316d5d2fdf2eb49f4433e30a19b017e2b55",
+    "snapshot_sha256": "407fa3f8a3759083c382cf5d66cfeac500d08759646da9e1a8fa0d852bb77a7b",
     "status": "VERIFIED"
   },
   "learning": {
@@ -16782,7 +16782,7 @@
   },
   "observed_at": "2026-11-25T15:19:27.400235Z",
   "operation": {
-    "finished_at": "2026-11-25T15:45:47.322683Z",
+    "finished_at": null,
     "jobs": {
       "anchor": {
         "exit_code": 0,
@@ -16792,17 +16792,17 @@
         "status": "SUCCESS"
       },
       "autonomy": {
-        "exit_code": 0,
-        "finished_at": "2026-11-25T15:19:27.713115Z",
-        "next_due_at": "2026-11-25T16:00:00Z",
-        "started_at": "2026-11-25T15:00:47.176472Z",
-        "status": "SOURCE_GAPS"
+        "exit_code": null,
+        "finished_at": null,
+        "next_due_at": null,
+        "started_at": "2026-11-25T16:00:47.227580Z",
+        "status": "RUNNING"
       },
       "collector": {
         "exit_code": 7,
-        "finished_at": "2026-11-25T15:45:47.320683Z",
-        "next_due_at": "2026-11-25T16:00:00Z",
-        "started_at": "2026-11-25T15:45:46.624413Z",
+        "finished_at": "2026-11-25T16:00:47.224579Z",
+        "next_due_at": "2026-11-25T16:15:00Z",
+        "started_at": "2026-11-25T16:00:46.613654Z",
         "status": "SOURCE_GAPS"
       },
       "gate": {
@@ -16815,9 +16815,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-11-25T15:45:46.620412Z",
-    "status": "SOURCE_GAPS",
-    "updated_at": "2026-11-25T15:45:47.322683Z"
+    "started_at": "2026-11-25T16:00:46.609654Z",
+    "status": "RUNNING",
+    "updated_at": "2026-11-25T16:00:47.725417Z"
   },
   "predictions": [
     {
