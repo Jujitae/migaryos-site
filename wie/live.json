@@ -15384,7 +15384,7 @@
   "counts": {
     "closed_loops": 70,
     "diaries": 79,
-    "mentions": 1121631,
+    "mentions": 1121632,
     "predictions": 165,
     "resolved": 105,
     "sealed": 163
@@ -16659,11 +16659,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-25T05:02:18.583043Z",
+  "generated_at": "2026-11-25T05:07:17.957896Z",
   "integrity": {
     "ledger_sha256": "b3ade9432d66597261d8a0c3782f5e22887a92d2bc1be91c1296076ceb4e7a46",
     "reasons": [],
-    "snapshot_sha256": "9adf89aae55cae933862f0413aa6f5844b476a9351010429408dc3f0bd6232ad",
+    "snapshot_sha256": "4334791642193638be5b9202ed934bebaad5537f34c21863c8e8e3dd4d55db60",
     "status": "VERIFIED"
   },
   "learning": {
@@ -16766,10 +16766,42 @@
   },
   "observed_at": "2026-11-25T04:14:31.938247Z",
   "operation": {
-    "error_code": "OPERATING_STATE_UNVERIFIED",
-    "jobs": {},
+    "finished_at": null,
+    "jobs": {
+      "anchor": {
+        "exit_code": 0,
+        "finished_at": "2026-11-25T05:00:50.171918Z",
+        "next_due_at": "2026-11-25T08:00:00Z",
+        "started_at": "2026-11-25T05:00:47.845780Z",
+        "status": "SUCCESS"
+      },
+      "autonomy": {
+        "exit_code": null,
+        "finished_at": null,
+        "next_due_at": null,
+        "started_at": "2026-11-25T05:04:16.201111Z",
+        "status": "RUNNING"
+      },
+      "collector": {
+        "exit_code": 7,
+        "finished_at": "2026-11-25T05:00:47.842777Z",
+        "next_due_at": "2026-11-25T05:15:00Z",
+        "started_at": "2026-11-25T05:00:47.227972Z",
+        "status": "SOURCE_GAPS"
+      },
+      "gate": {
+        "exit_code": 0,
+        "finished_at": "2026-11-25T05:04:16.198109Z",
+        "next_due_at": "2026-11-26T05:00:00Z",
+        "started_at": "2026-11-25T05:00:50.174923Z",
+        "status": "SUCCESS"
+      }
+    },
     "schema": "wie.public-operation/1",
-    "status": "BLOCKED"
+    "stale": false,
+    "started_at": "2026-11-25T05:00:47.222970Z",
+    "status": "RUNNING",
+    "updated_at": "2026-11-25T05:04:16.701235Z"
   },
   "predictions": [
     {
@@ -19382,8 +19414,8 @@
   "schema": "wie.public-live/1",
   "sections": {
     "analytics": {
-      "observed_at": "2026-11-25T05:01:10Z",
-      "sha256": "38e147b2024e5763879f3f19d0093b650f83337f7f3a3133a747899a27ef3b53"
+      "observed_at": "2026-11-25T05:06:11Z",
+      "sha256": "4046b777ad7875b975cdccfd947d904074d645deee81f8f68ccd93fcf28d5efd"
     },
     "canonical_chart": "VERIFIED",
     "chart": "VERIFIED",
