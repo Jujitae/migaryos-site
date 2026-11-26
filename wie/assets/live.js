@@ -65,7 +65,7 @@
       times:[{label:'계산 시각',value:time(c.as_of)}],
       sections:[{title:'관찰한 가격대',body:'지지 '+(c.support||[]).map(z=>num(z.price)).join(', ')+' · 저항 '+(c.resistance||[]).map(z=>num(z.price)).join(', ')},
         {title:'해석의 한계',body:'과거 가격에서 고저점과 채널을 계산한 값입니다. 미래의 적중률이나 인과관계를 입증하지 않습니다.'}],
-      sources:[{label:'차트와 조건 상세',url:'https://migaryos.com/record/#chart-'+c.symbol+'-'+c.timeframe},...(c.source?.url?[{label:c.source.attribution||'자료 출처',url:c.source.url}]:[])],node_labels:[]});
+      sources:[{label:'차트와 조건 상세',url:'https://migaryos.com/wie/status/#chart-'+c.symbol+'-'+c.timeframe},...(c.source?.url?[{label:c.source.attribution||'자료 출처',url:c.source.url}]:[])],node_labels:[]});
     for (const h of data.chart?.hypotheses || []) items.push({id:'hypothesis-'+h.id,star_label:h.symbol+' 목표 가격 가설',title:h.symbol+' 목표 가격 가설',
       kind:'운영자 가설 · 실제 확률 미산출',summary:conditionText(h.target)+' · '+label(h.timing.status),
       times:[{label:'모형 계산 시각',value:time(h.observed_at)}],

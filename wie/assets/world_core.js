@@ -408,7 +408,7 @@ export function recordsFromSnapshot(snapshot, {rights = null} = {}) {
       record(ctx, {id: 'analysis-' + rid, type: 'analysis', record_id: rid, title: row.symbol + ' · ' + row.timeframe,
         summary: '확정된 가격 봉이 없어 계산하지 않았습니다.', content: '확정된 가격 봉이 없어 계산하지 않았습니다.',
         status: 'NO_CLOSED_BARS', as_of: row.as_of || ctx.asOf, source_refs: source ? [source] : [],
-        href: '/record/#chart-' + rid, symbol: row.symbol, timeframe: row.timeframe});
+        href: '/wie/status/#chart-' + rid, symbol: row.symbol, timeframe: row.timeframe});
       continue;
     }
     const content = ['기준 가격 ' + num(row.price) + ' · 자료 시각 ' + (row.data_as_of || '미확인') + '.',
@@ -416,7 +416,7 @@ export function recordsFromSnapshot(snapshot, {rights = null} = {}) {
       '과거 가격에서 고저점과 채널을 계산한 값입니다. 미래의 적중률이나 인과관계를 입증하지 않습니다.'];
     record(ctx, {id: 'analysis-' + rid, type: 'analysis', record_id: rid, title: row.symbol + ' · ' + row.timeframe,
       summary: content[0], content: content.join(' '), status: row.status || 'ANALYZED', as_of: row.as_of || ctx.asOf,
-      observed_at: row.data_as_of || null, source_refs: source ? [source] : [], href: '/record/#chart-' + rid,
+      observed_at: row.data_as_of || null, source_refs: source ? [source] : [], href: '/wie/status/#chart-' + rid,
       symbol: row.symbol, timeframe: row.timeframe, price: typeof row.price === 'number' ? row.price : null});
     if (source && source.provider_symbol && !analyses.has(source.provider_symbol)) analyses.set(source.provider_symbol, 'analysis-' + rid);
     if (!analyses.has(row.symbol)) analyses.set(row.symbol, 'analysis-' + rid);
