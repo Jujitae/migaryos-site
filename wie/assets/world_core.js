@@ -411,7 +411,7 @@ export function recordsFromSnapshot(snapshot, {rights = null} = {}) {
         href: '/record/#chart-' + rid, symbol: row.symbol, timeframe: row.timeframe});
       continue;
     }
-    const content = ['기준 가격 ' + num(row.price) + ' · 자료 시각 ' + (row.data_as_of || row.as_of) + '.',
+    const content = ['기준 가격 ' + num(row.price) + ' · 자료 시각 ' + (row.data_as_of || '미확인') + '.',
       '계산된 지지 가격 ' + zones(row.support) + ' · 저항 가격 ' + zones(row.resistance) + '.',
       '과거 가격에서 고저점과 채널을 계산한 값입니다. 미래의 적중률이나 인과관계를 입증하지 않습니다.'];
     record(ctx, {id: 'analysis-' + rid, type: 'analysis', record_id: rid, title: row.symbol + ' · ' + row.timeframe,

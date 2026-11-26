@@ -61,7 +61,7 @@
     for (const c of data.chart?.forecasts || []) items.push(predictionStory(c,c,'chart-'));
     for (const c of data.chart?.analyses || []) items.push({id:'analysis-'+c.symbol+'-'+c.timeframe,
       star_label:c.symbol+' · '+c.timeframe,title:c.symbol+' · '+c.timeframe,kind:'가격 자료에서 계산한 관찰',
-      summary:'기준 가격 '+num(c.price)+' · 자료 시각 '+time(c.data_as_of||c.as_of),
+      summary:'기준 가격 '+num(c.price)+' · 자료 시각 '+time(c.data_as_of),
       times:[{label:'계산 시각',value:time(c.as_of)}],
       sections:[{title:'관찰한 가격대',body:'지지 '+(c.support||[]).map(z=>num(z.price)).join(', ')+' · 저항 '+(c.resistance||[]).map(z=>num(z.price)).join(', ')},
         {title:'해석의 한계',body:'과거 가격에서 고저점과 채널을 계산한 값입니다. 미래의 적중률이나 인과관계를 입증하지 않습니다.'}],
@@ -214,7 +214,7 @@
     for(const row of chart.analyses || []){
       const d=detail('chart-'+row.symbol+'-'+row.timeframe,row.symbol+' · '+row.timeframe+' · '+num(row.price));
       const zones=items=>items.map(z=>num(z.price??z)+(z.confluence_count?' ('+z.confluence_count+'개 근거)':'')).join(', ')||'없음';
-      d.append(facts([['자료 확인',time(row.as_of)],['마지막 가격 시각',time(row.data_as_of||row.as_of)],['가격 축',row.scale==='log'?'로그 축':row.scale==='linear'?'선형 축':row.scale||'미확인'],['계산된 지지 가격',zones(row.support||[])],['계산된 저항 가격',zones(row.resistance||[])]]),plot(row.history||[],row.symbol));
+      d.append(facts([['자료 확인',time(row.as_of)],['마지막 가격 시각',time(row.data_as_of)],['가격 축',row.scale==='log'?'로그 축':row.scale==='linear'?'선형 축':row.scale||'미확인'],['계산된 지지 가격',zones(row.support||[])],['계산된 저항 가격',zones(row.resistance||[])]]),plot(row.history||[],row.symbol));
       if(row.fibonacci?.levels)d.append(el('h3','고정된 기준점의 되돌림 가격'),facts(Object.entries(row.fibonacci.levels).map(([ratio,value])=>[ratio,num(value)])));
       for(const c of row.channels||[])d.append(el('h3',num(c.lookback)+'개 봉의 평행 채널'),facts([['하단',num(c.lower)],['중심',num(c.mid)],['상단',num(c.upper)],['7일 뒤 기하학적 연장',num(c.projected.lower)+'–'+num(c.projected.upper)]]),note('과거 가격 범위에 맞춘 선을 연장한 값입니다. 미래 가격의 신뢰구간이 아닙니다.'));
       if(row.pivots?.length){const p=detail('pivots-'+row.symbol+'-'+row.timeframe,'확인된 고저점 '+row.pivots.length+'개');p.append(facts(row.pivots.map(v=>[(v.kind==='high'?'고점':'저점')+' · '+time(v.time),num(v.price)+' · 확정 '+time(v.confirmed_at)])));d.append(p);}
