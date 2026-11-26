@@ -16915,11 +16915,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-26T19:57:18.284507Z",
+  "generated_at": "2026-11-26T20:02:18.909906Z",
   "integrity": {
     "ledger_sha256": "8fae925f7ae14b7c56fbb840c356d34cc52cbe7771cf7e6abce1fe49bdc3dee0",
     "reasons": [],
-    "snapshot_sha256": "89fd4781a7874c8065278cec56b549b834f39c68a63b2a097e69f582c177b920",
+    "snapshot_sha256": "ef69b1869e78c1cf2d7e454c79ed17fc7c70dc68155c166f97f7e8972106af93",
     "status": "VERIFIED"
   },
   "learning": {
@@ -17022,27 +17022,27 @@
   },
   "observed_at": "2026-11-26T19:20:37.227358Z",
   "operation": {
-    "finished_at": "2026-11-26T19:45:47.672238Z",
+    "finished_at": null,
     "jobs": {
       "anchor": {
         "exit_code": 0,
-        "finished_at": "2026-11-26T17:01:12.559083Z",
-        "next_due_at": "2026-11-26T20:00:00Z",
-        "started_at": "2026-11-26T17:00:48.853490Z",
+        "finished_at": "2026-11-26T20:00:48.100722Z",
+        "next_due_at": "2026-11-26T23:00:00Z",
+        "started_at": "2026-11-26T20:00:47.487212Z",
         "status": "SUCCESS"
       },
       "autonomy": {
-        "exit_code": 0,
-        "finished_at": "2026-11-26T19:20:37.539385Z",
-        "next_due_at": "2026-11-26T20:00:00Z",
-        "started_at": "2026-11-26T19:00:47.804846Z",
-        "status": "SOURCE_GAPS"
+        "exit_code": null,
+        "finished_at": null,
+        "next_due_at": null,
+        "started_at": "2026-11-26T20:00:48.103247Z",
+        "status": "RUNNING"
       },
       "collector": {
         "exit_code": 7,
-        "finished_at": "2026-11-26T19:45:47.670235Z",
-        "next_due_at": "2026-11-26T20:00:00Z",
-        "started_at": "2026-11-26T19:45:47.064528Z",
+        "finished_at": "2026-11-26T20:00:47.485212Z",
+        "next_due_at": "2026-11-26T20:15:00Z",
+        "started_at": "2026-11-26T20:00:46.864286Z",
         "status": "SOURCE_GAPS"
       },
       "gate": {
@@ -17055,9 +17055,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-11-26T19:45:47.059406Z",
-    "status": "SOURCE_GAPS",
-    "updated_at": "2026-11-26T19:45:47.672238Z"
+    "started_at": "2026-11-26T20:00:46.859286Z",
+    "status": "RUNNING",
+    "updated_at": "2026-11-26T20:00:48.608333Z"
   },
   "predictions": [
     {
