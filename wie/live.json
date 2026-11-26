@@ -16899,11 +16899,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-26T06:32:18.728867Z",
+  "generated_at": "2026-11-26T06:42:19.039256Z",
   "integrity": {
     "ledger_sha256": "ebb3ed96573aa9daa8b626cf8117e287068b61c0a5d1b112ec445b68abc06099",
     "reasons": [],
-    "snapshot_sha256": "0403c957b6411cf00e268b5911101a9b434bc6e78c5f8fb7cc7a663b392d36e7",
+    "snapshot_sha256": "f3e5257995302a2038fb403a8a52c595a146cc3a6d6260d78b779204310e2381",
     "status": "VERIFIED"
   },
   "learning": {
@@ -19669,10 +19669,10 @@
       "href": "/record/#prediction-P-000015",
       "id": "P-000015",
       "issued_at": "2026-09-10T00:10:39.421222Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.2857142857142857,
-      "rationale": "최근 12주 중 3주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 3주는 기준을 충족했고, 9주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-08-28",
         "kind": "official_public",
@@ -19682,7 +19682,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-18&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-09&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-09-17부터 2026-09-23까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"controls\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"controls\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"controls\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "0ce1f4f9d65fe1cfe3302784404d278043a132d64709b25af474ca2fa716d287"
     },
     {
@@ -19691,10 +19691,10 @@
       "href": "/record/#prediction-P-000016",
       "id": "P-000016",
       "issued_at": "2026-09-10T00:10:39.524269Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-09",
         "kind": "official_public",
@@ -19704,7 +19704,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-18&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-09&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-09-17부터 2026-09-23까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"antidumping\"가 들어간 문서가 15건 이상 나올까?",
-      "title": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까?",
       "topic_id": "06abb0977d59cdbcf747a6bce42ff93604f2d3210a12473120acd859ff35fbca"
     },
     {
@@ -19736,10 +19736,10 @@
       "href": "/record/#prediction-P-000018",
       "id": "P-000018",
       "issued_at": "2026-09-10T00:10:39.741127Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.42857142857142855,
-      "rationale": "최근 12주 중 5주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 5주는 기준을 충족했고, 7주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-08-28",
         "kind": "official_public",
@@ -19749,7 +19749,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-18&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-09&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-09-17부터 2026-09-23까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"export\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "359bfdd8e27674bec00bd4552b32fe2e622729a327559c2ffbbed18373721263"
     },
     {
@@ -19758,10 +19758,10 @@
       "href": "/record/#prediction-P-000019",
       "id": "P-000019",
       "issued_at": "2026-09-10T00:10:39.897505Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-09",
         "kind": "official_public",
@@ -19771,7 +19771,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-18&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-09&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-09-17부터 2026-09-23까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"zone\"가 들어간 문서가 8건 이상 나올까?",
-      "title": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까?",
       "topic_id": "4911e2467f21510da49a70f4d32612c5b404a58e4381ac714c3cf69bfbcc07bb"
     },
     {
@@ -19803,10 +19803,10 @@
       "href": "/record/#prediction-P-000021",
       "id": "P-000021",
       "issued_at": "2026-09-10T00:10:40.277470Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.35714285714285715,
-      "rationale": "최근 12주 중 4주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 4주는 기준을 충족했고, 8주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-09",
         "kind": "official_public",
@@ -19816,7 +19816,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-18&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-09&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-09-17부터 2026-09-23까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"china\"가 들어간 문서가 9건 이상 나올까?",
-      "title": "미국 상무부 · \"china\" 공고가 9건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"china\"이라는 단어가 들어간 공고가 9건 이상 나올까?",
       "topic_id": "7bc5183849606632917fb4bf57c859831df16c5a7247f00c20218eb498ad87be"
     },
     {
@@ -19848,10 +19848,10 @@
       "href": "/record/#prediction-P-000028",
       "id": "P-000028",
       "issued_at": "2026-09-11T00:01:18.059939Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.35714285714285715,
-      "rationale": "최근 12주 중 4주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 4주는 기준을 충족했고, 8주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-10",
         "kind": "official_public",
@@ -19861,7 +19861,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-19&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-10&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-09-18부터 2026-09-24까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"activities\"가 들어간 문서가 9건 이상 나올까?",
-      "title": "미국 상무부 · \"activities\" 공고가 9건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 9건 이상 나올까?",
       "topic_id": "af734632d8bd39ee3185f3425fe804268ef392ec880613720ca84d7336499686"
     },
     {
@@ -19893,10 +19893,10 @@
       "href": "/record/#prediction-P-000030",
       "id": "P-000030",
       "issued_at": "2026-09-11T00:01:18.652492Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-10",
         "kind": "official_public",
@@ -19906,7 +19906,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-19&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-10&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-09-18부터 2026-09-24까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"management\"가 들어간 문서가 11건 이상 나올까?",
-      "title": "미국 상무부 · \"management\" 공고가 11건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 11건 이상 나올까?",
       "topic_id": "b9a5929934e936a03698d8d8e93ec41113ad5c2c85112244a1ecef53289d17a2"
     },
     {
@@ -19915,10 +19915,10 @@
       "href": "/record/#prediction-P-000031",
       "id": "P-000031",
       "issued_at": "2026-09-11T00:01:19.031014Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-10",
         "kind": "official_public",
@@ -19928,7 +19928,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-19&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-10&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-09-18부터 2026-09-24까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"countervailing\"가 들어간 문서가 10건 이상 나올까?",
-      "title": "미국 상무부 · \"countervailing\" 공고가 10건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 10건 이상 나올까?",
       "topic_id": "f8d69255df8166aff9776a91a2dc849c4e4025142779707c42477c91e25066bd"
     },
     {
@@ -20075,10 +20075,10 @@
       "href": "/record/#prediction-P-000039",
       "id": "P-000039",
       "issued_at": "2026-09-16T00:01:37.456166Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-15",
         "kind": "official_public",
@@ -20088,7 +20088,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-24&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-15&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-09-23부터 2026-09-29까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"fisheries\"가 들어간 문서가 9건 이상 나올까?",
-      "title": "미국 상무부 · \"fisheries\" 공고가 9건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"fisheries\"이라는 단어가 들어간 공고가 9건 이상 나올까?",
       "topic_id": "3e0a420b91e29383b104fb57c2e6a373853e62c05047da4737b4d1dc37eb89b2"
     },
     {
@@ -20097,10 +20097,10 @@
       "href": "/record/#prediction-P-000040",
       "id": "P-000040",
       "issued_at": "2026-09-17T00:01:30.667579Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.42857142857142855,
-      "rationale": "최근 12주 중 5주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 5주는 기준을 충족했고, 7주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-16",
         "kind": "official_public",
@@ -20110,7 +20110,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-25&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-16&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-09-24부터 2026-09-30까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"people\"가 들어간 문서가 9건 이상 나올까?",
-      "title": "미국 상무부 · \"people\" 공고가 9건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 9건 이상 나올까?",
       "topic_id": "432fb701babfed954fc0972e168559991d5c29bebda21e1d5914fb08d96a3dde"
     },
     {
@@ -20119,10 +20119,10 @@
       "href": "/record/#prediction-P-000050",
       "id": "P-000050",
       "issued_at": "2026-09-22T00:01:44.157533Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.42857142857142855,
-      "rationale": "최근 12주 중 5주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 5주는 기준을 충족했고, 7주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-21",
         "kind": "official_public",
@@ -20132,7 +20132,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-30&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-21&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-09-29부터 2026-10-05까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"fishery\"가 들어간 문서가 7건 이상 나올까?",
-      "title": "미국 상무부 · \"fishery\" 공고가 7건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 7건 이상 나올까?",
       "topic_id": "51960f2703b0484546235e0e6557199a0910350b594bda7f06ff839db97ee19e"
     },
     {
@@ -20141,10 +20141,10 @@
       "href": "/record/#prediction-P-000052",
       "id": "P-000052",
       "issued_at": "2026-09-24T15:03:08.281974Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.2857142857142857,
-      "rationale": "최근 12주 중 3주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 3주는 기준을 충족했고, 9주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-23",
         "kind": "official_public",
@@ -20154,7 +20154,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-02&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-23&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-01부터 2026-10-07까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"controls\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"controls\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"controls\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "0ce1f4f9d65fe1cfe3302784404d278043a132d64709b25af474ca2fa716d287"
     },
     {
@@ -20163,10 +20163,10 @@
       "href": "/record/#prediction-P-000053",
       "id": "P-000053",
       "issued_at": "2026-09-24T15:03:08.912530Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.42857142857142855,
-      "rationale": "최근 12주 중 5주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 5주는 기준을 충족했고, 7주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-23",
         "kind": "official_public",
@@ -20176,7 +20176,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-02&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-23&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-01부터 2026-10-07까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"antidumping\"가 들어간 문서가 15건 이상 나올까?",
-      "title": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까?",
       "topic_id": "06abb0977d59cdbcf747a6bce42ff93604f2d3210a12473120acd859ff35fbca"
     },
     {
@@ -20185,10 +20185,10 @@
       "href": "/record/#prediction-P-000054",
       "id": "P-000054",
       "issued_at": "2026-09-24T15:03:09.537962Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.42857142857142855,
-      "rationale": "최근 12주 중 5주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 5주는 기준을 충족했고, 7주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-23",
         "kind": "official_public",
@@ -20198,7 +20198,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-02&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-23&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-01부터 2026-10-07까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"export\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "359bfdd8e27674bec00bd4552b32fe2e622729a327559c2ffbbed18373721263"
     },
     {
@@ -20232,10 +20232,10 @@
       "href": "/record/#prediction-P-000056",
       "id": "P-000056",
       "issued_at": "2026-09-25T00:02:39.154271Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-24",
         "kind": "official_public",
@@ -20245,7 +20245,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-03&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-24&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-02부터 2026-10-08까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"zone\"가 들어간 문서가 7건 이상 나올까?",
-      "title": "미국 상무부 · \"zone\" 공고가 7건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 7건 이상 나올까?",
       "topic_id": "4911e2467f21510da49a70f4d32612c5b404a58e4381ac714c3cf69bfbcc07bb"
     },
     {
@@ -20254,10 +20254,10 @@
       "href": "/record/#prediction-P-000057",
       "id": "P-000057",
       "issued_at": "2026-09-25T15:03:43.143094Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-24",
         "kind": "official_public",
@@ -20267,7 +20267,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-03&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-24&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-02부터 2026-10-08까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"activities\"가 들어간 문서가 8건 이상 나올까?",
-      "title": "미국 상무부 · \"activities\" 공고가 8건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 8건 이상 나올까?",
       "topic_id": "af734632d8bd39ee3185f3425fe804268ef392ec880613720ca84d7336499686"
     },
     {
@@ -20276,10 +20276,10 @@
       "href": "/record/#prediction-P-000058",
       "id": "P-000058",
       "issued_at": "2026-09-25T15:03:43.993324Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-24",
         "kind": "official_public",
@@ -20289,7 +20289,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-03&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-24&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-02부터 2026-10-08까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"management\"가 들어간 문서가 10건 이상 나올까?",
-      "title": "미국 상무부 · \"management\" 공고가 10건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 10건 이상 나올까?",
       "topic_id": "b9a5929934e936a03698d8d8e93ec41113ad5c2c85112244a1ecef53289d17a2"
     },
     {
@@ -20298,10 +20298,10 @@
       "href": "/record/#prediction-P-000059",
       "id": "P-000059",
       "issued_at": "2026-09-25T15:03:44.909876Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-24",
         "kind": "official_public",
@@ -20311,7 +20311,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-03&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-24&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-02부터 2026-10-08까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"countervailing\"가 들어간 문서가 11건 이상 나올까?",
-      "title": "미국 상무부 · \"countervailing\" 공고가 11건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 11건 이상 나올까?",
       "topic_id": "f8d69255df8166aff9776a91a2dc849c4e4025142779707c42477c91e25066bd"
     },
     {
@@ -20320,10 +20320,10 @@
       "href": "/record/#prediction-P-000064",
       "id": "P-000064",
       "issued_at": "2026-10-01T00:03:54.715874Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.2857142857142857,
-      "rationale": "최근 12주 중 3주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 3주는 기준을 충족했고, 9주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-30",
         "kind": "official_public",
@@ -20333,7 +20333,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-09&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-30&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-08부터 2026-10-14까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"proclamation\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "5fa1ca7334792317656ed88e699621952127e719192dc5483e1aa1273a385b6e"
     },
     {
@@ -20342,10 +20342,10 @@
       "href": "/record/#prediction-P-000065",
       "id": "P-000065",
       "issued_at": "2026-10-01T00:03:55.813604Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.2857142857142857,
-      "rationale": "최근 12주 중 3주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 3주는 기준을 충족했고, 9주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-30",
         "kind": "official_public",
@@ -20355,7 +20355,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-09&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-30&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-08부터 2026-10-14까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"office\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "9242e35e402b8c909e926850daa79ead0be37c43092f28d5944debf453fb1811"
     },
     {
@@ -20364,10 +20364,10 @@
       "href": "/record/#prediction-P-000066",
       "id": "P-000066",
       "issued_at": "2026-10-01T15:04:31.769944Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.42857142857142855,
-      "rationale": "최근 12주 중 5주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 5주는 기준을 충족했고, 7주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-30",
         "kind": "official_public",
@@ -20377,7 +20377,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-09&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-30&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-08부터 2026-10-14까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"people\"가 들어간 문서가 9건 이상 나올까?",
-      "title": "미국 상무부 · \"people\" 공고가 9건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 9건 이상 나올까?",
       "topic_id": "432fb701babfed954fc0972e168559991d5c29bebda21e1d5914fb08d96a3dde"
     },
     {
@@ -20511,10 +20511,10 @@
       "href": "/record/#prediction-P-000079",
       "id": "P-000079",
       "issued_at": "2026-10-08T15:06:38.813582Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-07",
         "kind": "official_public",
@@ -20524,7 +20524,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-16&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-07&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-15부터 2026-10-21까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"antidumping\"가 들어간 문서가 15건 이상 나올까?",
-      "title": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까?",
       "topic_id": "06abb0977d59cdbcf747a6bce42ff93604f2d3210a12473120acd859ff35fbca"
     },
     {
@@ -20533,10 +20533,10 @@
       "href": "/record/#prediction-P-000080",
       "id": "P-000080",
       "issued_at": "2026-10-08T15:07:01.629158Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.42857142857142855,
-      "rationale": "최근 12주 중 5주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 5주는 기준을 충족했고, 7주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-09-30",
         "kind": "official_public",
@@ -20546,7 +20546,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-16&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-07&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-15부터 2026-10-21까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"export\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "359bfdd8e27674bec00bd4552b32fe2e622729a327559c2ffbbed18373721263"
     },
     {
@@ -20555,10 +20555,10 @@
       "href": "/record/#prediction-P-000082",
       "id": "P-000082",
       "issued_at": "2026-10-09T15:43:21.424207Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.42857142857142855,
-      "rationale": "최근 12주 중 5주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 5주는 기준을 충족했고, 7주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-08",
         "kind": "official_public",
@@ -20568,7 +20568,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-17&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-08&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-16부터 2026-10-22까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"zone\"가 들어간 문서가 8건 이상 나올까?",
-      "title": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까?",
       "topic_id": "4911e2467f21510da49a70f4d32612c5b404a58e4381ac714c3cf69bfbcc07bb"
     },
     {
@@ -20577,10 +20577,10 @@
       "href": "/record/#prediction-P-000083",
       "id": "P-000083",
       "issued_at": "2026-10-09T15:43:44.514343Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-08",
         "kind": "official_public",
@@ -20590,7 +20590,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-17&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-08&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-16부터 2026-10-22까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"activities\"가 들어간 문서가 8건 이상 나올까?",
-      "title": "미국 상무부 · \"activities\" 공고가 8건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 8건 이상 나올까?",
       "topic_id": "af734632d8bd39ee3185f3425fe804268ef392ec880613720ca84d7336499686"
     },
     {
@@ -20599,10 +20599,10 @@
       "href": "/record/#prediction-P-000084",
       "id": "P-000084",
       "issued_at": "2026-10-09T15:44:07.550659Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-08",
         "kind": "official_public",
@@ -20612,7 +20612,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-17&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-08&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-16부터 2026-10-22까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"management\"가 들어간 문서가 12건 이상 나올까?",
-      "title": "미국 상무부 · \"management\" 공고가 12건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 12건 이상 나올까?",
       "topic_id": "b9a5929934e936a03698d8d8e93ec41113ad5c2c85112244a1ecef53289d17a2"
     },
     {
@@ -20621,10 +20621,10 @@
       "href": "/record/#prediction-P-000085",
       "id": "P-000085",
       "issued_at": "2026-10-09T15:44:30.483957Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-08",
         "kind": "official_public",
@@ -20634,7 +20634,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-17&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-08&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-16부터 2026-10-22까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"countervailing\"가 들어간 문서가 11건 이상 나올까?",
-      "title": "미국 상무부 · \"countervailing\" 공고가 11건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 11건 이상 나올까?",
       "topic_id": "f8d69255df8166aff9776a91a2dc849c4e4025142779707c42477c91e25066bd"
     },
     {
@@ -20643,10 +20643,10 @@
       "href": "/record/#prediction-P-000086",
       "id": "P-000086",
       "issued_at": "2026-10-13T00:10:30.094925Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.42857142857142855,
-      "rationale": "최근 12주 중 5주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 5주는 기준을 충족했고, 7주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-09",
         "kind": "official_public",
@@ -20656,7 +20656,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-21&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-12&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-20부터 2026-10-26까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"fishery\"가 들어간 문서가 7건 이상 나올까?",
-      "title": "미국 상무부 · \"fishery\" 공고가 7건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 7건 이상 나올까?",
       "topic_id": "51960f2703b0484546235e0e6557199a0910350b594bda7f06ff839db97ee19e"
     },
     {
@@ -20665,10 +20665,10 @@
       "href": "/record/#prediction-P-000094",
       "id": "P-000094",
       "issued_at": "2026-10-15T15:26:13.592909Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.35714285714285715,
-      "rationale": "최근 12주 중 4주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 4주는 기준을 충족했고, 8주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-14",
         "kind": "official_public",
@@ -20678,7 +20678,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-23&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-14&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-22부터 2026-10-28까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"proclamation\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "5fa1ca7334792317656ed88e699621952127e719192dc5483e1aa1273a385b6e"
     },
     {
@@ -20687,10 +20687,10 @@
       "href": "/record/#prediction-P-000095",
       "id": "P-000095",
       "issued_at": "2026-10-15T15:27:00.823830Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-14",
         "kind": "official_public",
@@ -20700,7 +20700,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-23&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-14&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-22부터 2026-10-28까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"people\"가 들어간 문서가 8건 이상 나올까?",
-      "title": "미국 상무부 · \"people\" 공고가 8건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 8건 이상 나올까?",
       "topic_id": "432fb701babfed954fc0972e168559991d5c29bebda21e1d5914fb08d96a3dde"
     },
     {
@@ -20709,10 +20709,10 @@
       "href": "/record/#prediction-P-000096",
       "id": "P-000096",
       "issued_at": "2026-10-15T15:27:47.941119Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.2857142857142857,
-      "rationale": "최근 12주 중 3주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 3주는 기준을 충족했고, 9주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-14",
         "kind": "official_public",
@@ -20722,7 +20722,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-23&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-14&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-22부터 2026-10-28까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"office\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "9242e35e402b8c909e926850daa79ead0be37c43092f28d5944debf453fb1811"
     },
     {
@@ -20731,10 +20731,10 @@
       "href": "/record/#prediction-P-000097",
       "id": "P-000097",
       "issued_at": "2026-10-16T00:26:04.989775Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.2857142857142857,
-      "rationale": "최근 12주 중 3주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 3주는 기준을 충족했고, 9주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-15",
         "kind": "official_public",
@@ -20744,7 +20744,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-24&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-15&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-23부터 2026-10-29까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"fisheries\"가 들어간 문서가 9건 이상 나올까?",
-      "title": "미국 상무부 · \"fisheries\" 공고가 9건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"fisheries\"이라는 단어가 들어간 공고가 9건 이상 나올까?",
       "topic_id": "3e0a420b91e29383b104fb57c2e6a373853e62c05047da4737b4d1dc37eb89b2"
     },
     {
@@ -20778,10 +20778,10 @@
       "href": "/record/#prediction-P-000102",
       "id": "P-000102",
       "issued_at": "2026-10-22T15:20:01.668453Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-21",
         "kind": "official_public",
@@ -20791,7 +20791,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-30&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-21&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-29부터 2026-11-04까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"antidumping\"가 들어간 문서가 16건 이상 나올까?",
-      "title": "미국 상무부 · \"antidumping\" 공고가 16건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 16건 이상 나올까?",
       "topic_id": "06abb0977d59cdbcf747a6bce42ff93604f2d3210a12473120acd859ff35fbca"
     },
     {
@@ -20800,10 +20800,10 @@
       "href": "/record/#prediction-P-000103",
       "id": "P-000103",
       "issued_at": "2026-10-22T15:21:19.947449Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.35714285714285715,
-      "rationale": "최근 12주 중 4주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 4주는 기준을 충족했고, 8주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-14",
         "kind": "official_public",
@@ -20813,7 +20813,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-30&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-21&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-29부터 2026-11-04까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"export\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "359bfdd8e27674bec00bd4552b32fe2e622729a327559c2ffbbed18373721263"
     },
     {
@@ -20822,10 +20822,10 @@
       "href": "/record/#prediction-P-000104",
       "id": "P-000104",
       "issued_at": "2026-10-23T16:22:59.387975Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.42857142857142855,
-      "rationale": "최근 12주 중 5주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 5주는 기준을 충족했고, 7주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-22",
         "kind": "official_public",
@@ -20835,7 +20835,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-31&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-22&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-30부터 2026-11-05까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"zone\"가 들어간 문서가 8건 이상 나올까?",
-      "title": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까?",
       "topic_id": "4911e2467f21510da49a70f4d32612c5b404a58e4381ac714c3cf69bfbcc07bb"
     },
     {
@@ -20844,10 +20844,10 @@
       "href": "/record/#prediction-P-000105",
       "id": "P-000105",
       "issued_at": "2026-10-23T16:24:39.729279Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-22",
         "kind": "official_public",
@@ -20857,7 +20857,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-31&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-22&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-30부터 2026-11-05까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"management\"가 들어간 문서가 14건 이상 나올까?",
-      "title": "미국 상무부 · \"management\" 공고가 14건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 14건 이상 나올까?",
       "topic_id": "b9a5929934e936a03698d8d8e93ec41113ad5c2c85112244a1ecef53289d17a2"
     },
     {
@@ -20866,10 +20866,10 @@
       "href": "/record/#prediction-P-000106",
       "id": "P-000106",
       "issued_at": "2026-10-23T16:26:23.199989Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-22",
         "kind": "official_public",
@@ -20879,7 +20879,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-31&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-22&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-10-30부터 2026-11-05까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"countervailing\"가 들어간 문서가 7건 이상 나올까?",
-      "title": "미국 상무부 · \"countervailing\" 공고가 7건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 7건 이상 나올까?",
       "topic_id": "f8d69255df8166aff9776a91a2dc849c4e4025142779707c42477c91e25066bd"
     },
     {
@@ -20888,10 +20888,10 @@
       "href": "/record/#prediction-P-000107",
       "id": "P-000107",
       "issued_at": "2026-10-27T22:52:31.688273Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-26",
         "kind": "official_public",
@@ -20901,7 +20901,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-04&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-26&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-03부터 2026-11-09까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"fishery\"가 들어간 문서가 7건 이상 나올까?",
-      "title": "미국 상무부 · \"fishery\" 공고가 7건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 7건 이상 나올까?",
       "topic_id": "51960f2703b0484546235e0e6557199a0910350b594bda7f06ff839db97ee19e"
     },
     {
@@ -20910,10 +20910,10 @@
       "href": "/record/#prediction-P-000108",
       "id": "P-000108",
       "issued_at": "2026-10-28T03:30:43.758947Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.2857142857142857,
-      "rationale": "최근 12주 중 3주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 3주는 기준을 충족했고, 9주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-27",
         "kind": "official_public",
@@ -20923,7 +20923,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-05&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-27&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-04부터 2026-11-10까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"privileges\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"privileges\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"privileges\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "a805cf35cc0b70e63e983034a9615cbaade65df2c42bfec835f465fb415b867d"
     },
     {
@@ -20932,10 +20932,10 @@
       "href": "/record/#prediction-P-000109",
       "id": "P-000109",
       "issued_at": "2026-10-30T19:27:01.071677Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.2857142857142857,
-      "rationale": "최근 12주 중 3주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 3주는 기준을 충족했고, 9주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-27",
         "kind": "official_public",
@@ -20945,7 +20945,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-07&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-29&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-06부터 2026-11-12까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"office\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "9242e35e402b8c909e926850daa79ead0be37c43092f28d5944debf453fb1811"
     },
     {
@@ -20954,10 +20954,10 @@
       "href": "/record/#prediction-P-000110",
       "id": "P-000110",
       "issued_at": "2026-10-30T19:29:39.603253Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-29",
         "kind": "official_public",
@@ -20967,7 +20967,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-07&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-29&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-06부터 2026-11-12까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"activities\"가 들어간 문서가 8건 이상 나올까?",
-      "title": "미국 상무부 · \"activities\" 공고가 8건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 8건 이상 나올까?",
       "topic_id": "af734632d8bd39ee3185f3425fe804268ef392ec880613720ca84d7336499686"
     },
     {
@@ -21076,10 +21076,10 @@
       "href": "/record/#prediction-P-000115",
       "id": "P-000115",
       "issued_at": "2026-11-05T00:44:16.527677Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.2857142857142857,
-      "rationale": "최근 12주 중 3주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 3주는 기준을 충족했고, 9주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-27",
         "kind": "official_public",
@@ -21089,7 +21089,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-13&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-04&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-12부터 2026-11-18까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"proclamation\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "5fa1ca7334792317656ed88e699621952127e719192dc5483e1aa1273a385b6e"
     },
     {
@@ -21098,10 +21098,10 @@
       "href": "/record/#prediction-P-000118",
       "id": "P-000118",
       "issued_at": "2026-11-05T16:29:19.684315Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.35714285714285715,
-      "rationale": "최근 12주 중 4주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 4주는 기준을 충족했고, 8주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-11-04",
         "kind": "official_public",
@@ -21111,7 +21111,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-13&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-04&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-12부터 2026-11-18까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"antidumping\"가 들어간 문서가 15건 이상 나올까?",
-      "title": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까?",
       "topic_id": "06abb0977d59cdbcf747a6bce42ff93604f2d3210a12473120acd859ff35fbca"
     },
     {
@@ -21120,10 +21120,10 @@
       "href": "/record/#prediction-P-000119",
       "id": "P-000119",
       "issued_at": "2026-11-05T17:29:40.529604Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.42857142857142855,
-      "rationale": "최근 12주 중 5주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 5주는 기준을 충족했고, 7주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-10-27",
         "kind": "official_public",
@@ -21133,7 +21133,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-13&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-04&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-12부터 2026-11-18까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"export\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "359bfdd8e27674bec00bd4552b32fe2e622729a327559c2ffbbed18373721263"
     },
     {
@@ -21217,10 +21217,10 @@
       "href": "/record/#prediction-P-000123",
       "id": "P-000123",
       "issued_at": "2026-11-06T16:43:22.909379Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.35714285714285715,
-      "rationale": "최근 12주 중 4주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 4주는 기준을 충족했고, 8주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-11-05",
         "kind": "official_public",
@@ -21230,7 +21230,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-14&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-05&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-13부터 2026-11-19까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"zone\"가 들어간 문서가 8건 이상 나올까?",
-      "title": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까?",
       "topic_id": "4911e2467f21510da49a70f4d32612c5b404a58e4381ac714c3cf69bfbcc07bb"
     },
     {
@@ -21239,10 +21239,10 @@
       "href": "/record/#prediction-P-000124",
       "id": "P-000124",
       "issued_at": "2026-11-06T17:43:19.349667Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.42857142857142855,
-      "rationale": "최근 12주 중 5주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 5주는 기준을 충족했고, 7주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-11-05",
         "kind": "official_public",
@@ -21252,7 +21252,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-14&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-05&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-13부터 2026-11-19까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"management\"가 들어간 문서가 15건 이상 나올까?",
-      "title": "미국 상무부 · \"management\" 공고가 15건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 15건 이상 나올까?",
       "topic_id": "b9a5929934e936a03698d8d8e93ec41113ad5c2c85112244a1ecef53289d17a2"
     },
     {
@@ -21261,10 +21261,10 @@
       "href": "/record/#prediction-P-000125",
       "id": "P-000125",
       "issued_at": "2026-11-06T19:15:27.068848Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-11-05",
         "kind": "official_public",
@@ -21274,7 +21274,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-14&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-05&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-13부터 2026-11-19까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"countervailing\"가 들어간 문서가 9건 이상 나올까?",
-      "title": "미국 상무부 · \"countervailing\" 공고가 9건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 9건 이상 나올까?",
       "topic_id": "f8d69255df8166aff9776a91a2dc849c4e4025142779707c42477c91e25066bd"
     },
     {
@@ -21533,10 +21533,10 @@
       "href": "/record/#prediction-P-000136",
       "id": "P-000136",
       "issued_at": "2026-11-12T06:44:50.711101Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "did_not_occur",
       "probability": 0.2857142857142857,
-      "rationale": "최근 12주 중 3주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 3주는 기준을 충족했고, 9주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-11-09",
         "kind": "official_public",
@@ -21546,7 +21546,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-20&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-11&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-19부터 2026-11-25까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"privileges\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"privileges\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"privileges\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "a805cf35cc0b70e63e983034a9615cbaade65df2c42bfec835f465fb415b867d"
     },
     {
@@ -21555,10 +21555,10 @@
       "href": "/record/#prediction-P-000137",
       "id": "P-000137",
       "issued_at": "2026-11-12T17:00:06.907351Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": "occurred",
       "probability": 0.42857142857142855,
-      "rationale": "최근 12주 중 5주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 5주는 기준을 충족했고, 7주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "source": {
         "data_date": "2026-11-10",
         "kind": "official_public",
@@ -21568,7 +21568,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-20&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-11&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-19부터 2026-11-25까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"people\"가 들어간 문서가 8건 이상 나올까?",
-      "title": "미국 상무부 · \"people\" 공고가 8건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 8건 이상 나올까?",
       "topic_id": "432fb701babfed954fc0972e168559991d5c29bebda21e1d5914fb08d96a3dde"
     },
     {
@@ -21603,10 +21603,10 @@
       "href": "/record/#prediction-P-000139",
       "id": "P-000139",
       "issued_at": "2026-11-19T14:27:18.235917Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": null,
       "probability": 0.35714285714285715,
-      "rationale": "최근 12주 중 4주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 4주는 기준을 충족했고, 8주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "resolved_at": null,
       "source": {
         "data_date": "2026-11-18",
@@ -21617,7 +21617,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-27&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-18&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-26부터 2026-12-02까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"activities\"가 들어간 문서가 9건 이상 나올까?",
-      "title": "미국 상무부 · \"activities\" 공고가 9건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 9건 이상 나올까?",
       "topic_id": "af734632d8bd39ee3185f3425fe804268ef392ec880613720ca84d7336499686"
     },
     {
@@ -21627,10 +21627,10 @@
       "href": "/record/#prediction-P-000140",
       "id": "P-000140",
       "issued_at": "2026-11-19T23:28:58.660314Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": null,
       "probability": 0.2857142857142857,
-      "rationale": "최근 12주 중 3주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 3주는 기준을 충족했고, 9주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "resolved_at": null,
       "source": {
         "data_date": "2026-11-09",
@@ -21641,7 +21641,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-27&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-18&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-26부터 2026-12-02까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"proclamation\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "5fa1ca7334792317656ed88e699621952127e719192dc5483e1aa1273a385b6e"
     },
     {
@@ -21651,10 +21651,10 @@
       "href": "/record/#prediction-P-000141",
       "id": "P-000141",
       "issued_at": "2026-11-20T01:45:23.808501Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": null,
       "probability": 0.42857142857142855,
-      "rationale": "최근 12주 중 5주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 5주는 기준을 충족했고, 7주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "resolved_at": null,
       "source": {
         "data_date": "2026-11-19",
@@ -21665,7 +21665,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-28&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-19&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-27부터 2026-12-03까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"fishery\"가 들어간 문서가 9건 이상 나올까?",
-      "title": "미국 상무부 · \"fishery\" 공고가 9건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 9건 이상 나올까?",
       "topic_id": "51960f2703b0484546235e0e6557199a0910350b594bda7f06ff839db97ee19e"
     },
     {
@@ -21675,10 +21675,10 @@
       "href": "/record/#prediction-P-000142",
       "id": "P-000142",
       "issued_at": "2026-11-20T03:30:20.044726Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": null,
       "probability": 0.2857142857142857,
-      "rationale": "최근 12주 중 3주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 3주는 기준을 충족했고, 9주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "resolved_at": null,
       "source": {
         "data_date": "2026-11-19",
@@ -21689,7 +21689,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-28&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-19&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-27부터 2026-12-03까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"office\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "9242e35e402b8c909e926850daa79ead0be37c43092f28d5944debf453fb1811"
     },
     {
@@ -21699,10 +21699,10 @@
       "href": "/record/#prediction-P-000143",
       "id": "P-000143",
       "issued_at": "2026-11-20T05:15:55.237353Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": null,
       "probability": 0.35714285714285715,
-      "rationale": "최근 12주 중 4주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 4주는 기준을 충족했고, 8주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "resolved_at": null,
       "source": {
         "data_date": "2026-11-19",
@@ -21713,7 +21713,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-28&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-19&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-27부터 2026-12-03까지 미국 산업안보국의 공개 문서 중 제목에 영문 단어 \"export\"가 들어간 문서가 1건 이상 나올까?",
-      "title": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까?",
+      "title": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까?",
       "topic_id": "359bfdd8e27674bec00bd4552b32fe2e622729a327559c2ffbbed18373721263"
     },
     {
@@ -21798,10 +21798,10 @@
       "href": "/record/#prediction-P-000147",
       "id": "P-000147",
       "issued_at": "2026-11-22T17:59:12.839509Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": null,
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "resolved_at": null,
       "source": {
         "data_date": "2026-11-20",
@@ -21812,7 +21812,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-30&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-21&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-29부터 2026-12-05까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"antidumping\"가 들어간 문서가 15건 이상 나올까?",
-      "title": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까?",
       "topic_id": "06abb0977d59cdbcf747a6bce42ff93604f2d3210a12473120acd859ff35fbca"
     },
     {
@@ -21847,10 +21847,10 @@
       "href": "/record/#prediction-P-000149",
       "id": "P-000149",
       "issued_at": "2026-11-22T19:41:40.164347Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": null,
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "resolved_at": null,
       "source": {
         "data_date": "2026-11-20",
@@ -21861,7 +21861,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-30&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-21&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-29부터 2026-12-05까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"zone\"가 들어간 문서가 9건 이상 나올까?",
-      "title": "미국 상무부 · \"zone\" 공고가 9건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 9건 이상 나올까?",
       "topic_id": "4911e2467f21510da49a70f4d32612c5b404a58e4381ac714c3cf69bfbcc07bb"
     },
     {
@@ -21871,10 +21871,10 @@
       "href": "/record/#prediction-P-000150",
       "id": "P-000150",
       "issued_at": "2026-11-22T20:29:00.315964Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": null,
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "resolved_at": null,
       "source": {
         "data_date": "2026-11-20",
@@ -21885,7 +21885,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-30&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-21&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-29부터 2026-12-05까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"management\"가 들어간 문서가 14건 이상 나올까?",
-      "title": "미국 상무부 · \"management\" 공고가 14건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 14건 이상 나올까?",
       "topic_id": "b9a5929934e936a03698d8d8e93ec41113ad5c2c85112244a1ecef53289d17a2"
     },
     {
@@ -21895,10 +21895,10 @@
       "href": "/record/#prediction-P-000151",
       "id": "P-000151",
       "issued_at": "2026-11-22T21:27:45.783833Z",
-      "method": "지정 기관의 공개 문서 제목과 날짜를 비교합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
+      "method": "지정 기관의 공개 문서에서 날짜를 확인하고, 제목의 영문 단어는 대소문자를 구분하지 않고 단어 단위로 확인합니다. 국가명에 포함된 단어도 집계합니다. 과거 주별 빈도를 출발점으로 삼고, 실제 결과가 쌓이면 확률을 보정합니다. 아직 학습에 필요한 확정 결과가 부족합니다.",
       "outcome": null,
       "probability": 0.5,
-      "rationale": "최근 12주 중 6주에서 같은 기준을 충족했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
+      "rationale": "최근 12주 중 6주는 기준을 충족했고, 6주는 미달했습니다. 공고 수에 대한 예상이며 정책 시행이나 주가 방향을 뜻하지 않습니다.",
       "resolved_at": null,
       "source": {
         "data_date": "2026-11-20",
@@ -21909,7 +21909,7 @@
         "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-30&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-21&per_page=1000&page=1&order=oldest"
       },
       "statement": "2026-11-29부터 2026-12-05까지 미국 상무부의 공개 문서 중 제목에 영문 단어 \"countervailing\"가 들어간 문서가 11건 이상 나올까?",
-      "title": "미국 상무부 · \"countervailing\" 공고가 11건 이상 나올까?",
+      "title": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 11건 이상 나올까?",
       "topic_id": "f8d69255df8166aff9776a91a2dc849c4e4025142779707c42477c91e25066bd"
     },
     {
@@ -23094,7 +23094,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000015",
-        "label": "미국 산업안보국 · \"controls\" 공고가 1건 이상 나올까? · P-000015",
+        "label": "미국 산업안보국 · 제목에 \"controls\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000015",
         "record_id": "P-000015",
         "record_kind": "prediction",
         "sealed": true,
@@ -23103,7 +23103,7 @@
       {
         "group": "review",
         "id": "outcome-P-000015",
-        "label": "미국 산업안보국 · \"controls\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"controls\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000015",
         "record_kind": "prediction",
         "status": "ok"
@@ -23111,7 +23111,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000016",
-        "label": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까? · P-000016",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까? · P-000016",
         "record_id": "P-000016",
         "record_kind": "prediction",
         "sealed": true,
@@ -23120,7 +23120,7 @@
       {
         "group": "review",
         "id": "outcome-P-000016",
-        "label": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까? · 결과 기록",
         "record_id": "P-000016",
         "record_kind": "prediction",
         "status": "ok"
@@ -23145,7 +23145,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000018",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? · P-000018",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000018",
         "record_id": "P-000018",
         "record_kind": "prediction",
         "sealed": true,
@@ -23154,7 +23154,7 @@
       {
         "group": "review",
         "id": "outcome-P-000018",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000018",
         "record_kind": "prediction",
         "status": "ok"
@@ -23162,7 +23162,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000019",
-        "label": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까? · P-000019",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까? · P-000019",
         "record_id": "P-000019",
         "record_kind": "prediction",
         "sealed": true,
@@ -23171,7 +23171,7 @@
       {
         "group": "review",
         "id": "outcome-P-000019",
-        "label": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까? · 결과 기록",
         "record_id": "P-000019",
         "record_kind": "prediction",
         "status": "ok"
@@ -23196,7 +23196,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000021",
-        "label": "미국 상무부 · \"china\" 공고가 9건 이상 나올까? · P-000021",
+        "label": "미국 상무부 · 제목에 \"china\"이라는 단어가 들어간 공고가 9건 이상 나올까? · P-000021",
         "record_id": "P-000021",
         "record_kind": "prediction",
         "sealed": true,
@@ -23205,7 +23205,7 @@
       {
         "group": "review",
         "id": "outcome-P-000021",
-        "label": "미국 상무부 · \"china\" 공고가 9건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"china\"이라는 단어가 들어간 공고가 9건 이상 나올까? · 결과 기록",
         "record_id": "P-000021",
         "record_kind": "prediction",
         "status": "ok"
@@ -23275,7 +23275,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000028",
-        "label": "미국 상무부 · \"activities\" 공고가 9건 이상 나올까? · P-000028",
+        "label": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 9건 이상 나올까? · P-000028",
         "record_id": "P-000028",
         "record_kind": "prediction",
         "sealed": true,
@@ -23284,7 +23284,7 @@
       {
         "group": "review",
         "id": "outcome-P-000028",
-        "label": "미국 상무부 · \"activities\" 공고가 9건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 9건 이상 나올까? · 결과 기록",
         "record_id": "P-000028",
         "record_kind": "prediction",
         "status": "ok"
@@ -23309,7 +23309,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000030",
-        "label": "미국 상무부 · \"management\" 공고가 11건 이상 나올까? · P-000030",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 11건 이상 나올까? · P-000030",
         "record_id": "P-000030",
         "record_kind": "prediction",
         "sealed": true,
@@ -23318,7 +23318,7 @@
       {
         "group": "review",
         "id": "outcome-P-000030",
-        "label": "미국 상무부 · \"management\" 공고가 11건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 11건 이상 나올까? · 결과 기록",
         "record_id": "P-000030",
         "record_kind": "prediction",
         "status": "ok"
@@ -23326,7 +23326,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000031",
-        "label": "미국 상무부 · \"countervailing\" 공고가 10건 이상 나올까? · P-000031",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 10건 이상 나올까? · P-000031",
         "record_id": "P-000031",
         "record_kind": "prediction",
         "sealed": true,
@@ -23335,7 +23335,7 @@
       {
         "group": "review",
         "id": "outcome-P-000031",
-        "label": "미국 상무부 · \"countervailing\" 공고가 10건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 10건 이상 나올까? · 결과 기록",
         "record_id": "P-000031",
         "record_kind": "prediction",
         "status": "ok"
@@ -23454,7 +23454,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000039",
-        "label": "미국 상무부 · \"fisheries\" 공고가 9건 이상 나올까? · P-000039",
+        "label": "미국 상무부 · 제목에 \"fisheries\"이라는 단어가 들어간 공고가 9건 이상 나올까? · P-000039",
         "record_id": "P-000039",
         "record_kind": "prediction",
         "sealed": true,
@@ -23463,7 +23463,7 @@
       {
         "group": "review",
         "id": "outcome-P-000039",
-        "label": "미국 상무부 · \"fisheries\" 공고가 9건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"fisheries\"이라는 단어가 들어간 공고가 9건 이상 나올까? · 결과 기록",
         "record_id": "P-000039",
         "record_kind": "prediction",
         "status": "ok"
@@ -23471,7 +23471,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000040",
-        "label": "미국 상무부 · \"people\" 공고가 9건 이상 나올까? · P-000040",
+        "label": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 9건 이상 나올까? · P-000040",
         "record_id": "P-000040",
         "record_kind": "prediction",
         "sealed": true,
@@ -23480,7 +23480,7 @@
       {
         "group": "review",
         "id": "outcome-P-000040",
-        "label": "미국 상무부 · \"people\" 공고가 9건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 9건 이상 나올까? · 결과 기록",
         "record_id": "P-000040",
         "record_kind": "prediction",
         "status": "ok"
@@ -23569,7 +23569,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000050",
-        "label": "미국 상무부 · \"fishery\" 공고가 7건 이상 나올까? · P-000050",
+        "label": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 7건 이상 나올까? · P-000050",
         "record_id": "P-000050",
         "record_kind": "prediction",
         "sealed": true,
@@ -23578,7 +23578,7 @@
       {
         "group": "review",
         "id": "outcome-P-000050",
-        "label": "미국 상무부 · \"fishery\" 공고가 7건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 7건 이상 나올까? · 결과 기록",
         "record_id": "P-000050",
         "record_kind": "prediction",
         "status": "ok"
@@ -23595,7 +23595,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000052",
-        "label": "미국 산업안보국 · \"controls\" 공고가 1건 이상 나올까? · P-000052",
+        "label": "미국 산업안보국 · 제목에 \"controls\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000052",
         "record_id": "P-000052",
         "record_kind": "prediction",
         "sealed": true,
@@ -23604,7 +23604,7 @@
       {
         "group": "review",
         "id": "outcome-P-000052",
-        "label": "미국 산업안보국 · \"controls\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"controls\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000052",
         "record_kind": "prediction",
         "status": "ok"
@@ -23612,7 +23612,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000053",
-        "label": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까? · P-000053",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까? · P-000053",
         "record_id": "P-000053",
         "record_kind": "prediction",
         "sealed": true,
@@ -23621,7 +23621,7 @@
       {
         "group": "review",
         "id": "outcome-P-000053",
-        "label": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까? · 결과 기록",
         "record_id": "P-000053",
         "record_kind": "prediction",
         "status": "ok"
@@ -23629,7 +23629,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000054",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? · P-000054",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000054",
         "record_id": "P-000054",
         "record_kind": "prediction",
         "sealed": true,
@@ -23638,7 +23638,7 @@
       {
         "group": "review",
         "id": "outcome-P-000054",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000054",
         "record_kind": "prediction",
         "status": "ok"
@@ -23655,7 +23655,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000056",
-        "label": "미국 상무부 · \"zone\" 공고가 7건 이상 나올까? · P-000056",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 7건 이상 나올까? · P-000056",
         "record_id": "P-000056",
         "record_kind": "prediction",
         "sealed": true,
@@ -23664,7 +23664,7 @@
       {
         "group": "review",
         "id": "outcome-P-000056",
-        "label": "미국 상무부 · \"zone\" 공고가 7건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 7건 이상 나올까? · 결과 기록",
         "record_id": "P-000056",
         "record_kind": "prediction",
         "status": "ok"
@@ -23672,7 +23672,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000057",
-        "label": "미국 상무부 · \"activities\" 공고가 8건 이상 나올까? · P-000057",
+        "label": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 8건 이상 나올까? · P-000057",
         "record_id": "P-000057",
         "record_kind": "prediction",
         "sealed": true,
@@ -23681,7 +23681,7 @@
       {
         "group": "review",
         "id": "outcome-P-000057",
-        "label": "미국 상무부 · \"activities\" 공고가 8건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 8건 이상 나올까? · 결과 기록",
         "record_id": "P-000057",
         "record_kind": "prediction",
         "status": "ok"
@@ -23689,7 +23689,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000058",
-        "label": "미국 상무부 · \"management\" 공고가 10건 이상 나올까? · P-000058",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 10건 이상 나올까? · P-000058",
         "record_id": "P-000058",
         "record_kind": "prediction",
         "sealed": true,
@@ -23698,7 +23698,7 @@
       {
         "group": "review",
         "id": "outcome-P-000058",
-        "label": "미국 상무부 · \"management\" 공고가 10건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 10건 이상 나올까? · 결과 기록",
         "record_id": "P-000058",
         "record_kind": "prediction",
         "status": "ok"
@@ -23706,7 +23706,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000059",
-        "label": "미국 상무부 · \"countervailing\" 공고가 11건 이상 나올까? · P-000059",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 11건 이상 나올까? · P-000059",
         "record_id": "P-000059",
         "record_kind": "prediction",
         "sealed": true,
@@ -23715,7 +23715,7 @@
       {
         "group": "review",
         "id": "outcome-P-000059",
-        "label": "미국 상무부 · \"countervailing\" 공고가 11건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 11건 이상 나올까? · 결과 기록",
         "record_id": "P-000059",
         "record_kind": "prediction",
         "status": "ok"
@@ -23759,7 +23759,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000064",
-        "label": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까? · P-000064",
+        "label": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000064",
         "record_id": "P-000064",
         "record_kind": "prediction",
         "sealed": true,
@@ -23768,7 +23768,7 @@
       {
         "group": "review",
         "id": "outcome-P-000064",
-        "label": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000064",
         "record_kind": "prediction",
         "status": "ok"
@@ -23776,7 +23776,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000065",
-        "label": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까? · P-000065",
+        "label": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000065",
         "record_id": "P-000065",
         "record_kind": "prediction",
         "sealed": true,
@@ -23785,7 +23785,7 @@
       {
         "group": "review",
         "id": "outcome-P-000065",
-        "label": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000065",
         "record_kind": "prediction",
         "status": "ok"
@@ -23793,7 +23793,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000066",
-        "label": "미국 상무부 · \"people\" 공고가 9건 이상 나올까? · P-000066",
+        "label": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 9건 이상 나올까? · P-000066",
         "record_id": "P-000066",
         "record_kind": "prediction",
         "sealed": true,
@@ -23802,7 +23802,7 @@
       {
         "group": "review",
         "id": "outcome-P-000066",
-        "label": "미국 상무부 · \"people\" 공고가 9건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 9건 이상 나올까? · 결과 기록",
         "record_id": "P-000066",
         "record_kind": "prediction",
         "status": "ok"
@@ -23918,7 +23918,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000079",
-        "label": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까? · P-000079",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까? · P-000079",
         "record_id": "P-000079",
         "record_kind": "prediction",
         "sealed": true,
@@ -23927,7 +23927,7 @@
       {
         "group": "review",
         "id": "outcome-P-000079",
-        "label": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까? · 결과 기록",
         "record_id": "P-000079",
         "record_kind": "prediction",
         "status": "ok"
@@ -23935,7 +23935,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000080",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? · P-000080",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000080",
         "record_id": "P-000080",
         "record_kind": "prediction",
         "sealed": true,
@@ -23944,7 +23944,7 @@
       {
         "group": "review",
         "id": "outcome-P-000080",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000080",
         "record_kind": "prediction",
         "status": "ok"
@@ -23961,7 +23961,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000082",
-        "label": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까? · P-000082",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까? · P-000082",
         "record_id": "P-000082",
         "record_kind": "prediction",
         "sealed": true,
@@ -23970,7 +23970,7 @@
       {
         "group": "review",
         "id": "outcome-P-000082",
-        "label": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까? · 결과 기록",
         "record_id": "P-000082",
         "record_kind": "prediction",
         "status": "ok"
@@ -23978,7 +23978,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000083",
-        "label": "미국 상무부 · \"activities\" 공고가 8건 이상 나올까? · P-000083",
+        "label": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 8건 이상 나올까? · P-000083",
         "record_id": "P-000083",
         "record_kind": "prediction",
         "sealed": true,
@@ -23987,7 +23987,7 @@
       {
         "group": "review",
         "id": "outcome-P-000083",
-        "label": "미국 상무부 · \"activities\" 공고가 8건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 8건 이상 나올까? · 결과 기록",
         "record_id": "P-000083",
         "record_kind": "prediction",
         "status": "ok"
@@ -23995,7 +23995,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000084",
-        "label": "미국 상무부 · \"management\" 공고가 12건 이상 나올까? · P-000084",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 12건 이상 나올까? · P-000084",
         "record_id": "P-000084",
         "record_kind": "prediction",
         "sealed": true,
@@ -24004,7 +24004,7 @@
       {
         "group": "review",
         "id": "outcome-P-000084",
-        "label": "미국 상무부 · \"management\" 공고가 12건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 12건 이상 나올까? · 결과 기록",
         "record_id": "P-000084",
         "record_kind": "prediction",
         "status": "ok"
@@ -24012,7 +24012,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000085",
-        "label": "미국 상무부 · \"countervailing\" 공고가 11건 이상 나올까? · P-000085",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 11건 이상 나올까? · P-000085",
         "record_id": "P-000085",
         "record_kind": "prediction",
         "sealed": true,
@@ -24021,7 +24021,7 @@
       {
         "group": "review",
         "id": "outcome-P-000085",
-        "label": "미국 상무부 · \"countervailing\" 공고가 11건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 11건 이상 나올까? · 결과 기록",
         "record_id": "P-000085",
         "record_kind": "prediction",
         "status": "ok"
@@ -24029,7 +24029,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000086",
-        "label": "미국 상무부 · \"fishery\" 공고가 7건 이상 나올까? · P-000086",
+        "label": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 7건 이상 나올까? · P-000086",
         "record_id": "P-000086",
         "record_kind": "prediction",
         "sealed": true,
@@ -24038,7 +24038,7 @@
       {
         "group": "review",
         "id": "outcome-P-000086",
-        "label": "미국 상무부 · \"fishery\" 공고가 7건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 7건 이상 나올까? · 결과 기록",
         "record_id": "P-000086",
         "record_kind": "prediction",
         "status": "ok"
@@ -24109,7 +24109,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000094",
-        "label": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까? · P-000094",
+        "label": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000094",
         "record_id": "P-000094",
         "record_kind": "prediction",
         "sealed": true,
@@ -24118,7 +24118,7 @@
       {
         "group": "review",
         "id": "outcome-P-000094",
-        "label": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000094",
         "record_kind": "prediction",
         "status": "ok"
@@ -24126,7 +24126,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000095",
-        "label": "미국 상무부 · \"people\" 공고가 8건 이상 나올까? · P-000095",
+        "label": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 8건 이상 나올까? · P-000095",
         "record_id": "P-000095",
         "record_kind": "prediction",
         "sealed": true,
@@ -24135,7 +24135,7 @@
       {
         "group": "review",
         "id": "outcome-P-000095",
-        "label": "미국 상무부 · \"people\" 공고가 8건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 8건 이상 나올까? · 결과 기록",
         "record_id": "P-000095",
         "record_kind": "prediction",
         "status": "ok"
@@ -24143,7 +24143,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000096",
-        "label": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까? · P-000096",
+        "label": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000096",
         "record_id": "P-000096",
         "record_kind": "prediction",
         "sealed": true,
@@ -24152,7 +24152,7 @@
       {
         "group": "review",
         "id": "outcome-P-000096",
-        "label": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000096",
         "record_kind": "prediction",
         "status": "ok"
@@ -24160,7 +24160,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000097",
-        "label": "미국 상무부 · \"fisheries\" 공고가 9건 이상 나올까? · P-000097",
+        "label": "미국 상무부 · 제목에 \"fisheries\"이라는 단어가 들어간 공고가 9건 이상 나올까? · P-000097",
         "record_id": "P-000097",
         "record_kind": "prediction",
         "sealed": true,
@@ -24169,7 +24169,7 @@
       {
         "group": "review",
         "id": "outcome-P-000097",
-        "label": "미국 상무부 · \"fisheries\" 공고가 9건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"fisheries\"이라는 단어가 들어간 공고가 9건 이상 나올까? · 결과 기록",
         "record_id": "P-000097",
         "record_kind": "prediction",
         "status": "ok"
@@ -24213,7 +24213,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000102",
-        "label": "미국 상무부 · \"antidumping\" 공고가 16건 이상 나올까? · P-000102",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 16건 이상 나올까? · P-000102",
         "record_id": "P-000102",
         "record_kind": "prediction",
         "sealed": true,
@@ -24222,7 +24222,7 @@
       {
         "group": "review",
         "id": "outcome-P-000102",
-        "label": "미국 상무부 · \"antidumping\" 공고가 16건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 16건 이상 나올까? · 결과 기록",
         "record_id": "P-000102",
         "record_kind": "prediction",
         "status": "ok"
@@ -24230,7 +24230,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000103",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? · P-000103",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000103",
         "record_id": "P-000103",
         "record_kind": "prediction",
         "sealed": true,
@@ -24239,7 +24239,7 @@
       {
         "group": "review",
         "id": "outcome-P-000103",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000103",
         "record_kind": "prediction",
         "status": "ok"
@@ -24247,7 +24247,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000104",
-        "label": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까? · P-000104",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까? · P-000104",
         "record_id": "P-000104",
         "record_kind": "prediction",
         "sealed": true,
@@ -24256,7 +24256,7 @@
       {
         "group": "review",
         "id": "outcome-P-000104",
-        "label": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까? · 결과 기록",
         "record_id": "P-000104",
         "record_kind": "prediction",
         "status": "ok"
@@ -24264,7 +24264,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000105",
-        "label": "미국 상무부 · \"management\" 공고가 14건 이상 나올까? · P-000105",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 14건 이상 나올까? · P-000105",
         "record_id": "P-000105",
         "record_kind": "prediction",
         "sealed": true,
@@ -24273,7 +24273,7 @@
       {
         "group": "review",
         "id": "outcome-P-000105",
-        "label": "미국 상무부 · \"management\" 공고가 14건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 14건 이상 나올까? · 결과 기록",
         "record_id": "P-000105",
         "record_kind": "prediction",
         "status": "ok"
@@ -24281,7 +24281,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000106",
-        "label": "미국 상무부 · \"countervailing\" 공고가 7건 이상 나올까? · P-000106",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 7건 이상 나올까? · P-000106",
         "record_id": "P-000106",
         "record_kind": "prediction",
         "sealed": true,
@@ -24290,7 +24290,7 @@
       {
         "group": "review",
         "id": "outcome-P-000106",
-        "label": "미국 상무부 · \"countervailing\" 공고가 7건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 7건 이상 나올까? · 결과 기록",
         "record_id": "P-000106",
         "record_kind": "prediction",
         "status": "ok"
@@ -24298,7 +24298,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000107",
-        "label": "미국 상무부 · \"fishery\" 공고가 7건 이상 나올까? · P-000107",
+        "label": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 7건 이상 나올까? · P-000107",
         "record_id": "P-000107",
         "record_kind": "prediction",
         "sealed": true,
@@ -24307,7 +24307,7 @@
       {
         "group": "review",
         "id": "outcome-P-000107",
-        "label": "미국 상무부 · \"fishery\" 공고가 7건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 7건 이상 나올까? · 결과 기록",
         "record_id": "P-000107",
         "record_kind": "prediction",
         "status": "ok"
@@ -24315,7 +24315,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000108",
-        "label": "미국 산업안보국 · \"privileges\" 공고가 1건 이상 나올까? · P-000108",
+        "label": "미국 산업안보국 · 제목에 \"privileges\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000108",
         "record_id": "P-000108",
         "record_kind": "prediction",
         "sealed": true,
@@ -24324,7 +24324,7 @@
       {
         "group": "review",
         "id": "outcome-P-000108",
-        "label": "미국 산업안보국 · \"privileges\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"privileges\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000108",
         "record_kind": "prediction",
         "status": "ok"
@@ -24332,7 +24332,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000109",
-        "label": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까? · P-000109",
+        "label": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000109",
         "record_id": "P-000109",
         "record_kind": "prediction",
         "sealed": true,
@@ -24341,7 +24341,7 @@
       {
         "group": "review",
         "id": "outcome-P-000109",
-        "label": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000109",
         "record_kind": "prediction",
         "status": "ok"
@@ -24349,7 +24349,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000110",
-        "label": "미국 상무부 · \"activities\" 공고가 8건 이상 나올까? · P-000110",
+        "label": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 8건 이상 나올까? · P-000110",
         "record_id": "P-000110",
         "record_kind": "prediction",
         "sealed": true,
@@ -24358,7 +24358,7 @@
       {
         "group": "review",
         "id": "outcome-P-000110",
-        "label": "미국 상무부 · \"activities\" 공고가 8건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 8건 이상 나올까? · 결과 기록",
         "record_id": "P-000110",
         "record_kind": "prediction",
         "status": "ok"
@@ -24402,7 +24402,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000115",
-        "label": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까? · P-000115",
+        "label": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000115",
         "record_id": "P-000115",
         "record_kind": "prediction",
         "sealed": true,
@@ -24411,7 +24411,7 @@
       {
         "group": "review",
         "id": "outcome-P-000115",
-        "label": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000115",
         "record_kind": "prediction",
         "status": "ok"
@@ -24437,7 +24437,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000118",
-        "label": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까? · P-000118",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까? · P-000118",
         "record_id": "P-000118",
         "record_kind": "prediction",
         "sealed": true,
@@ -24446,7 +24446,7 @@
       {
         "group": "review",
         "id": "outcome-P-000118",
-        "label": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까? · 결과 기록",
         "record_id": "P-000118",
         "record_kind": "prediction",
         "status": "ok"
@@ -24454,7 +24454,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000119",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? · P-000119",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000119",
         "record_id": "P-000119",
         "record_kind": "prediction",
         "sealed": true,
@@ -24463,7 +24463,7 @@
       {
         "group": "review",
         "id": "outcome-P-000119",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000119",
         "record_kind": "prediction",
         "status": "ok"
@@ -24498,7 +24498,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000123",
-        "label": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까? · P-000123",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까? · P-000123",
         "record_id": "P-000123",
         "record_kind": "prediction",
         "sealed": true,
@@ -24507,7 +24507,7 @@
       {
         "group": "review",
         "id": "outcome-P-000123",
-        "label": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까? · 결과 기록",
         "record_id": "P-000123",
         "record_kind": "prediction",
         "status": "ok"
@@ -24515,7 +24515,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000124",
-        "label": "미국 상무부 · \"management\" 공고가 15건 이상 나올까? · P-000124",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 15건 이상 나올까? · P-000124",
         "record_id": "P-000124",
         "record_kind": "prediction",
         "sealed": true,
@@ -24524,7 +24524,7 @@
       {
         "group": "review",
         "id": "outcome-P-000124",
-        "label": "미국 상무부 · \"management\" 공고가 15건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 15건 이상 나올까? · 결과 기록",
         "record_id": "P-000124",
         "record_kind": "prediction",
         "status": "ok"
@@ -24532,7 +24532,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000125",
-        "label": "미국 상무부 · \"countervailing\" 공고가 9건 이상 나올까? · P-000125",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 9건 이상 나올까? · P-000125",
         "record_id": "P-000125",
         "record_kind": "prediction",
         "sealed": true,
@@ -24541,7 +24541,7 @@
       {
         "group": "review",
         "id": "outcome-P-000125",
-        "label": "미국 상무부 · \"countervailing\" 공고가 9건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 9건 이상 나올까? · 결과 기록",
         "record_id": "P-000125",
         "record_kind": "prediction",
         "status": "ok"
@@ -24639,7 +24639,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000136",
-        "label": "미국 산업안보국 · \"privileges\" 공고가 1건 이상 나올까? · P-000136",
+        "label": "미국 산업안보국 · 제목에 \"privileges\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000136",
         "record_id": "P-000136",
         "record_kind": "prediction",
         "sealed": true,
@@ -24648,7 +24648,7 @@
       {
         "group": "review",
         "id": "outcome-P-000136",
-        "label": "미국 산업안보국 · \"privileges\" 공고가 1건 이상 나올까? · 결과 기록",
+        "label": "미국 산업안보국 · 제목에 \"privileges\"이라는 단어가 들어간 공고가 1건 이상 나올까? · 결과 기록",
         "record_id": "P-000136",
         "record_kind": "prediction",
         "status": "ok"
@@ -24656,7 +24656,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000137",
-        "label": "미국 상무부 · \"people\" 공고가 8건 이상 나올까? · P-000137",
+        "label": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 8건 이상 나올까? · P-000137",
         "record_id": "P-000137",
         "record_kind": "prediction",
         "sealed": true,
@@ -24665,7 +24665,7 @@
       {
         "group": "review",
         "id": "outcome-P-000137",
-        "label": "미국 상무부 · \"people\" 공고가 8건 이상 나올까? · 결과 기록",
+        "label": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 8건 이상 나올까? · 결과 기록",
         "record_id": "P-000137",
         "record_kind": "prediction",
         "status": "ok"
@@ -24682,7 +24682,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000139",
-        "label": "미국 상무부 · \"activities\" 공고가 9건 이상 나올까? · P-000139",
+        "label": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 9건 이상 나올까? · P-000139",
         "record_id": "P-000139",
         "record_kind": "prediction",
         "sealed": true,
@@ -24691,7 +24691,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000140",
-        "label": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까? · P-000140",
+        "label": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000140",
         "record_id": "P-000140",
         "record_kind": "prediction",
         "sealed": true,
@@ -24700,7 +24700,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000141",
-        "label": "미국 상무부 · \"fishery\" 공고가 9건 이상 나올까? · P-000141",
+        "label": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 9건 이상 나올까? · P-000141",
         "record_id": "P-000141",
         "record_kind": "prediction",
         "sealed": true,
@@ -24709,7 +24709,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000142",
-        "label": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까? · P-000142",
+        "label": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000142",
         "record_id": "P-000142",
         "record_kind": "prediction",
         "sealed": true,
@@ -24718,7 +24718,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000143",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? · P-000143",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? · P-000143",
         "record_id": "P-000143",
         "record_kind": "prediction",
         "sealed": true,
@@ -24754,7 +24754,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000147",
-        "label": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까? · P-000147",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까? · P-000147",
         "record_id": "P-000147",
         "record_kind": "prediction",
         "sealed": true,
@@ -24772,7 +24772,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000149",
-        "label": "미국 상무부 · \"zone\" 공고가 9건 이상 나올까? · P-000149",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 9건 이상 나올까? · P-000149",
         "record_id": "P-000149",
         "record_kind": "prediction",
         "sealed": true,
@@ -24781,7 +24781,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000150",
-        "label": "미국 상무부 · \"management\" 공고가 14건 이상 나올까? · P-000150",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 14건 이상 나올까? · P-000150",
         "record_id": "P-000150",
         "record_kind": "prediction",
         "sealed": true,
@@ -24790,7 +24790,7 @@
       {
         "group": "prob",
         "id": "prediction-P-000151",
-        "label": "미국 상무부 · \"countervailing\" 공고가 11건 이상 나올까? · P-000151",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 11건 이상 나올까? · P-000151",
         "record_id": "P-000151",
         "record_kind": "prediction",
         "sealed": true,
@@ -29641,7 +29641,7 @@
       {
         "group": "plat",
         "id": "source-P-000015",
-        "label": "미국 산업안보국 · \"controls\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"controls\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000015",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-18&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-09&per_page=1000&page=1&order=oldest",
@@ -29650,7 +29650,7 @@
       {
         "group": "plat",
         "id": "source-P-000016",
-        "label": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까? 출처",
         "record_id": "P-000016",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-18&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-09&per_page=1000&page=1&order=oldest",
@@ -29668,7 +29668,7 @@
       {
         "group": "plat",
         "id": "source-P-000018",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000018",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-18&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-09&per_page=1000&page=1&order=oldest",
@@ -29677,7 +29677,7 @@
       {
         "group": "plat",
         "id": "source-P-000019",
-        "label": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까? 출처",
         "record_id": "P-000019",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-18&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-09&per_page=1000&page=1&order=oldest",
@@ -29695,7 +29695,7 @@
       {
         "group": "plat",
         "id": "source-P-000021",
-        "label": "미국 상무부 · \"china\" 공고가 9건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"china\"이라는 단어가 들어간 공고가 9건 이상 나올까? 출처",
         "record_id": "P-000021",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-18&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-09&per_page=1000&page=1&order=oldest",
@@ -29758,7 +29758,7 @@
       {
         "group": "plat",
         "id": "source-P-000028",
-        "label": "미국 상무부 · \"activities\" 공고가 9건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 9건 이상 나올까? 출처",
         "record_id": "P-000028",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-19&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-10&per_page=1000&page=1&order=oldest",
@@ -29776,7 +29776,7 @@
       {
         "group": "plat",
         "id": "source-P-000030",
-        "label": "미국 상무부 · \"management\" 공고가 11건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 11건 이상 나올까? 출처",
         "record_id": "P-000030",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-19&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-10&per_page=1000&page=1&order=oldest",
@@ -29785,7 +29785,7 @@
       {
         "group": "plat",
         "id": "source-P-000031",
-        "label": "미국 상무부 · \"countervailing\" 공고가 10건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 10건 이상 나올까? 출처",
         "record_id": "P-000031",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-19&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-10&per_page=1000&page=1&order=oldest",
@@ -29857,7 +29857,7 @@
       {
         "group": "plat",
         "id": "source-P-000039",
-        "label": "미국 상무부 · \"fisheries\" 공고가 9건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"fisheries\"이라는 단어가 들어간 공고가 9건 이상 나올까? 출처",
         "record_id": "P-000039",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-24&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-15&per_page=1000&page=1&order=oldest",
@@ -29866,7 +29866,7 @@
       {
         "group": "plat",
         "id": "source-P-000040",
-        "label": "미국 상무부 · \"people\" 공고가 9건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 9건 이상 나올까? 출처",
         "record_id": "P-000040",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-25&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-16&per_page=1000&page=1&order=oldest",
@@ -29956,7 +29956,7 @@
       {
         "group": "plat",
         "id": "source-P-000050",
-        "label": "미국 상무부 · \"fishery\" 공고가 7건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 7건 이상 나올까? 출처",
         "record_id": "P-000050",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-06-30&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-21&per_page=1000&page=1&order=oldest",
@@ -29974,7 +29974,7 @@
       {
         "group": "plat",
         "id": "source-P-000052",
-        "label": "미국 산업안보국 · \"controls\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"controls\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000052",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-02&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-23&per_page=1000&page=1&order=oldest",
@@ -29983,7 +29983,7 @@
       {
         "group": "plat",
         "id": "source-P-000053",
-        "label": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까? 출처",
         "record_id": "P-000053",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-02&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-23&per_page=1000&page=1&order=oldest",
@@ -29992,7 +29992,7 @@
       {
         "group": "plat",
         "id": "source-P-000054",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000054",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-02&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-23&per_page=1000&page=1&order=oldest",
@@ -30010,7 +30010,7 @@
       {
         "group": "plat",
         "id": "source-P-000056",
-        "label": "미국 상무부 · \"zone\" 공고가 7건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 7건 이상 나올까? 출처",
         "record_id": "P-000056",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-03&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-24&per_page=1000&page=1&order=oldest",
@@ -30019,7 +30019,7 @@
       {
         "group": "plat",
         "id": "source-P-000057",
-        "label": "미국 상무부 · \"activities\" 공고가 8건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 8건 이상 나올까? 출처",
         "record_id": "P-000057",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-03&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-24&per_page=1000&page=1&order=oldest",
@@ -30028,7 +30028,7 @@
       {
         "group": "plat",
         "id": "source-P-000058",
-        "label": "미국 상무부 · \"management\" 공고가 10건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 10건 이상 나올까? 출처",
         "record_id": "P-000058",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-03&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-24&per_page=1000&page=1&order=oldest",
@@ -30037,7 +30037,7 @@
       {
         "group": "plat",
         "id": "source-P-000059",
-        "label": "미국 상무부 · \"countervailing\" 공고가 11건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 11건 이상 나올까? 출처",
         "record_id": "P-000059",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-03&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-24&per_page=1000&page=1&order=oldest",
@@ -30082,7 +30082,7 @@
       {
         "group": "plat",
         "id": "source-P-000064",
-        "label": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000064",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-09&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-30&per_page=1000&page=1&order=oldest",
@@ -30091,7 +30091,7 @@
       {
         "group": "plat",
         "id": "source-P-000065",
-        "label": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000065",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-09&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-30&per_page=1000&page=1&order=oldest",
@@ -30100,7 +30100,7 @@
       {
         "group": "plat",
         "id": "source-P-000066",
-        "label": "미국 상무부 · \"people\" 공고가 9건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 9건 이상 나올까? 출처",
         "record_id": "P-000066",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-09&conditions%5Bpublication_date%5D%5Blte%5D=2026-09-30&per_page=1000&page=1&order=oldest",
@@ -30217,7 +30217,7 @@
       {
         "group": "plat",
         "id": "source-P-000079",
-        "label": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까? 출처",
         "record_id": "P-000079",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-16&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-07&per_page=1000&page=1&order=oldest",
@@ -30226,7 +30226,7 @@
       {
         "group": "plat",
         "id": "source-P-000080",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000080",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-16&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-07&per_page=1000&page=1&order=oldest",
@@ -30244,7 +30244,7 @@
       {
         "group": "plat",
         "id": "source-P-000082",
-        "label": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까? 출처",
         "record_id": "P-000082",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-17&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-08&per_page=1000&page=1&order=oldest",
@@ -30253,7 +30253,7 @@
       {
         "group": "plat",
         "id": "source-P-000083",
-        "label": "미국 상무부 · \"activities\" 공고가 8건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 8건 이상 나올까? 출처",
         "record_id": "P-000083",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-17&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-08&per_page=1000&page=1&order=oldest",
@@ -30262,7 +30262,7 @@
       {
         "group": "plat",
         "id": "source-P-000084",
-        "label": "미국 상무부 · \"management\" 공고가 12건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 12건 이상 나올까? 출처",
         "record_id": "P-000084",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-17&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-08&per_page=1000&page=1&order=oldest",
@@ -30271,7 +30271,7 @@
       {
         "group": "plat",
         "id": "source-P-000085",
-        "label": "미국 상무부 · \"countervailing\" 공고가 11건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 11건 이상 나올까? 출처",
         "record_id": "P-000085",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-17&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-08&per_page=1000&page=1&order=oldest",
@@ -30280,7 +30280,7 @@
       {
         "group": "plat",
         "id": "source-P-000086",
-        "label": "미국 상무부 · \"fishery\" 공고가 7건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 7건 이상 나올까? 출처",
         "record_id": "P-000086",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-21&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-12&per_page=1000&page=1&order=oldest",
@@ -30352,7 +30352,7 @@
       {
         "group": "plat",
         "id": "source-P-000094",
-        "label": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000094",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-23&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-14&per_page=1000&page=1&order=oldest",
@@ -30361,7 +30361,7 @@
       {
         "group": "plat",
         "id": "source-P-000095",
-        "label": "미국 상무부 · \"people\" 공고가 8건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 8건 이상 나올까? 출처",
         "record_id": "P-000095",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-23&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-14&per_page=1000&page=1&order=oldest",
@@ -30370,7 +30370,7 @@
       {
         "group": "plat",
         "id": "source-P-000096",
-        "label": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000096",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-23&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-14&per_page=1000&page=1&order=oldest",
@@ -30379,7 +30379,7 @@
       {
         "group": "plat",
         "id": "source-P-000097",
-        "label": "미국 상무부 · \"fisheries\" 공고가 9건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"fisheries\"이라는 단어가 들어간 공고가 9건 이상 나올까? 출처",
         "record_id": "P-000097",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-24&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-15&per_page=1000&page=1&order=oldest",
@@ -30424,7 +30424,7 @@
       {
         "group": "plat",
         "id": "source-P-000102",
-        "label": "미국 상무부 · \"antidumping\" 공고가 16건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 16건 이상 나올까? 출처",
         "record_id": "P-000102",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-30&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-21&per_page=1000&page=1&order=oldest",
@@ -30433,7 +30433,7 @@
       {
         "group": "plat",
         "id": "source-P-000103",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000103",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-30&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-21&per_page=1000&page=1&order=oldest",
@@ -30442,7 +30442,7 @@
       {
         "group": "plat",
         "id": "source-P-000104",
-        "label": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까? 출처",
         "record_id": "P-000104",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-31&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-22&per_page=1000&page=1&order=oldest",
@@ -30451,7 +30451,7 @@
       {
         "group": "plat",
         "id": "source-P-000105",
-        "label": "미국 상무부 · \"management\" 공고가 14건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 14건 이상 나올까? 출처",
         "record_id": "P-000105",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-31&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-22&per_page=1000&page=1&order=oldest",
@@ -30460,7 +30460,7 @@
       {
         "group": "plat",
         "id": "source-P-000106",
-        "label": "미국 상무부 · \"countervailing\" 공고가 7건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 7건 이상 나올까? 출처",
         "record_id": "P-000106",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-07-31&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-22&per_page=1000&page=1&order=oldest",
@@ -30469,7 +30469,7 @@
       {
         "group": "plat",
         "id": "source-P-000107",
-        "label": "미국 상무부 · \"fishery\" 공고가 7건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 7건 이상 나올까? 출처",
         "record_id": "P-000107",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-04&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-26&per_page=1000&page=1&order=oldest",
@@ -30478,7 +30478,7 @@
       {
         "group": "plat",
         "id": "source-P-000108",
-        "label": "미국 산업안보국 · \"privileges\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"privileges\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000108",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-05&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-27&per_page=1000&page=1&order=oldest",
@@ -30487,7 +30487,7 @@
       {
         "group": "plat",
         "id": "source-P-000109",
-        "label": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000109",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-07&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-29&per_page=1000&page=1&order=oldest",
@@ -30496,7 +30496,7 @@
       {
         "group": "plat",
         "id": "source-P-000110",
-        "label": "미국 상무부 · \"activities\" 공고가 8건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 8건 이상 나올까? 출처",
         "record_id": "P-000110",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-07&conditions%5Bpublication_date%5D%5Blte%5D=2026-10-29&per_page=1000&page=1&order=oldest",
@@ -30541,7 +30541,7 @@
       {
         "group": "plat",
         "id": "source-P-000115",
-        "label": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000115",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-13&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-04&per_page=1000&page=1&order=oldest",
@@ -30568,7 +30568,7 @@
       {
         "group": "plat",
         "id": "source-P-000118",
-        "label": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까? 출처",
         "record_id": "P-000118",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-13&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-04&per_page=1000&page=1&order=oldest",
@@ -30577,7 +30577,7 @@
       {
         "group": "plat",
         "id": "source-P-000119",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000119",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-13&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-04&per_page=1000&page=1&order=oldest",
@@ -30613,7 +30613,7 @@
       {
         "group": "plat",
         "id": "source-P-000123",
-        "label": "미국 상무부 · \"zone\" 공고가 8건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 8건 이상 나올까? 출처",
         "record_id": "P-000123",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-14&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-05&per_page=1000&page=1&order=oldest",
@@ -30622,7 +30622,7 @@
       {
         "group": "plat",
         "id": "source-P-000124",
-        "label": "미국 상무부 · \"management\" 공고가 15건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 15건 이상 나올까? 출처",
         "record_id": "P-000124",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-14&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-05&per_page=1000&page=1&order=oldest",
@@ -30631,7 +30631,7 @@
       {
         "group": "plat",
         "id": "source-P-000125",
-        "label": "미국 상무부 · \"countervailing\" 공고가 9건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 9건 이상 나올까? 출처",
         "record_id": "P-000125",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-14&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-05&per_page=1000&page=1&order=oldest",
@@ -30730,7 +30730,7 @@
       {
         "group": "plat",
         "id": "source-P-000136",
-        "label": "미국 산업안보국 · \"privileges\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"privileges\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000136",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-20&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-11&per_page=1000&page=1&order=oldest",
@@ -30739,7 +30739,7 @@
       {
         "group": "plat",
         "id": "source-P-000137",
-        "label": "미국 상무부 · \"people\" 공고가 8건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"people\"이라는 단어가 들어간 공고가 8건 이상 나올까? 출처",
         "record_id": "P-000137",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-20&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-11&per_page=1000&page=1&order=oldest",
@@ -30757,7 +30757,7 @@
       {
         "group": "plat",
         "id": "source-P-000139",
-        "label": "미국 상무부 · \"activities\" 공고가 9건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"activities\"이라는 단어가 들어간 공고가 9건 이상 나올까? 출처",
         "record_id": "P-000139",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-27&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-18&per_page=1000&page=1&order=oldest",
@@ -30766,7 +30766,7 @@
       {
         "group": "plat",
         "id": "source-P-000140",
-        "label": "미국 산업안보국 · \"proclamation\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"proclamation\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000140",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-27&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-18&per_page=1000&page=1&order=oldest",
@@ -30775,7 +30775,7 @@
       {
         "group": "plat",
         "id": "source-P-000141",
-        "label": "미국 상무부 · \"fishery\" 공고가 9건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"fishery\"이라는 단어가 들어간 공고가 9건 이상 나올까? 출처",
         "record_id": "P-000141",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-28&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-19&per_page=1000&page=1&order=oldest",
@@ -30784,7 +30784,7 @@
       {
         "group": "plat",
         "id": "source-P-000142",
-        "label": "미국 산업안보국 · \"office\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"office\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000142",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-28&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-19&per_page=1000&page=1&order=oldest",
@@ -30793,7 +30793,7 @@
       {
         "group": "plat",
         "id": "source-P-000143",
-        "label": "미국 산업안보국 · \"export\" 공고가 1건 이상 나올까? 출처",
+        "label": "미국 산업안보국 · 제목에 \"export\"이라는 단어가 들어간 공고가 1건 이상 나올까? 출처",
         "record_id": "P-000143",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=industry-and-security-bureau&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-28&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-19&per_page=1000&page=1&order=oldest",
@@ -30829,7 +30829,7 @@
       {
         "group": "plat",
         "id": "source-P-000147",
-        "label": "미국 상무부 · \"antidumping\" 공고가 15건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"antidumping\"이라는 단어가 들어간 공고가 15건 이상 나올까? 출처",
         "record_id": "P-000147",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-30&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-21&per_page=1000&page=1&order=oldest",
@@ -30847,7 +30847,7 @@
       {
         "group": "plat",
         "id": "source-P-000149",
-        "label": "미국 상무부 · \"zone\" 공고가 9건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"zone\"이라는 단어가 들어간 공고가 9건 이상 나올까? 출처",
         "record_id": "P-000149",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-30&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-21&per_page=1000&page=1&order=oldest",
@@ -30856,7 +30856,7 @@
       {
         "group": "plat",
         "id": "source-P-000150",
-        "label": "미국 상무부 · \"management\" 공고가 14건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"management\"이라는 단어가 들어간 공고가 14건 이상 나올까? 출처",
         "record_id": "P-000150",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-30&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-21&per_page=1000&page=1&order=oldest",
@@ -30865,7 +30865,7 @@
       {
         "group": "plat",
         "id": "source-P-000151",
-        "label": "미국 상무부 · \"countervailing\" 공고가 11건 이상 나올까? 출처",
+        "label": "미국 상무부 · 제목에 \"countervailing\"이라는 단어가 들어간 공고가 11건 이상 나올까? 출처",
         "record_id": "P-000151",
         "record_kind": "prediction",
         "source_url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bagencies%5D%5B%5D=commerce-department&conditions%5Bpublication_date%5D%5Bgte%5D=2026-08-30&conditions%5Bpublication_date%5D%5Blte%5D=2026-11-21&per_page=1000&page=1&order=oldest",
