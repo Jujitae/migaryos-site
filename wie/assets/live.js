@@ -150,6 +150,10 @@
       note('수집 자료와 판단 후보는 확정된 사건이 아닙니다. 새 확정 결과가 0건이면 그날의 결과 학습도 주장하지 않습니다.'),el('code','일기 증거 SHA-256 '+d.sha256,'digest'));return n;}):[note('공개할 수 있는 검증된 일기가 없습니다.')]);
     renderPredictions();renderCharts();renderMarket();
     const machine=[facts([['영수증·원장 대조',label(current.integrity.status)],['최근 실행 상태',label(current.run?.status)],['실행 시작',time(current.run?.started_at)],['실행 종료',time(current.run?.finished_at)]])];
+    const inspection=current.run?.phases?.fr_inspection?.status;
+    if(inspection==='CAPTURED'||inspection==='SOURCE_UNAVAILABLE'){
+      machine.push(facts([['연방관보 공개열람',inspection==='CAPTURED'?'목록 확인 완료':'목록 확인 실패']]));
+    }
     if(current.operation){
       const operation=current.operation;
       machine.push(facts([['WIE 독립 운영',label(operation.status)],['운영 상태 확인',time(operation.updated_at)]]));
