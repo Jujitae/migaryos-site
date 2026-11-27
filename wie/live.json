@@ -17055,11 +17055,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-27T22:22:18.958239Z",
+  "generated_at": "2026-11-27T22:32:18.996829Z",
   "integrity": {
     "ledger_sha256": "967d80bc93fd2433c077df190b97a7bc9728918619cd22b6fecd9b5e74772dcf",
     "reasons": [],
-    "snapshot_sha256": "3bd93d138eb5fafb2aa777289822964d49714210ff0016a5ea1a19c9b3ea8797",
+    "snapshot_sha256": "8b3638a0a7e70d804633ca42d7245c2225cbe3ec864317b7306a581b22ecb301",
     "status": "VERIFIED"
   },
   "learning": {
@@ -17163,13 +17163,12 @@
   "observed_at": "2026-11-27T22:12:42.660355Z",
   "operation": {
     "collector_source": {
-      "checked_at": "2026-11-27T22:15:48.452464Z",
+      "checked_at": "2026-11-27T22:30:48.309373Z",
       "data_observed_at": "2026-11-27T21:45:00Z",
-      "last_confirmed_cycle_finished_at": "2026-11-27T21:58:59.503163Z",
-      "source_error": false,
+      "source_error": true,
       "source_id": "gdelt:mentions"
     },
-    "finished_at": "2026-11-27T22:15:48.673112Z",
+    "finished_at": "2026-11-27T22:30:48.433522Z",
     "jobs": {
       "anchor": {
         "exit_code": 0,
@@ -17186,11 +17185,11 @@
         "status": "SOURCE_GAPS"
       },
       "collector": {
-        "exit_code": 0,
-        "finished_at": "2026-11-27T22:15:48.670609Z",
-        "next_due_at": "2026-11-27T22:30:00Z",
-        "started_at": "2026-11-27T22:15:47.862480Z",
-        "status": "SUCCESS"
+        "exit_code": 7,
+        "finished_at": "2026-11-27T22:30:48.430522Z",
+        "next_due_at": "2026-11-27T22:45:00Z",
+        "started_at": "2026-11-27T22:30:47.728785Z",
+        "status": "SOURCE_GAPS"
       },
       "gate": {
         "exit_code": 2,
@@ -17202,9 +17201,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-11-27T22:15:47.858479Z",
+    "started_at": "2026-11-27T22:30:47.724521Z",
     "status": "SOURCE_GAPS",
-    "updated_at": "2026-11-27T22:15:48.673112Z"
+    "updated_at": "2026-11-27T22:30:48.433522Z"
   },
   "predictions": [
     {
