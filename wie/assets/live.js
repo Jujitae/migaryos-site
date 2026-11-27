@@ -138,13 +138,19 @@
     const citation=el('div',undefined,'source-citation');citation.append(a);
     if(p.attribution)citation.append(note(p.attribution));return citation;
   }
+  function isYahooDailySource(source) {
+    return source?.provider === 'yahoo' && /[?&]interval=1d(?:[&#]|$)/.test(source.url || '');
+  }
   function sourceInfo(source) {
     if(!source)return note('출처 세부 정보는 아직 공개되지 않았습니다.');
     const div=el('section',undefined,'source-info');
     const provider={yahoo:'Yahoo Finance',kraken:'Kraken'}[source.provider]||source.provider||'미확인';
     const kind={official_public:'해당 제공자의 공개 API',market_data_provider:'시장자료 제공자',legacy_authority:'기존 예측의 지정 출처'}[source.kind]||'미확인';
     const adjustment={provider_quote_ohlc_split_adjusted_no_adjclose_mixing:'제공자의 OHLC 사용 · 별도 수정종가 열과 혼합하지 않음',spot_unadjusted_no_dividends:'현물 시세 그대로 사용',provider_adjustment_unknown:'가격 조정 방식 미확인'}[source.adjustment]||source.adjustment||'미확인';
-    div.append(facts([['자료 제공자',provider],['출처 구분',kind],['제공자 종목',source.provider_symbol||'미확인'],['표시 통화',source.currency||'미확인'],['WIE 자료 확인',time(source.observed_at)],['마지막 자료 시각',time(source.data_as_of)],['가격 조정',adjustment]]));
+    const daily = isYahooDailySource(source);
+    const asOfLabel = daily ? 'WIE 일봉 판독 기준 시각' : '마지막 자료 시각';
+    div.append(facts([['자료 제공자',provider],['출처 구분',kind],['제공자 종목',source.provider_symbol||'미확인'],['표시 통화',source.currency||'미확인'],['WIE 자료 확인',time(source.observed_at)],[asOfLabel,time(source.data_as_of)],['가격 조정',adjustment]]));
+    if(daily && source.data_as_of) div.append(note('WIE는 Yahoo 일봉을 해당 일자의 다음 UTC 자정부터 판독합니다.'));
     if(source.identity_note)div.append(note('종목 구분: '+source.identity_note));
     if(source.source_identity){const identity=typeof source.source_identity==='string'?source.source_identity:source.source_identity.sha256;div.append(el('code','출처 구분 식별자 '+identity,'digest'));}
     return div;
@@ -280,13 +286,13 @@
           ...trackingIndex.sources.map(source=>sourceLink(source,source.label)));
       }
       if (restricted) {
-        d.append(note(CHART_RIGHTS_NOTE),facts([['자료 확인',time(row.as_of)]]));
+        d.append(note(CHART_RIGHTS_NOTE),facts([['분석 시각',time(row.as_of)]]));
         if (row.source) d.append(sourceInfo(row.source),sourceLink(row.source));
         children.push(d);
         continue;
       }
       const zones=items=>items.map(z=>num(z.price??z)+(z.confluence_count?' ('+z.confluence_count+'개 근거)':'')).join(', ')||'없음';
-      d.append(facts([['자료 확인',time(row.as_of)],['마지막 가격 시각',time(row.data_as_of)],['가격 축',row.scale==='log'?'로그 축':row.scale==='linear'?'선형 축':row.scale||'미확인'],['계산된 지지 가격',zones(row.support||[])],['계산된 저항 가격',zones(row.resistance||[])]]),plot(row.history||[],row.symbol));
+      d.append(facts([['분석 시각',time(row.as_of)],['분석에 사용한 가격의 기준 시각',time(row.data_as_of)],['가격 축',row.scale==='log'?'로그 축':row.scale==='linear'?'선형 축':row.scale||'미확인'],['계산된 지지 가격',zones(row.support||[])],['계산된 저항 가격',zones(row.resistance||[])]]),plot(row.history||[],row.symbol));
       if(row.fibonacci?.levels)d.append(el('h3','고정된 기준점의 되돌림 가격'),facts(Object.entries(row.fibonacci.levels).map(([ratio,value])=>[ratio,num(value)])));
       for(const c of row.channels||[])d.append(el('h3',num(c.lookback)+'개 봉의 평행 채널'),facts([['하단',num(c.lower)],['중심',num(c.mid)],['상단',num(c.upper)],['7일 뒤 기하학적 연장',num(c.projected.lower)+'–'+num(c.projected.upper)]]),note('과거 가격 범위에 맞춘 선을 연장한 값입니다. 미래 가격의 신뢰구간이 아닙니다.'));
       if(row.pivots?.length){const p=detail('pivots-'+row.symbol+'-'+row.timeframe,'확인된 고저점 '+row.pivots.length+'개');p.append(facts(row.pivots.map(v=>[(v.kind==='high'?'고점':'저점')+' · '+time(v.time),num(v.price)+' · 확정 '+time(v.confirmed_at)])));d.append(p);}
