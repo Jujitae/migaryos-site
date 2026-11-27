@@ -17055,11 +17055,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-27T21:22:18.705840Z",
+  "generated_at": "2026-11-27T21:27:19.039381Z",
   "integrity": {
     "ledger_sha256": "967d80bc93fd2433c077df190b97a7bc9728918619cd22b6fecd9b5e74772dcf",
     "reasons": [],
-    "snapshot_sha256": "806e737d417555c5c722c9e214a98fe852236fac4aae9dd507aa698e544f5097",
+    "snapshot_sha256": "23b5cfa95f934e6d611dbe1216ca4d5583da0720f218f2a81e2a097d6bf6e572",
     "status": "VERIFIED"
   },
   "learning": {
@@ -17162,6 +17162,12 @@
   },
   "observed_at": "2026-11-27T21:11:56.163857Z",
   "operation": {
+    "collector_source": {
+      "checked_at": "2026-11-27T21:15:48.148178Z",
+      "data_observed_at": "2026-11-27T20:00:00Z",
+      "source_error": true,
+      "source_id": "gdelt:mentions"
+    },
     "finished_at": "2026-11-27T21:15:48.187558Z",
     "jobs": {
       "anchor": {
