@@ -185,7 +185,15 @@
     if(current.operation){
       const operation=current.operation;
       machine.push(facts([['WIE 독립 운영',label(operation.status)],['운영 상태 확인',time(operation.updated_at)]]));
-      machine.push(note('수집기 실행 확인은 최근 체크포인트 활동을 뜻하며, 원천 자료의 최신성은 별도입니다.'));
+      const source=operation.collector_source;
+      if(source?.source_id==='gdelt:mentions'){
+        const clocks=[['GDELT 자료 시각',time(source.data_observed_at)],['GDELT 점검 시각',time(source.checked_at)]];
+        if(source.last_confirmed_cycle_finished_at)clocks.push(['GDELT 수집 완료 확인',time(source.last_confirmed_cycle_finished_at)]);
+        machine.push(facts(clocks));
+        if(source.source_error===true)machine.push(note('GDELT 원천 자료를 최근 요청에서 읽지 못했습니다.'));
+      }else{
+        machine.push(note('최근 수집기 점검과 대조할 수 있는 GDELT 자료 시각이 없습니다.'));
+      }
       if(operation.stale)machine.push(note('독립 운영 기록이 30분 이상 갱신되지 않았습니다.'));
       const names={collector:'수집기 점검',anchor:'원본 근거 보존',gate:'Surprise Gate',autonomy:'일기·학습·예측'};
       for(const [name,job] of Object.entries(operation.jobs||{})){
