@@ -46,6 +46,17 @@
     if (data.run?.status === 'BLOCK') text = '마지막 자동 실행이 중단됐습니다. ' + text;
     return {state:stale?'STALE':publicationDelayed?'PUBLICATION_DELAYED':connection !== 'primary'?'CONNECTION_ERROR':'FRESH',text};
   }
+  function chartTrackingIndex(row) {
+    if (row.symbol !== 'SOXX' || row.source?.provider !== 'yahoo' || row.source.provider_symbol !== 'SOXX') return null;
+    return {
+      title:'추종 지수 이력',
+      body:'SOXX는 2021년 6월 21일 PHLX 반도체 지수(SOX)에서 ICE Semiconductor Index로 추종 지수를 변경했습니다. 이 ICE 지수는 2023년 11월 3일 NYSE Semiconductor Index로 이름이 바뀌었습니다.',
+      sources:[
+        {label:'iShares 추종 지수 변경 공시',url:'https://www.sec.gov/Archives/edgar/data/1100663/000119312521194045/d165098d497k.htm'},
+        {label:'ICE 지수 명칭 변경 공지',url:'https://www.ice.com/publicdocs/ice/notifications/adhoc/110000725074/ICEBIO_ICESEMI_Index_Name_Changes_20231013.pdf'}
+      ]
+    };
+  }
   function stories(data) {
     const cards = new Map([...data.topics,...(data.canonical_chart||[])].map(p => [p.id,p]));
     const items = [];
@@ -62,14 +73,16 @@
     for (const c of data.chart?.forecasts || []) items.push(predictionStory(c,c,'chart-'));
     for (const c of data.chart?.analyses || []) {
       const restricted = c.status === 'RIGHTS_RESTRICTED';
+      const trackingIndex = chartTrackingIndex(c);
       items.push({id:'analysis-'+c.symbol+'-'+c.timeframe,
         star_label:c.symbol+' · '+c.timeframe,title:c.symbol+' · '+c.timeframe,
         kind:restricted?'이용권 제한':'가격 자료에서 계산한 관찰',
         summary:restricted?CHART_RIGHTS_NOTE:'기준 가격 '+num(c.price)+' · 자료 시각 '+time(c.data_as_of),
         times:[{label:'자료 확인',value:time(c.as_of)}],
-        sections:restricted?[]:[{title:'관찰한 가격대',body:'지지 '+(c.support||[]).map(z=>num(z.price)).join(', ')+' · 저항 '+(c.resistance||[]).map(z=>num(z.price)).join(', ')},
-          {title:'해석의 한계',body:'과거 가격에서 고저점과 채널을 계산한 값입니다. 미래의 적중률이나 인과관계를 입증하지 않습니다.'}],
-        sources:[{label:'차트와 조건 상세',url:'https://migaryos.com/wie/status/#chart-'+c.symbol+'-'+c.timeframe},...(c.source?.url?[{label:c.source.attribution||'자료 출처',url:c.source.url}]:[])],node_labels:[]});
+        sections:[...(restricted?[]:[{title:'관찰한 가격대',body:'지지 '+(c.support||[]).map(z=>num(z.price)).join(', ')+' · 저항 '+(c.resistance||[]).map(z=>num(z.price)).join(', ')},
+          {title:'해석의 한계',body:'과거 가격에서 고저점과 채널을 계산한 값입니다. 미래의 적중률이나 인과관계를 입증하지 않습니다.'}]),
+          ...(trackingIndex ? [{title:trackingIndex.title,body:trackingIndex.body}] : [])],
+        sources:[{label:'차트와 조건 상세',url:'https://migaryos.com/wie/status/#chart-'+c.symbol+'-'+c.timeframe},...(c.source?.url?[{label:c.source.attribution||'자료 출처',url:c.source.url}]:[]),...(trackingIndex?.sources || [])],node_labels:[]});
     }
     for (const h of data.chart?.hypotheses || []) items.push({id:'hypothesis-'+h.id,star_label:h.symbol+' 목표 가격 가설',title:h.symbol+' 목표 가격 가설',
       kind:'운영자 가설 · 실제 확률 미산출',summary:conditionText(h.target)+' · '+label(h.timing.status),
@@ -106,9 +119,9 @@
     const dl=el('dl',undefined,'detail-facts');
     for(const [key,value] of entries){const row=el('div');row.append(el('dt',key),el('dd',value));dl.append(row);}return dl;
   }
-  function sourceLink(p) {
+  function sourceLink(p, text='근거 출처 열기 ↗') {
     if(!p?.url)return note('공개 출처 링크가 등록되지 않았습니다.');
-    const a=el('a','근거 출처 열기 ↗');a.href=p.url;a.target='_blank';a.rel='noopener noreferrer';
+    const a=el('a',text);a.href=p.url;a.target='_blank';a.rel='noopener noreferrer';
     const citation=el('div',undefined,'source-citation');citation.append(a);
     if(p.attribution)citation.append(note(p.attribution));return citation;
   }
@@ -223,6 +236,11 @@
     for(const row of chart.analyses || []){
       const restricted = row.status === 'RIGHTS_RESTRICTED';
       const d=detail('chart-'+row.symbol+'-'+row.timeframe,row.symbol+' · '+row.timeframe+' · '+(restricted?'이용권 제한':num(row.price)));
+      const trackingIndex = chartTrackingIndex(row);
+      if (trackingIndex) {
+        d.append(el('h3',trackingIndex.title),note(trackingIndex.body),
+          ...trackingIndex.sources.map(source=>sourceLink(source,source.label)));
+      }
       if (restricted) {
         d.append(note(CHART_RIGHTS_NOTE),facts([['자료 확인',time(row.as_of)]]));
         if (row.source) d.append(sourceInfo(row.source),sourceLink(row.source));
