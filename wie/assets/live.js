@@ -1,6 +1,7 @@
 (function () {
   'use strict';
   const PRIMARY = 'https://raw.githubusercontent.com/Jujitae/migaryos-site/refs/heads/wie-live-data/wie/live.json';
+  const CHART_RIGHTS_NOTE = '이용권에 따라 관측 시각과 출처를 공개합니다.';
   const LABELS = {SUCCESS:'실행 확인', SOURCE_GAPS:'일부 운영 자료 확인 실패', NO_CANDIDATE:'검사 완료 · 후보 없음',
     NEVER:'실행 전', RUNNING:'실행 중', FAILED:'실행 실패', TIMED_OUT:'실행 시간 초과', STOPPED:'운영 정지',
     INTERRUPTED:'이전 실행 중단', BLOCKED:'운영 확인 중단',
@@ -59,13 +60,17 @@
       items.push(predictionStory(p, raw));
     }
     for (const c of data.chart?.forecasts || []) items.push(predictionStory(c,c,'chart-'));
-    for (const c of data.chart?.analyses || []) items.push({id:'analysis-'+c.symbol+'-'+c.timeframe,
-      star_label:c.symbol+' · '+c.timeframe,title:c.symbol+' · '+c.timeframe,kind:'가격 자료에서 계산한 관찰',
-      summary:'기준 가격 '+num(c.price)+' · 자료 시각 '+time(c.data_as_of),
-      times:[{label:'계산 시각',value:time(c.as_of)}],
-      sections:[{title:'관찰한 가격대',body:'지지 '+(c.support||[]).map(z=>num(z.price)).join(', ')+' · 저항 '+(c.resistance||[]).map(z=>num(z.price)).join(', ')},
-        {title:'해석의 한계',body:'과거 가격에서 고저점과 채널을 계산한 값입니다. 미래의 적중률이나 인과관계를 입증하지 않습니다.'}],
-      sources:[{label:'차트와 조건 상세',url:'https://migaryos.com/wie/status/#chart-'+c.symbol+'-'+c.timeframe},...(c.source?.url?[{label:c.source.attribution||'자료 출처',url:c.source.url}]:[])],node_labels:[]});
+    for (const c of data.chart?.analyses || []) {
+      const restricted = c.status === 'RIGHTS_RESTRICTED';
+      items.push({id:'analysis-'+c.symbol+'-'+c.timeframe,
+        star_label:c.symbol+' · '+c.timeframe,title:c.symbol+' · '+c.timeframe,
+        kind:restricted?'이용권 제한':'가격 자료에서 계산한 관찰',
+        summary:restricted?CHART_RIGHTS_NOTE:'기준 가격 '+num(c.price)+' · 자료 시각 '+time(c.data_as_of),
+        times:[{label:'자료 확인',value:time(c.as_of)}],
+        sections:restricted?[]:[{title:'관찰한 가격대',body:'지지 '+(c.support||[]).map(z=>num(z.price)).join(', ')+' · 저항 '+(c.resistance||[]).map(z=>num(z.price)).join(', ')},
+          {title:'해석의 한계',body:'과거 가격에서 고저점과 채널을 계산한 값입니다. 미래의 적중률이나 인과관계를 입증하지 않습니다.'}],
+        sources:[{label:'차트와 조건 상세',url:'https://migaryos.com/wie/status/#chart-'+c.symbol+'-'+c.timeframe},...(c.source?.url?[{label:c.source.attribution||'자료 출처',url:c.source.url}]:[])],node_labels:[]});
+    }
     for (const h of data.chart?.hypotheses || []) items.push({id:'hypothesis-'+h.id,star_label:h.symbol+' 목표 가격 가설',title:h.symbol+' 목표 가격 가설',
       kind:'운영자 가설 · 실제 확률 미산출',summary:conditionText(h.target)+' · '+label(h.timing.status),
       times:[{label:'모형 계산 시각',value:time(h.observed_at)}],
@@ -212,7 +217,14 @@
       for(const limit of t.limitations||[])d.append(note(limit));d.append(sourceLink(h.source));children.push(d);
     }
     for(const row of chart.analyses || []){
-      const d=detail('chart-'+row.symbol+'-'+row.timeframe,row.symbol+' · '+row.timeframe+' · '+num(row.price));
+      const restricted = row.status === 'RIGHTS_RESTRICTED';
+      const d=detail('chart-'+row.symbol+'-'+row.timeframe,row.symbol+' · '+row.timeframe+' · '+(restricted?'이용권 제한':num(row.price)));
+      if (restricted) {
+        d.append(note(CHART_RIGHTS_NOTE),facts([['자료 확인',time(row.as_of)]]));
+        if (row.source) d.append(sourceInfo(row.source),sourceLink(row.source));
+        children.push(d);
+        continue;
+      }
       const zones=items=>items.map(z=>num(z.price??z)+(z.confluence_count?' ('+z.confluence_count+'개 근거)':'')).join(', ')||'없음';
       d.append(facts([['자료 확인',time(row.as_of)],['마지막 가격 시각',time(row.data_as_of)],['가격 축',row.scale==='log'?'로그 축':row.scale==='linear'?'선형 축':row.scale||'미확인'],['계산된 지지 가격',zones(row.support||[])],['계산된 저항 가격',zones(row.resistance||[])]]),plot(row.history||[],row.symbol));
       if(row.fibonacci?.levels)d.append(el('h3','고정된 기준점의 되돌림 가격'),facts(Object.entries(row.fibonacci.levels).map(([ratio,value])=>[ratio,num(value)])));
