@@ -92,7 +92,19 @@
       sources:[{label:'기간별 합성 경로와 무효화 조건',url:'https://migaryos.com/record/#hypothesis-'+h.id}],node_labels:[]});
     return items;
   }
+  function outcomeSources(card, raw) {
+    const refs = card.outcome_source_refs || raw.outcome_source_refs;
+    if(!raw.outcome || !Array.isArray(refs))return [];
+    return refs.filter(ref => typeof ref?.url==='string' && ref.url.startsWith('https://'));
+  }
+  const filingUrl = ref => typeof ref.filing_url==='string' && /^https:\/\/www\.sec\.gov\/Archives\/edgar\/data\/\d+\/\d{18}\/\d{10}-\d{2}-\d{6}-index\.html$/.test(ref.filing_url) ? ref.filing_url : null;
   function predictionStory(p, raw, prefix='prediction-') {
+    const sources = p.source?.url ? [{label:p.source.attribution||'근거 출처 열기',url:p.source.url}] : [];
+    for (const ref of outcomeSources(p,raw)) {
+      sources.push({label:ref.attribution ? '판정 근거 · '+ref.attribution : '판정 근거 열기',url:ref.url});
+      const filing = filingUrl(ref);
+      if(filing)sources.push({label:'SEC 판정 공시 열기',url:filing});
+    }
     return {id:prefix+p.id,star_label:p.title+' · '+p.id,title:p.title,kind:'예측 기록 '+raw.id+' · '+label(raw.outcome),
       summary:p.statement || '기존 원장에 등록된 예측의 공개 요약입니다. 원문은 이 화면에 공개하지 않습니다.',
       times:[{label:'등록 시각',value:time(p.issued_at)},{label:'결과 기한',value:time(p.expires_at)},
@@ -100,7 +112,7 @@
         {label:'자료 관측일',value:p.source?.data_date||'미확인'}],
       sections:[{title:'무엇을 예상하나요?',body:`등록 확률 ${percent(p.probability)} · 현재 결과 ${label(raw.outcome)}`},
         {title:'왜 이 예측을 살피나요?',body:p.rationale},{title:'어떤 방법으로 판단하나요?',body:p.method}],
-      sources:p.source?.url?[{label:p.source.attribution||'근거 출처 열기',url:p.source.url}]:[],node_labels:[raw.id]};
+      sources,node_labels:[raw.id]};
   }
   const api = {valid,freshness,stories,time,label,PRIMARY};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
@@ -108,6 +120,7 @@
   window.WIEPublic = api;
   let current = valid(window.WIE_INITIAL) ? window.WIE_INITIAL : null;
   let connection = 'embedded', busy = false, version = '';
+  let handledHash = null;
   const el = (tag,text,cls) => {const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
   const byId = id => document.getElementById(id);
   function replace(id,children) {const n=byId(id);if(n)n.replaceChildren(...children);}
@@ -119,9 +132,9 @@
     const dl=el('dl',undefined,'detail-facts');
     for(const [key,value] of entries){const row=el('div');row.append(el('dt',key),el('dd',value));dl.append(row);}return dl;
   }
-  function sourceLink(p, text='근거 출처 열기 ↗') {
+  function sourceLink(p, text='근거 출처 열기') {
     if(!p?.url)return note('공개 출처 링크가 등록되지 않았습니다.');
-    const a=el('a',text);a.href=p.url;a.target='_blank';a.rel='noopener noreferrer';
+    const a=el('a',text.endsWith('↗')?text:text+' ↗');a.href=p.url;a.target='_blank';a.rel='noopener noreferrer';
     const citation=el('div',undefined,'source-citation');citation.append(a);
     if(p.attribution)citation.append(note(p.attribution));return citation;
   }
@@ -150,6 +163,8 @@
     const page=byId('content');if(!page?.dataset.livePage)return;
     const signature=current.generated_at+':'+current.observed_at;
     if(version===signature)return;version=signature;
+    const priorTarget = handledHash===location.hash ? hashDetail(handledHash) : null;
+    const keepHashVisible = priorTarget?.open && summaryVisible(priorTarget);
     const open=new Set([...document.querySelectorAll('details[open]')].map(d=>d.id));
     byId('run-summary').textContent=current.run?label(current.run.status):'실행 기록 확인 실패';
     byId('run-explanation').textContent=current.integrity.status==='BLOCK'?'영수증 또는 원장 검증을 통과하지 못했습니다. 실행 근거에서 상태를 확인하세요.':
@@ -186,6 +201,10 @@
     replace('machine-content',machine);
     byId('snapshot-link').href=PRIMARY;
     for(const id of open){const n=byId(id);if(n?.tagName==='DETAILS')n.open=true;}
+    if(keepHashVisible){
+      const target=hashDetail(handledHash);
+      if(target?.open&&!summaryVisible(target))target.scrollIntoView({block:'start'});
+    }
     openHash();
   }
   function renderPredictions() {
@@ -195,9 +214,20 @@
     const nodes=predictions.length?[...predictions].reverse().map(raw=>{
       const p=cards.get(raw.id)||raw, n=detail('prediction-'+p.id,p.title+' · '+p.id+' · '+label(raw.outcome));
       if(p.statement)n.append(el('p',p.statement));
-      n.append(facts([['등록 확률',percent(p.probability)],['등록 시각',time(p.issued_at)],['결과 기한',time(p.expires_at)],['결과',label(raw.outcome)],['결과 기록 시각',time(raw.resolved_at)],['WIE 자료 확인',time(p.source?.observed_at)],['자료 관측일',p.source?.data_date||'미확인'],['자료 발표일',p.source?.publication_date||'미확인']]),el('h3','이 예측을 살피는 이유'),el('p',p.rationale),el('h3','판단 방법'),el('p',p.method),sourceLink(p.source));
+      n.append(facts([['등록 확률',percent(p.probability)],['등록 시각',time(p.issued_at)],['결과 기한',time(p.expires_at)],['결과',label(raw.outcome)],['결과 기록 시각',time(raw.resolved_at)],['WIE 자료 확인',time(p.source?.observed_at)],['자료 관측일',p.source?.data_date||'미확인'],['자료 발표일',p.source?.publication_date||'미확인']]),el('h3','이 예측을 살피는 이유'),el('p',p.rationale),el('h3','판단 방법'),el('p',p.method),sourceLink(p.source,'예측 등록 출처 열기'));
       if(p.probability_mode==='CANONICAL_ADVISORY')n.append(facts([['학습 전 비교 확률',percent(p.raw_probability)],['해당 종류의 학습 결과',num(p.family_training_count)+'건'],['판정 자료 대기 마감',time(p.resolution_deadline)]]),note('등록 확률은 정식 원장에 봉인된 값입니다. 아래 차트의 모의 확률과 구분합니다.'),sourceInfo(p.source));
-      if(p.source?.sha256)n.append(el('code','출처 보관본 SHA-256 '+p.source.sha256,'digest'));
+      if(p.source?.sha256)n.append(el('code','예측 등록 자료 SHA-256 '+p.source.sha256,'digest'));
+      const outcomeRefs = outcomeSources(p,raw);
+      if(outcomeRefs.length){
+        n.append(el('h3','결과 판정 근거'),facts([['판정 자료 확보 시각',time(outcomeRefs[0].observed_at)]]));
+        for(const ref of outcomeRefs){
+          n.append(sourceLink(ref,'수집한 판정 자료 열기'));
+          const filing = filingUrl(ref);
+          if(filing)n.append(facts([['공시 대상 분기 말일',ref.data_date],['공시일',ref.publication_date]]),
+            sourceLink({url:filing},'SEC 판정 공시 열기'));
+          if(ref.sha256)n.append(el('code','판정 자료 SHA-256 '+ref.sha256,'digest'));
+        }
+      }
       return n;
     }):[note('이 조건에 해당하는 검증된 예측이 없습니다.')];
     if(current.sections?.topics==='BLOCK'||current.sections?.canonical_chart==='BLOCK')nodes.unshift(note('새 예측의 상세 근거 검증이 중단돼 기존 원장의 요약을 표시합니다.'));
@@ -271,9 +301,23 @@
       if(row.raw_sha256)d.append(el('code','출처 보관본 SHA-256 '+row.raw_sha256,'digest'));children.push(d);}
     replace('market-context',children);
   }
+  function hashDetail(hash) {
+    let id;try{id=decodeURIComponent(hash.slice(1));}catch{return null;}
+    const target=byId(id);
+    return target?.tagName==='DETAILS' ? target : null;
+  }
+  function summaryVisible(target) {
+    const bounds=target.querySelector('summary')?.getBoundingClientRect();
+    return bounds?.bottom>0&&bounds.top<window.innerHeight;
+  }
   function openHash() {
-    let id;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}
-    const target=byId(id);if(target?.tagName==='DETAILS')target.open=true;
+    const hash=location.hash;
+    if(!hash||hash===handledHash)return;
+    const target=hashDetail(hash);
+    if(!target)return;
+    handledHash=hash;
+    target.open=true;
+    target.scrollIntoView({block:'start'});
   }
   async function fetchSnapshot(url) {
     const response=await fetch(url+'?refresh='+Math.floor(Date.now()/60000),{cache: 'no-store',credentials:'omit',signal:AbortSignal.timeout(15000)});
