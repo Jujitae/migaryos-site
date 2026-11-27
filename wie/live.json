@@ -17055,11 +17055,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-27T21:27:19.039381Z",
+  "generated_at": "2026-11-27T21:32:19.203851Z",
   "integrity": {
     "ledger_sha256": "967d80bc93fd2433c077df190b97a7bc9728918619cd22b6fecd9b5e74772dcf",
     "reasons": [],
-    "snapshot_sha256": "23b5cfa95f934e6d611dbe1216ca4d5583da0720f218f2a81e2a097d6bf6e572",
+    "snapshot_sha256": "54171ecb0a7484878f03bd136d8bdbfacf0a144802006a8a9a6afdbc10ee034f",
     "status": "VERIFIED"
   },
   "learning": {
@@ -17163,12 +17163,13 @@
   "observed_at": "2026-11-27T21:11:56.163857Z",
   "operation": {
     "collector_source": {
-      "checked_at": "2026-11-27T21:15:48.148178Z",
-      "data_observed_at": "2026-11-27T20:00:00Z",
-      "source_error": true,
+      "checked_at": "2026-11-27T21:30:48.141514Z",
+      "data_observed_at": "2026-11-27T21:00:00Z",
+      "last_confirmed_cycle_finished_at": "2026-11-27T21:19:00.247042Z",
+      "source_error": false,
       "source_id": "gdelt:mentions"
     },
-    "finished_at": "2026-11-27T21:15:48.187558Z",
+    "finished_at": "2026-11-27T21:30:48.446890Z",
     "jobs": {
       "anchor": {
         "exit_code": 0,
@@ -17185,11 +17186,11 @@
         "status": "SOURCE_GAPS"
       },
       "collector": {
-        "exit_code": 7,
-        "finished_at": "2026-11-27T21:15:48.184557Z",
-        "next_due_at": "2026-11-27T21:30:00Z",
-        "started_at": "2026-11-27T21:15:47.571086Z",
-        "status": "SOURCE_GAPS"
+        "exit_code": 0,
+        "finished_at": "2026-11-27T21:30:48.443890Z",
+        "next_due_at": "2026-11-27T21:45:00Z",
+        "started_at": "2026-11-27T21:30:47.565276Z",
+        "status": "SUCCESS"
       },
       "gate": {
         "exit_code": 2,
@@ -17201,9 +17202,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-11-27T21:15:47.566000Z",
+    "started_at": "2026-11-27T21:30:47.561277Z",
     "status": "SOURCE_GAPS",
-    "updated_at": "2026-11-27T21:15:48.187558Z"
+    "updated_at": "2026-11-27T21:30:48.446890Z"
   },
   "predictions": [
     {
