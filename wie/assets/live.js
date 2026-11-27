@@ -89,7 +89,7 @@
       times:[{label:'모형 계산 시각',value:time(h.observed_at)}],
       sections:[{title:'모형 결과를 읽는 법',body:'과거 수익률로 만든 합성 경로의 도달 빈도입니다. 목표에 도달한 경로가 없더라도 실제 하락 가능성이 0이라는 뜻은 아닙니다.'},
         ...(h.counterevidence||[]).map(s=>({title:'가설의 한계',body:s}))],
-      sources:[{label:'기간별 합성 경로와 무효화 조건',url:'https://migaryos.com/record/#hypothesis-'+h.id}],node_labels:[]});
+      sources:[{label:'기간별 합성 경로와 무효화 조건',url:'https://migaryos.com/wie/status/#hypothesis-'+h.id}],node_labels:[]});
     return items;
   }
   function outcomeSources(card, raw) {
