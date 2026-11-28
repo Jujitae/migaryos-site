@@ -17264,11 +17264,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-28T00:22:18.505263Z",
+  "generated_at": "2026-11-28T00:32:18.797094Z",
   "integrity": {
     "ledger_sha256": "4801d83d926075013c1b61942c1c243509a7a229e1e9bd3096043926683a7d6a",
     "reasons": [],
-    "snapshot_sha256": "71e97d4ee52643eca4d43221f6cb18d6f25d29c56b135248ddb7fe161041da6d",
+    "snapshot_sha256": "ff76029bfe7105e5c62ab05684a421d465dfb11c91968628b4d875b6e02e300e",
     "status": "VERIFIED"
   },
   "learning": {
@@ -17372,13 +17372,12 @@
   "observed_at": "2026-11-28T00:14:48.761834Z",
   "operation": {
     "collector_source": {
-      "checked_at": "2026-11-28T00:15:47.957994Z",
-      "data_observed_at": "2026-11-27T23:45:00Z",
-      "last_confirmed_cycle_finished_at": "2026-11-27T23:59:25.598752Z",
+      "checked_at": "2026-11-28T00:30:48.152045Z",
+      "data_observed_at": "2026-11-28T00:00:00Z",
       "source_error": false,
       "source_id": "gdelt:mentions"
     },
-    "finished_at": "2026-11-28T00:15:48.268027Z",
+    "finished_at": "2026-11-28T00:30:49.195687Z",
     "jobs": {
       "anchor": {
         "exit_code": 0,
@@ -17395,11 +17394,11 @@
         "status": "SOURCE_GAPS"
       },
       "collector": {
-        "exit_code": 0,
-        "finished_at": "2026-11-28T00:15:48.265027Z",
-        "next_due_at": "2026-11-28T00:30:00Z",
-        "started_at": "2026-11-28T00:15:47.349733Z",
-        "status": "SUCCESS"
+        "exit_code": 7,
+        "finished_at": "2026-11-28T00:30:49.192687Z",
+        "next_due_at": "2026-11-28T00:45:00Z",
+        "started_at": "2026-11-28T00:30:47.481605Z",
+        "status": "SOURCE_GAPS"
       },
       "gate": {
         "exit_code": 2,
@@ -17411,9 +17410,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-11-28T00:15:47.343310Z",
+    "started_at": "2026-11-28T00:30:47.475088Z",
     "status": "SOURCE_GAPS",
-    "updated_at": "2026-11-28T00:15:48.268027Z"
+    "updated_at": "2026-11-28T00:30:49.195687Z"
   },
   "predictions": [
     {
