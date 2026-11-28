@@ -17289,11 +17289,11 @@
     "stale_after_seconds": 7200,
     "state": "FRESH"
   },
-  "generated_at": "2026-11-28T04:22:18.569578Z",
+  "generated_at": "2026-11-28T04:32:18.919129Z",
   "integrity": {
     "ledger_sha256": "4801d83d926075013c1b61942c1c243509a7a229e1e9bd3096043926683a7d6a",
     "reasons": [],
-    "snapshot_sha256": "de2c8eac18c879e3635e9d46961d47e392b8fba693ffcaf617f6ce5ea4a8b7af",
+    "snapshot_sha256": "a03607d47918a16696d687e3b3418167c9e0d9156680b2d023a3e2d2815faf82",
     "status": "VERIFIED"
   },
   "learning": {
@@ -17397,12 +17397,13 @@
   "observed_at": "2026-11-28T04:14:52.233518Z",
   "operation": {
     "collector_source": {
-      "checked_at": "2026-11-28T04:15:48.161093Z",
-      "data_observed_at": "2026-11-28T03:45:00Z",
+      "checked_at": "2026-11-28T04:30:47.640845Z",
+      "data_observed_at": "2026-11-28T04:00:00Z",
+      "last_confirmed_cycle_finished_at": "2026-11-28T04:20:15.576874Z",
       "source_error": false,
       "source_id": "gdelt:mentions"
     },
-    "finished_at": "2026-11-28T04:15:49.204459Z",
+    "finished_at": "2026-11-28T04:30:47.743347Z",
     "jobs": {
       "anchor": {
         "exit_code": 0,
@@ -17419,11 +17420,11 @@
         "status": "SOURCE_GAPS"
       },
       "collector": {
-        "exit_code": 7,
-        "finished_at": "2026-11-28T04:15:49.201457Z",
-        "next_due_at": "2026-11-28T04:30:00Z",
-        "started_at": "2026-11-28T04:15:47.284479Z",
-        "status": "SOURCE_GAPS"
+        "exit_code": 0,
+        "finished_at": "2026-11-28T04:30:47.740347Z",
+        "next_due_at": "2026-11-28T04:45:00Z",
+        "started_at": "2026-11-28T04:30:47.081511Z",
+        "status": "SUCCESS"
       },
       "gate": {
         "exit_code": 2,
@@ -17435,9 +17436,9 @@
     },
     "schema": "wie.public-operation/1",
     "stale": false,
-    "started_at": "2026-11-28T04:15:47.280409Z",
+    "started_at": "2026-11-28T04:30:47.077186Z",
     "status": "SOURCE_GAPS",
-    "updated_at": "2026-11-28T04:15:49.204459Z"
+    "updated_at": "2026-11-28T04:30:47.743347Z"
   },
   "predictions": [
     {
