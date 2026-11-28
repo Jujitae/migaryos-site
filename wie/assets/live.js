@@ -263,7 +263,9 @@
   function renderCharts() {
     const chart=current.chart, children=[];
     children.push(note('차트 상태: '+label(chart.status)+(chart.observed_at?' · 관측 '+time(chart.observed_at):'')));
-    if(chart.asset_statuses?.length)children.push(facts(chart.asset_statuses.map(s=>[s.symbol,label(s.status)])));
+    if(chart.asset_statuses?.length)children.push(facts(chart.asset_statuses.map(asset=>[
+      asset.symbol, asset.observed_at ? label(asset.status)+' · 자료 확인 '+time(asset.observed_at) : label(asset.status)
+    ])));
     for(const h of chart.hypotheses||[]){
       const d=detail('hypothesis-'+h.id,h.symbol+' · '+conditionText(h.target)+' 가설');
       const t=h.timing;
